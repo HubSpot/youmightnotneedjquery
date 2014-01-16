@@ -1,0 +1,1 @@
+el.insertAdjacentHTML('beforebegin', htmlString)

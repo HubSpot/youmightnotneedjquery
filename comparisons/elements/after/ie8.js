@@ -1,0 +1,1 @@
+el.insertAdjacentHTML('afterend', htmlString)
