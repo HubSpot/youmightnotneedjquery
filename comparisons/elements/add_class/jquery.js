@@ -1,0 +1,1 @@
+$(el).hasClass(className)
