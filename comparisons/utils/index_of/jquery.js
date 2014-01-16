@@ -1,0 +1,1 @@
+$.inArray(item, array)

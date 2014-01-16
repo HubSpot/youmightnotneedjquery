@@ -1,0 +1,1 @@
+$.isArray(arr)
