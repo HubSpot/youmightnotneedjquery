@@ -1,0 +1,1 @@
+getComputedStyle(el)[ruleName]
