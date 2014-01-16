@@ -1,0 +1,1 @@
+$(el).on(eventName, eventHandler)
