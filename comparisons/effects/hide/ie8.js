@@ -1,0 +1,1 @@
+el.style.display = 'none'
