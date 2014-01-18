@@ -1,4 +1,4 @@
 if (el.classList)
-  el.classList.contains(className)
+  el.classList.add(className)
 else
-  new RegExp("(^| )" + className + "( |$)", 'gi').test(el.className)
+  el.className += ' ' + className

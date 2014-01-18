@@ -1,4 +1,4 @@
 if (el.classList)
-  el.classList.remove(className)
+  el.classList.contains(className)
 else
-  el.className = el.className.replace(new RegExp("(^| )" + className.split(' ').join('|') + "( |$)", 'gi'), ' ')
+  new RegExp("(^| )" + className + "( |$)", 'gi').test(el.className)

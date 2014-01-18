@@ -1,1 +1,1 @@
-el.classList.contains(className)
+el.classList.add(className)
