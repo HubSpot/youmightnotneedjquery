@@ -22,6 +22,18 @@
 .comparison
   clearfix()
 
+  h3
+    position relative
+
+    a
+      color inherit
+      text-decoration none
+    
+    &:hover:before
+      content '§'
+      position absolute
+      right 100%
+
 .slider
   clearfix()
 

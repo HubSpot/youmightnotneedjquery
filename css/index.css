@@ -31,6 +31,18 @@
 .comparison:after {
   clear: both;
 }
+.comparison h3 {
+  position: relative;
+}
+.comparison h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.comparison h3:hover:before {
+  content: '§';
+  position: absolute;
+  right: 100%;
+}
 .slider {
   zoom: 1;
   -webkit-box-sizing: border-box;

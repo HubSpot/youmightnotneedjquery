@@ -61,7 +61,8 @@ html
 
           for comp, name in comps
             .comparison(id=name.replace(' ', '-').toLowerCase())
-              h3= titleCase(name.replace(/_/g, ' '))
+              h3
+                a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
 
               for langs, browser in comp
                 .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
