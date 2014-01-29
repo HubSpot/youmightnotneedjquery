@@ -1,3 +1,3 @@
 A resource for doing things au naturale.
 
-### [YouMightNotNeedjQuery.com](youmightnotneedjquery.com)
+### [YouMightNotNeedjQuery.com](http://youmightnotneedjquery.com)
