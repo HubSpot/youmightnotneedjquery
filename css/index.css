@@ -46,6 +46,20 @@
 .slider:after {
   clear: both;
 }
+section {
+/* Hide section titles when they're empty */
+  position: relative;
+  overflow: hidden;
+}
+section .comparison {
+  padding-top: 40px;
+  padding-bottom: -40px;
+}
+section h2 {
+  height: 30px;
+  top: 0;
+  position: absolute;
+}
 input[type='range'] {
   -webkit-appearance: none !important;
   margin: 0;

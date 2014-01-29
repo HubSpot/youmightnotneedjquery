@@ -1,5 +1,5 @@
 (function() {
-  var hide, setMinVersion, showFirst,
+  var filter, hide, setMinVersion, showFirst,
     __slice = [].slice;
 
   showFirst = function() {
@@ -69,13 +69,32 @@
     return _results;
   };
 
+  filter = function(term) {
+    var comp, _i, _len, _ref, _results;
+    _ref = document.querySelectorAll('.comparison');
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      comp = _ref[_i];
+      if (!term || comp.textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1) {
+        _results.push(comp.style.display = 'block');
+      } else {
+        _results.push(comp.style.display = 'none');
+      }
+    }
+    return _results;
+  };
+
   document.addEventListener('DOMContentLoaded', function() {
-    var handleChange, slider;
+    var handleChange, search, slider;
     slider = document.querySelector('.version-slider');
     (handleChange = function() {
       return setMinVersion(slider.value);
     })();
-    return slider.addEventListener('change', handleChange);
+    slider.addEventListener('change', handleChange);
+    search = document.querySelector('input[type="search"]');
+    return search.addEventListener('input', function() {
+      return filter(search.value);
+    });
   });
 
 }).call(this);

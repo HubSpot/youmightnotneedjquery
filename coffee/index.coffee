@@ -32,6 +32,13 @@ setMinVersion = (version=10) ->
       when 10
         showFirst versions['ie10'], versions['ie9'], versions['ie8']
 
+filter = (term) ->
+  for comp in document.querySelectorAll('.comparison')
+    if not term or comp.textContent.toLowerCase().indexOf(term.toLowerCase()) isnt -1
+      comp.style.display = 'block'
+    else
+      comp.style.display = 'none'
+
 document.addEventListener 'DOMContentLoaded', ->
   slider = document.querySelector('.version-slider')
 
@@ -39,3 +46,8 @@ document.addEventListener 'DOMContentLoaded', ->
     setMinVersion slider.value
 
   slider.addEventListener 'change', handleChange
+
+  search = document.querySelector('input[type="search"]')
+
+  search.addEventListener 'input', ->
+    filter search.value
