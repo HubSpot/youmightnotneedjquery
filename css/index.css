@@ -1,0 +1,15 @@
+.page {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+.code-block {
+  float: right;
+  width: 49%;
+}
+.code-block.jquery {
+  float: left;
+  margin-right: 2%;
+}
+.comparison {
+  clear: both;
+}

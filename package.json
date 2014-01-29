@@ -1,21 +1,25 @@
 {
   "name": "youdontneedjquery",
-  "version": "0.0.0",
-  "description": "youdontneedjquery =================",
+  "version": "0.1.0",
+  "description": "youdontneedjquery",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/HubSpot/youdontneedjquery.git"
   },
   "author": "",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/HubSpot/youdontneedjquery/issues"
   },
   "devDependencies": {
-    "readfiletree": "0.0.1"
+    "readfiletree": "0.0.1",
+    "gulp-util": "~2.2.9",
+    "gulp": "~3.3.0",
+    "gulp-coffee": "~1.2.5",
+    "gulp-jade": "~0.3.0",
+    "gulp-stylus": "0.0.7",
+    "coffee-script": "~1.6.3",
+    "nib": "~1.0.2"
   }
 }
