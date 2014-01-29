@@ -22,6 +22,18 @@ html
     script(src='js/index.js')
   body
     .page
+      p
+        | jQuery and it's cousins are great, and by all means use them if it makes it easier to develop your application.
+
+      p
+        | If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
+        | Maybe you can include a few lines of utility code, and forgoe the requirement.  If your only targeting more modern browsers,
+        | you might not need anything more than what the browser ships with.
+
+      p
+        | At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
+        | is protecting us from a great demon of browser incompability when, in truth, after IE 9, browsers are pretty easy to
+        | deal with on their own.
 
       .field
         label(for="version") What's the oldest version of IE you need to support?
