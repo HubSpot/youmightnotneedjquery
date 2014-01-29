@@ -1,3 +1,8 @@
+@import 'nib'
+
+*, *:after, *:before
+  box-sizing border-box
+
 .page
   max-width 1024px
   margin 0 auto
@@ -12,3 +17,38 @@
 
 .comparison
   clear both
+
+.slider
+  clearfix()
+
+  box-sizing border-box
+  width 300px
+  margin 20px 0
+
+input[type='range']
+  -webkit-appearance none !important
+  
+  margin 0
+  background-color #F0F0F0
+  height 30px
+  width 100%
+
+input[type='range']::-webkit-slider-thumb
+  -webkit-appearance none !important
+
+  height 20px
+  width 20px
+  border 2px solid #CCC
+  border-radius 5px
+  background-color #FCFCFC
+
+.range-label
+  float left
+  width 33%
+  text-align center
+
+.range-label:first-of-type
+  text-align left 
+
+.range-label:last-of-type
+  text-align right

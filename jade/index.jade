@@ -23,8 +23,17 @@ html
   body
     .page
 
-      label(for="version") What's the oldest browser you need to support?
-      input(name="version", type="range", min="8", max="10").version-slider
+      .field
+        label(for="version") What's the oldest browser you need to support?
+
+        .slider
+          input(name="version", type="range", min="8", max="10").version-slider
+
+          .rule
+            .range-label 8
+            .range-label 9
+            .range-label 10
+
 
       for comps, title in comparisons
         section(id=title)
@@ -36,7 +45,10 @@ html
 
               for code, browser in comp
                 .code-block.language-javascript(data-browser=browser, class=browser)
-                  h4= browser
+                  if browser === 'jquery'
+                    h4 jQuery
+                  else
+                    h4= browser.toUpperCase() + '+'
                   pre
                     code= code
 
