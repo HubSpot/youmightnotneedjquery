@@ -1,16 +1,15 @@
 {
-  "name": "youdontneedjquery",
+  "name": "youmightnotneedjquery",
   "version": "0.1.0",
-  "description": "youdontneedjquery",
-  "main": "index.js",
+  "description": "You might not need jQuery",
   "repository": {
     "type": "git",
-    "url": "git://github.com/HubSpot/youdontneedjquery.git"
+    "url": "git://github.com/HubSpot/youmightnotneedjquery.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HubSpot/youdontneedjquery/issues"
+    "url": "https://github.com/HubSpot/youmightnotneedjquery/issues"
   },
   "devDependencies": {
     "readfiletree": "0.0.1",
