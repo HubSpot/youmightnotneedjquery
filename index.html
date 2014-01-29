@@ -33,7 +33,7 @@
       </p>
       <div class="share-button retweet-button"><a href="http://twitter.com/share" data-url="http://youmightnotneedjquery.com" data-text="You might not need jQuery:" data-count="horizontal" data-via="HubSpotDev" class="twitter-share-button">Tweet</a></div>
       <div class="share-button github-stars-button">
-        <iframe src="http://hubstar.io/spin/HubSpot/youmightnotneedjquery" frameborder="0" scrolling="0" width="400" height="90"></iframe>
+        <iframe src="http://hubstar.io/spin/HubSpot/YouMightNotNeedjQuery" frameborder="0" scrolling="0" width="400" height="90"></iframe>
       </div>
       <div class="field">
         <label for="version">What's the oldest version of IE you need to support?</label>
@@ -51,15 +51,6 @@
         <h2>AJAX</h2>
         <div class="comparison">
           <h3>JSON</h3>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
-            <div class="code-block language-javascript">
-              <pre><code>$.getJSON('/my/url', function(data) {
-
-})
-</code></pre>
-            </div>
-          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
@@ -69,6 +60,15 @@ request.send()
 
 request.onload = function(){
   data = JSON.parse(request.responseText); }
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
+            <div class="code-block language-javascript">
+              <pre><code>$.getJSON('/my/url', function(data) {
+
+})
 </code></pre>
             </div>
           </div>
@@ -568,17 +568,17 @@ filter(selector, filterFn)
         </div>
         <div class="comparison">
           <h3>Getting Text</h3>
-          <div data-browser="ie8" class="browser ie8">
-            <h4>IE8+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>el.textContent || el.innerText
-</code></pre>
-            </div>
-          </div>
           <div data-browser="ie9" class="browser ie9">
             <h4>IE9+</h4>
             <div class="code-block language-javascript">
               <pre><code>el.textContent
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="ie8" class="browser ie8">
+            <h4>IE8+</h4>
+            <div class="code-block language-javascript">
+              <pre><code>el.textContent || el.innerText
 </code></pre>
             </div>
           </div>
@@ -657,6 +657,13 @@ matches(el, '.my-class')
 </code></pre>
             </div>
           </div>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
+            <div class="code-block language-javascript">
+              <pre><code>$(el).is('.my-class')
+</code></pre>
+            </div>
+          </div>
           <div data-browser="ie9" class="browser ie9">
             <h4>IE9+</h4>
             <div class="code-block language-javascript">
@@ -665,13 +672,6 @@ matches(el, '.my-class')
 }
 
 matches(el, '.my-class')
-</code></pre>
-            </div>
-          </div>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
-            <div class="code-block language-javascript">
-              <pre><code>$(el).is('.my-class')
 </code></pre>
             </div>
           </div>
@@ -1051,19 +1051,19 @@ addEventListener(el, eventName, handler)
 </code></pre>
             </div>
           </div>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
+          <div data-browser="ie9" class="browser ie9">
+            <h4>IE9+</h4>
             <div class="code-block language-javascript">
-              <pre><code>$(document).ready(function(){
+              <pre><code>document.addEventListener(&quot;DOMContentLoaded&quot;, function(){
 
 })
 </code></pre>
             </div>
           </div>
-          <div data-browser="ie9" class="browser ie9">
-            <h4>IE9+</h4>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
             <div class="code-block language-javascript">
-              <pre><code>document.addEventListener(&quot;DOMContentLoaded&quot;, function(){
+              <pre><code>$(document).ready(function(){
 
 })
 </code></pre>
