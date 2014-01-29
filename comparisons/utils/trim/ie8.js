@@ -1,1 +1,1 @@
-string.trim()
+string.replace(/^\s+|\s+$/g, '')
