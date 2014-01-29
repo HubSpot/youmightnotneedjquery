@@ -1,4 +1,4 @@
-function removeEventListener(el, eventName, handler){
+function removeEventListener(el, eventName, handler) {
   if (el.removeEventListener)
     el.removeEventListener(eventName, handler)
   else

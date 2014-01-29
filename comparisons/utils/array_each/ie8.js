@@ -1,8 +1,8 @@
-function forEach(array, fn){
-  for(i=0; i < array.length; i++)
-    fn(array[i], i);
+function forEach(array, fn) {
+  for (i = 0; i < array.length; i++)
+    fn(array[i], i)
 }
 
 forEach(function(item, i){
 
-});
+})

@@ -1,21 +1,21 @@
-extend = function(out){
-  if (out == null)
-    out = {};
+extend = function(out) {
+  if (!out)
+    out = {}
 
-  var objs = Array.prototype.slice.call(arguments, 1);
+  var objs = Array.prototype.slice.call(arguments, 1)
 
-  for (var i=0; i < objs.length; i++){
-    var obj = objs[i];
+  for (var i = 0; i < objs.length; i++) {
+    var obj = objs[i]
 
-    if (obj){
-      for (key in obj){
+    if (obj) {
+      for (key in obj) {
         if (obj.hasOwnProperty(key))
           out[key] = obj[key]
       }
     }
   }
 
-  return out;
+  return out
 }
 
-extend({}, objA, objB);
+extend({}, objA, objB)

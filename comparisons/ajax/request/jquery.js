@@ -7,4 +7,4 @@ $.ajax({
   error: function() {
 
   }
-});
+})
