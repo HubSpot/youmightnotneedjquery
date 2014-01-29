@@ -31,24 +31,9 @@
         is protecting us from a great demon of browser incompability when, in truth, after IE 9, browsers are pretty easy to
         deal with on their own.
       </p>
-      <div class="share-button retweet-button"><a href="http://twitter.com/share" data-url="http://youmightnotneedjquery.com" data-text="You might not need jQuery:" data-count="horizontal" data-via="HubSpotDev" class="twitter-share-button">Tweet</a>
-        <script>
-          (function(){
-            var recommends, button;
-            if (Math.random() >= 0.5)
-              recommends = ['hubspotdev', 'zackbloom', 'adamfschwartz'];
-            else
-              recommends = ['hubspotdev', 'adamfschwartz', 'zackbloom'];
-              
-            button = document.querySelector('.twitter-share-button');
-            if (button)
-              button.setAttribute('data-related', recommends.join(','));
-          })();
-        </script>
-        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-      </div>
+      <div class="share-button retweet-button"><a href="http://twitter.com/share" data-url="http://youmightnotneedjquery.com" data-text="You might not need jQuery:" data-count="horizontal" data-via="HubSpotDev" class="twitter-share-button">Tweet</a></div>
       <div class="share-button github-stars-button">
-        <iframe src="http://ghbtns.com/github-btn.html?user=HubSpot&amp;repo=youmightnotneedjquery&amp;type=watch&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+        <iframe src="http://hubstar.io/spin/HubSpot/youmightnotneedjquery" frameborder="0" scrolling="0" width="400" height="90"></iframe>
       </div>
       <div class="field">
         <label for="version">What's the oldest version of IE you need to support?</label>
@@ -66,6 +51,15 @@
         <h2>AJAX</h2>
         <div class="comparison">
           <h3>JSON</h3>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
+            <div class="code-block language-javascript">
+              <pre><code>$.getJSON('/my/url', function(data) {
+
+})
+</code></pre>
+            </div>
+          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
@@ -75,15 +69,6 @@ request.send()
 
 request.onload = function(){
   data = JSON.parse(request.responseText); }
-</code></pre>
-            </div>
-          </div>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
-            <div class="code-block language-javascript">
-              <pre><code>$.getJSON('/my/url', function(data) {
-
-})
 </code></pre>
             </div>
           </div>
@@ -439,13 +424,6 @@ Array.prototype.forEach.call(elements, function(el, i){
         </div>
         <div class="comparison">
           <h3>Filter</h3>
-          <div data-browser="ie9" class="browser ie9">
-            <h4>IE9+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>Array.prototype.filter.call(document.querySelectorAll(selector), filterFn)
-</code></pre>
-            </div>
-          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
@@ -460,6 +438,13 @@ Array.prototype.forEach.call(elements, function(el, i){
 }
 
 filter(selector, filterFn)
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="ie9" class="browser ie9">
+            <h4>IE9+</h4>
+            <div class="code-block language-javascript">
+              <pre><code>Array.prototype.filter.call(document.querySelectorAll(selector), filterFn)
 </code></pre>
             </div>
           </div>
@@ -532,17 +517,17 @@ filter(selector, filterFn)
         </div>
         <div class="comparison">
           <h3>Getting Attributes</h3>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
-            <div class="code-block language-javascript">
-              <pre><code>$(el).attr('tabindex')
-</code></pre>
-            </div>
-          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
               <pre><code>el.getAttribute('tagname')
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
+            <div class="code-block language-javascript">
+              <pre><code>$(el).attr('tabindex')
 </code></pre>
             </div>
           </div>
@@ -1066,19 +1051,19 @@ addEventListener(el, eventName, handler)
 </code></pre>
             </div>
           </div>
-          <div data-browser="ie9" class="browser ie9">
-            <h4>IE9+</h4>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
             <div class="code-block language-javascript">
-              <pre><code>document.addEventListener(&quot;DOMContentLoaded&quot;, function(){
+              <pre><code>$(document).ready(function(){
 
 })
 </code></pre>
             </div>
           </div>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
+          <div data-browser="ie9" class="browser ie9">
+            <h4>IE9+</h4>
             <div class="code-block language-javascript">
-              <pre><code>$(document).ready(function(){
+              <pre><code>document.addEventListener(&quot;DOMContentLoaded&quot;, function(){
 
 })
 </code></pre>
@@ -1111,6 +1096,15 @@ el.dispatchEvent(event)
         </div>
         <div class="comparison">
           <h3>Trigger Native</h3>
+          <div data-browser="ie9" class="browser ie9">
+            <h4>IE9+</h4>
+            <div class="code-block language-javascript">
+              <pre><code>event = document.createEvent(&quot;HTMLEvents&quot;)
+event.initEvent(&quot;change&quot;, true, false)
+el.dispatchEvent(event)
+</code></pre>
+            </div>
+          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
@@ -1121,15 +1115,6 @@ el.dispatchEvent(event)
 } else {
   el.fireEvent('onchange')
 }
-</code></pre>
-            </div>
-          </div>
-          <div data-browser="ie9" class="browser ie9">
-            <h4>IE9+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>event = document.createEvent(&quot;HTMLEvents&quot;)
-event.initEvent(&quot;change&quot;, true, false)
-el.dispatchEvent(event)
 </code></pre>
             </div>
           </div>
@@ -1388,6 +1373,20 @@ isArray(arr);
       ga('send', 'pageview');
       
     </script>
+    <script>
+      (function(){
+        var recommends, button;
+        if (Math.random() >= 0.5)
+          recommends = ['hubspotdev', 'zackbloom', 'adamfschwartz'];
+        else
+          recommends = ['hubspotdev', 'adamfschwartz', 'zackbloom'];
+          
+        button = document.querySelector('.twitter-share-button');
+        if (button)
+          button.setAttribute('data-related', recommends.join(','));
+      })();
+    </script>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <div style="-webkit-transform: translateZ(0);"></div>
   </body>
 </html>
