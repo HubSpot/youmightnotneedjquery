@@ -60,7 +60,7 @@ html
           h2= titleCase(title)
 
           for comp, name in comps
-            .comparison
+            .comparison(id=name.replace(' ', '-').toLowerCase())
               h3= titleCase(name.replace(/_/g, ' '))
 
               for langs, browser in comp
