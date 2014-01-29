@@ -35,6 +35,25 @@ html
         | is protecting us from a great demon of browser incompability when, in truth, after IE 9, browsers are pretty easy to
         | deal with on their own.
 
+      .share-button.retweet-button
+        a.twitter-share-button(href='http://twitter.com/share', data-url='http://youmightnotneedjquery.com', data-text='You might not need jQuery:', data-count='horizontal', data-via='HubSpotDev') Tweet
+        script.
+          (function(){
+            var recommends, button;
+            if (Math.random() >= 0.5)
+              recommends = ['hubspotdev', 'zackbloom', 'adamfschwartz'];
+            else
+              recommends = ['hubspotdev', 'adamfschwartz', 'zackbloom'];
+
+            button = document.querySelector('.twitter-share-button');
+            if (button)
+              button.setAttribute('data-related', recommends.join(','));
+          })();
+        script(type='text/javascript', src='http://platform.twitter.com/widgets.js')
+
+      .share-button.github-stars-button
+        iframe(src='http://ghbtns.com/github-btn.html?user=HubSpot&repo=youmightnotneedjquery&type=watch&count=true&size=small', allowtransparency='true', frameborder='0', scrolling='0', width='100', height='20')
+
       .field
         label(for="version") What's the oldest version of IE you need to support?
 
