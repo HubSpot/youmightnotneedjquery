@@ -24,7 +24,7 @@ html
     .page
 
       .field
-        label(for="version") What's the oldest browser you need to support?
+        label(for="version") What's the oldest version of IE you need to support?
 
         .slider
           input(name="version", type="range", min="8", max="10").version-slider
@@ -43,14 +43,18 @@ html
             .comparison
               h3= titleCase(name.replace(/_/g, ' '))
 
-              for code, browser in comp
-                .code-block.language-javascript(data-browser=browser, class=browser)
-                  if browser === 'jquery'
+              for langs, browser in comp
+                .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
+
+                  if getNamePart(browser) === 'jquery'
                     h4 jQuery
                   else
-                    h4= browser.toUpperCase() + '+'
-                  pre
-                    code= code
+                    h4= getNamePart(browser).toUpperCase() + '+'
+
+                  for code, lang in langs
+                    .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
+                      pre
+                        code= code
 
     script.
       (function(d,s,i,r) {

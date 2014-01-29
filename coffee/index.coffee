@@ -16,7 +16,7 @@ setMinVersion = (version=10) ->
   version = parseInt version
 
   for section in document.querySelectorAll('.comparison')
-    blocks = section.querySelectorAll('.code-block')
+    blocks = section.querySelectorAll('.browser')
 
     versions = {}
     for block in blocks

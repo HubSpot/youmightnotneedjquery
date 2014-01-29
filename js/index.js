@@ -44,7 +44,7 @@
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       section = _ref[_i];
-      blocks = section.querySelectorAll('.code-block');
+      blocks = section.querySelectorAll('.browser');
       versions = {};
       for (_j = 0, _len1 = blocks.length; _j < _len1; _j++) {
         block = blocks[_j];

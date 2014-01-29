@@ -15,6 +15,16 @@ titleCase = (str) ->
 
   str
 
+getNamePart = (str) ->
+  str.split('.')[0]
+
+fullLanguage = (ext) ->
+  LANGS =
+    js: 'javascript'
+    css: 'css'
+
+  LANGS[ext]
+
 gulp.task 'coffee', ->
   gulp.src('./coffee/*')
     .pipe(coffee())
@@ -32,7 +42,7 @@ gulp.task 'jade', ->
       return
 
     gulp.src('./jade/*')
-      .pipe(jade({pretty: true, data: {comparisons, titleCase}}))
+      .pipe(jade({pretty: true, data: {comparisons, titleCase, getNamePart, fullLanguage}}))
       .pipe(gulp.dest('./'))
 
 gulp.task 'default', ->

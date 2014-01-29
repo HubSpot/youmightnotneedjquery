@@ -2,24 +2,26 @@ fs = require('fs')
 
 readFileTree = require('readfiletree')
 
-re = /\.[a-z]+$/
-stripExtensionsInKeys = (obj) ->
-  for own k, v of obj
-    if re.test k
-      obj[k.replace(re, '')] = v
-      delete obj[k]
-    
-    if typeof v is 'object'
-      stripExtensionsInKeys v
-
 get = (cb) ->
   readFileTree 'comparisons/', (err, tree) ->
     if err
       cb(err)
       return
 
-    stripExtensionsInKeys tree
+    out = {}
 
-    cb null, tree
+    for title, comps of tree
+      out[title] = {}
+
+      for name, comp of comps
+        out[title][name] = {}
+
+        for filename, code of comp
+          [version, ext] = filename.split '.'
+
+          out[title][name][version] ?= {}
+          out[title][name][version][ext] = code
+
+    cb null, out
 
 module.exports = get
