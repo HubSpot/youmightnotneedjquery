@@ -46,6 +46,24 @@
 .slider:after {
   clear: both;
 }
+header {
+  zoom: 1;
+}
+header:before,
+header:after {
+  content: "";
+  display: table;
+}
+header:after {
+  clear: both;
+}
+header input[type="search"] {
+  float: right;
+  font-size: 16px;
+}
+header .field {
+  float: left;
+}
 section {
 /* Hide section titles when they're empty */
   position: relative;

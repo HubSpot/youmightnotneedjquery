@@ -9,7 +9,7 @@
     <link rel="icon" href="http://static.hubspot.com/favicon.ico">
     <link rel="stylesheet" href="css/prism.css">
     <link rel="stylesheet" href="css/index.css">
-    <script type="text/javascript" src="//use.typekit.net/jbn8qxr.js"></script>
+    <script type="text/javascript" src="//use.---typekit.net/jbn8qxr.js"></script>
     <script type="text/javascript">
       try{Typekit.load();}catch(e){}
       
@@ -32,23 +32,25 @@
         deal with on their own.
       </p>
       <div class="share-button github-stars-button">
-        <iframe src="http://hubstar.io/twitter/spin?via=HubSpotDev&amp;text=You%20might%20not%20need%20jQuery&amp;url=http://YouMightNotNeedjQuery.com" frameborder="0" scrolling="0" width="400" height="90"></iframe>
+        <iframe src="http://---hubstar.io/twitter/spin?via=HubSpotDev&amp;text=You%20might%20not%20need%20jQuery&amp;url=http://YouMightNotNeedjQuery.com" frameborder="0" scrolling="0" width="400" height="90"></iframe>
       </div>
       <div class="share-button github-stars-button">
-        <iframe src="http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery" frameborder="0" scrolling="0" width="400" height="90"></iframe>
+        <iframe src="http://---hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery" frameborder="0" scrolling="0" width="400" height="90"></iframe>
       </div>
-      <div class="field">
-        <label for="version">What's the oldest version of IE you need to support?</label>
-        <div class="slider">
-          <input name="version" type="range" min="8" max="10" class="version-slider">
-          <div class="rule">
-            <div class="range-label">8</div>
-            <div class="range-label">9</div>
-            <div class="range-label">10</div>
+      <header>
+        <div class="field">
+          <label for="version">What's the oldest version of IE you need to support?</label>
+          <div class="slider">
+            <input name="version" type="range" min="8" max="10" class="version-slider">
+            <div class="rule">
+              <div class="range-label">8</div>
+              <div class="range-label">9</div>
+              <div class="range-label">10</div>
+            </div>
           </div>
         </div>
-      </div>
-      <input type="search" placeholder="Search">
+        <input type="search" placeholder="Search">
+      </header>
       <section id="ajax">
         <h2>AJAX</h2>
         <div class="comparison">
@@ -143,11 +145,6 @@ request.onerror = function(){
           <h3>Fade In</h3>
           <div data-browser="ie10" class="browser ie10">
             <h4>IE10+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>el.classList.add('show')
-el.classList.remove('hide')
-</code></pre>
-            </div>
             <div class="code-block language-css">
               <pre><code>.show {
   transition: opacity 400ms;
@@ -155,6 +152,11 @@ el.classList.remove('hide')
 .hide {
   opacity: 0;
 }
+</code></pre>
+            </div>
+            <div class="code-block language-javascript">
+              <pre><code>el.classList.add('show')
+el.classList.remove('hide')
 </code></pre>
             </div>
           </div>
@@ -478,17 +480,17 @@ filter(selector, filterFn)
         </div>
         <div class="comparison">
           <h3>Finding Elements</h3>
-          <div data-browser="ie8" class="browser ie8">
-            <h4>IE8+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>document.querySelectorAll('.my #awesome selector')
-</code></pre>
-            </div>
-          </div>
           <div data-browser="jquery" class="browser jquery">
             <h4>jQuery</h4>
             <div class="code-block language-javascript">
               <pre><code>$('.my #awesome selector')
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="ie8" class="browser ie8">
+            <h4>IE8+</h4>
+            <div class="code-block language-javascript">
+              <pre><code>document.querySelectorAll('.my #awesome selector')
 </code></pre>
             </div>
           </div>
@@ -809,17 +811,17 @@ el.prevElementSibling || prevElementSibling(el)
         </div>
         <div class="comparison">
           <h3>Remove</h3>
-          <div data-browser="ie8" class="browser ie8">
-            <h4>IE8+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>el.parentNode.removeChild(el)
-</code></pre>
-            </div>
-          </div>
           <div data-browser="jquery" class="browser jquery">
             <h4>jQuery</h4>
             <div class="code-block language-javascript">
               <pre><code>$(el).remove()
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="ie8" class="browser ie8">
+            <h4>IE8+</h4>
+            <div class="code-block language-javascript">
+              <pre><code>el.parentNode.removeChild(el)
 </code></pre>
             </div>
           </div>
@@ -1134,6 +1136,15 @@ el.dispatchEvent(event)
         <h2>Utils</h2>
         <div class="comparison">
           <h3>Array Each</h3>
+          <div data-browser="ie9" class="browser ie9">
+            <h4>IE9+</h4>
+            <div class="code-block language-javascript">
+              <pre><code>array.forEach(function(item, i){
+
+});
+</code></pre>
+            </div>
+          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
@@ -1143,15 +1154,6 @@ el.dispatchEvent(event)
 }
 
 forEach(function(item, i){
-
-});
-</code></pre>
-            </div>
-          </div>
-          <div data-browser="ie9" class="browser ie9">
-            <h4>IE9+</h4>
-            <div class="code-block language-javascript">
-              <pre><code>array.forEach(function(item, i){
 
 });
 </code></pre>
@@ -1169,13 +1171,6 @@ forEach(function(item, i){
         </div>
         <div class="comparison">
           <h3>Deep Extend</h3>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
-            <div class="code-block language-javascript">
-              <pre><code>$.extend(true, {}, objA, objB)
-</code></pre>
-            </div>
-          </div>
           <div data-browser="ie8" class="browser ie8">
             <h4>IE8+</h4>
             <div class="code-block language-javascript">
@@ -1204,6 +1199,13 @@ forEach(function(item, i){
 }
 
 deepExtend({}, objA, objB);
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
+            <div class="code-block language-javascript">
+              <pre><code>$.extend(true, {}, objA, objB)
 </code></pre>
             </div>
           </div>
@@ -1262,17 +1264,17 @@ indexOf(array, item)
 </code></pre>
             </div>
           </div>
-          <div data-browser="jquery" class="browser jquery">
-            <h4>jQuery</h4>
-            <div class="code-block language-javascript">
-              <pre><code>$.inArray(item, array)
-</code></pre>
-            </div>
-          </div>
           <div data-browser="ie9" class="browser ie9">
             <h4>IE9+</h4>
             <div class="code-block language-javascript">
               <pre><code>array.indexOf(item)
+</code></pre>
+            </div>
+          </div>
+          <div data-browser="jquery" class="browser jquery">
+            <h4>jQuery</h4>
+            <div class="code-block language-javascript">
+              <pre><code>$.inArray(item, array)
 </code></pre>
             </div>
           </div>
