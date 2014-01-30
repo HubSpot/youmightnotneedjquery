@@ -48,7 +48,7 @@
         </div>
       </div>
       <header class="search">
-        <input type="search" placeholder="Search..." required>
+        <input type="search" placeholder="Search..." required autofocus>
         <div class="field">
           <label for="version">Oldest version of IE you need to support</label>
           <div class="slider">
@@ -152,94 +152,6 @@ request.onerror = function() {
             </div>
           </div>
         </section>
-        <section id="effects">
-          <div class="inner">
-            <h2>Effects</h2>
-            <div id="fade_in" class="comparison">
-              <h3><a href="#fade_in">Fade In</a></h3>
-              <div data-browser="ie10" class="browser ie10">
-                <h4>IE10+</h4>
-                <div class="code-block language-css">
-                  <pre><code>.show {
-  transition: opacity 400ms;
-}
-.hide {
-  opacity: 0;
-}
-</code></pre>
-                </div>
-                <div class="code-block language-javascript">
-                  <pre><code>el.classList.add('show')
-el.classList.remove('hide')
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>function fadeIn(el) {
-  el.style.opacity = 0
-
-  var last = +new Date
-  var tick = function() {
-    el.style.opacity += (new Date - last) / 400
-    last = +new Date
-
-    if (el.style.opacity &lt; 1)
-      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
-  }
-
-  tick()
-}
-
-fadeIn(el)
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).fadeIn()
-</code></pre>
-                </div>
-              </div>
-            </div>
-            <div id="hide" class="comparison">
-              <h3><a href="#hide">Hide</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.style.display = 'none'
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).hide()
-</code></pre>
-                </div>
-              </div>
-            </div>
-            <div id="show" class="comparison">
-              <h3><a href="#show">Show</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.style.display = 'block' // or 'inline', etc.
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).show()
-</code></pre>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         <section id="elements">
           <div class="inner">
             <h2>Elements</h2>
@@ -323,17 +235,17 @@ else
             </div>
             <div id="children" class="comparison">
               <h3><a href="#children">Children</a></h3>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).children()
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>el.children
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).children()
 </code></pre>
                 </div>
               </div>
@@ -761,6 +673,23 @@ el.nextElementSibling || nextElementSibling(el)
                 </div>
               </div>
             </div>
+            <div id="parent" class="comparison">
+              <h3><a href="#parent">Parent</a></h3>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.parentNode
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).parent()
+</code></pre>
+                </div>
+              </div>
+            </div>
             <div id="parse_html" class="comparison">
               <h3><a href="#parse_html">Parse Html</a></h3>
               <div data-browser="ie8" class="browser ie8">
@@ -780,23 +709,6 @@ parseHTML(htmlString);
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$.parseHTML(htmlString);
-</code></pre>
-                </div>
-              </div>
-            </div>
-            <div id="parent" class="comparison">
-              <h3><a href="#parent">Parent</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.parentNode
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).parent()
 </code></pre>
                 </div>
               </div>
@@ -892,6 +804,23 @@ else
                 </div>
               </div>
             </div>
+            <div id="replacing_from_html" class="comparison">
+              <h3><a href="#replacing_from_html">Replacing From Html</a></h3>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.outerHTML = string
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).replaceWith(string)
+</code></pre>
+                </div>
+              </div>
+            </div>
             <div id="set_style" class="comparison">
               <h3><a href="#set_style">Set Style</a></h3>
               <div data-browser="ie8" class="browser ie8">
@@ -906,23 +835,6 @@ el.style.borderWidth = '20px'
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).css('border-width', '20px')
-</code></pre>
-                </div>
-              </div>
-            </div>
-            <div id="replacing_from_html" class="comparison">
-              <h3><a href="#replacing_from_html">Replacing From Html</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.outerHTML = string
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).replaceWith(string)
 </code></pre>
                 </div>
               </div>
@@ -1014,6 +926,94 @@ for (var i = siblings.length; i--;) {
             </div>
           </div>
         </section>
+        <section id="effects">
+          <div class="inner">
+            <h2>Effects</h2>
+            <div id="fade_in" class="comparison">
+              <h3><a href="#fade_in">Fade In</a></h3>
+              <div data-browser="ie10" class="browser ie10">
+                <h4>IE10+</h4>
+                <div class="code-block language-css">
+                  <pre><code>.show {
+  transition: opacity 400ms;
+}
+.hide {
+  opacity: 0;
+}
+</code></pre>
+                </div>
+                <div class="code-block language-javascript">
+                  <pre><code>el.classList.add('show')
+el.classList.remove('hide')
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>function fadeIn(el) {
+  el.style.opacity = 0
+
+  var last = +new Date
+  var tick = function() {
+    el.style.opacity += (new Date - last) / 400
+    last = +new Date
+
+    if (el.style.opacity &lt; 1)
+      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
+  }
+
+  tick()
+}
+
+fadeIn(el)
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).fadeIn()
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div id="hide" class="comparison">
+              <h3><a href="#hide">Hide</a></h3>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.style.display = 'none'
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).hide()
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div id="show" class="comparison">
+              <h3><a href="#show">Show</a></h3>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.style.display = 'block' // or 'inline', etc.
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).show()
+</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <section id="events">
           <div class="inner">
             <h2>Events</h2>
@@ -1081,6 +1081,15 @@ addEventListener(el, eventName, handler)
             </div>
             <div id="ready" class="comparison">
               <h3><a href="#ready">Ready</a></h3>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>document.addEventListener('DOMContentLoaded', function(){
+
+})
+</code></pre>
+                </div>
+              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -1094,15 +1103,6 @@ addEventListener(el, eventName, handler)
     })
   }
 }
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>document.addEventListener('DOMContentLoaded', function(){
-
-})
 </code></pre>
                 </div>
               </div>
