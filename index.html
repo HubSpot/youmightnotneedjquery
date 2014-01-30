@@ -27,10 +27,10 @@
     </header>
     <div class="explaination">
       <div class="inner">
-        <p>jQuery and it's cousins are great, and by all means use them if it makes it easier to develop your application.</p>
+        <p>jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.</p>
         <p>
           If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-          Maybe you can include a few lines of utility code, and forgoe the requirement.  If your only targeting more modern browsers,
+          Maybe you can include a few lines of utility code, and forgoe the requirement.  If you're only targeting more modern browsers,
           you might not need anything more than what the browser ships with.
         </p>
         <p>
@@ -308,17 +308,17 @@ else
           </div>
           <div id="before" class="comparison">
             <h3><a href="#before">Before</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).before(htmlString)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
 </code></pre>
               </div>
             </div>
@@ -402,7 +402,7 @@ else
     fn(elements[i], i)
 }
 
-forEachElement(selector, function(el, i) {
+forEachElement(selector, function(el, i){
 
 })
 </code></pre>
@@ -785,13 +785,13 @@ el.nextElementSibling || nextElementSibling(el)
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>parseHTML = function(str){
-  el = document.createElement('div');
-  el.innerHTML = str;
-  return el.children;
+                <pre><code>parseHTML = function(str) {
+  el = document.createElement('div')
+  el.innerHTML = str
+  return el.children
 }
 
-parseHTML(htmlString);
+parseHTML(htmlString)
 </code></pre>
               </div>
             </div>
@@ -1414,7 +1414,8 @@ map(array, function(value, index){
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>JSON.parse(string);
+                <pre><code>JSON.parse(string)
+
 </code></pre>
               </div>
             </div>
