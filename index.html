@@ -117,6 +117,22 @@ request.send(data)
           </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'GET',
+  url: '/my/url',
+  success: function(resp) {
+
+  },
+  error: function() {
+
+  }
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -132,22 +148,6 @@ request.onload = function() {
 request.onerror = function() {
 
 }
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'GET',
-  url: '/my/url',
-  success: function(resp) {
-
-  },
-  error: function() {
-
-  }
-})
 </code></pre>
               </div>
             </div>
@@ -714,17 +714,17 @@ el.nextElementSibling || nextElementSibling(el)
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).next()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>el.nextElementSibling
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).next()
 </code></pre>
               </div>
             </div>
@@ -1254,6 +1254,13 @@ forEach(function(item, i){
 </code></pre>
               </div>
             </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.proxy(fn, context)
+</code></pre>
+              </div>
+            </div>
           </div>
           <div id="deep_extend" class="comparison">
             <h3><a href="#deep_extend">Deep Extend</a></h3>
@@ -1389,6 +1396,22 @@ isArray(arr)
           </div>
           <div id="map" class="comparison">
             <h3><a href="#map">Map</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>function map(arr, fn){
+  var results = [];
+  for (var i=0; i &lt; arr.length; i++)
+    results.push(fn(arr[i], i));
+  return results;
+}
+
+map(array, function(value, index){
+
+});
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1402,22 +1425,6 @@ isArray(arr)
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.map(array, function(value, index){
-
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>function map(arr, fn){
-  var results = [];
-  for (var i=0; i &lt; arr.length; i++)
-    results.push(fn(arr[i], i));
-  return results;
-}
-
-map(array, function(value, index){
 
 });
 </code></pre>
