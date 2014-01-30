@@ -92,7 +92,7 @@
       } else {
         allEmpty = false;
         section.classList.remove('hidden');
-        if (visibleIndex++ % 2) {
+        if (++visibleIndex % 2) {
           section.classList.add('odd');
         } else {
           section.classList.remove('odd');
