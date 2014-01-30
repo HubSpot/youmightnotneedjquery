@@ -4,21 +4,150 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+html {
+  overflow-y: scroll;
+}
+a {
+  cursor: pointer;
+}
+::-webkit-input-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+:-moz-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+::-moz-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+:-ms-input-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+input[type="search"][required] {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  position: relative;
+  padding: 0.1rem 1.1rem 0.1rem 0.25rem;
+}
+input[type="search"][required]::-ms-clear {
+  display: none;
+}
+input[type="search"][required]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+input[type="search"][required]::-webkit-search-cancel-button:after {
+  font-family: Arial, sans-serif;
+  content: "\00D7";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.85rem;
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+input[type="search"][required]:valid::-webkit-search-cancel-button:after {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+input[type="search"][required]:invalid::-webkit-search-cancel-button:after {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+body {
   font-family: "proxima-nova", "Helvetica Neue", Helvetica, arial, sans-serif;
+  color: #444;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 .page {
-  max-width: 1200px;
+  background: #fff;
+}
+header.page-header {
+  width: 44em;
+  max-width: 100%;
+  padding: 9em 0 2em;
   margin: 0 auto;
+  text-align: center;
 }
-.browser {
-  float: right;
-  clear: right;
-  width: 49%;
+@media (max-width: 840px) {
+  header.page-header {
+    font-size: 12px;
+  }
 }
-.browser.jquery {
-  float: left;
-  clear: left;
-  margin-right: 2%;
+@media (max-width: 540px) {
+  header.page-header {
+    font-size: 8px;
+  }
+}
+header.page-header .inner {
+  padding: 3em 2em 2.4em;
+  background: #818181;
+  max-height: 178px;
+}
+header.page-header .inner h2.before-h1 {
+  font-size: 1.75em;
+  font-weight: 600;
+  margin: 0;
+  text-transform: uppercase;
+  color: #e0e0e0;
+  letter-spacing: 0.07em;
+}
+header.page-header .inner h1 {
+  font-size: 3.1em;
+  font-weight: 400;
+  margin: 0;
+  color: #fff;
+}
+.explaination {
+  width: 40em;
+  max-width: 100%;
+  padding: 0 1em;
+  margin: auto;
+  text-align: justify;
+}
+.explaination .inner {
+  font-size: 1.1em;
+}
+.explaination p:first-of-type {
+  font-size: 1.4em;
+}
+.share-buttons {
+  zoom: 1;
+  width: 800px;
+  max-width: 100%;
+  margin: 3em auto;
+}
+.share-buttons:before,
+.share-buttons:after {
+  content: "";
+  display: table;
+}
+.share-buttons:after {
+  clear: both;
+}
+.share-buttons .share-button {
+  width: 48%;
+}
+.share-buttons .share-button iframe {
+  width: 100%;
+  height: 4em;
+}
+@media (min-width: 768px) {
+  .browser {
+    float: right;
+    clear: right;
+    width: 49%;
+  }
+  .browser.jquery {
+    float: left;
+    clear: left;
+    margin-right: 2%;
+  }
 }
 .comparison {
   zoom: 1;
@@ -32,64 +161,133 @@
   clear: both;
 }
 .comparison h3 {
-  position: relative;
+  text-align: center;
+  font-size: 2em;
+  font-weight: normal;
 }
 .comparison h3 a {
+  position: relative;
   color: inherit;
   text-decoration: none;
 }
-.comparison h3:hover:before {
+.comparison h3 a:hover:before {
   content: '§';
   position: absolute;
   right: 100%;
+  padding-right: 0.3em;
 }
-.slider {
+.comparison h4 {
+  font-weight: 200;
+  color: #666;
+  letter-spacing: 0.07em;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 1;
+  display: inline-block;
+}
+header.search {
   zoom: 1;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 300px;
-  margin: 20px 0;
+  max-width: 40em;
+  margin: 2em auto 0;
+  padding: 0 1em;
 }
-.slider:before,
-.slider:after {
+header.search:before,
+header.search:after {
   content: "";
   display: table;
 }
-.slider:after {
+header.search:after {
   clear: both;
 }
-header {
-  zoom: 1;
+header.search input[type="search"] {
+  height: 3em;
+  border: 0;
+  font-family: inherit;
+  font-size: 1.5em;
+  font-weight: 200;
+  letter-spacing: 0.08em;
+  padding-left: 0.52em;
+  margin: 0;
+  color: inherit;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+  width: 50%;
+  background: rgba(0,0,0,0.1);
+  margin-bottom: 4px;
+  width: 100%;
+  padding: 1em;
+  margin-bottom: 1em;
 }
-header:before,
-header:after {
-  content: "";
-  display: table;
+header.search input[type="search"]::-webkit-search-cancel-button:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 1em;
+  font-size: 1em;
+  line-height: 1;
+  font-weight: normal;
+  padding-right: 1em;
+  cursor: pointer;
 }
-header:after {
-  clear: both;
+header.search input[type="search"]:focus {
+  background: rgba(0,0,0,0.05);
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: none;
 }
-header input[type="search"] {
-  float: right;
-  font-size: 16px;
+header.search .field {
+  position: relative;
 }
-header .field {
-  float: left;
+header.search .field label {
+  padding-right: 10em;
+  font-size: 1.2em;
+  padding-top: 0.5em;
+  padding-bottom: 2.25em;
+  display: block;
+}
+header.search .field .slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10em;
+  height: 2em;
 }
 section {
 /* Hide section titles when they're empty */
   position: relative;
   overflow: hidden;
+  background: #fff;
+  padding: 5.5em 0;
+}
+section:nth-child(odd) {
+  background: #eee;
+}
+section:nth-child(odd) :not(pre) > code[class*="language-"],
+section:nth-child(odd) pre[class*="language-"] {
+  background: #fff;
+}
+section .inner {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1em;
 }
 section .comparison {
   padding-top: 40px;
   padding-bottom: -40px;
 }
 section h2 {
-  height: 30px;
-  top: 0;
-  position: absolute;
+  font-size: 3em;
+  font-weight: 100;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #888;
+  text-align: center;
+  margin: 0;
 }
 input[type='range'] {
   -webkit-appearance: none !important;
