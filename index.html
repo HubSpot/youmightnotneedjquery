@@ -51,7 +51,7 @@
     <header class="search">
       <input type="search" placeholder="Search..." required autofocus>
       <div class="field">
-        <label for="version">Oldest version of IE you need to support</label>
+        <label for="version">What's the oldest version of IE you need to support?</label>
         <div class="slider">
           <input name="version" type="range" min="8" max="10" class="version-slider">
           <div class="rule">
@@ -992,13 +992,6 @@ else
           </div>
           <div id="siblings" class="comparison">
             <h3><a href="#siblings">Siblings</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).siblings()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1010,6 +1003,13 @@ for (var i = siblings.length; i--;) {
     break
   }
 }
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).siblings()
 </code></pre>
               </div>
             </div>
@@ -1299,6 +1299,13 @@ extend({}, objA, objB)
           </div>
           <div id="index_of" class="comparison">
             <h3><a href="#index_of">Index Of</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.indexOf(item)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1311,13 +1318,6 @@ extend({}, objA, objB)
 }
 
 indexOf(array, item)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.indexOf(item)
 </code></pre>
               </div>
             </div>

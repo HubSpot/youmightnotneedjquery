@@ -253,8 +253,9 @@ header.search .field {
   position: relative;
 }
 header.search .field label {
-  padding-right: 10em;
+  padding-right: 4em;
   font-size: 1.2em;
+  line-height: 0.6;
   padding-top: 0.5em;
   padding-bottom: 2.25em;
   display: block;
