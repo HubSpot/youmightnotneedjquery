@@ -94,6 +94,15 @@ request.onload = function() {
           </div>
           <div id="post" class="comparison">
             <h3><a href="#post">Post</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('POST', '/my/url', true)
+request.send(data)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -102,15 +111,6 @@ request.onload = function() {
   url: '/my/url',
   data: data
 })
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('POST', '/my/url', true)
-request.send(data)
 </code></pre>
               </div>
             </div>
@@ -176,6 +176,13 @@ el.classList.remove('hide')
 </code></pre>
               </div>
             </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).fadeIn()
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -195,13 +202,6 @@ el.classList.remove('hide')
 }
 
 fadeIn(el)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).fadeIn()
 </code></pre>
               </div>
             </div>
@@ -1299,6 +1299,13 @@ extend({}, objA, objB)
           </div>
           <div id="index_of" class="comparison">
             <h3><a href="#index_of">Index Of</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.indexOf(item)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1311,13 +1318,6 @@ extend({}, objA, objB)
 }
 
 indexOf(array, item)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.indexOf(item)
 </code></pre>
               </div>
             </div>
@@ -1359,15 +1359,6 @@ isArray(arr)
           </div>
           <div id="map" class="comparison">
             <h3><a href="#map">Map</a></h3>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.map(function(value, index){
-
-});
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1377,6 +1368,15 @@ isArray(arr)
 }
 
 map(array, function(value, index){
+
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.map(function(value, index){
 
 });
 </code></pre>
@@ -1411,17 +1411,17 @@ map(array, function(value, index){
           </div>
           <div id="parsejson" class="comparison">
             <h3><a href="#parseJSON">ParseJSON</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.parseJSON(string)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>JSON.parse(string);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.parseJSON(string)
 </code></pre>
               </div>
             </div>
