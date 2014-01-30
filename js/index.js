@@ -70,10 +70,10 @@
   };
 
   filter = function(term) {
-    var comp, empty, section, visibleIndex, _i, _j, _len, _len1, _ref, _ref1, _results;
+    var allEmpty, comp, comparisons, empty, section, visibleIndex, _i, _j, _len, _len1, _ref, _ref1;
     visibleIndex = 0;
+    allEmpty = true;
     _ref = document.querySelectorAll('section');
-    _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       section = _ref[_i];
       empty = true;
@@ -88,17 +88,23 @@
         }
       }
       if (empty) {
-        _results.push(section.classList.add('hidden'));
+        section.classList.add('hidden');
       } else {
+        allEmpty = false;
         section.classList.remove('hidden');
         if (visibleIndex++ % 2) {
-          _results.push(section.classList.add('odd'));
+          section.classList.add('odd');
         } else {
-          _results.push(section.classList.remove('odd'));
+          section.classList.remove('odd');
         }
       }
     }
-    return _results;
+    comparisons = document.querySelector('.comparisons');
+    if (allEmpty) {
+      return comparisons.classList.add('empty');
+    } else {
+      return comparisons.classList.remove('empty');
+    }
   };
 
   document.addEventListener('DOMContentLoaded', function() {

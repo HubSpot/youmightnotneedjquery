@@ -1,122 +1,129 @@
 doctype html
-html
-  head
-    meta(charset='utf-8')
-    meta(http-equiv='X-UA-Compatible', content='chrome=1')
-    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+<!--[if lt IE 10 ]> <html class="old-ie"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='chrome=1')
+  meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
 
-    title You Might Not Need jQuery
+  title You Might Not Need jQuery
 
-    meta(name='description', content='You Might Not Need jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).')
-    link(rel='icon', href='http://static.hubspot.com/favicon.ico')
+  meta(name='description', content='You Might Not Need jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).')
+  link(rel='icon', href='http://static.hubspot.com/favicon.ico')
 
-    link(rel='stylesheet', href='css/prism.css')
-    link(rel='stylesheet', href='css/index.css')
+  link(rel='stylesheet', href='css/prism.css')
+  link(rel='stylesheet', href='css/index.css')
 
-    script(type='text/javascript', src='//use.typekit.net/jbn8qxr.js')
-    script(type='text/javascript').
-      try{Typekit.load();}catch(e){}
+  script(type='text/javascript', src='//use.typekit.net/jbn8qxr.js')
+  script(type='text/javascript').
+    try{Typekit.load();}catch(e){}
 
-    script(src='js/prism.js')
-    script(src='js/index.js')
-  body
-    .page
-      header.page-header
-        .inner
-          h1
-            | You might <span class="highlighted">no</span>t need <span class="highlighted">jQuery</span>
+  script(src='js/prism.js')
+  script(src='js/index.js')
+body
+  .page
+    header.page-header
+      .inner
+        h1
+          | You might <span class="highlighted">no</span>t need <span class="highlighted">jQuery</span>
 
-      .explaination
-        .inner
-          p
-            | jQuery and it's cousins are great, and by all means use them if it makes it easier to develop your application.
+      .old-ie-message
+        | You certainly can support IE 9 and below without jQuery, but we don't.  Please stop messing with us.
+        
+    .explaination
+      .inner
+        p
+          | jQuery and it's cousins are great, and by all means use them if it makes it easier to develop your application.
 
-          p
-            | If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-            | Maybe you can include a few lines of utility code, and forgoe the requirement.  If your only targeting more modern browsers,
-            | you might not need anything more than what the browser ships with.
+        p
+          | If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
+          | Maybe you can include a few lines of utility code, and forgoe the requirement.  If your only targeting more modern browsers,
+          | you might not need anything more than what the browser ships with.
 
-          p
-            | At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
-            | is protecting us from a great demon of browser incompability when, in truth, post-IE8, browsers are pretty easy to
-            | deal with on their own.
+        p
+          | At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
+          | is protecting us from a great demon of browser incompability when, in truth, post-IE8, browsers are pretty easy to
+          | deal with on their own.
 
-      .share-buttons
+    .share-buttons
 
-        .share-button.twitter-share-button
-          iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0)
+      .share-button.twitter-share-button
+        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0)
 
-        .share-button.github-stars-button
-          iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0)
+      .share-button.github-stars-button
+        iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0)
 
-      header.search
+    header.search
 
-        input(type="search", placeholder="Search...", required, autofocus)
+      input(type="search", placeholder="Search...", required, autofocus)
 
-        .field
-          label(for="version") Oldest version of IE you need to support
+      .field
+        label(for="version") Oldest version of IE you need to support
 
-          .slider
-            input(name="version", type="range", min="8", max="10").version-slider
+        .slider
+          input(name="version", type="range", min="8", max="10").version-slider
 
-            .rule
-              .range-label 8
-              .range-label 9
-              .range-label 10
+          .rule
+            .range-label 8
+            .range-label 9
+            .range-label 10
 
-      .comparisons
+    .comparisons
 
-        for comps, title in comparisons
-          section(id=title)
-            .inner
-              h2= titleCase(title)
+      .empty-message
+        | Your search didn't match any comparisons.
 
-              for comp, name in comps
-                .comparison(id=name.replace(' ', '-').toLowerCase())
-                  h3
-                    a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
+      for comps, title in comparisons
+        section(id=title)
+          .inner
+            h2= titleCase(title)
 
-                  for langs, browser in comp
-                    .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
+            for comp, name in comps
+              .comparison(id=name.replace(' ', '-').toLowerCase())
+                h3
+                  a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
 
-                      if getNamePart(browser) === 'jquery'
-                        h4 jQuery
-                      else
-                        h4= getNamePart(browser).toUpperCase() + '+'
+                for langs, browser in comp
+                  .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
-                      for code, lang in langs
-                        .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
-                          pre
-                            code= code
+                    if getNamePart(browser) === 'jquery'
+                      h4 jQuery
+                    else
+                      h4= getNamePart(browser).toUpperCase() + '+'
 
-    script.
-      (function(d,s,i,r) {
-      if (d.getElementById(i)){return;}
-      var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-      n.id=i;n.src='//js.hubspot.com/analytics/'+(Math.ceil(new Date()/r)*r)+'/51294.js';
-      e.parentNode.insertBefore(n, e);
-      })(document,"script","hs-analytics",300000);
+                    for code, lang in langs
+                      .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
+                        pre
+                          code= code
 
-    script.
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-45159009-1', 'hubspot.com');
-      ga('send', 'pageview');
+  script.
+    (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+    var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+    n.id=i;n.src='//js.hubspot.com/analytics/'+(Math.ceil(new Date()/r)*r)+'/51294.js';
+    e.parentNode.insertBefore(n, e);
+    })(document,"script","hs-analytics",300000);
 
-    script.
-      (function(){
-        var recommends, button;
-        if (Math.random() >= 0.5)
-          recommends = ['hubspotdev', 'zackbloom', 'adamfschwartz'];
-        else
-          recommends = ['hubspotdev', 'adamfschwartz', 'zackbloom'];
+  script.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-45159009-1', 'hubspot.com');
+    ga('send', 'pageview');
 
-        button = document.querySelector('.twitter-share-button');
-        if (button)
-          button.setAttribute('data-related', recommends.join(','));
-      })();
-    script(type='text/javascript', src='http://platform.twitter.com/widgets.js')
+  script.
+    (function(){
+      var recommends, button;
+      if (Math.random() >= 0.5)
+        recommends = ['hubspotdev', 'zackbloom', 'adamfschwartz'];
+      else
+        recommends = ['hubspotdev', 'adamfschwartz', 'zackbloom'];
 
-    div(style='-webkit-transform: translateZ(0);')
+      button = document.querySelector('.twitter-share-button');
+      if (button)
+        button.setAttribute('data-related', recommends.join(','));
+    })();
+  script(type='text/javascript', src='http://platform.twitter.com/widgets.js')
+
+  div(style='-webkit-transform: translateZ(0);')

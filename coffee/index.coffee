@@ -35,6 +35,8 @@ setMinVersion = (version=10) ->
 filter = (term) ->
   visibleIndex = 0
 
+  allEmpty = true
+
   for section in document.querySelectorAll('section')
     empty = true
 
@@ -48,12 +50,20 @@ filter = (term) ->
     if empty
       section.classList.add 'hidden'
     else
+      allEmpty = false
+
       section.classList.remove 'hidden'
 
       if visibleIndex++ % 2
         section.classList.add 'odd'
       else
         section.classList.remove 'odd'
+
+  comparisons = document.querySelector('.comparisons')
+  if allEmpty
+    comparisons.classList.add 'empty'
+  else
+    comparisons.classList.remove 'empty'
 
 document.addEventListener 'DOMContentLoaded', ->
   slider = document.querySelector('.version-slider')

@@ -122,6 +122,26 @@ header.page-header
     clear left
     margin-right 2%
 
+.old-ie-message
+  display none
+
+  html.old-ie &
+    display block
+
+    background-color #ffaeae
+    padding 10px
+    color white
+
+.empty-message
+  display none
+
+  .comparisons.empty &
+    display block
+
+    padding 1em 0
+    font-size 1.5em
+    text-align center
+
 .comparison
   clearfix()
 

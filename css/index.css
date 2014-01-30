@@ -141,6 +141,24 @@ header.page-header .inner h1 {
     margin-right: 2%;
   }
 }
+.old-ie-message {
+  display: none;
+}
+html.old-ie .old-ie-message {
+  display: block;
+  background-color: #ffaeae;
+  padding: 10px;
+  color: #fff;
+}
+.empty-message {
+  display: none;
+}
+.comparisons.empty .empty-message {
+  display: block;
+  padding: 1em 0;
+  font-size: 1.5em;
+  text-align: center;
+}
 .comparison {
   zoom: 1;
 }
