@@ -9,7 +9,7 @@
   <link rel="icon" href="http://static.hubspot.com/favicon.ico">
   <link rel="stylesheet" href="css/prism.css">
   <link rel="stylesheet" href="css/index.css">
-  <script type="text/javascript" src="//use.typekit.net/jbn8qxr.js"></script>
+  <script type="text/javascript" src="//use.typekit.net/ghy0wve.js"></script>
   <script type="text/javascript">
     try{Typekit.load();}catch(e){}
     
@@ -822,6 +822,13 @@ parseHTML(htmlString);
           </div>
           <div id="prev" class="comparison">
             <h3><a href="#prev">Prev</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.prevElementSibling
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -832,13 +839,6 @@ function prevElementSibling(el) {
 }
 
 el.prevElementSibling || prevElementSibling(el)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.prevElementSibling
 </code></pre>
               </div>
             </div>
