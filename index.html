@@ -21,7 +21,6 @@
     <div class="page">
       <header class="page-header">
         <div class="inner">
-          <h2 class="before-h1"><span class="first-line">The little book which explains why</span></h2>
           <h1>You might <span class="highlighted">no</span>t need <span class="highlighted">jQuery</span></h1>
         </div>
       </header>
@@ -68,6 +67,15 @@
             <h2>AJAX</h2>
             <div id="json" class="comparison">
               <h3><a href="#json">JSON</a></h3>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$.getJSON('/my/url', function(data) {
+
+})
+</code></pre>
+                </div>
+              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -78,15 +86,6 @@ request.send()
 request.onload = function() {
   data = JSON.parse(request.responseText)
 }
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$.getJSON('/my/url', function(data) {
-
-})
 </code></pre>
                 </div>
               </div>
@@ -207,17 +206,17 @@ fadeIn(el)
             </div>
             <div id="hide" class="comparison">
               <h3><a href="#hide">Hide</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.style.display = 'none'
-</code></pre>
-                </div>
-              </div>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).hide()
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.style.display = 'none'
 </code></pre>
                 </div>
               </div>
@@ -375,17 +374,17 @@ else
             </div>
             <div id="contains_selector" class="comparison">
               <h3><a href="#contains_selector">Contains Selector</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.querySelector(selector) !== null
-</code></pre>
-                </div>
-              </div>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).find(selector).length
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.querySelector(selector) !== null
 </code></pre>
                 </div>
               </div>
@@ -1034,17 +1033,17 @@ removeEventListener(el, eventName, handler)
 </code></pre>
                 </div>
               </div>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.removeEventListener(eventName, eventHandler)
-</code></pre>
-                </div>
-              </div>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).off(eventName, eventHandler)
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.removeEventListener(eventName, eventHandler)
 </code></pre>
                 </div>
               </div>
@@ -1065,13 +1064,6 @@ addEventListener(el, eventName, handler)
 </code></pre>
                 </div>
               </div>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.addEventListener(eventName, eventHandler)
-</code></pre>
-                </div>
-              </div>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
@@ -1079,9 +1071,25 @@ addEventListener(el, eventName, handler)
 </code></pre>
                 </div>
               </div>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.addEventListener(eventName, eventHandler)
+</code></pre>
+                </div>
+              </div>
             </div>
             <div id="ready" class="comparison">
               <h3><a href="#ready">Ready</a></h3>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>document.addEventListener('DOMContentLoaded', function(){
+
+})
+</code></pre>
+                </div>
+              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -1095,15 +1103,6 @@ addEventListener(el, eventName, handler)
     })
   }
 }
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>document.addEventListener('DOMContentLoaded', function(){
-
-})
 </code></pre>
                 </div>
               </div>
