@@ -69,6 +69,15 @@
           <h2>AJAX</h2>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -79,15 +88,6 @@ request.send()
 request.onload = function() {
   data = JSON.parse(request.responseText)
 }
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-})
 </code></pre>
               </div>
             </div>
@@ -176,13 +176,6 @@ el.classList.remove('hide')
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).fadeIn()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -202,6 +195,13 @@ el.classList.remove('hide')
 }
 
 fadeIn(el)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).fadeIn()
 </code></pre>
               </div>
             </div>
@@ -1120,6 +1120,16 @@ addEventListener(el, eventName, handler)
           </div>
           <div id="trigger_custom" class="comparison">
             <h3><a href="#trigger_custom">Trigger Custom</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>// Custom events are not natively supported, so you have to hijack a random
+// event.
+//
+// Just use jQuery.
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1289,13 +1299,6 @@ extend({}, objA, objB)
           </div>
           <div id="index_of" class="comparison">
             <h3><a href="#index_of">Index Of</a></h3>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.indexOf(item)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1308,6 +1311,13 @@ extend({}, objA, objB)
 }
 
 indexOf(array, item)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.indexOf(item)
 </code></pre>
               </div>
             </div>
