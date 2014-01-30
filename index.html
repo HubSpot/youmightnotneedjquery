@@ -208,17 +208,17 @@ fadeIn(el)
           </div>
           <div id="hide" class="comparison">
             <h3><a href="#hide">Hide</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).hide()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>el.style.display = 'none'
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).hide()
 </code></pre>
               </div>
             </div>
@@ -408,20 +408,20 @@ forEachElement(selector, function(el, i){
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(selector).each(function(i, el){
-
-})
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>var elements = document.querySelectorAll(selector)
 Array.prototype.forEach.call(elements, function(el, i){
+
+})
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(selector).each(function(i, el){
 
 })
 </code></pre>
@@ -513,12 +513,37 @@ filter(selector, filterFn)
               </div>
             </div>
           </div>
+          <div id="get_style" class="comparison">
+            <h3><a href="#get_style">Get Style</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>// Varies based on the properties being retrieved, some can be retrieved from el.currentStyle
+// https://github.com/jonathantneal/Polyfills-for-IE8/blob/master/getComputedStyle.js
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>getComputedStyle(el)[ruleName]
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).css(ruleName)
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="getting_attributes" class="comparison">
             <h3><a href="#getting_attributes">Getting Attributes</a></h3>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.getAttribute('tagname')
+                <pre><code>el.getAttribute('tabindex')
 </code></pre>
               </div>
             </div>
@@ -543,31 +568,6 @@ filter(selector, filterFn)
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).html()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="get_style" class="comparison">
-            <h3><a href="#get_style">Get Style</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>// Varies based on the properties being retrieved, some can be retrieved from el.currentStyle
-// https://github.com/jonathantneal/Polyfills-for-IE8/blob/master/getComputedStyle.js
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>getComputedStyle(el)[ruleName]
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).css(ruleName)
 </code></pre>
               </div>
             </div>
@@ -869,6 +869,13 @@ el.prevElementSibling || prevElementSibling(el)
           </div>
           <div id="remove_class" class="comparison">
             <h3><a href="#remove_class">Remove Class</a></h3>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.remove(className)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -876,13 +883,6 @@ el.prevElementSibling || prevElementSibling(el)
   el.classList.remove(className)
 else
   el.className = el.className.replace(new RegExp('(^| )' + className.split(' ').join('|') + '( |$)', 'gi'), ' ')
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.remove(className)
 </code></pre>
               </div>
             </div>
@@ -1374,8 +1374,10 @@ isArray(arr)
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>function map(arr, fn){
+  var results = [];
   for (var i=0; i &lt; arr.length; i++)
-    fn(arr[i], i);
+    results.push(fn(arr[i], i));
+  return results;
 }
 
 map(array, function(value, index){
