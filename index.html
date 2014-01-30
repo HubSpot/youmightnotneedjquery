@@ -94,6 +94,15 @@ request.onload = function() {
           </div>
           <div id="post" class="comparison">
             <h3><a href="#post">Post</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('POST', '/my/url', true)
+request.send(data)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -102,15 +111,6 @@ request.onload = function() {
   url: '/my/url',
   data: data
 })
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('POST', '/my/url', true)
-request.send(data)
 </code></pre>
               </div>
             </div>
@@ -731,17 +731,17 @@ el.nextElementSibling || nextElementSibling(el)
           </div>
           <div id="offset" class="comparison">
             <h3><a href="#offset">Offset</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).offset()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>{left: el.offsetLeft, top: el.offsetTop}
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).offset()
 </code></pre>
               </div>
             </div>
@@ -1052,6 +1052,13 @@ removeEventListener(el, eventName, handler)
           </div>
           <div id="on" class="comparison">
             <h3><a href="#on">On</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).on(eventName, eventHandler)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1073,16 +1080,18 @@ addEventListener(el, eventName, handler)
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).on(eventName, eventHandler)
-</code></pre>
-              </div>
-            </div>
           </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>document.addEventListener('DOMContentLoaded', function(){
+
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1099,15 +1108,6 @@ addEventListener(el, eventName, handler)
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>document.addEventListener('DOMContentLoaded', function(){
-
-})
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -1120,16 +1120,6 @@ addEventListener(el, eventName, handler)
           </div>
           <div id="trigger_custom" class="comparison">
             <h3><a href="#trigger_custom">Trigger Custom</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>// Custom events are not natively supported, so you have to hijack a random
-// event.
-//
-// Just use jQuery.
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1148,6 +1138,16 @@ el.dispatchEvent(event)
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).trigger('my-event', {some: 'data'})
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>// Custom events are not natively supported, so you have to hijack a random
+// event.
+//
+// Just use jQuery.
 </code></pre>
               </div>
             </div>
@@ -1227,6 +1227,13 @@ forEach(function(item, i){
           </div>
           <div id="deep_extend" class="comparison">
             <h3><a href="#deep_extend">Deep Extend</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.extend(true, {}, objA, objB)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1253,13 +1260,6 @@ forEach(function(item, i){
 }
 
 deepExtend({}, objA, objB)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.extend(true, {}, objA, objB)
 </code></pre>
               </div>
             </div>
@@ -1394,17 +1394,17 @@ map(array, function(value, index){
           </div>
           <div id="now" class="comparison">
             <h3><a href="#now">Now</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>+new Date
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.now()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>+new Date
 </code></pre>
               </div>
             </div>
@@ -1481,7 +1481,7 @@ map(array, function(value, index){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-45159009-1', 'hubspot.com');
+    ga('create', 'UA-45159009-1', 'auto');
     ga('send', 'pageview');
     
   </script>
