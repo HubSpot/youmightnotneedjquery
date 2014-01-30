@@ -786,7 +786,7 @@ el.nextElementSibling || nextElementSibling(el)
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>parseHTML = function(str) {
-  el = document.createElement('div')
+  var el = document.createElement('div')
   el.innerHTML = str
   return el.children
 }
