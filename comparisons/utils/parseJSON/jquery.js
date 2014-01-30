@@ -1,1 +1,1 @@
-$.parseJSON string
+$.parseJSON(string)

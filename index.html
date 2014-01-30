@@ -206,17 +206,17 @@ fadeIn(el)
             </div>
             <div id="hide" class="comparison">
               <h3><a href="#hide">Hide</a></h3>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).hide()
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>el.style.display = 'none'
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).hide()
 </code></pre>
                 </div>
               </div>
@@ -306,13 +306,6 @@ else
             </div>
             <div id="before" class="comparison">
               <h3><a href="#before">Before</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
-</code></pre>
-                </div>
-              </div>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
@@ -320,20 +313,27 @@ else
 </code></pre>
                 </div>
               </div>
-            </div>
-            <div id="children" class="comparison">
-              <h3><a href="#children">Children</a></h3>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
                 <div class="code-block language-javascript">
-                  <pre><code>$(el).children()
+                  <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
 </code></pre>
                 </div>
               </div>
+            </div>
+            <div id="children" class="comparison">
+              <h3><a href="#children">Children</a></h3>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>el.children
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).children()
 </code></pre>
                 </div>
               </div>
@@ -513,18 +513,18 @@ filter(selector, filterFn)
             </div>
             <div id="get_style" class="comparison">
               <h3><a href="#get_style">Get Style</a></h3>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>getComputedStyle(el)[ruleName]
+</code></pre>
+                </div>
+              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>// Varies based on the properties being retrieved, some can be retrieved from el.currentStyle
 // https://github.com/jonathantneal/Polyfills-for-IE8/blob/master/getComputedStyle.js
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>getComputedStyle(el)[ruleName]
 </code></pre>
                 </div>
               </div>
@@ -763,17 +763,17 @@ el.nextElementSibling || nextElementSibling(el)
             </div>
             <div id="parent" class="comparison">
               <h3><a href="#parent">Parent</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.parentNode
-</code></pre>
-                </div>
-              </div>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).parent()
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.parentNode
 </code></pre>
                 </div>
               </div>
@@ -1293,13 +1293,6 @@ extend({}, objA, objB)
             </div>
             <div id="index_of" class="comparison">
               <h3><a href="#index_of">Index Of</a></h3>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$.inArray(item, array)
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -1319,6 +1312,13 @@ indexOf(array, item)
                 <h4>IE9+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>array.indexOf(item)
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$.inArray(item, array)
 </code></pre>
                 </div>
               </div>
@@ -1353,6 +1353,15 @@ isArray(arr)
             </div>
             <div id="map" class="comparison">
               <h3><a href="#map">Map</a></h3>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>array.map(function(value, index){
+
+});
+</code></pre>
+                </div>
+              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -1362,15 +1371,6 @@ isArray(arr)
 }
 
 map(array, function(value, index){
-
-});
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>array.map(function(value, index){
 
 });
 </code></pre>
@@ -1415,7 +1415,7 @@ map(array, function(value, index){
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
-                  <pre><code>$.parseJSON string
+                  <pre><code>$.parseJSON(string)
 </code></pre>
                 </div>
               </div>
