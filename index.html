@@ -77,7 +77,7 @@ request.open('GET', '/my/url', true)
 request.send()
 
 request.onload = function() {
-  data = JSON.parse(request.responseText)
+  data = JSON.parse(this.response)
 }
 </code></pre>
               </div>
@@ -117,6 +117,23 @@ request.send(data)
           </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+request.send()
+
+request.onload = function() {
+  resp = this.response
+}
+
+request.onerror = function() {
+
+}
+</code></pre>
+              </div>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -130,24 +147,6 @@ request.send(data)
 
   }
 })
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-request.send()
-
-request.onload = function() {
-  resp = request.responseText
-
-}
-
-request.onerror = function() {
-
-}
 </code></pre>
               </div>
             </div>

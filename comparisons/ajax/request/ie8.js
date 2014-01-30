@@ -3,8 +3,7 @@ request.open('GET', '/my/url', true)
 request.send()
 
 request.onload = function() {
-  resp = request.responseText
-
+  resp = this.response
 }
 
 request.onerror = function() {
