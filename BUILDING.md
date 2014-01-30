@@ -1,6 +1,6 @@
 Building YMNNJQ requires Node.js
 
-- Run: `npm install gulp`
+- Run: `npm install -g gulp`
 - In the project directory, run `npm install`
 - To build/watch, run `gulp`
 
