@@ -216,7 +216,10 @@ section
   background #fff
   padding 5.5em 0
 
-  &:nth-child(odd)
+  &.hidden
+    display none
+
+  &.odd
     background #eee
 
     :not(pre) > code[class*="language-"], pre[class*="language-"]
