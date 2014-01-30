@@ -308,17 +308,17 @@ else
           </div>
           <div id="before" class="comparison">
             <h3><a href="#before">Before</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).before(htmlString)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
 </code></pre>
               </div>
             </div>
@@ -1415,6 +1415,7 @@ map(array, function(value, index){
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>JSON.parse(string)
+
 </code></pre>
               </div>
             </div>
