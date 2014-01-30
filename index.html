@@ -402,7 +402,7 @@ else
     fn(elements[i], i)
 }
 
-forEachElement(selector, function(el, i) {
+forEachElement(selector, function(el, i){
 
 })
 </code></pre>
@@ -785,13 +785,13 @@ el.nextElementSibling || nextElementSibling(el)
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>parseHTML = function(str){
-  el = document.createElement('div');
-  el.innerHTML = str;
-  return el.children;
+                <pre><code>parseHTML = function(str) {
+  el = document.createElement('div')
+  el.innerHTML = str
+  return el.children
 }
 
-parseHTML(htmlString);
+parseHTML(htmlString)
 </code></pre>
               </div>
             </div>
@@ -1414,7 +1414,7 @@ map(array, function(value, index){
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>JSON.parse(string);
+                <pre><code>JSON.parse(string)
 </code></pre>
               </div>
             </div>

@@ -1,1 +1,1 @@
-JSON.parse(string);
+JSON.parse(string)

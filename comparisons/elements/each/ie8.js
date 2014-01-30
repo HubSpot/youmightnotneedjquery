@@ -4,6 +4,6 @@ function forEachElement(selector, fn) {
     fn(elements[i], i)
 }
 
-forEachElement(selector, function(el, i) {
+forEachElement(selector, function(el, i){
 
 })
