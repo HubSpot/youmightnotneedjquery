@@ -160,11 +160,6 @@ request.onerror = function() {
             <h3><a href="#fade_in">Fade In</a></h3>
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.add('show')
-el.classList.remove('hide')
-</code></pre>
-              </div>
               <div class="code-block language-css">
                 <pre><code>.show {
   transition: opacity 400ms;
@@ -174,9 +169,42 @@ el.classList.remove('hide')
 }
 </code></pre>
               </div>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.add('show')
+el.classList.remove('hide')
+</code></pre>
+              </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>function fadeIn(el) {
+  var opacity = 0
+
+  el.style.opacity = 0
+  el.style.filter = ''
+
+  var last = +new Date
+  var tick = function() {
+    opacity += (new Date - last) / 400
+    el.style.opacity = opacity
+    el.style.filter = 'alpha(opacity=' + (100 * opacity)|0 + ')'
+
+    last = +new Date
+
+    if (opacity &lt; 1)
+      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
+  }
+
+  tick()
+}
+
+fadeIn(el)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>function fadeIn(el) {
   el.style.opacity = 0
@@ -305,23 +333,6 @@ else
               </div>
             </div>
           </div>
-          <div id="before" class="comparison">
-            <h3><a href="#before">Before</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).before(htmlString)
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="children" class="comparison">
             <h3><a href="#children">Children</a></h3>
             <div data-browser="ie8" class="browser ie8">
@@ -335,6 +346,23 @@ else
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).children()
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="before" class="comparison">
+            <h3><a href="#before">Before</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).before(htmlString)
 </code></pre>
               </div>
             </div>
@@ -1223,17 +1251,17 @@ forEach(function(item, i){
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>fn.bind(context)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.proxy(fn, context)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>fn.bind(context)
 </code></pre>
               </div>
             </div>
@@ -1372,6 +1400,15 @@ isArray(arr)
           </div>
           <div id="map" class="comparison">
             <h3><a href="#map">Map</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.map(function(value, index){
+
+});
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1383,15 +1420,6 @@ isArray(arr)
 }
 
 map(array, function(value, index){
-
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.map(function(value, index){
 
 });
 </code></pre>
