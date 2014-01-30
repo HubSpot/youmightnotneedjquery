@@ -70,15 +70,32 @@
   };
 
   filter = function(term) {
-    var comp, _i, _len, _ref, _results;
-    _ref = document.querySelectorAll('.comparison');
+    var comp, empty, section, visibleIndex, _i, _j, _len, _len1, _ref, _ref1, _results;
+    visibleIndex = 0;
+    _ref = document.querySelectorAll('section');
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      comp = _ref[_i];
-      if (!term || comp.textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1) {
-        _results.push(comp.style.display = 'block');
+      section = _ref[_i];
+      empty = true;
+      _ref1 = section.querySelectorAll('.comparison');
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        comp = _ref1[_j];
+        if (!term || comp.textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1) {
+          empty = false;
+          comp.classList.remove('hidden');
+        } else {
+          comp.classList.add('hidden');
+        }
+      }
+      if (empty) {
+        _results.push(section.classList.add('hidden'));
       } else {
-        _results.push(comp.style.display = 'none');
+        section.classList.remove('hidden');
+        if (visibleIndex++ % 2) {
+          _results.push(section.classList.add('odd'));
+        } else {
+          _results.push(section.classList.remove('odd'));
+        }
       }
     }
     return _results;

@@ -217,6 +217,9 @@ header.search
       width 10em
       height 2em
 
+.hidden
+  display: none
+
 section
   /* Hide section titles when they're empty */
   position relative
@@ -224,7 +227,7 @@ section
   background #fff
   padding 5.5em 0
 
-  &:nth-child(odd)
+  &.odd
     background #eee
 
     :not(pre) > code[class*="language-"], pre[class*="language-"]

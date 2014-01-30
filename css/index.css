@@ -256,6 +256,9 @@ header.search .field .slider {
   width: 10em;
   height: 2em;
 }
+.hidden {
+  display: none;
+}
 section {
 /* Hide section titles when they're empty */
   position: relative;
@@ -263,11 +266,11 @@ section {
   background: #fff;
   padding: 5.5em 0;
 }
-section:nth-child(odd) {
+section.odd {
   background: #eee;
 }
-section:nth-child(odd) :not(pre) > code[class*="language-"],
-section:nth-child(odd) pre[class*="language-"] {
+section.odd :not(pre) > code[class*="language-"],
+section.odd pre[class*="language-"] {
   background: #fff;
 }
 section .inner {

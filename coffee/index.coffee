@@ -33,11 +33,27 @@ setMinVersion = (version=10) ->
         showFirst versions['ie10'], versions['ie9'], versions['ie8']
 
 filter = (term) ->
-  for comp in document.querySelectorAll('.comparison')
-    if not term or comp.textContent.toLowerCase().indexOf(term.toLowerCase()) isnt -1
-      comp.style.display = 'block'
+  visibleIndex = 0
+
+  for section in document.querySelectorAll('section')
+    empty = true
+
+    for comp in section.querySelectorAll('.comparison')
+      if not term or comp.textContent.toLowerCase().indexOf(term.toLowerCase()) isnt -1
+        empty = false
+        comp.classList.remove 'hidden'
+      else
+        comp.classList.add 'hidden'
+
+    if empty
+      section.classList.add 'hidden'
     else
-      comp.style.display = 'none'
+      section.classList.remove 'hidden'
+
+      if visibleIndex++ % 2
+        section.classList.add 'odd'
+      else
+        section.classList.remove 'odd'
 
 document.addEventListener 'DOMContentLoaded', ->
   slider = document.querySelector('.version-slider')
