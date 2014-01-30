@@ -98,7 +98,15 @@ body
                           code= code
 
     footer
-      p Made by <a href="http://github.com/adamschwartz">@adamschwartz</a> and <a href="http://github.com/zackbloom">@zackbloom</a> of <a href="http://github.com/HubSpot">@HubSpot</a>.
+      script.
+        (function(){
+          if (Math.random() >= 0.5)
+            var peeps = ['adamfschwartz', 'zackbloom']
+          else
+            var peeps = ['zackbloom', 'adamfschwartz']
+          
+          document.write('<p>Made by <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> and <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> at <a href="http://github.com/HubSpot">@HubSpot</a>.</p>');
+        })()
 
   script.
     (function(d,s,i,r) {

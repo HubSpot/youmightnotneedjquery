@@ -69,15 +69,6 @@
           <h2>AJAX</h2>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-})
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -88,6 +79,15 @@ request.send()
 request.onload = function() {
   data = JSON.parse(request.responseText)
 }
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+})
 </code></pre>
               </div>
             </div>
@@ -1454,7 +1454,17 @@ map(array, function(value, index){
       </section>
     </div>
     <footer>
-      <p>Made by <a href="http://github.com/adamschwartz">@adamschwartz</a> and <a href="http://github.com/zackbloom">@zackbloom</a> of <a href="http://github.com/HubSpot">@HubSpot</a>.</p>
+      <script>
+        (function(){
+          if (Math.random() >= 0.5)
+            var peeps = ['adamfschwartz', 'zackbloom']
+          else
+            var peeps = ['zackbloom', 'adamfschwartz']
+            
+          document.write('<p>Made by <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> and <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> at <a href="http://github.com/HubSpot">@HubSpot</a>.</p>');
+        })()
+        
+      </script>
     </footer>
   </div>
   <script>
