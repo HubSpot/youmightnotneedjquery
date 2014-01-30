@@ -834,17 +834,17 @@ el.prevElementSibling || prevElementSibling(el)
 </code></pre>
                 </div>
               </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).prev()
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie9" class="browser ie9">
                 <h4>IE9+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>el.prevElementSibling
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).prev()
 </code></pre>
                 </div>
               </div>
@@ -1159,7 +1159,8 @@ el.dispatchEvent(event)
               <div data-browser="ie9" class="browser ie9">
                 <h4>IE9+</h4>
                 <div class="code-block language-javascript">
-                  <pre><code>event = document.createEvent('HTMLEvents')
+                  <pre><code>// For a full list of event types: https://developer.mozilla.org/en-US/docs/Web/API/document.createEvent
+event = document.createEvent('HTMLEvents')
 event.initEvent('change', true, false)
 el.dispatchEvent(event)
 </code></pre>
