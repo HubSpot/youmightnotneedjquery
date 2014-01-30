@@ -17,33 +17,46 @@ html
     script(type='text/javascript').
       try{Typekit.load();}catch(e){}
 
-    link(rel='stylesheet', href='css/index.css')
     script(src='js/prism.js')
     script(src='js/index.js')
   body
     .page
-      p
-        | jQuery and it's cousins are great, and by all means use them if it makes it easier to develop your application.
+      header.page-header
+        .inner
+          h2.before-h1
+            span.first-line The little book which explains why
+          h1
+            | You might <span class="highlighted">no</span>t need <span class="highlighted">jQuery</span>
 
-      p
-        | If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-        | Maybe you can include a few lines of utility code, and forgoe the requirement.  If your only targeting more modern browsers,
-        | you might not need anything more than what the browser ships with.
+      .explaination
+        .inner
+          p
+            | jQuery and it's cousins are great, and by all means use them if it makes it easier to develop your application.
 
-      p
-        | At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
-        | is protecting us from a great demon of browser incompability when, in truth, post-IE8, browsers are pretty easy to
-        | deal with on their own.
+          p
+            | If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
+            | Maybe you can include a few lines of utility code, and forgoe the requirement.  If your only targeting more modern browsers,
+            | you might not need anything more than what the browser ships with.
 
-      .share-button.twitter-share-button
-        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0, width=580, height=60)
+          p
+            | At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
+            | is protecting us from a great demon of browser incompability when, in truth, post-IE8, browsers are pretty easy to
+            | deal with on their own.
 
-      .share-button.github-stars-button
-        iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0, width=580, height=60)
+      .share-buttons
 
-      header
+        .share-button.twitter-share-button
+          iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0)
+
+        .share-button.github-stars-button
+          iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0)
+
+      header.search
+
+        input(type="search", placeholder="Search...", required)
+
         .field
-          label(for="version") What's the oldest version of IE you need to support?
+          label(for="version") Oldest version of IE you need to support
 
           .slider
             input(name="version", type="range", min="8", max="10").version-slider
@@ -53,29 +66,30 @@ html
               .range-label 9
               .range-label 10
 
-        input(type="search", placeholder="Search")
+      .comparisons
 
-      for comps, title in comparisons
-        section(id=title)
-          h2= titleCase(title)
+        for comps, title in comparisons
+          section(id=title)
+            .inner
+              h2= titleCase(title)
 
-          for comp, name in comps
-            .comparison(id=name.replace(' ', '-').toLowerCase())
-              h3
-                a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
+              for comp, name in comps
+                .comparison(id=name.replace(' ', '-').toLowerCase())
+                  h3
+                    a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
 
-              for langs, browser in comp
-                .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
+                  for langs, browser in comp
+                    .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
-                  if getNamePart(browser) === 'jquery'
-                    h4 jQuery
-                  else
-                    h4= getNamePart(browser).toUpperCase() + '+'
+                      if getNamePart(browser) === 'jquery'
+                        h4 jQuery
+                      else
+                        h4= getNamePart(browser).toUpperCase() + '+'
 
-                  for code, lang in langs
-                    .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
-                      pre
-                        code= code
+                      for code, lang in langs
+                        .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
+                          pre
+                            code= code
 
     script.
       (function(d,s,i,r) {
@@ -108,6 +122,3 @@ html
     script(type='text/javascript', src='http://platform.twitter.com/widgets.js')
 
     div(style='-webkit-transform: translateZ(0);')
-
-
-
