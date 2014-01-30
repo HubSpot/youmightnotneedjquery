@@ -306,13 +306,6 @@ else
             </div>
             <div id="before" class="comparison">
               <h3><a href="#before">Before</a></h3>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).before(htmlString)
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -320,20 +313,27 @@ else
 </code></pre>
                 </div>
               </div>
-            </div>
-            <div id="children" class="comparison">
-              <h3><a href="#children">Children</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
                 <div class="code-block language-javascript">
-                  <pre><code>el.children
+                  <pre><code>$(el).before(htmlString)
 </code></pre>
                 </div>
               </div>
+            </div>
+            <div id="children" class="comparison">
+              <h3><a href="#children">Children</a></h3>
               <div data-browser="jquery" class="browser jquery">
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).children()
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.children
 </code></pre>
                 </div>
               </div>
@@ -513,18 +513,18 @@ filter(selector, filterFn)
             </div>
             <div id="get_style" class="comparison">
               <h3><a href="#get_style">Get Style</a></h3>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>getComputedStyle(el)[ruleName]
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>// Varies based on the properties being retrieved, some can be retrieved from el.currentStyle
 // https://github.com/jonathantneal/Polyfills-for-IE8/blob/master/getComputedStyle.js
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>getComputedStyle(el)[ruleName]
 </code></pre>
                 </div>
               </div>
@@ -761,23 +761,6 @@ el.nextElementSibling || nextElementSibling(el)
                 </div>
               </div>
             </div>
-            <div id="parent" class="comparison">
-              <h3><a href="#parent">Parent</a></h3>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).parent()
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.parentNode
-</code></pre>
-                </div>
-              </div>
-            </div>
             <div id="parse_html" class="comparison">
               <h3><a href="#parse_html">Parse Html</a></h3>
               <div data-browser="ie8" class="browser ie8">
@@ -797,6 +780,23 @@ parseHTML(htmlString);
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$.parseHTML(htmlString);
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div id="parent" class="comparison">
+              <h3><a href="#parent">Parent</a></h3>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.parentNode
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).parent()
 </code></pre>
                 </div>
               </div>
@@ -892,23 +892,6 @@ else
                 </div>
               </div>
             </div>
-            <div id="replacing_from_html" class="comparison">
-              <h3><a href="#replacing_from_html">Replacing From Html</a></h3>
-              <div data-browser="ie8" class="browser ie8">
-                <h4>IE8+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>el.outerHTML = string
-</code></pre>
-                </div>
-              </div>
-              <div data-browser="jquery" class="browser jquery">
-                <h4>jQuery</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>$(el).replaceWith(string)
-</code></pre>
-                </div>
-              </div>
-            </div>
             <div id="set_style" class="comparison">
               <h3><a href="#set_style">Set Style</a></h3>
               <div data-browser="ie8" class="browser ie8">
@@ -923,6 +906,23 @@ el.style.borderWidth = '20px'
                 <h4>jQuery</h4>
                 <div class="code-block language-javascript">
                   <pre><code>$(el).css('border-width', '20px')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div id="replacing_from_html" class="comparison">
+              <h3><a href="#replacing_from_html">Replacing From Html</a></h3>
+              <div data-browser="ie8" class="browser ie8">
+                <h4>IE8+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>el.outerHTML = string
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="jquery" class="browser jquery">
+                <h4>jQuery</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>$(el).replaceWith(string)
 </code></pre>
                 </div>
               </div>
@@ -1219,22 +1219,20 @@ forEach(function(item, i){
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>deepExtend = function(out) {
-  if (!out)
-    out = {}
+  out = out || {}
 
-  var objs = Array.prototype.slice.call(arguments, 1)
+  for (var i = 1; i &lt; arguments.length; i++) {
+    var obj = arguments[i]
 
-  for (var i = 0; i &lt; objs.length; i++) {
-    var obj = objs[i]
+    if (!obj)
+      continue
 
-    if (obj) {
-      for (key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          if (typeof obj[key] === 'object')
-            deepExtend(out[key], obj[key])
-          else
-            out[key] = obj[key]
-        }
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (typeof obj[key] === 'object')
+          deepExtend(out[key], obj[key])
+        else
+          out[key] = obj[key]
       }
     }
   }
@@ -1260,19 +1258,15 @@ deepExtend({}, objA, objB)
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
                   <pre><code>extend = function(out) {
-  if (!out)
-    out = {}
+  out = out || {}
 
-  var objs = Array.prototype.slice.call(arguments, 1)
+  for (var i = 1; i &lt; arguments.length; i++) {
+    if (!arguments[i])
+      continue
 
-  for (var i = 0; i &lt; objs.length; i++) {
-    var obj = objs[i]
-
-    if (obj) {
-      for (key in obj) {
-        if (obj.hasOwnProperty(key))
-          out[key] = obj[key]
-      }
+    for (key in arguments[i]) {
+      if (arguments[i].hasOwnProperty(key))
+        out[key] = arguments[i][key]
     }
   }
 
@@ -1353,15 +1347,6 @@ isArray(arr)
             </div>
             <div id="map" class="comparison">
               <h3><a href="#map">Map</a></h3>
-              <div data-browser="ie9" class="browser ie9">
-                <h4>IE9+</h4>
-                <div class="code-block language-javascript">
-                  <pre><code>array.map(function(value, index){
-
-});
-</code></pre>
-                </div>
-              </div>
               <div data-browser="ie8" class="browser ie8">
                 <h4>IE8+</h4>
                 <div class="code-block language-javascript">
@@ -1371,6 +1356,15 @@ isArray(arr)
 }
 
 map(array, function(value, index){
+
+});
+</code></pre>
+                </div>
+              </div>
+              <div data-browser="ie9" class="browser ie9">
+                <h4>IE9+</h4>
+                <div class="code-block language-javascript">
+                  <pre><code>array.map(function(value, index){
 
 });
 </code></pre>
