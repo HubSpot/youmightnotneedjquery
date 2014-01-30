@@ -73,8 +73,9 @@ body
       .empty-message
         | Your search didn't match any comparisons.
 
+      - var i = 0
       for comps, title in comparisons
-        section(id=title)
+        section(id=title, class=(++i % 2 ? 'odd' : ''))
           .inner
             h2= titleCase(title)
 
