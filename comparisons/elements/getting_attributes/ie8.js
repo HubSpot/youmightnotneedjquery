@@ -1,1 +1,1 @@
-el.getAttribute('tagname')
+el.getAttribute('tabindex')
