@@ -160,6 +160,11 @@ request.onerror = function() {
             <h3><a href="#fade_in">Fade In</a></h3>
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.add('show')
+el.classList.remove('hide')
+</code></pre>
+              </div>
               <div class="code-block language-css">
                 <pre><code>.show {
   transition: opacity 400ms;
@@ -167,11 +172,6 @@ request.onerror = function() {
 .hide {
   opacity: 0;
 }
-</code></pre>
-              </div>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.add('show')
-el.classList.remove('hide')
 </code></pre>
               </div>
             </div>
@@ -775,29 +775,6 @@ el.nextElementSibling || nextElementSibling(el)
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).parent()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="parse_html" class="comparison">
-            <h3><a href="#parse_html">Parse Html</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>parseHTML = function(str) {
-  el = document.createElement('div')
-  el.innerHTML = str
-  return el.children
-}
-
-parseHTML(htmlString)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.parseHTML(htmlString);
 </code></pre>
               </div>
             </div>
@@ -1454,8 +1431,31 @@ map(array, function(value, index){
               </div>
             </div>
           </div>
-          <div id="parsejson" class="comparison">
-            <h3><a href="#parseJSON">ParseJSON</a></h3>
+          <div id="parse_html" class="comparison">
+            <h3><a href="#parse_html">Parse Html</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>parseHTML = function(str) {
+  var el = document.createElement('div')
+  el.innerHTML = str
+  return el.children
+}
+
+parseHTML(htmlString)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.parseHTML(htmlString);
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="parse_json" class="comparison">
+            <h3><a href="#parse_json">Parse Json</a></h3>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
