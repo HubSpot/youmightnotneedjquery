@@ -30,7 +30,7 @@
         <p>jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.</p>
         <p>
           If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-          Maybe you can include a few lines of utility code, and forgoe the requirement.  If you're only targeting more modern browsers,
+          Maybe you can include a few lines of utility code, and forgo the requirement.  If you're only targeting more modern browsers,
           you might not need anything more than what the browser ships with.
         </p>
         <p>
@@ -69,6 +69,15 @@
           <h2>AJAX</h2>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -79,15 +88,6 @@ request.send()
 request.onload = function() {
   data = JSON.parse(request.responseText)
 }
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-})
 </code></pre>
               </div>
             </div>
@@ -225,17 +225,17 @@ fadeIn(el)
           </div>
           <div id="show" class="comparison">
             <h3><a href="#show">Show</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.style.display = 'block' // or 'inline', etc.
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).show()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.style.display = 'block' // or 'inline', etc.
 </code></pre>
               </div>
             </div>
@@ -523,13 +523,6 @@ filter(selector, filterFn)
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>getComputedStyle(el)[ruleName]
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -537,16 +530,16 @@ filter(selector, filterFn)
 </code></pre>
               </div>
             </div>
-          </div>
-          <div id="getting_attributes" class="comparison">
-            <h3><a href="#getting_attributes">Getting Attributes</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.getAttribute('tagname')
+                <pre><code>getComputedStyle(el)[ruleName]
 </code></pre>
               </div>
             </div>
+          </div>
+          <div id="getting_attributes" class="comparison">
+            <h3><a href="#getting_attributes">Getting Attributes</a></h3>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -554,20 +547,27 @@ filter(selector, filterFn)
 </code></pre>
               </div>
             </div>
-          </div>
-          <div id="getting_html" class="comparison">
-            <h3><a href="#getting_html">Getting Html</a></h3>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.innerHTML
+                <pre><code>el.getAttribute('tagname')
 </code></pre>
               </div>
             </div>
+          </div>
+          <div id="getting_html" class="comparison">
+            <h3><a href="#getting_html">Getting Html</a></h3>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).html()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.innerHTML
 </code></pre>
               </div>
             </div>
@@ -1299,6 +1299,20 @@ extend({}, objA, objB)
           </div>
           <div id="index_of" class="comparison">
             <h3><a href="#index_of">Index Of</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.indexOf(item)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.inArray(item, array)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1311,20 +1325,6 @@ extend({}, objA, objB)
 }
 
 indexOf(array, item)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.indexOf(item)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.inArray(item, array)
 </code></pre>
               </div>
             </div>
