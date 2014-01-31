@@ -1,5 +1,3 @@
-var siblings = Array.prototype.slice.call(el.parentNode.children)
-
-siblings.filter(function(child){
+Array.prototype.filter.call(el.parentNode.children, function(child){
     return child !== el
 })

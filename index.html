@@ -69,6 +69,15 @@
           <h2>AJAX</h2>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -79,51 +88,6 @@ request.send()
 request.onload = function() {
   data = JSON.parse(this.response)
 }
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-})
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="request" class="comparison">
-            <h3><a href="#request">Request</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-request.send()
-
-request.onload = function() {
-  resp = this.response
-}
-
-request.onerror = function() {
-
-}
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'GET',
-  url: '/my/url',
-  success: function(resp) {
-
-  },
-  error: function() {
-
-  }
-})
 </code></pre>
               </div>
             </div>
@@ -151,6 +115,42 @@ request.send(data)
               </div>
             </div>
           </div>
+          <div id="request" class="comparison">
+            <h3><a href="#request">Request</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'GET',
+  url: '/my/url',
+  success: function(resp) {
+
+  },
+  error: function() {
+
+  }
+})
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+request.send()
+
+request.onload = function() {
+  resp = this.response
+}
+
+request.onerror = function() {
+
+}
+</code></pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="effects">
@@ -172,6 +172,13 @@ request.send(data)
               <div class="code-block language-javascript">
                 <pre><code>el.classList.add('show')
 el.classList.remove('hide')
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).fadeIn()
 </code></pre>
               </div>
             </div>
@@ -222,13 +229,6 @@ fadeIn(el)
 }
 
 fadeIn(el)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).fadeIn()
 </code></pre>
               </div>
             </div>
@@ -871,23 +871,6 @@ el.prevElementSibling || prevElementSibling(el)
               </div>
             </div>
           </div>
-          <div id="replacing_from_html" class="comparison">
-            <h3><a href="#replacing_from_html">Replacing From Html</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.outerHTML = string
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).replaceWith(string)
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="remove_class" class="comparison">
             <h3><a href="#remove_class">Remove Class</a></h3>
             <div data-browser="ie10" class="browser ie10">
@@ -911,6 +894,23 @@ else
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).removeClass(className)
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="replacing_from_html" class="comparison">
+            <h3><a href="#replacing_from_html">Replacing From Html</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.outerHTML = string
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).replaceWith(string)
 </code></pre>
               </div>
             </div>
@@ -1013,9 +1013,7 @@ for (var i = siblings.length; i--;) {
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
-                <pre><code>var siblings = Array.prototype.slice.call(el.parentNode.children)
-
-siblings.filter(function(child){
+                <pre><code>Array.prototype.filter.call(el.parentNode.children, function(child){
     return child !== el
 })
 </code></pre>
@@ -1431,6 +1429,13 @@ indexOf(array, item)
           </div>
           <div id="is_array" class="comparison">
             <h3><a href="#is_array">Is Array</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>Array.isArray(arr)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1439,13 +1444,6 @@ indexOf(array, item)
 }
 
 isArray(arr)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>Array.isArray(arr)
 </code></pre>
               </div>
             </div>
@@ -1459,6 +1457,22 @@ isArray(arr)
           </div>
           <div id="map" class="comparison">
             <h3><a href="#map">Map</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>function map(arr, fn){
+  var results = [];
+  for (var i=0; i &lt; arr.length; i++)
+    results.push(fn(arr[i], i));
+  return results;
+}
+
+map(array, function(value, index){
+
+});
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1472,22 +1486,6 @@ isArray(arr)
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.map(array, function(value, index){
-
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>function map(arr, fn){
-  var results = [];
-  for (var i=0; i &lt; arr.length; i++)
-    results.push(fn(arr[i], i));
-  return results;
-}
-
-map(array, function(value, index){
 
 });
 </code></pre>
@@ -1543,17 +1541,17 @@ parseHTML(htmlString)
           </div>
           <div id="parse_json" class="comparison">
             <h3><a href="#parse_json">Parse Json</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>JSON.parse(string)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.parseJSON(string)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>JSON.parse(string)
 </code></pre>
               </div>
             </div>
