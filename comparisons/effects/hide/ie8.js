@@ -1,1 +1,1 @@
-el.style.display = 'none'
+el.style.display = 'none';

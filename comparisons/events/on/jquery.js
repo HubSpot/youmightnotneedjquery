@@ -1,1 +1,1 @@
-$(el).on(eventName, eventHandler)
+$(el).on(eventName, eventHandler);

@@ -1,1 +1,1 @@
-el.innerHTML = ''
+el.innerHTML = '';

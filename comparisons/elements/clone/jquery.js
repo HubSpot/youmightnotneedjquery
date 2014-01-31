@@ -1,1 +1,1 @@
-$(el).clone()
+$(el).clone();

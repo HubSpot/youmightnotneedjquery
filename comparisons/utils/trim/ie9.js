@@ -1,1 +1,1 @@
-string.trim()
+string.trim();

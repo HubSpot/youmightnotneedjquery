@@ -1,1 +1,1 @@
-$(el).parent()
+$(el).parent();

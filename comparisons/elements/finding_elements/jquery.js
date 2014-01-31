@@ -1,1 +1,1 @@
-$('.my #awesome selector')
+$('.my #awesome selector');

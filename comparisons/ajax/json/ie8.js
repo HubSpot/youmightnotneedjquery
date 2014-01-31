@@ -1,7 +1,7 @@
-request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-request.send()
+var request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
+request.send();
 
 request.onload = function() {
-  data = JSON.parse(this.response)
+  data = JSON.parse(this.response);
 }

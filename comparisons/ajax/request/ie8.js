@@ -1,11 +1,11 @@
-request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-request.send()
+var request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
+request.send();
 
 request.onload = function() {
-  resp = this.response
-}
+  resp = this.response;
+};
 
 request.onerror = function() {
 
-}
+};

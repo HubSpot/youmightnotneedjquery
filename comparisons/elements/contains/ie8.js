@@ -1,1 +1,1 @@
-el.contains(child)
+el.contains(child);

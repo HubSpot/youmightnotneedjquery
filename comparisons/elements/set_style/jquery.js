@@ -1,1 +1,1 @@
-$(el).css('border-width', '20px')
+$(el).css('border-width', '20px');

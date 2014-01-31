@@ -1,11 +1,12 @@
 function filter(selector, filterFn) {
-  var elements = document.querySelectorAll(selector)
-  var out = []
+  var elements = document.querySelectorAll(selector);
+  var out = [];
   for (var i = elements.length; i--;) {
-    if (filterFn(elements[i]))
-      out.unshift(elements[i])
+    if (filterFn(elements[i])) {
+      out.unshift(elements[i]);
+    }
   }
-  return out
+  return out;
 }
 
-filter(selector, filterFn)
+filter(selector, filterFn);

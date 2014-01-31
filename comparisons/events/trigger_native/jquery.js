@@ -1,1 +1,1 @@
-$(el).trigger('change')
+$(el).trigger('change');
