@@ -1339,9 +1339,10 @@ forEach(function(item, i){
 
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
-        if (typeof obj[key] === 'object')
+        if (typeof obj[key] === 'object') {
+          if (!out[key]) out[key] = {}
           deepExtend(out[key], obj[key])
-        else
+        } else
           out[key] = obj[key]
       }
     }
