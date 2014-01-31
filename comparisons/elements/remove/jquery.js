@@ -1,1 +1,1 @@
-$(el).remove()
+$(el).remove();

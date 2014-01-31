@@ -1,1 +1,1 @@
-$(el).before(htmlString)
+$(el).before(htmlString);

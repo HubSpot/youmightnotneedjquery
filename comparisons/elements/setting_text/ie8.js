@@ -1,4 +1,4 @@
 if (el.textContent !== undefined)
-  el.textContent = string
+  el.textContent = string;
 else
-  el.innerText = string
+  el.innerText = string;

@@ -1,1 +1,1 @@
-$(el).css(ruleName)
+$(el).css(ruleName);

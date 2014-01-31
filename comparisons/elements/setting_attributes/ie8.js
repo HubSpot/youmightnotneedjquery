@@ -1,1 +1,1 @@
-el.setAttribute('tabindex', 3)
+el.setAttribute('tabindex', 3);

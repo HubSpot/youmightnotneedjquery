@@ -1,1 +1,1 @@
-$(el).empty()
+$(el).empty();

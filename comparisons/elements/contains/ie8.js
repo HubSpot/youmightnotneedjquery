@@ -1,1 +1,1 @@
-el !== child && el.contains(child)
+el !== child && el.contains(child);

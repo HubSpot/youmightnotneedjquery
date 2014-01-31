@@ -1,1 +1,1 @@
-$.contains(el, child)
+$.contains(el, child);

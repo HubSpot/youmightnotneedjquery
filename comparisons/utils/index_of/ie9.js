@@ -1,1 +1,1 @@
-array.indexOf(item)
+array.indexOf(item);

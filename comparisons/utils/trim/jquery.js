@@ -1,1 +1,1 @@
-$.trim(string)
+$.trim(string);

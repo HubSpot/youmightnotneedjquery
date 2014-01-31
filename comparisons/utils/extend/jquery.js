@@ -1,1 +1,1 @@
-$.extend({}, objA, objB)
+$.extend({}, objA, objB);

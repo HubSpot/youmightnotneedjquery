@@ -1,1 +1,1 @@
-$('<div>').append($(el).clone()).html()
+$('<div>').append($(el).clone()).html();

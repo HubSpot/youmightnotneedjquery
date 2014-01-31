@@ -1,1 +1,1 @@
-$(el).offsetParent()
+$(el).offsetParent();
