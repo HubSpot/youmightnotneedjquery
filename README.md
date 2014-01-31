@@ -1,5 +1,3 @@
-# Você não precisa do jQuery
-
-A forma natural de fazer as coisas.
+A resource for doing things au naturale.
 
 ### [YouMightNotNeedjQuery.com](http://youmightnotneedjquery.com)
