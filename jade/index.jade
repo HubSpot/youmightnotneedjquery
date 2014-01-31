@@ -30,7 +30,7 @@ body
       .old-ie-message
         | You certainly can support IE 9 and below without jQuery, but we don't.  Please stop messing with us.
 
-    .explaination
+    .explanation
       .inner
         p
           | jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.
@@ -61,7 +61,7 @@ body
         label(for="version") What's the oldest version of IE you need to support?
 
         .slider
-          input(name="version", type="range", min="8", max="10").version-slider
+          input(name="version", id="version", type="range", min="8", max="10").version-slider
 
           .rule
             .range-label 8
