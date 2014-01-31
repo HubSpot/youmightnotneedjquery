@@ -1,1 +1,1 @@
-$(el).toggleClass(className)
+$(el).toggleClass(className);

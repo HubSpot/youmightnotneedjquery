@@ -1,1 +1,1 @@
-$(el).is('.my-class')
+$(el).is('.my-class');

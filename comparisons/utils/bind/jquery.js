@@ -1,1 +1,1 @@
-$.proxy(fn, context)
+$.proxy(fn, context);

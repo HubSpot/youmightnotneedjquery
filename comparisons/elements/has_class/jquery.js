@@ -1,1 +1,1 @@
-$(el).hasClass(className)
+$(el).hasClass(className);

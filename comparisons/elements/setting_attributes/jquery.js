@@ -1,1 +1,1 @@
-$(el).attr('tabindex', 3)
+$(el).attr('tabindex', 3);

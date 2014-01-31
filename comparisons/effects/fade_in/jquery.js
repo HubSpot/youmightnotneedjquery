@@ -1,1 +1,1 @@
-$(el).fadeIn()
+$(el).fadeIn();

@@ -1,23 +1,23 @@
-deepExtend = function(out) {
-  out = out || {}
+var deepExtend = function(out) {
+  out = out || {};
 
   for (var i = 1; i < arguments.length; i++) {
-    var obj = arguments[i]
+    var obj = arguments[i];
 
     if (!obj)
-      continue
+      continue;
 
-    for (key in obj) {
+    for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (typeof obj[key] === 'object')
-          deepExtend(out[key], obj[key])
+          deepExtend(out[key], obj[key]);
         else
-          out[key] = obj[key]
+          out[key] = obj[key];
       }
     }
   }
 
-  return out
-}
+  return out;
+};
 
-deepExtend({}, objA, objB)
+deepExtend({}, objA, objB);

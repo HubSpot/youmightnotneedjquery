@@ -1,1 +1,1 @@
-el.querySelectorAll(selector)
+el.querySelectorAll(selector);

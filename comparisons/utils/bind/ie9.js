@@ -1,1 +1,1 @@
-fn.bind(context)
+fn.bind(context);

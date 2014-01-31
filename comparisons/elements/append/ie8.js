@@ -1,1 +1,1 @@
-parent.appendChild(el)
+parent.appendChild(el);
