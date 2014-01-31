@@ -82,6 +82,8 @@ header.page-header {
 @media (max-width: 540px) {
   header.page-header {
     font-size: 8px;
+    padding-top: 0;
+    width: 100%;
   }
 }
 header.page-header .inner {
@@ -110,9 +112,10 @@ header.page-header .inner h1 {
 }
 .share-buttons {
   zoom: 1;
-  width: 800px;
+  width: 54em;
   max-width: 100%;
   margin: 3em auto;
+  padding: 0 1em;
 }
 .share-buttons:before,
 .share-buttons:after {
@@ -122,8 +125,26 @@ header.page-header .inner h1 {
 .share-buttons:after {
   clear: both;
 }
+.share-buttons .twitter-share-button {
+  float: left;
+}
+.share-buttons .github-stars-button {
+  float: right;
+}
 .share-buttons .share-button {
   width: 48%;
+}
+@media (max-width: 840px) {
+  .share-buttons .share-button {
+    width: auto;
+  }
+  .share-buttons .share-button.twitter-share-button {
+    margin-bottom: 1em;
+  }
+  .share-buttons .share-button.twitter-share-button,
+  .share-buttons .share-button.github-stars-button {
+    float: none;
+  }
 }
 .share-buttons .share-button iframe {
   width: 100%;
@@ -253,11 +274,11 @@ header.search .field {
   position: relative;
 }
 header.search .field label {
-  padding-right: 4em;
-  font-size: 1.2em;
-  line-height: 0.6;
-  padding-top: 0.5em;
-  padding-bottom: 2.25em;
+  padding-right: 10em;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  padding-top: 0em;
+  padding-bottom: 3em;
   display: block;
 }
 header.search .field .slider {
@@ -331,12 +352,6 @@ input[type='range']::-webkit-slider-thumb {
 }
 .range-label:last-of-type {
   text-align: right;
-}
-.twitter-share-button {
-  float: left;
-}
-.github-stars-button {
-  float: right;
 }
 footer {
   margin: 3em auto;
