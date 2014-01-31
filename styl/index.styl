@@ -72,6 +72,8 @@ header.page-header
 
   @media (max-width: 540px)
     font-size 8px
+    padding-top 0
+    width 100%
 
   .inner
     padding 3em 2em 2.4em
@@ -100,12 +102,28 @@ header.page-header
 
 .share-buttons
   clearfix()
-  width 800px
+  width 54em
   max-width 100%
   margin 3em auto
+  padding 0 1em
+
+  .twitter-share-button
+    float left
+
+  .github-stars-button
+    float right
 
   .share-button
     width 48%
+
+    @media (max-width: 840px)
+      width auto
+
+      &.twitter-share-button
+        margin-bottom 1em
+
+      &.twitter-share-button, &.github-stars-button
+        float none
 
     iframe
       width 100%
@@ -216,11 +234,11 @@ header.search
     position relative
 
     label
-      padding-right 4em
-      font-size 1.2em
-      line-height 0.6
-      padding-top .5em
-      padding-bottom 2.25em
+      padding-right 10em
+      font-size 1.1em
+      line-height 1.2em
+      padding-top 0em
+      padding-bottom 3em
       display block
 
     .slider
@@ -294,12 +312,6 @@ input[type='range']::-webkit-slider-thumb
 
 .range-label:last-of-type
   text-align right
-
-.twitter-share-button
-  float left
-
-.github-stars-button
-  float right
 
 footer
   margin 3em auto
