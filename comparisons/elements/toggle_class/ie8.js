@@ -1,8 +1,5 @@
 if (el.classList) {
-    if (el.classList.contains(className))
-        el.classList.remove(className);
-    else
-        el.classList.add(className);
+    el.classList.toggle(className);
 } else {
     var classes = el.className.split(' ');
     var existingIndex = classes.indexOf(className);
