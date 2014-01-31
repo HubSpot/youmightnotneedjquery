@@ -1,1 +1,1 @@
-$(el).is($(otherEl))
+$(el).is($(otherEl));

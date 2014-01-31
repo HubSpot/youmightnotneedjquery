@@ -1,17 +1,19 @@
-extend = function(out) {
-  out = out || {}
+var extend = function(out) {
+  out = out || {};
 
   for (var i = 1; i < arguments.length; i++) {
-    if (!arguments[i])
-      continue
+    if (!arguments[i]) {
+      continue;
+    }
 
-    for (key in arguments[i]) {
-      if (arguments[i].hasOwnProperty(key))
-        out[key] = arguments[i][key]
+    for (var key in arguments[i]) {
+      if (arguments[i].hasOwnProperty(key)) {
+        out[key] = arguments[i][key];
+      }
     }
   }
 
-  return out
-}
+  return out;
+};
 
-extend({}, objA, objB)
+extend({}, objA, objB);

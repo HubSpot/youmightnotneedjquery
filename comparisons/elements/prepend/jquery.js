@@ -1,1 +1,1 @@
-$(parent).prepend(el)
+$(parent).prepend(el);

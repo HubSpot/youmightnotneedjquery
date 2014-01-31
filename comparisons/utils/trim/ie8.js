@@ -1,1 +1,1 @@
-string.replace(/^\s+|\s+$/g, '')
+string.replace(/^\s+|\s+$/g, '');

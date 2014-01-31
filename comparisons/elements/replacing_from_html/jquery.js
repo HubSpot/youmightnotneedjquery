@@ -1,1 +1,1 @@
-$(el).replaceWith(string)
+$(el).replaceWith(string);

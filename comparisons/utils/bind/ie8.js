@@ -1,3 +1,1 @@
-function(){
-  return fn.apply(context, arguments)
-}
+fn.apply(context, arguments);

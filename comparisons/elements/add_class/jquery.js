@@ -1,1 +1,1 @@
-$(el).addClass(className)
+$(el).addClass(className);

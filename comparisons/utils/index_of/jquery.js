@@ -1,1 +1,1 @@
-$.inArray(item, array)
+$.inArray(item, array);

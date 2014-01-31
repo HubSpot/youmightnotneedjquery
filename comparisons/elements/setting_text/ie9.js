@@ -1,1 +1,1 @@
-el.textContent = string
+el.textContent = string;

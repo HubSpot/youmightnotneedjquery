@@ -1,1 +1,1 @@
-parent.insertBefore(el, parent.firstChild)
+parent.insertBefore(el, parent.firstChild);

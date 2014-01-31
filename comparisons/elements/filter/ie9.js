@@ -1,1 +1,1 @@
-Array.prototype.filter.call(document.querySelectorAll(selector), filterFn)
+Array.prototype.filter.call(document.querySelectorAll(selector), filterFn);

@@ -1,5 +1,5 @@
-isArray = Array.isArray || function(arr) {
-  return arr.toString() == '[object Array]'
-}
+var isArray = Array.isArray || function(arr) {
+  return arr.toString() == '[object Array]';
+};
 
-isArray(arr)
+isArray(arr);

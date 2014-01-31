@@ -1,1 +1,1 @@
-$(el).text(string)
+$(el).text(string);

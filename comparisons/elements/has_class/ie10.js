@@ -1,1 +1,1 @@
-el.classList.contains(className)
+el.classList.contains(className);
