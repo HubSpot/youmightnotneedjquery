@@ -1,7 +1,7 @@
-parseHTML = function(str) {
-  var el = document.createElement('div')
-  el.innerHTML = str
-  return el.children
+function (str) {
+  var tmp = document.implementation.createHTMLDocument();
+  tmp.body.innerHTML = str;
+  return tmp.body.children
 }
 
 parseHTML(htmlString)
