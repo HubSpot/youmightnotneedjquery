@@ -41,7 +41,7 @@ gulp.task 'jade', ->
       console.error "Error loading comparisons tree", err
       return
 
-    gulp.src('./jade/*')
+    gulp.src('./jade/**/*.jade')
       .pipe(jade({pretty: true, data: {comparisons, titleCase, getNamePart, fullLanguage}}))
       .pipe(gulp.dest('./'))
 
@@ -55,5 +55,5 @@ gulp.task 'default', ->
   gulp.watch './styl/*', ->
     gulp.run 'stylus'
 
-  gulp.watch ['./jade/*', './comparisons/**/*'], ->
+  gulp.watch ['./jade/**/*.jade', './comparisons/**/*'], ->
     gulp.run 'jade'
