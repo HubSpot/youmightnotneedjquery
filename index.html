@@ -1029,6 +1029,37 @@ siblings.filter(function(child){
               </div>
             </div>
           </div>
+          <div id="toggle_class" class="comparison">
+            <h3><a href="#toggle_class">Toggle Class</a></h3>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.toggle(className);</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>if (el.classList) {
+    el.classList.toggle(className);
+} else {
+    var classes = el.className.split(' ');
+    var existingIndex = classes.indexOf(className);
+    if (existingIndex &gt;= 0)
+        classes[existingIndex] = '';
+    else
+        classes.push(className);
+    el.className = classes.join(' ');
+}</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).toggleClass(className)</code></pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="events">
