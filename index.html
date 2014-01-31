@@ -69,15 +69,6 @@
           <h2>AJAX</h2>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-})
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -88,6 +79,15 @@ request.send()
 request.onload = function() {
   data = JSON.parse(this.response)
 }
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+})
 </code></pre>
               </div>
             </div>
@@ -401,6 +401,23 @@ else
               </div>
             </div>
           </div>
+          <div id="contains_selector" class="comparison">
+            <h3><a href="#contains_selector">Contains Selector</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.querySelector(selector) !== null
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).find(selector).length
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="each" class="comparison">
             <h3><a href="#each">Each</a></h3>
             <div data-browser="ie8" class="browser ie8">
@@ -434,23 +451,6 @@ Array.prototype.forEach.call(elements, function(el, i){
                 <pre><code>$(selector).each(function(i, el){
 
 })
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="contains_selector" class="comparison">
-            <h3><a href="#contains_selector">Contains Selector</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.querySelector(selector) !== null
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).find(selector).length
 </code></pre>
               </div>
             </div>
@@ -826,6 +826,13 @@ el.nextElementSibling || nextElementSibling(el)
           </div>
           <div id="prev" class="comparison">
             <h3><a href="#prev">Prev</a></h3>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.prevElementSibling
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -836,13 +843,6 @@ function prevElementSibling(el) {
 }
 
 el.prevElementSibling || prevElementSibling(el)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.prevElementSibling
 </code></pre>
               </div>
             </div>
@@ -1034,20 +1034,14 @@ siblings.filter(function(child){
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div class="code-block language-javascript">
-                <pre><code>if (el.classList.contains(className))
-    el.classList.remove(className);
-else
-    el.classList.add(className);</code></pre>
+                <pre><code>el.classList.toggle(className);</code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>if (el.classList) {
-    if (el.classList.contains(className))
-        el.classList.remove(className);
-    else
-        el.classList.add(className);
+    el.classList.toggle(className);
 } else {
     var classes = el.className.split(' ');
     var existingIndex = classes.indexOf(className);
