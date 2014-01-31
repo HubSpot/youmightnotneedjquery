@@ -74,10 +74,12 @@ body
         | Your search didn't match any comparisons.
 
       - var i = 0
+      - var br = {effects: 'EFEITOS', elements: 'ELEMENTOS', events: 'EVENTOS'}
+
       for comps, title in comparisons
         section(id=title, class=(++i % 2 ? 'odd' : ''))
           .inner
-            h2= titleCase(title)
+            h2= (br[title] ? br[title] : titleCase(title))
 
             for comp, name in comps
               .comparison(id=name.replace(' ', '-').toLowerCase())
