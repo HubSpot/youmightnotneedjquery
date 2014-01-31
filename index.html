@@ -64,7 +64,95 @@
     </header>
     <div class="comparisons">
       <div class="empty-message">Your search didn't match any comparisons.</div>
-      <section id="ajax" class="odd">
+      <section id="effects" class="odd">
+        <div class="inner">
+          <h2>Effects</h2>
+          <div id="fade_in" class="comparison">
+            <h3><a href="#fade_in">Fade In</a></h3>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-css">
+                <pre><code>.show {
+  transition: opacity 400ms;
+}
+.hide {
+  opacity: 0;
+}
+</code></pre>
+              </div>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.add('show')
+el.classList.remove('hide')
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>function fadeIn(el) {
+  el.style.opacity = 0
+
+  var last = +new Date
+  var tick = function() {
+    el.style.opacity += (new Date - last) / 400
+    last = +new Date
+
+    if (el.style.opacity &lt; 1)
+      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
+  }
+
+  tick()
+}
+
+fadeIn(el)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).fadeIn()
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="hide" class="comparison">
+            <h3><a href="#hide">Hide</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.style.display = 'none'
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).hide()
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="show" class="comparison">
+            <h3><a href="#show">Show</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.style.display = ''
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).show()
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="ajax">
         <div class="inner">
           <h2>AJAX</h2>
           <div id="json" class="comparison">
@@ -148,94 +236,6 @@ request.onerror = function() {
 
   }
 })
-</code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="effects">
-        <div class="inner">
-          <h2>Effects</h2>
-          <div id="fade_in" class="comparison">
-            <h3><a href="#fade_in">Fade In</a></h3>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div class="code-block language-css">
-                <pre><code>.show {
-  transition: opacity 400ms;
-}
-.hide {
-  opacity: 0;
-}
-</code></pre>
-              </div>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.add('show')
-el.classList.remove('hide')
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>function fadeIn(el) {
-  el.style.opacity = 0
-
-  var last = +new Date
-  var tick = function() {
-    el.style.opacity += (new Date - last) / 400
-    last = +new Date
-
-    if (el.style.opacity &lt; 1)
-      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
-  }
-
-  tick()
-}
-
-fadeIn(el)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).fadeIn()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="hide" class="comparison">
-            <h3><a href="#hide">Hide</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.style.display = 'none'
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).hide()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="show" class="comparison">
-            <h3><a href="#show">Show</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.style.display = ''
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).show()
 </code></pre>
               </div>
             </div>
@@ -1030,7 +1030,8 @@ siblings.filter(function(child){
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.classList.toggle(className);</code></pre>
+                <pre><code>el.classList.toggle(className);
+</code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
@@ -1046,13 +1047,15 @@ siblings.filter(function(child){
     else
         classes.push(className);
     el.className = classes.join(' ');
-}</code></pre>
+}
+</code></pre>
               </div>
             </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
-                <pre><code>$(el).toggleClass(className)</code></pre>
+                <pre><code>$(el).toggleClass(className)
+</code></pre>
               </div>
             </div>
           </div>
