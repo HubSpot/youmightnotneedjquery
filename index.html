@@ -826,13 +826,6 @@ el.nextElementSibling || nextElementSibling(el)
           </div>
           <div id="prev" class="comparison">
             <h3><a href="#prev">Prev</a></h3>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.prevElementSibling
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -843,6 +836,13 @@ function prevElementSibling(el) {
 }
 
 el.prevElementSibling || prevElementSibling(el)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.prevElementSibling
 </code></pre>
               </div>
             </div>
@@ -1034,7 +1034,8 @@ siblings.filter(function(child){
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.classList.toggle(className);</code></pre>
+                <pre><code>el.classList.toggle(className);
+</code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
@@ -1050,13 +1051,15 @@ siblings.filter(function(child){
     else
         classes.push(className);
     el.className = classes.join(' ');
-}</code></pre>
+}
+</code></pre>
               </div>
             </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
-                <pre><code>$(el).toggleClass(className)</code></pre>
+                <pre><code>$(el).toggleClass(className)
+</code></pre>
               </div>
             </div>
           </div>
