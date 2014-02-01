@@ -372,7 +372,7 @@ else
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.cloneNode()
+                <pre><code>el.cloneNode(true)
 </code></pre>
               </div>
             </div>
@@ -550,17 +550,17 @@ filter(selector, filterFn)
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>getComputedStyle(el)[ruleName]
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).css(ruleName)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>getComputedStyle(el)[ruleName]
 </code></pre>
               </div>
             </div>
@@ -618,17 +618,17 @@ filter(selector, filterFn)
           </div>
           <div id="getting_text" class="comparison">
             <h3><a href="#getting_text">Getting Text</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.textContent || el.innerText
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>el.textContent
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.textContent || el.innerText
 </code></pre>
               </div>
             </div>
@@ -642,13 +642,6 @@ filter(selector, filterFn)
           </div>
           <div id="has_class" class="comparison">
             <h3><a href="#has_class">Has Class</a></h3>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.contains(className)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -656,6 +649,13 @@ filter(selector, filterFn)
   el.classList.contains(className)
 else
   new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.contains(className)
 </code></pre>
               </div>
             </div>
@@ -839,17 +839,17 @@ el.prevElementSibling || prevElementSibling(el)
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.prevElementSibling
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).prev()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.prevElementSibling
 </code></pre>
               </div>
             </div>
@@ -873,13 +873,6 @@ el.prevElementSibling || prevElementSibling(el)
           </div>
           <div id="remove_class" class="comparison">
             <h3><a href="#remove_class">Remove Class</a></h3>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.remove(className)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -887,6 +880,13 @@ el.prevElementSibling || prevElementSibling(el)
   el.classList.remove(className)
 else
   el.className = el.className.replace(new RegExp('(^| )' + className.split(' ').join('|') + '( |$)', 'gi'), ' ')
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.remove(className)
 </code></pre>
               </div>
             </div>
@@ -1010,6 +1010,13 @@ for (var i = siblings.length; i--;) {
 </code></pre>
               </div>
             </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).siblings()
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1019,23 +1026,9 @@ for (var i = siblings.length; i--;) {
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).siblings()
-</code></pre>
-              </div>
-            </div>
           </div>
           <div id="toggle_class" class="comparison">
             <h3><a href="#toggle_class">Toggle Class</a></h3>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.toggle(className);
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1078,6 +1071,13 @@ for (var i = siblings.length; i--;) {
 </code></pre>
               </div>
             </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.toggle(className);
+</code></pre>
+              </div>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -1107,17 +1107,17 @@ removeEventListener(el, eventName, handler)
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.removeEventListener(eventName, eventHandler)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$(el).off(eventName, eventHandler)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.removeEventListener(eventName, eventHandler)
 </code></pre>
               </div>
             </div>
@@ -1412,17 +1412,17 @@ indexOf(array, item)
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>array.indexOf(item)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.inArray(item, array)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>array.indexOf(item)
 </code></pre>
               </div>
             </div>
@@ -1473,19 +1473,19 @@ map(array, function(value, index){
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
               <div class="code-block language-javascript">
-                <pre><code>array.map(function(value, index){
+                <pre><code>$.map(array, function(value, index){
 
 });
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
               <div class="code-block language-javascript">
-                <pre><code>$.map(array, function(value, index){
+                <pre><code>array.map(function(value, index){
 
 });
 </code></pre>
