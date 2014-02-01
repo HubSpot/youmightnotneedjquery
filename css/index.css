@@ -100,14 +100,14 @@ header.page-header .inner h1 {
   letter-spacing: 0.01em;
   line-height: 1;
 }
-.explaination {
+.explanation {
   width: 40em;
   max-width: 100%;
   padding: 0 1em;
   margin: auto;
   text-align: justify;
 }
-.explaination .inner {
+.explanation .inner {
   font-size: 1.1em;
 }
 .share-buttons {
