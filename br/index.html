@@ -117,6 +117,22 @@ request.send(data)
           </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'GET',
+  url: '/my/url',
+  success: function(resp) {
+
+  },
+  error: function() {
+
+  }
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -131,22 +147,6 @@ request.onload = function() {
 request.onerror = function() {
 
 }
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'GET',
-  url: '/my/url',
-  success: function(resp) {
-
-  },
-  error: function() {
-
-  }
-})
 </code></pre>
               </div>
             </div>
@@ -274,13 +274,6 @@ fadeIn(el)
           <h2>Elements</h2>
           <div id="add_class" class="comparison">
             <h3><a href="#add_class">Add Class</a></h3>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>el.classList.add(className)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -288,6 +281,13 @@ fadeIn(el)
   el.classList.add(className)
 else
   el.className += ' ' + className
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>el.classList.add(className)
 </code></pre>
               </div>
             </div>
@@ -460,8 +460,9 @@ Array.prototype.forEach.call(elements, function(el, i){
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.innerHTML = ''
-</code></pre>
+                <pre><code>while (el.lastChild) {
+  el.removeChild(el.lastChild);
+}</code></pre>
               </div>
             </div>
             <div data-browser="jquery" class="browser jquery">
@@ -1473,19 +1474,19 @@ map(array, function(value, index){
 </code></pre>
               </div>
             </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
               <div class="code-block language-javascript">
-                <pre><code>array.map(function(value, index){
+                <pre><code>$.map(array, function(value, index){
 
 });
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
               <div class="code-block language-javascript">
-                <pre><code>$.map(array, function(value, index){
+                <pre><code>array.map(function(value, index){
 
 });
 </code></pre>
