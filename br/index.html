@@ -1493,17 +1493,17 @@ map(array, function(value, index){
           </div>
           <div id="now" class="comparison">
             <h3><a href="#now">Now</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>new Date().getTime()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>Date.now()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>new Date().getTime()
 </code></pre>
               </div>
             </div>
@@ -1603,7 +1603,7 @@ parseHTML(htmlString);
           else
             var peeps = ['zackbloom', 'adamfschwartz']
             
-          document.write('<p>Desenvolvido por <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> e <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> em <a href="http://dev.hubspot.com">HubSpot</a>.</p>');
+          document.write('<p>Desenvolvido por <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> e <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> em <a href="http://dev.hubspot.com">HubSpot</a>. <small><br>Tradução por <a href="http://twitter.com/fabricionaweb">@fabricionaweb</a></small></p>');
         })()
         
       </script>
