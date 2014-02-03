@@ -91,6 +91,29 @@ request.onload = function() {
               </div>
             </div>
           </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('POST', '/my/url', true)
+request.send(data)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+})
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
             <div data-browser="ie8" class="browser ie8">
@@ -122,29 +145,6 @@ request.onerror = function() {
   error: function() {
 
   }
-})
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('POST', '/my/url', true)
-request.send(data)
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
 })
 </code></pre>
               </div>
@@ -459,9 +459,8 @@ Array.prototype.forEach.call(elements, function(el, i){
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>while (el.lastChild) {
-  el.removeChild(el.lastChild);
-}</code></pre>
+                <pre><code>el.innerHTML = '';
+</code></pre>
               </div>
             </div>
             <div data-browser="jquery" class="browser jquery">
@@ -1138,13 +1137,6 @@ addEventListener(el, eventName, handler)
 </code></pre>
               </div>
             </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).on(eventName, eventHandler)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1152,9 +1144,32 @@ addEventListener(el, eventName, handler)
 </code></pre>
               </div>
             </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).on(eventName, eventHandler)
+</code></pre>
+              </div>
+            </div>
           </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>function ready(fn) {
+  if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', fn)
+  } else {
+    document.attachEvent('onreadystatechange', function(){
+      if (document.readyState === 'interactive')
+        fn()
+    })
+  }
+}
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1170,22 +1185,6 @@ addEventListener(el, eventName, handler)
                 <pre><code>$(document).ready(function(){
 
 })
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>function ready(fn) {
-  if (document.addEventListener) {
-    document.addEventListener('DOMContentLoaded', fn)
-  } else {
-    document.attachEvent('onreadystatechange', function(){
-      if (document.readyState === 'interactive')
-        fn()
-    })
-  }
-}
 </code></pre>
               </div>
             </div>
@@ -1554,17 +1553,17 @@ parseHTML(htmlString)
           </div>
           <div id="parse_json" class="comparison">
             <h3><a href="#parse_json">Parse Json</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.parseJSON(string)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>JSON.parse(string)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.parseJSON(string)
 </code></pre>
               </div>
             </div>

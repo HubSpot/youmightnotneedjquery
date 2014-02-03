@@ -92,6 +92,29 @@ request.onload = function() {
               </div>
             </div>
           </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+})
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('POST', '/my/url', true)
+request.send(data)
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -124,29 +147,6 @@ request.onload = function() {
 request.onerror = function() {
 
 }
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-})
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('POST', '/my/url', true)
-request.send(data)
 </code></pre>
               </div>
             </div>
@@ -467,9 +467,8 @@ Array.prototype.forEach.call(elements, function(el, i){
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>while (el.lastChild) {
-  el.removeChild(el.lastChild);
-}</code></pre>
+                <pre><code>el.innerHTML = '';
+</code></pre>
               </div>
             </div>
           </div>
