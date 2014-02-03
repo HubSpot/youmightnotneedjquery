@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Você não depende do jQuery</title>
-  <meta name="description" content="You Might Not Need jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).">
+  <meta name="description" content="Você não depende do jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).">
   <link rel="icon" href="http://static.hubspot.com/favicon.ico">
   <link rel="stylesheet" href="/css/prism.css">
   <link rel="stylesheet" href="/css/index.css">
@@ -23,35 +23,34 @@
       <div class="inner">
         <h1>Você <span class="highlighted">não</span> depende do <span class="highlighted">jQuery</span></h1>
       </div>
-      <div class="old-ie-message">You certainly can support IE 9 and below without jQuery, but we don't.  Please stop messing with us.</div>
+      <div class="old-ie-message">Você certamente pode dar suporte ao IE9 sem jQuery. Mas nós não. Por favor, pare de brincar.</div>
     </header>
-    <div class="explaination">
+    <div class="explanation">
       <div class="inner">
-        <p>jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.</p>
+        <p>jQuery é otimo com todos os seus plugins, e isso torna o desenvolvimento do seu aplicativo muito ágil.</p>
         <p>
-          If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-          Maybe you can include a few lines of utility code, and forgo the requirement.  If you're only targeting more modern browsers,
-          you might not need anything more than what the browser ships with.
+          Mas se você está desenvolvendo uma biblioteca, por favor, tire um tempo para considerar se você realmente depende do jQuery.
+          Talvez você possa escrever algumas linhas de um bom código e abandonar o jQuery. Se você não está preocupado com navegadores antigos,
+          você pode não precisar de nada mais do que os navegadores já oferecem.
         </p>
         <p>
-          At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
-          is protecting us from a great demon of browser incompatibility when, in truth, post-IE8, browsers are pretty easy to
-          deal with on their own.
+          No mínimo, certifique-se que você sabe o que jQuery faz por você, e o que ele não faz. Alguns desenvolvedores acreditam que o jQuery
+          está nos protegendo de um grande demônio da incompatibilidade, quando na verdade, apartir do IE8 os navegadores se viraram muito bem sozinhos.
         </p>
       </div>
     </div>
     <div class="share-buttons">
       <div class="share-button twitter-share-button">
-        <iframe src="http://hubstar.io/twitter/spin?via=HubSpotDev&amp;hashtags=YMNNJQ&amp;text=You%20might%20not%20need%20jQuery&amp;url=http://YouMightNotNeedjQuery.com&amp;name=%22You%20might%20not%20need%20jQuery%22" frameborder="0" scrolling="0"></iframe>
+        <iframe src="http://hubstar.io/twitter/spin?via=HubSpotDev&amp;hashtags=YMNNJQ&amp;text=Voc%C3%AA%20n%C3%A3o%20depende%20do%20jQuery&amp;url=http://YouMightNotNeedjQuery.com/br/&amp;name=%22Voc%C3%AA%20n%C3%A3o%20depende%20do%20jQuery%22" frameborder="0" scrolling="0"></iframe>
       </div>
       <div class="share-button github-stars-button">
         <iframe src="http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery" frameborder="0" scrolling="0"></iframe>
       </div>
     </div>
     <header class="search">
-      <input type="search" placeholder="Search..." required>
+      <input type="search" placeholder="Procurar..." required>
       <div class="field">
-        <label for="version">What's the oldest version of IE you need to support?</label>
+        <label for="version">Para qual versão do IE você costuma de dar suporte?</label>
         <div class="slider">
           <input name="version" type="range" min="8" max="10" class="version-slider">
           <div class="rule">
@@ -63,7 +62,7 @@
       </div>
     </header>
     <div class="comparisons">
-      <div class="empty-message">Your search didn't match any comparisons.</div>
+      <div class="empty-message">Nenhum resultado com este termo</div>
       <section id="ajax" class="odd">
         <div class="inner">
           <h2>AJAX</h2>
@@ -155,7 +154,7 @@ request.onerror = function() {
       </section>
       <section id="effects">
         <div class="inner">
-          <h2>Effects</h2>
+          <h2>EFEITOS</h2>
           <div id="fade_in" class="comparison">
             <h3><a href="#fade_in">Fade In</a></h3>
             <div data-browser="ie10" class="browser ie10">
@@ -271,7 +270,7 @@ fadeIn(el)
       </section>
       <section id="elements" class="odd">
         <div class="inner">
-          <h2>Elements</h2>
+          <h2>ELEMENTOS</h2>
           <div id="add_class" class="comparison">
             <h3><a href="#add_class">Add Class</a></h3>
             <div data-browser="ie10" class="browser ie10">
@@ -1090,7 +1089,7 @@ for (var i = siblings.length; i--;) {
       </section>
       <section id="events">
         <div class="inner">
-          <h2>Events</h2>
+          <h2>EVENTOS</h2>
           <div id="off" class="comparison">
             <h3><a href="#off">Off</a></h3>
             <div data-browser="ie8" class="browser ie8">
@@ -1494,17 +1493,17 @@ map(array, function(value, index){
           </div>
           <div id="now" class="comparison">
             <h3><a href="#now">Now</a></h3>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>new Date().getTime()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>Date.now()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>new Date().getTime()
 </code></pre>
               </div>
             </div>
@@ -1604,7 +1603,7 @@ parseHTML(htmlString);
           else
             var peeps = ['zackbloom', 'adamfschwartz']
             
-          document.write('<p>Made by <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> and <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> at <a href="http://dev.hubspot.com">HubSpot</a>.</p>');
+          document.write('<p>Desenvolvido por <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> e <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> em <a href="http://dev.hubspot.com">HubSpot</a>. <small><br>Tradução por <a href="http://twitter.com/fabricionaweb">@fabricionaweb</a></small></p>');
         })()
         
       </script>

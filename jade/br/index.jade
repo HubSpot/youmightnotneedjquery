@@ -8,7 +8,7 @@ head
 
   title Você não depende do jQuery
 
-  meta(name='description', content='You Might Not Need jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).')
+  meta(name='description', content='Você não depende do jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).')
   link(rel='icon', href='http://static.hubspot.com/favicon.ico')
 
   link(rel='stylesheet', href='/css/prism.css')
@@ -28,37 +28,36 @@ body
           | Você <span class="highlighted">não</span> depende do <span class="highlighted">jQuery</span>
 
       .old-ie-message
-        | You certainly can support IE 9 and below without jQuery, but we don't.  Please stop messing with us.
+        | Você certamente pode dar suporte ao IE9 sem jQuery. Mas nós não. Por favor, pare de brincar.
 
-    .explaination
+    .explanation
       .inner
         p
-          | jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.
+          | jQuery é otimo com todos os seus plugins, e isso torna o desenvolvimento do seu aplicativo muito ágil.
 
         p
-          | If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-          | Maybe you can include a few lines of utility code, and forgo the requirement.  If you're only targeting more modern browsers,
-          | you might not need anything more than what the browser ships with.
+          | Mas se você está desenvolvendo uma biblioteca, por favor, tire um tempo para considerar se você realmente depende do jQuery.
+          | Talvez você possa escrever algumas linhas de um bom código e abandonar o jQuery. Se você não está preocupado com navegadores antigos,
+          | você pode não precisar de nada mais do que os navegadores já oferecem.
 
         p
-          | At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
-          | is protecting us from a great demon of browser incompatibility when, in truth, post-IE8, browsers are pretty easy to
-          | deal with on their own.
+          | No mínimo, certifique-se que você sabe o que jQuery faz por você, e o que ele não faz. Alguns desenvolvedores acreditam que o jQuery
+          | está nos protegendo de um grande demônio da incompatibilidade, quando na verdade, apartir do IE8 os navegadores se viraram muito bem sozinhos.
 
     .share-buttons
 
       .share-button.twitter-share-button
-        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&hashtags=YMNNJQ&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0)
+        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&hashtags=YMNNJQ&text=Voc%C3%AA%20n%C3%A3o%20depende%20do%20jQuery&url=http://YouMightNotNeedjQuery.com/br/&name=%22Voc%C3%AA%20n%C3%A3o%20depende%20do%20jQuery%22', frameborder=0, scrolling=0)
 
       .share-button.github-stars-button
         iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0)
 
     header.search
 
-      input(type="search", placeholder="Search...", required)
+      input(type="search", placeholder="Procurar...", required)
 
       .field
-        label(for="version") What's the oldest version of IE you need to support?
+        label(for="version") Para qual versão do IE você costuma de dar suporte?
 
         .slider
           input(name="version", type="range", min="8", max="10").version-slider
@@ -71,13 +70,14 @@ body
     .comparisons
 
       .empty-message
-        | Your search didn't match any comparisons.
+        | Nenhum resultado com este termo
 
       - var i = 0
+      - var br = {effects: 'EFEITOS', elements: 'ELEMENTOS', events: 'EVENTOS'}
       for comps, title in comparisons
         section(id=title, class=(++i % 2 ? 'odd' : ''))
           .inner
-            h2= titleCase(title)
+            h2= ( br[title] ? br[title] : titleCase(title))
 
             for comp, name in comps
               .comparison(id=name.replace(' ', '-').toLowerCase())
@@ -105,7 +105,7 @@ body
           else
             var peeps = ['zackbloom', 'adamfschwartz']
 
-          document.write('<p>Made by <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> and <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> at <a href="http://dev.hubspot.com">HubSpot</a>.</p>');
+          document.write('<p>Desenvolvido por <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> e <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> em <a href="http://dev.hubspot.com">HubSpot</a>. <small><br>Tradução por <a href="http://twitter.com/fabricionaweb">@fabricionaweb</a></small></p>');
         })()
 
   script.
