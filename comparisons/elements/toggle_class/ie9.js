@@ -7,7 +7,7 @@ if (el.classList) {
     if (existingIndex >= 0)
       classes.splice(existingIndex, 1)
     else
-      classes.push(className);
+      classes.push(className)
 
     el.className = classes.join(' ')
 }
