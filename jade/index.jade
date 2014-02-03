@@ -8,7 +8,7 @@ head
 
   title You Might Not Need jQuery
 
-  meta(name='description', content='You Might Not Need jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).')
+  meta(name='description', content='Examples of how to do common event, element, ajax and utility operations with plain javascript.')
   link(rel='icon', href='http://static.hubspot.com/favicon.ico')
 
   link(rel='stylesheet', href='css/prism.css')
@@ -48,7 +48,7 @@ body
     .share-buttons
 
       .share-button.twitter-share-button
-        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&hashtags=YMNNJQ&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0)
+        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&text=You%20might%20not%20need%20jQuery&url=http://YouMightNotNeedjQuery.com&name=%22You%20might%20not%20need%20jQuery%22', frameborder=0, scrolling=0)
 
       .share-button.github-stars-button
         iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0)
@@ -84,18 +84,20 @@ body
                 h3
                   a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
 
-                for langs, browser in comp
-                  .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
+                for browser in ['jquery', 'ie8', 'ie9', 'ie10']
+                  if comp[browser]
+                    .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
-                    if getNamePart(browser) === 'jquery'
-                      h4 jQuery
-                    else
-                      h4= getNamePart(browser).toUpperCase() + '+'
+                      if browser === 'jquery'
+                        h4 jQuery
+                      else
+                        h4= browser.toUpperCase() + '+'
 
-                    for code, lang in langs
-                      .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
-                        pre
-                          code= code
+                      for lang in ['js', 'css']
+                        if comp[browser][lang]
+                          .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(lang))
+                            pre
+                              code= comp[browser][lang]
 
     footer
       script.

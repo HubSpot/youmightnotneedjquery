@@ -93,6 +93,15 @@ request.onload = function() {
           </div>
           <div id="post" class="comparison">
             <h3><a href="#post">Post</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('POST', '/my/url', true)
+request.send(data)
+</code></pre>
+              </div>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
@@ -101,15 +110,6 @@ request.onload = function() {
   url: '/my/url',
   data: data
 })
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('POST', '/my/url', true)
-request.send(data)
 </code></pre>
               </div>
             </div>
@@ -368,17 +368,17 @@ else
           </div>
           <div id="clone" class="comparison">
             <h3><a href="#clone">Clone</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$(el).clone()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>el.cloneNode(true)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$(el).clone()
 </code></pre>
               </div>
             </div>
@@ -885,7 +885,7 @@ el.prevElementSibling || prevElementSibling(el)
                 <pre><code>if (el.classList)
   el.classList.remove(className)
 else
-  el.className = el.className.replace(new RegExp('(^| )' + className.split(' ').join('|') + '( |$)', 'gi'), ' ')
+  el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ')
 </code></pre>
               </div>
             </div>
@@ -1031,7 +1031,7 @@ for (var i = siblings.length; i--;) {
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div class="code-block language-javascript">
-                <pre><code>el.classList.toggle(className);
+                <pre><code>el.classList.toggle(className)
 </code></pre>
               </div>
             </div>
@@ -1043,15 +1043,15 @@ for (var i = siblings.length; i--;) {
 } else {
     var classes = el.className.split(' ')
     var existingIndex = -1
-    for (var i=classes.length; i--;){
+    for (var i = classes.length; i--;) {
       if (classes[i] === className)
-        existingIndex = i;
+        existingIndex = i
     }
 
     if (existingIndex &gt;= 0)
       classes.splice(existingIndex, 1)
     else
-      classes.push(className);
+      classes.push(className)
 
     el.className = classes.join(' ')
 }
@@ -1070,7 +1070,7 @@ for (var i = siblings.length; i--;) {
     if (existingIndex &gt;= 0)
       classes.splice(existingIndex, 1)
     else
-      classes.push(className);
+      classes.push(className)
 
     el.className = classes.join(' ')
 }
@@ -1263,6 +1263,20 @@ el.dispatchEvent(event)
           <h2>Utils</h2>
           <div id="array_each" class="comparison">
             <h3><a href="#array_each">Array Each</a></h3>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>function forEach(array, fn) {
+  for (i = 0; i &lt; array.length; i++)
+    fn(array[i], i)
+}
+
+forEach(array, function(item, i){
+
+})
+</code></pre>
+              </div>
+            </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
@@ -1276,20 +1290,6 @@ el.dispatchEvent(event)
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
                 <pre><code>$.each(array, function(i, item){
-
-})
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>function forEach(array, fn) {
-  for (i = 0; i &lt; array.length; i++)
-    fn(array[i], i)
-}
-
-forEach(array, function(item, i){
 
 })
 </code></pre>
@@ -1324,13 +1324,6 @@ forEach(array, function(item, i){
           </div>
           <div id="deep_extend" class="comparison">
             <h3><a href="#deep_extend">Deep Extend</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div class="code-block language-javascript">
-                <pre><code>$.extend(true, {}, objA, objB)
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
@@ -1357,6 +1350,13 @@ forEach(array, function(item, i){
 }
 
 deepExtend({}, objA, objB)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div class="code-block language-javascript">
+                <pre><code>$.extend(true, {}, objA, objB)
 </code></pre>
               </div>
             </div>
@@ -1459,16 +1459,16 @@ isArray(arr)
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
-                <pre><code>function map(arr, fn){
-  var results = [];
-  for (var i=0; i &lt; arr.length; i++)
-    results.push(fn(arr[i], i));
-  return results;
+                <pre><code>function map(arr, fn) {
+  var results = []
+  for (var i = 0; i &lt; arr.length; i++)
+    results.push(fn(arr[i], i))
+  return results
 }
 
 map(array, function(value, index){
 
-});
+})
 </code></pre>
               </div>
             </div>
@@ -1477,7 +1477,7 @@ map(array, function(value, index){
               <div class="code-block language-javascript">
                 <pre><code>array.map(function(value, index){
 
-});
+})
 </code></pre>
               </div>
             </div>
@@ -1486,24 +1486,24 @@ map(array, function(value, index){
               <div class="code-block language-javascript">
                 <pre><code>$.map(array, function(value, index){
 
-});
+})
 </code></pre>
               </div>
             </div>
           </div>
           <div id="now" class="comparison">
             <h3><a href="#now">Now</a></h3>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div class="code-block language-javascript">
-                <pre><code>Date.now()
-</code></pre>
-              </div>
-            </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>new Date().getTime()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div class="code-block language-javascript">
+                <pre><code>Date.now()
 </code></pre>
               </div>
             </div>
@@ -1521,12 +1521,12 @@ map(array, function(value, index){
               <h4>IE8+</h4>
               <div class="code-block language-javascript">
                 <pre><code>var parseHTML = function(str) {
-  var el = document.createElement('div');
-  el.innerHTML = str;
-  return el.children;
+  var el = document.createElement('div')
+  el.innerHTML = str
+  return el.children
 }
 
-parseHTML(htmlString);
+parseHTML(htmlString)
 </code></pre>
               </div>
             </div>
@@ -1534,19 +1534,19 @@ parseHTML(htmlString);
               <h4>IE9+</h4>
               <div class="code-block language-javascript">
                 <pre><code>var parseHTML = function(str) {
-  var tmp = document.implementation.createHTMLDocument();
-  tmp.body.innerHTML = str;
-  return tmp.body.children;
-};
+  var tmp = document.implementation.createHTMLDocument()
+  tmp.body.innerHTML = str
+  return tmp.body.children
+}
 
-parseHTML(htmlString);
+parseHTML(htmlString)
 </code></pre>
               </div>
             </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div class="code-block language-javascript">
-                <pre><code>$.parseHTML(htmlString);
+                <pre><code>$.parseHTML(htmlString)
 </code></pre>
               </div>
             </div>
