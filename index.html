@@ -83,11 +83,67 @@
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>request = new XMLHttpRequest
 request.open('GET', '/my/url', true)
+
+request.onreadystatechange = function() {
+  if (request.readyState === 4){
+    if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+      // Success!
+      data = JSON.parse(request.responseText)
+    } else {
+      // Error :(
+    }
+  }
+}
+
 request.send()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
 
 request.onload = function() {
-  data = JSON.parse(this.response)
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+    // Success!
+    data = JSON.parse(request.responseText)
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
 }
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+
+request.onload = function() {
+if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+    // Success!
+    data = JSON.parse(this.response)
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+}
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
 </code></pre>
               </div>
             </div>
@@ -138,15 +194,67 @@ request.send(data)
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>request = new XMLHttpRequest
 request.open('GET', '/my/url', true)
+
+request.onreadystatechange = function() {
+  if (request.readyState === 4){
+    if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+      // Success!
+      resp = request.responseText
+    } else {
+      // Error :(
+    }
+  }
+}
+
 request.send()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
 
 request.onload = function() {
-  resp = this.response
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+    // Success!
+    resp = request.responseText
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
 }
 
 request.onerror = function() {
-
+  // There was a connection error of some sort
 }
+
+request.send()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+
+request.onload = function() {
+if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+    // Success!
+    resp = this.response
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+}
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
 </code></pre>
               </div>
             </div>
@@ -361,6 +469,18 @@ else
             </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var children = [];
+for (var i=el.children.length; i--;){
+  // Skip comment nodes on IE8
+  if (el.children[i].nodeType != 8)
+    children.unshift(el.children[i]);
+}
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.children
 </code></pre>
@@ -616,30 +736,6 @@ filter(selector, filterFn)
               </div>
             </div>
           </div>
-          <div id="getting_text" class="comparison">
-            <h3><a href="#getting_text">Getting Text</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).text()
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.textContent || el.innerText
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.textContent
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="has_class" class="comparison">
             <h3><a href="#has_class">Has Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -663,6 +759,30 @@ else
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.classList.contains(className)
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="getting_text" class="comparison">
+            <h3><a href="#getting_text">Getting Text</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).text()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.textContent || el.innerText
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.textContent
 </code></pre>
               </div>
             </div>
@@ -854,6 +974,23 @@ el.prevElementSibling || prevElementSibling(el)
               </div>
             </div>
           </div>
+          <div id="remove" class="comparison">
+            <h3><a href="#remove">Remove</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).remove()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.parentNode.removeChild(el)
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="remove_class" class="comparison">
             <h3><a href="#remove_class">Remove Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -877,23 +1014,6 @@ else
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.classList.remove(className)
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="remove" class="comparison">
-            <h3><a href="#remove">Remove</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).remove()
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.parentNode.removeChild(el)
 </code></pre>
               </div>
             </div>
