@@ -736,6 +736,30 @@ filter(selector, filterFn)
               </div>
             </div>
           </div>
+          <div id="getting_text" class="comparison">
+            <h3><a href="#getting_text">Getting Text</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).text()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.textContent || el.innerText
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.textContent
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="has_class" class="comparison">
             <h3><a href="#has_class">Has Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -759,30 +783,6 @@ else
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.classList.contains(className)
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="getting_text" class="comparison">
-            <h3><a href="#getting_text">Getting Text</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).text()
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.textContent || el.innerText
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.textContent
 </code></pre>
               </div>
             </div>
