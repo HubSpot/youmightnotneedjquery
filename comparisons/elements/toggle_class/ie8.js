@@ -4,16 +4,14 @@ if (el.classList) {
   var classes = el.className.split(' ');
   var existingIndex = -1;
   for (var i=classes.length; i--;) {
-    if (classes[i] === className) {
+    if (classes[i] === className)
       existingIndex = i;
-    }
   }
 
-  if (existingIndex >= 0) {
+  if (existingIndex >= 0)
     classes.splice(existingIndex, 1);
-  } else {
+  else
     classes.push(className);
-  }
 
   el.className = classes.join(' ');
 }
