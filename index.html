@@ -85,16 +85,17 @@
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
-  if (request.readyState === 4){
-    if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+  if (this.readyState === 4){
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
       // Success!
-      data = JSON.parse(request.responseText);
+      data = JSON.parse(this.responseText);
     } else {
       // Error :(
     }
   }
 
 request.send();
+request = null;
 </code></pre>
               </div>
             </div>
@@ -195,10 +196,10 @@ request.send(data);
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
-  if (request.readyState === 4){
-    if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+  if (this.readyState === 4){
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
       // Success!
-      resp = request.responseText;
+      resp = this.responseText;
     } else {
       // Error :(
     }
@@ -206,6 +207,7 @@ request.onreadystatechange = function() {
 }
 
 request.send();
+request = null;
 </code></pre>
               </div>
             </div>
@@ -442,6 +444,23 @@ else
               </div>
             </div>
           </div>
+          <div id="before" class="comparison">
+            <h3><a href="#before">Before</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).before(htmlString);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="children" class="comparison">
             <h3><a href="#children">Children</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -467,23 +486,6 @@ for (var i=el.children.length; i--;){
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.children
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="before" class="comparison">
-            <h3><a href="#before">Before</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).before(htmlString);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.insertAdjacentHTML('beforebegin', htmlString);
 </code></pre>
               </div>
             </div>
