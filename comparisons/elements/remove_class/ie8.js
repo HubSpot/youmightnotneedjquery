@@ -1,5 +1,4 @@
-if (el.classList) {
+if (el.classList)
   el.classList.remove(className);
-} else {
+else
   el.className = el.className.replace(new RegExp('(^| )' + className.split(' ').join('|') + '( |$)', 'gi'), ' ');
-}
