@@ -5,10 +5,9 @@ var matches = function(el, selector) {
     return _matches.call(el, selector);
   } else {
     var nodes = el.parentNode.querySelectorAll(selector);
-    for (var i = nodes.length; i--;) {
+    for (var i = nodes.length; i--;)
       if (nodes[i] === el) {
         return true;
-      }
     }
     return false;
 }
