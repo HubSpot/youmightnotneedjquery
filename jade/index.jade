@@ -74,18 +74,18 @@ body
         | Your search didn't match any comparisons.
 
       - var i = 0
-      for comps, title in comparisons
-        section(id=title, class=(++i % 2 ? 'odd' : ''))
+      for comp in comparisons
+        section(id=comp.title, class=(++i % 2 ? 'odd' : ''))
           .inner
-            h2= titleCase(title)
+            h2= titleCase(comp.title)
 
-            for comp, name in comps
+            for co, name in comp.comparison
               .comparison(id=name.replace(' ', '-').toLowerCase())
                 h3
                   a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
 
                 for browser in ['jquery', 'ie8', 'ie9', 'ie10']
-                  if comp[browser]
+                  if co[browser]
                     .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
                       if browser === 'jquery'
@@ -94,10 +94,10 @@ body
                         h4= browser.toUpperCase() + '+'
 
                       for lang in ['js', 'css']
-                        if comp[browser][lang]
+                        if co[browser][lang]
                           .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(lang))
                             pre
-                              code= comp[browser][lang]
+                              code= co[browser][lang]
 
     footer
       script.

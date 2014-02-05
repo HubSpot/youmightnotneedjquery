@@ -74,28 +74,30 @@ body
 
       - var i = 0
       - var br = {effects: 'EFEITOS', elements: 'ELEMENTOS', events: 'EVENTOS'}
-      for comps, title in comparisons
-        section(id=title, class=(++i % 2 ? 'odd' : ''))
+      for comp in comparisons
+        section(id=comp.title, class=(++i % 2 ? 'odd' : ''))
           .inner
-            h2= ( br[title] ? br[title] : titleCase(title))
+            h2= (br[comp.title] || titleCase(comp.title))
 
-            for comp, name in comps
+            for co, name in comp.comparison
               .comparison(id=name.replace(' ', '-').toLowerCase())
                 h3
                   a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
 
-                for langs, browser in comp
-                  .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
+                for browser in ['jquery', 'ie8', 'ie9', 'ie10']
+                  if co[browser]
+                    .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
-                    if getNamePart(browser) === 'jquery'
-                      h4 jQuery
-                    else
-                      h4= getNamePart(browser).toUpperCase() + '+'
+                      if browser === 'jquery'
+                        h4 jQuery
+                      else
+                        h4= browser.toUpperCase() + '+'
 
-                    for code, lang in langs
-                      .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(browser))
-                        pre
-                          code= code
+                      for lang in ['js', 'css']
+                        if co[browser][lang]
+                          .code-block(class='language-' + fullLanguage(lang), data-lang=fullLanguage(lang))
+                            pre
+                              code= co[browser][lang]
 
     footer
       script.

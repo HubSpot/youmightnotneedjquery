@@ -41,8 +41,15 @@ gulp.task 'jade', ->
       console.error "Error loading comparisons tree", err
       return
 
+    comps = []
+    for title, comparison of comparisons
+      comps.push {title, comparison}
+
+    comps.sort (a, b) ->
+      a.title.localeCompare b.title
+
     gulp.src('./jade/**/*.jade')
-      .pipe(jade({pretty: true, data: {comparisons, titleCase, getNamePart, fullLanguage}}))
+      .pipe(jade({pretty: true, data: {comparisons: comps, titleCase, getNamePart, fullLanguage}}))
       .pipe(gulp.dest('./'))
 
 gulp.task 'default', ->
