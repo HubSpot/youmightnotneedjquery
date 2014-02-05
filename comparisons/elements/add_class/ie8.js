@@ -1,5 +1,4 @@
-if (el.classList) {
+if (el.classList)
   el.classList.add(className);
-} else {
+else
   el.className += ' ' + className;
-}
