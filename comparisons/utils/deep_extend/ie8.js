@@ -4,9 +4,8 @@ var deepExtend = function(out) {
   for (var i = 1; i < arguments.length; i++) {
     var obj = arguments[i];
 
-    if (!obj) {
+    if (!obj)
       continue;
-    }
 
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
