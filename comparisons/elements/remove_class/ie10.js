@@ -1,1 +1,1 @@
-el.classList.remove(className)
+el.classList.remove(className);

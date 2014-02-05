@@ -1,1 +1,1 @@
-$(selector).filter(filterFn)
+$(selector).filter(filterFn);

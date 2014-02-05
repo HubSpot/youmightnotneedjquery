@@ -1,1 +1,1 @@
-$(el).trigger('my-event', {some: 'data'})
+$(el).trigger('my-event', {some: 'data'});

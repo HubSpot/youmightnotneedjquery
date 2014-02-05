@@ -1,1 +1,1 @@
-$(el).offset()
+$(el).offset();

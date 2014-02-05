@@ -1,1 +1,1 @@
-$.isArray(arr)
+$.isArray(arr);

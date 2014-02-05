@@ -1,1 +1,1 @@
-el.addEventListener(eventName, eventHandler)
+el.addEventListener(eventName, eventHandler);

@@ -1,1 +1,1 @@
-Date.now()
+Date.now();
