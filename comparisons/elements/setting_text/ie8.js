@@ -1,5 +1,4 @@
-if (el.textContent !== undefined) {
+if (el.textContent !== undefined)
   el.textContent = string;
-} else {
+else
   el.innerText = string;
-}
