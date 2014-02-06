@@ -2,7 +2,7 @@ function outerWidth(el, includeMargin){
 
     var includeMargin = includeMargin || false;
 
-    //the computed width of the element, with borders and padding, but without margin.
+    //the computed width of the element, with borders and padding, but without margin..
     var width = el.offsetWidth;
 
     if(includeMargin){

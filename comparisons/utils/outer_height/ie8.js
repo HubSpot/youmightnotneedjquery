@@ -1,7 +1,7 @@
 function outerHeight(el, includeMargin){
 
     var includeMargin = includeMargin || false;
-
+    
     //the computed height of the element, with borders and padding, but without margin.
     var height = el.offsetHeight;
 

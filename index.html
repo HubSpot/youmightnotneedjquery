@@ -854,6 +854,23 @@ el.prevElementSibling || prevElementSibling(el)
               </div>
             </div>
           </div>
+          <div id="remove" class="comparison">
+            <h3><a href="#remove">Remove</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).remove()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.parentNode.removeChild(el)
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="remove_class" class="comparison">
             <h3><a href="#remove_class">Remove Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -877,23 +894,6 @@ else
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.classList.remove(className)
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="remove" class="comparison">
-            <h3><a href="#remove">Remove</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).remove()
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.parentNode.removeChild(el)
 </code></pre>
               </div>
             </div>
@@ -1513,6 +1513,76 @@ map(array, function(value, index){
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>Date.now()
 </code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="outer_height" class="comparison">
+            <h3><a href="#outer_height">Outer Height</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerHeight();</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function outerHeight(el, includeMargin){
+
+    var includeMargin = includeMargin || false;
+    
+    //the computed height of the element, with borders and padding, but without margin.
+    var height = el.offsetHeight;
+
+    if(includeMargin){
+
+      var style = el.currentStyle || window.getComputedStyle(el);
+
+      //adding margin
+      height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+
+    } 
+
+    return height;
+
+  }
+
+  outerHeight(el, true);</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="outer_width" class="comparison">
+            <h3><a href="#outer_width">Outer Width</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerWidth();</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function outerWidth(el, includeMargin){
+
+    var includeMargin = includeMargin || false;
+
+    //the computed width of the element, with borders and padding, but without margin.
+    var width = el.offsetWidth;
+
+    if(includeMargin){
+
+      var style = el.currentStyle || window.getComputedStyle(el);
+
+      //adding margin
+      width += parseInt(style.marginTop) + parseInt(style.marginBottom);
+
+    } 
+
+    return width;
+
+  }
+
+  outerWidth(el, true);</code></pre>
               </div>
             </div>
           </div>
