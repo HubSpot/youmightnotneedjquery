@@ -310,10 +310,10 @@ fadeIn(el);
 
   var last = +new Date();
   var tick = function() {
-    el.style.opacity += (new Date() - last) / 400;
+    el.style.opacity = +el.style.opacity + (new Date() - last) / 400;
     last = +new Date();
 
-    if (el.style.opacity &lt; 1) {
+    if (+el.style.opacity &lt; 1) {
       (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
     }
   };
