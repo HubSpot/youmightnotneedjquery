@@ -129,7 +129,7 @@ request.send()
 request.open('GET', '/my/url', true)
 
 request.onload = function() {
-if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
     // Success!
     data = JSON.parse(this.response)
   } else {
