@@ -34,7 +34,7 @@
           you might not need anything more than what the browser ships with.
         </p>
         <p>
-          At the very least, make sure you know what jQuery is doing for you, and what it's not.  Some developers believe that jQuery
+          At the very least, make sure you know what <a href="https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o">jQuery is doing for you</a>, and what it's not.  Some developers believe that jQuery
           is protecting us from a great demon of browser incompatibility when, in truth, post-IE8, browsers are pretty easy to
           deal with on their own.
         </p>
@@ -807,36 +807,6 @@ else
               </div>
             </div>
           </div>
-          <div id="next" class="comparison">
-            <h3><a href="#next">Next</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).next();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// nextSibling can include text nodes
-function nextElementSibling(el) {
-  do { el = el.nextSibling; } while ( el &amp;&amp; el.nodeType !== 1 );
-  return el;
-}
-
-el.nextElementSibling || nextElementSibling(el);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.nextElementSibling
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="matches_selector" class="comparison">
             <h3><a href="#matches_selector">Matches Selector</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -875,6 +845,36 @@ matches(el, '.my-class');
 };
 
 matches(el, '.my-class');
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="next" class="comparison">
+            <h3><a href="#next">Next</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).next();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// nextSibling can include text nodes
+function nextElementSibling(el) {
+  do { el = el.nextSibling; } while ( el &amp;&amp; el.nodeType !== 1 );
+  return el;
+}
+
+el.nextElementSibling || nextElementSibling(el);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.nextElementSibling
 </code></pre>
               </div>
             </div>
@@ -1124,23 +1124,6 @@ else
               </div>
             </div>
           </div>
-          <div id="setting_attributes" class="comparison">
-            <h3><a href="#setting_attributes">Setting Attributes</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).attr('tabindex', 3);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.setAttribute('tabindex', 3);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="set_style" class="comparison">
             <h3><a href="#set_style">Set Style</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1155,6 +1138,23 @@ else
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>// Use a class if possible
 el.style.borderWidth = '20px';
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="setting_attributes" class="comparison">
+            <h3><a href="#setting_attributes">Setting Attributes</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).attr('tabindex', 3);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.setAttribute('tabindex', 3);
 </code></pre>
               </div>
             </div>
@@ -1331,6 +1331,38 @@ removeEventListener(el, eventName, handler);
               </div>
             </div>
           </div>
+          <div id="on" class="comparison">
+            <h3><a href="#on">On</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).on(eventName, eventHandler);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function addEventListener(el, eventName, handler) {
+  if (el.addEventListener) {
+    el.addEventListener(eventName, handler);
+  } else {
+    el.attachEvent('on' + eventName, handler);
+  }
+}
+
+addEventListener(el, eventName, handler);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.addEventListener(eventName, eventHandler);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1364,38 +1396,6 @@ removeEventListener(el, eventName, handler);
                 <pre><code>document.addEventListener('DOMContentLoaded', function(){
 
 });
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="on" class="comparison">
-            <h3><a href="#on">On</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).on(eventName, eventHandler);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function addEventListener(el, eventName, handler) {
-  if (el.addEventListener) {
-    el.addEventListener(eventName, handler);
-  } else {
-    el.attachEvent('on' + eventName, handler);
-  }
-}
-
-addEventListener(el, eventName, handler);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.addEventListener(eventName, eventHandler);
 </code></pre>
               </div>
             </div>
