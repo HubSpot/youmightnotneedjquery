@@ -1,0 +1,2 @@
+ajax: https://github.com/ForbesLindesay/ajax
+request: https://github.com/then/request
