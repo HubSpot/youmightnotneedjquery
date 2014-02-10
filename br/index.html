@@ -66,6 +66,87 @@
       <section id="ajax" class="odd">
         <div class="inner">
           <h2>AJAX</h2>
+          <div id="json" class="comparison">
+            <h3><a href="#json">JSON</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest;
+request.open('GET', '/my/url', true);
+
+request.onreadystatechange = function() {
+  if (this.readyState === 4){
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+      // Success!
+      data = JSON.parse(this.responseText);
+    } else {
+      // Error :(
+    }
+  }
+
+request.send();
+request = null;
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+
+request.onload = function() {
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+    // Success!
+    data = JSON.parse(request.responseText)
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+}
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+
+request.onload = function() {
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+    // Success!
+    data = JSON.parse(this.response)
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+}
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="post" class="comparison">
             <h3><a href="#post">Post</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -163,87 +244,6 @@ request.onload = function() {
 if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
     // Success!
     resp = this.response
-  } else {
-    // We reached our target server, but it returned an error
-
-  }
-}
-
-request.onerror = function() {
-  // There was a connection error of some sort
-}
-
-request.send()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="json" class="comparison">
-            <h3><a href="#json">JSON</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest;
-request.open('GET', '/my/url', true);
-
-request.onreadystatechange = function() {
-  if (this.readyState === 4){
-    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
-      // Success!
-      data = JSON.parse(this.responseText);
-    } else {
-      // Error :(
-    }
-  }
-
-request.send();
-request = null;
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-
-request.onload = function() {
-  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
-    // Success!
-    data = JSON.parse(request.responseText)
-  } else {
-    // We reached our target server, but it returned an error
-
-  }
-}
-
-request.onerror = function() {
-  // There was a connection error of some sort
-}
-
-request.send()
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-
-request.onload = function() {
-  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
-    // Success!
-    data = JSON.parse(this.response)
   } else {
     // We reached our target server, but it returned an error
 
@@ -1368,40 +1368,6 @@ addEventListener(el, eventName, handler);
               </div>
             </div>
           </div>
-          <div id="trigger_custom" class="comparison">
-            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).trigger('my-event', {some: 'data'});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Custom events are not natively supported, so you have to hijack a random
-// event.
-//
-// Just use jQuery.
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (window.CustomEvent) {
-  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
-} else {
-  var event = document.createEvent('CustomEvent');
-  event.initCustomEvent('my-event', true, true, {some: 'data'});
-}
-
-el.dispatchEvent(event);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1435,6 +1401,40 @@ el.dispatchEvent(event);
                 <pre><code>document.addEventListener('DOMContentLoaded', function(){
 
 });
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="trigger_custom" class="comparison">
+            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).trigger('my-event', {some: 'data'});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Custom events are not natively supported, so you have to hijack a random
+// event.
+//
+// Just use jQuery.
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>if (window.CustomEvent) {
+  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
+} else {
+  var event = document.createEvent('CustomEvent');
+  event.initCustomEvent('my-event', true, true, {some: 'data'});
+}
+
+el.dispatchEvent(event);
 </code></pre>
               </div>
             </div>

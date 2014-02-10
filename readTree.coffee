@@ -27,7 +27,6 @@ get = (cb) ->
             out[title][name][version][ext] = code
         else
           out[title][name] = comp
-          console.log title, name, comp
 
     cb null, out
 
