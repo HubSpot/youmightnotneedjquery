@@ -14,13 +14,20 @@ get = (cb) ->
       out[title] = {}
 
       for name, comp of comps
+        if name is 'alternatives.txt'
+          name = '_alternatives'
+
         out[title][name] = {}
 
-        for filename, code of comp
-          [version, ext] = filename.split '.'
+        if typeof comp isnt 'string'
+          for filename, code of comp
+            [version, ext] = filename.split '.'
 
-          out[title][name][version] ?= {}
-          out[title][name][version][ext] = code
+            out[title][name][version] ?= {}
+            out[title][name][version][ext] = code
+        else
+          out[title][name] = comp
+          console.log title, name, comp
 
     cb null, out
 

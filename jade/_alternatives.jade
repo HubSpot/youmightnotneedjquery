@@ -1,0 +1,15 @@
+mixin alternatives(list)
+  - var alts = list.split('\n')
+
+  .alternatives-block
+    h4 Alternatives:
+
+    ul.alternatives
+
+      for alt in alts
+        - var name = alt.substring(0, alt.indexOf(':'))
+        - var url = alt.substring(alt.indexOf(':') + 1)
+
+        if name
+          li
+            a(href=url, target="_blank")= name

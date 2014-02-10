@@ -1,4 +1,10 @@
 doctype html
+
+//- This will go into the HTML file to let people know to edit this file instead:
+// Please edit the index.jade or the files in comparisons/, this file is generated
+
+include _alternatives
+
 <!--[if lt IE 10 ]> <html class="old-ie"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
 head
@@ -79,10 +85,18 @@ body
           .inner
             h2= titleCase(comp.title)
 
+            if comp.comparison._alternatives
+              +alternatives(comp.comparison._alternatives)
+
             for co, name in comp.comparison
+              - if (name[0] === '_') continue;
+
               .comparison(id=name.replace(' ', '-').toLowerCase())
                 h3
                   a(href='#' + name.replace(' ', '-'))= titleCase(name.replace(/_/g, ' '))
+
+                if co.alternatives
+                    +alternatives(co.alternatives.txt)
 
                 for browser in ['jquery', 'ie8', 'ie9', 'ie10']
                   if co[browser]

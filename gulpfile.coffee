@@ -48,7 +48,7 @@ gulp.task 'jade', ->
     comps.sort (a, b) ->
       a.title.localeCompare b.title
 
-    gulp.src('./jade/**/*.jade')
+    gulp.src('./jade/**/index.jade')
       .pipe(jade({pretty: true, data: {comparisons: comps, titleCase, getNamePart, fullLanguage}}))
       .pipe(gulp.dest('./'))
 

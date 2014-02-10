@@ -1,4 +1,5 @@
-<!DOCTYPE html><!--[if lt IE 10 ]> <html class="old-ie"> <![endif]-->
+<!DOCTYPE html>
+<!-- Please edit the index.jade or the files in comparisons/, this file is generated--><!--[if lt IE 10 ]> <html class="old-ie"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
@@ -67,86 +68,13 @@
       <section id="ajax" class="odd">
         <div class="inner">
           <h2>AJAX</h2>
-          <div id="json" class="comparison">
-            <h3><a href="#json">JSON</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.getJSON('/my/url', function(data) {
-
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest;
-request.open('GET', '/my/url', true);
-
-request.onreadystatechange = function() {
-  if (this.readyState === 4){
-    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
-      // Success!
-      data = JSON.parse(this.responseText);
-    } else {
-      // Error :(
-    }
-  }
-
-request.send();
-request = null;
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-
-request.onload = function() {
-  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
-    // Success!
-    data = JSON.parse(request.responseText)
-  } else {
-    // We reached our target server, but it returned an error
-
-  }
-}
-
-request.onerror = function() {
-  // There was a connection error of some sort
-}
-
-request.send()
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie10" class="browser ie10">
-              <h4>IE10+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
-
-request.onload = function() {
-  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
-    // Success!
-    data = JSON.parse(this.response)
-  } else {
-    // We reached our target server, but it returned an error
-
-  }
-}
-
-request.onerror = function() {
-  // There was a connection error of some sort
-}
-
-request.send()
-</code></pre>
-              </div>
-            </div>
+          <div class="alternatives-block">
+            <h4>Alternatives:</h4>
+            <ul class="alternatives">
+              <li><a href=" https://github.com/ForbesLindesay/ajax" target="_blank">ajax</a></li>
+              <li><a href=" https://github.com/then/request" target="_blank">request</a></li>
+              <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
+            </ul>
           </div>
           <div id="post" class="comparison">
             <h3><a href="#post">Post</a></h3>
@@ -245,6 +173,87 @@ request.onload = function() {
 if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
     // Success!
     resp = this.response
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+}
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="json" class="comparison">
+            <h3><a href="#json">JSON</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.getJSON('/my/url', function(data) {
+
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest;
+request.open('GET', '/my/url', true);
+
+request.onreadystatechange = function() {
+  if (this.readyState === 4){
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+      // Success!
+      data = JSON.parse(this.responseText);
+    } else {
+      // Error :(
+    }
+  }
+
+request.send();
+request = null;
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+
+request.onload = function() {
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+    // Success!
+    data = JSON.parse(request.responseText)
+  } else {
+    // We reached our target server, but it returned an error
+
+  }
+}
+
+request.onerror = function() {
+  // There was a connection error of some sort
+}
+
+request.send()
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>request = new XMLHttpRequest
+request.open('GET', '/my/url', true)
+
+request.onload = function() {
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+    // Success!
+    data = JSON.parse(this.response)
   } else {
     // We reached our target server, but it returned an error
 
@@ -383,6 +392,12 @@ el.classList.remove('hide');
       <section id="elements" class="odd">
         <div class="inner">
           <h2>Elements</h2>
+          <div class="alternatives-block">
+            <h4>Alternatives:</h4>
+            <ul class="alternatives">
+              <li><a href=" https://github.com/ded/bonzo" target="_blank">bonzo</a></li>
+            </ul>
+          </div>
           <div id="add_class" class="comparison">
             <h3><a href="#add_class">Add Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1363,6 +1378,47 @@ addEventListener(el, eventName, handler);
               </div>
             </div>
           </div>
+          <div id="trigger_custom" class="comparison">
+            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
+            <div class="alternatives-block">
+              <h4>Alternatives:</h4>
+              <ul class="alternatives">
+                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
+                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
+              </ul>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).trigger('my-event', {some: 'data'});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Custom events are not natively supported, so you have to hijack a random
+// event.
+//
+// Just use jQuery.
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>if (window.CustomEvent) {
+  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
+} else {
+  var event = document.createEvent('CustomEvent');
+  event.initCustomEvent('my-event', true, true, {some: 'data'});
+}
+
+el.dispatchEvent(event);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1396,40 +1452,6 @@ addEventListener(el, eventName, handler);
                 <pre><code>document.addEventListener('DOMContentLoaded', function(){
 
 });
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="trigger_custom" class="comparison">
-            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).trigger('my-event', {some: 'data'});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Custom events are not natively supported, so you have to hijack a random
-// event.
-//
-// Just use jQuery.
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (window.CustomEvent) {
-  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
-} else {
-  var event = document.createEvent('CustomEvent');
-  event.initCustomEvent('my-event', true, true, {some: 'data'});
-}
-
-el.dispatchEvent(event);
 </code></pre>
               </div>
             </div>
@@ -1572,6 +1594,14 @@ deepExtend({}, objA, objB);
           </div>
           <div id="extend" class="comparison">
             <h3><a href="#extend">Extend</a></h3>
+            <div class="alternatives-block">
+              <h4>Alternatives:</h4>
+              <ul class="alternatives">
+                <li><a href=" http://lodash.com/docs#assign" target="_blank">lo-dash</a></li>
+                <li><a href=" http://underscorejs.org/#extend" target="_blank">underscore</a></li>
+                <li><a href=" http://www.2ality.com/2014/01/object-assign.html" target="_blank">ECMA6</a></li>
+              </ul>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">

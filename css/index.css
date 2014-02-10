@@ -291,6 +291,29 @@ header.search .field .slider {
 .hidden {
   display: none;
 }
+.alternatives-block {
+  text-align: center;
+}
+.alternatives-block h4 {
+  font-size: 1.1em;
+  display: inline-block;
+  font-weight: 200;
+  color: #666;
+  letter-spacing: 0.07em;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 1;
+}
+.alternatives-block ul {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+.alternatives-block ul li {
+  display: inline-block;
+  padding-left: 10px;
+}
 section {
 /* Hide section titles when they're empty */
   position: relative;
