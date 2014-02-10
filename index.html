@@ -76,6 +76,29 @@
               <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
             </ul>
           </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.send(data);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -111,24 +134,24 @@ request = null;
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
+                <pre><code>request = new XMLHttpRequest;
+request.open('GET', '/my/url', true);
 
 request.onload = function() {
   if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
     // Success!
-    data = JSON.parse(request.responseText)
+    data = JSON.parse(request.responseText);
   } else {
     // We reached our target server, but it returned an error
 
   }
-}
+};
 
 request.onerror = function() {
   // There was a connection error of some sort
-}
+};
 
-request.send()
+request.send();
 </code></pre>
               </div>
             </div>
@@ -153,29 +176,6 @@ request.onerror = function() {
 }
 
 request.send()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.send(data);
 </code></pre>
               </div>
             </div>
