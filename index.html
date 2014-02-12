@@ -1077,19 +1077,19 @@ outerWidth(el, true);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>// prevSibling can include text nodes
-function prevElementSibling(el) {
-  do { el = el.prevSibling; } while ( el &amp;&amp; el.nodeType !== 1 );
+function previousElementSibling(el) {
+  do { el = el.previousSibling; } while ( el &amp;&amp; el.nodeType !== 1 );
   return el;
 }
 
-el.prevElementSibling || prevElementSibling(el);
+el.previousElementSibling || previousElementSibling(el);
 </code></pre>
               </div>
             </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.prevElementSibling
+                <pre><code>el.previousElementSibling
 </code></pre>
               </div>
             </div>
