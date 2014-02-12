@@ -846,7 +846,7 @@ matches(el, '.my-class');
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>var matches = function(el, selector) {
-  return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector)(selector);
+  return (el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector).call(el, selector);
 };
 
 matches(el, '.my-class');
@@ -1164,23 +1164,6 @@ el.style.borderWidth = '20px';
               </div>
             </div>
           </div>
-          <div id="setting_html" class="comparison">
-            <h3><a href="#setting_html">Setting Html</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).html(string);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.innerHTML = string;
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="setting_text" class="comparison">
             <h3><a href="#setting_text">Setting Text</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1204,6 +1187,23 @@ else
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.textContent = string;
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="setting_html" class="comparison">
+            <h3><a href="#setting_html">Setting Html</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).html(string);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.innerHTML = string;
 </code></pre>
               </div>
             </div>
