@@ -76,29 +76,6 @@
               <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
             </ul>
           </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.send(data);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -176,6 +153,29 @@ request.onerror = function() {
 }
 
 request.send()
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.send(data);
 </code></pre>
               </div>
             </div>
@@ -274,6 +274,14 @@ request.send()
       <section id="effects">
         <div class="inner">
           <h2>Effects</h2>
+          <div class="alternatives-block">
+            <h4>Alternatives:</h4>
+            <ul class="alternatives">
+              <li><a href=" http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
+              <li><a href=" https://github.com/visionmedia/move.js" target="_blank">move.js</a></li>
+              <li><a href=" http://labs.bigroomstudios.com/libraries/animo-js" target="_blank">animo.js</a></li>
+            </ul>
+          </div>
           <div id="fade_in" class="comparison">
             <h3><a href="#fade_in">Fade In</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -664,6 +672,13 @@ filter(selector, filterFn);
           </div>
           <div id="finding_elements" class="comparison">
             <h3><a href="#finding_elements">Finding Elements</a></h3>
+            <div class="alternatives-block">
+              <h4>Alternatives:</h4>
+              <ul class="alternatives">
+                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
+                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
+              </ul>
+            </div>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
