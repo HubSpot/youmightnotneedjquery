@@ -10,6 +10,7 @@ request.onreadystatechange = function() {
       // Error :(
     }
   }
+}
 
 request.send();
 request = null;
