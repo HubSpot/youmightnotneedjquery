@@ -347,23 +347,6 @@ el.classList.remove('hide');
               </div>
             </div>
           </div>
-          <div id="hide" class="comparison">
-            <h3><a href="#hide">Hide</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).hide();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.style.display = 'none';
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="show" class="comparison">
             <h3><a href="#show">Show</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -377,6 +360,23 @@ el.classList.remove('hide');
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.style.display = '';
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="hide" class="comparison">
+            <h3><a href="#hide">Hide</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).hide();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.style.display = 'none';
 </code></pre>
               </div>
             </div>
@@ -596,7 +596,15 @@ Array.prototype.forEach.call(elements, function(el, i){
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.innerHTML = '';
+                <pre><code>while(el.firstChild)
+  el.removeChild(el.firstChild)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.innerHTML = ''
 </code></pre>
               </div>
             </div>

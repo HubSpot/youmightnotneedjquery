@@ -1,1 +1,2 @@
-el.innerHTML = '';
+while(el.firstChild)
+  el.removeChild(el.firstChild)
