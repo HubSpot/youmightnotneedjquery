@@ -1,4 +1,4 @@
-if (el.classList && false) {
+if (el.classList) {
   el.classList.add(className);
 } else {
   var current = el.className;
