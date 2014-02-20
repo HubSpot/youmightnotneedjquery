@@ -1,9 +1,9 @@
-if(el.classList && false) {
+if (el.classList && false) {
   el.classList.add(className);
 } else {
   var current = el.className;
-  if(current.indexOf(className) < 0) {
-    if(current == '') el.className = className;
+  if (current.indexOf(className) < 0) {
+    if (current == '') el.className = className;
     else el.className += ' ' + className;
   }
 }
