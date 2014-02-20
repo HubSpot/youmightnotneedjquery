@@ -71,10 +71,33 @@
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" https://github.com/ForbesLindesay/ajax" target="_blank">ajax</a></li>
-              <li><a href=" https://github.com/then/request" target="_blank">request</a></li>
-              <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
+              <li><a href=" https://github.com/ForbesLindesay/ajax" target="_blank">ajax</a></li>
+              <li><a href=" https://github.com/then/request" target="_blank">request</a></li>
+              <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
             </ul>
+          </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.send(data);
+</code></pre>
+              </div>
+            </div>
           </div>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
@@ -154,29 +177,6 @@ request.onerror = function() {
 }
 
 request.send()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.send(data);
 </code></pre>
               </div>
             </div>
@@ -278,9 +278,9 @@ request.send()
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
-              <li><a href=" https://github.com/visionmedia/move.js" target="_blank">move.js</a></li>
-              <li><a href=" http://labs.bigroomstudios.com/libraries/animo-js" target="_blank">animo.js</a></li>
+              <li><a href=" http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
+              <li><a href=" https://github.com/visionmedia/move.js" target="_blank">move.js</a></li>
+              <li><a href=" http://labs.bigroomstudios.com/libraries/animo-js" target="_blank">animo.js</a></li>
             </ul>
           </div>
           <div id="fade_in" class="comparison">
@@ -404,8 +404,8 @@ el.classList.remove('hide');
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" https://github.com/ded/bonzo" target="_blank">bonzo</a></li>
-              <li><a href=" https://github.com/julienw/dollardom" target="_blank">$dom</a></li>
+              <li><a href=" https://github.com/ded/bonzo" target="_blank">bonzo</a></li>
+              <li><a href=" https://github.com/julienw/dollardom" target="_blank">$dom</a></li>
             </ul>
           </div>
           <div id="add_class" class="comparison">
@@ -420,11 +420,15 @@ el.classList.remove('hide');
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList)
+                <pre><code>if (el.classList) {
   el.classList.add(className);
-else
-  el.className += ' ' + className;
-</code></pre>
+} else {
+  var current = el.className;
+  if (current.indexOf(className) &lt; 0) {
+    if (current == '') el.className = className;
+    else el.className += ' ' + className;
+  }
+}</code></pre>
               </div>
             </div>
             <div data-browser="ie10" class="browser ie10">
@@ -671,26 +675,19 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
-          <div id="finding_elements" class="comparison">
-            <h3><a href="#finding_elements">Finding Elements</a></h3>
-            <div class="alternatives-block">
-              <h4>Alternatives:</h4>
-              <ul class="alternatives">
-                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
-                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
-              </ul>
-            </div>
+          <div id="getting_attributes" class="comparison">
+            <h3><a href="#getting_attributes">Getting Attributes</a></h3>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$('.my #awesome selector');
+                <pre><code>$(el).attr('tabindex');
 </code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.querySelectorAll('.my #awesome selector');
+                <pre><code>el.getAttribute('tabindex');
 </code></pre>
               </div>
             </div>
@@ -716,23 +713,6 @@ filter(selector, filterFn);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>getComputedStyle(el)[ruleName]
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="getting_attributes" class="comparison">
-            <h3><a href="#getting_attributes">Getting Attributes</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).attr('tabindex');
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.getAttribute('tabindex');
 </code></pre>
               </div>
             </div>
@@ -795,6 +775,47 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
+          <div id="finding_elements" class="comparison">
+            <h3><a href="#finding_elements">Finding Elements</a></h3>
+            <div class="alternatives-block">
+              <h4>Alternatives:</h4>
+              <ul class="alternatives">
+                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
+                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
+              </ul>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>document.querySelectorAll('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="matches" class="comparison">
+            <h3><a href="#matches">Matches</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).is($(otherEl));
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el === otherEl
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="has_class" class="comparison">
             <h3><a href="#has_class">Has Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -818,23 +839,6 @@ else
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.classList.contains(className);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="matches" class="comparison">
-            <h3><a href="#matches">Matches</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).is($(otherEl));
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el === otherEl
 </code></pre>
               </div>
             </div>
@@ -1437,9 +1441,9 @@ addEventListener(el, eventName, handler);
             <div class="alternatives-block">
               <h4>Alternatives:</h4>
               <ul class="alternatives">
-                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
-                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
-                <li><a href=" https://github.com/jeromeetienne/microevent.js" target="_blank">microevent</a></li>
+                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
+                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
+                <li><a href=" https://github.com/jeromeetienne/microevent.js" target="_blank">microevent</a></li>
               </ul>
             </div>
             <div data-browser="jquery" class="browser jquery">
@@ -1615,9 +1619,9 @@ deepExtend({}, objA, objB);
             <div class="alternatives-block">
               <h4>Alternatives:</h4>
               <ul class="alternatives">
-                <li><a href=" http://lodash.com/docs#assign" target="_blank">lo-dash</a></li>
-                <li><a href=" http://underscorejs.org/#extend" target="_blank">underscore</a></li>
-                <li><a href=" http://www.2ality.com/2014/01/object-assign.html" target="_blank">ECMA6</a></li>
+                <li><a href=" http://lodash.com/docs#assign" target="_blank">lo-dash</a></li>
+                <li><a href=" http://underscorejs.org/#extend" target="_blank">underscore</a></li>
+                <li><a href=" http://www.2ality.com/2014/01/object-assign.html" target="_blank">ECMA6</a></li>
               </ul>
             </div>
             <div data-browser="jquery" class="browser jquery">

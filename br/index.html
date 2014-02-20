@@ -66,6 +66,29 @@
       <section id="ajax" class="odd">
         <div class="inner">
           <h2>AJAX</h2>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.send(data);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="json" class="comparison">
             <h3><a href="#json">JSON</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -144,29 +167,6 @@ request.onerror = function() {
 }
 
 request.send()
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.send(data);
 </code></pre>
               </div>
             </div>
@@ -401,11 +401,15 @@ el.classList.remove('hide');
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList)
+                <pre><code>if (el.classList) {
   el.classList.add(className);
-else
-  el.className += ' ' + className;
-</code></pre>
+} else {
+  var current = el.className;
+  if (current.indexOf(className) &lt; 0) {
+    if (current == '') el.className = className;
+    else el.className += ' ' + className;
+  }
+}</code></pre>
               </div>
             </div>
             <div data-browser="ie10" class="browser ie10">
@@ -652,19 +656,19 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
-          <div id="finding_elements" class="comparison">
-            <h3><a href="#finding_elements">Finding Elements</a></h3>
+          <div id="getting_attributes" class="comparison">
+            <h3><a href="#getting_attributes">Getting Attributes</a></h3>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$('.my #awesome selector');
+                <pre><code>$(el).attr('tabindex');
 </code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.querySelectorAll('.my #awesome selector');
+                <pre><code>el.getAttribute('tabindex');
 </code></pre>
               </div>
             </div>
@@ -690,23 +694,6 @@ filter(selector, filterFn);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>getComputedStyle(el)[ruleName]
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="getting_attributes" class="comparison">
-            <h3><a href="#getting_attributes">Getting Attributes</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).attr('tabindex');
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.getAttribute('tabindex');
 </code></pre>
               </div>
             </div>
@@ -769,6 +756,40 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
+          <div id="finding_elements" class="comparison">
+            <h3><a href="#finding_elements">Finding Elements</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>document.querySelectorAll('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="matches" class="comparison">
+            <h3><a href="#matches">Matches</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).is($(otherEl));
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el === otherEl
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="has_class" class="comparison">
             <h3><a href="#has_class">Has Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -792,23 +813,6 @@ else
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.classList.contains(className);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="matches" class="comparison">
-            <h3><a href="#matches">Matches</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).is($(otherEl));
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el === otherEl
 </code></pre>
               </div>
             </div>
