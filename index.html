@@ -362,23 +362,6 @@ el.classList.remove('hide');
               </div>
             </div>
           </div>
-          <div id="show" class="comparison">
-            <h3><a href="#show">Show</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).show();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.style.display = '';
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="hide" class="comparison">
             <h3><a href="#hide">Hide</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -392,6 +375,23 @@ el.classList.remove('hide');
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.style.display = 'none';
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="show" class="comparison">
+            <h3><a href="#show">Show</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).show();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.style.display = '';
 </code></pre>
               </div>
             </div>
@@ -964,34 +964,47 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerHeight(el, includeMargin){
+                <pre><code>el.offsetHeight
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="outer_height_with_margin" class="comparison">
+            <h3><a href="#outer_height_with_margin">Outer Height With Margin</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerHeight(true)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function outerHeight(el){
   var height = el.offsetHeight;
+  var style = el.currentStyle || getComputedStyle(el);
 
-  if(includeMargin){
-    var style = el.currentStyle || getComputedStyle(el);
-    height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-  } 
+  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
   return height;
 }
 
-outerHeight(el, true);
+outerHeight(el);
 </code></pre>
               </div>
             </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerHeight(el, includeMargin){
+                <pre><code>function outerHeight(el){
   var height = el.offsetHeight;
+  var style = getComputedStyle(el);
 
-  if(includeMargin){
-    var style = getComputedStyle(el);
-    height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-  } 
+  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
   return height;
 }
 
-outerHeight(el, true);
+outerHeight(el);
 </code></pre>
               </div>
             </div>
@@ -1007,34 +1020,7 @@ outerHeight(el, true);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerWidth(el, includeMargin){
-  var height = el.offsetWidth;
-
-  if(includeMargin){
-    var style = el.currentStyle || getComputedStyle(el);
-    height += parseInt(style.marginLeft) + parseInt(style.marginRight);
-  } 
-  return height;
-}
-
-outerWidth(el, true);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerWidth(el, includeMargin){
-  var height = el.offsetWidth;
-
-  if(includeMargin){
-    var style = getComputedStyle(el);
-    height += parseInt(style.marginLeft) + parseInt(style.marginRight);
-  } 
-  return height;
-}
-
-outerWidth(el, true);
+                <pre><code>el.offsetWidth
 </code></pre>
               </div>
             </div>
@@ -1069,6 +1055,46 @@ outerWidth(el, true);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>parent.insertBefore(el, parent.firstChild);
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="outer_width_with_margin" class="comparison">
+            <h3><a href="#outer_width_with_margin">Outer Width With Margin</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerWidth(true)
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function outerWidth(el){
+  var height = el.offsetWidth;
+  var style = el.currentStyle || getComputedStyle(el);
+
+  height += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  return height;
+}
+
+outerWidth(el);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function outerWidth(el){
+  var height = el.offsetWidth;
+  var style = getComputedStyle(el);
+
+  height += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  return height;
+}
+
+outerWidth(el);
 </code></pre>
               </div>
             </div>
