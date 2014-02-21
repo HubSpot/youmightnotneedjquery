@@ -1,0 +1,1 @@
+$(el).outerWidth(true)
