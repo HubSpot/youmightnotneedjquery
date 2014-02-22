@@ -866,11 +866,12 @@ else
     return _matches.call(el, selector);
   } else {
     var nodes = el.parentNode.querySelectorAll(selector);
-    for (var i = nodes.length; i--;)
-      if (nodes[i] === el) {
+    for (var i = nodes.length; i--;) {
+      if (nodes[i] === el)
         return true;
     }
     return false;
+  }
 }
 
 matches(el, '.my-class');
@@ -1025,40 +1026,6 @@ outerHeight(el);
               </div>
             </div>
           </div>
-          <div id="parent" class="comparison">
-            <h3><a href="#parent">Parent</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).parent();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.parentNode
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="prepend" class="comparison">
-            <h3><a href="#prepend">Prepend</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(parent).prepend(el);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>parent.insertBefore(el, parent.firstChild);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="outer_width_with_margin" class="comparison">
             <h3><a href="#outer_width_with_margin">Outer Width With Margin</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1095,6 +1062,40 @@ outerWidth(el);
 }
 
 outerWidth(el);
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="parent" class="comparison">
+            <h3><a href="#parent">Parent</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).parent();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.parentNode
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="prepend" class="comparison">
+            <h3><a href="#prepend">Prepend</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(parent).prepend(el);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>parent.insertBefore(el, parent.firstChild);
 </code></pre>
               </div>
             </div>
