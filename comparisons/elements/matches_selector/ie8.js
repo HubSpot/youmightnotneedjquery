@@ -8,8 +8,9 @@ var matches = function(el, selector) {
     for (var i = nodes.length; i--;)
       if (nodes[i] === el) {
         return true;
-    }
+      }
     return false;
+  }
 }
 
 matches(el, '.my-class');
