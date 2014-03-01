@@ -1,1 +1,1 @@
-$.parseHTML(htmlString)
+$.parseHTML(htmlString);

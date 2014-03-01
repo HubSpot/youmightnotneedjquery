@@ -1,1 +1,1 @@
-$(el).outerWidth(true)
+$(el).outerWidth(true);

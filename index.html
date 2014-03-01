@@ -90,7 +90,7 @@
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest;
+                <pre><code>request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
@@ -102,7 +102,7 @@ request.onreadystatechange = function() {
       // Error :(
     }
   }
-}
+};
 
 request.send();
 request = null;
@@ -112,7 +112,7 @@ request = null;
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest;
+                <pre><code>request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
@@ -136,24 +136,24 @@ request.send();
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
+                <pre><code>request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
 
 request.onload = function() {
   if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
     // Success!
-    data = JSON.parse(this.response)
+    data = JSON.parse(this.response);
   } else {
     // We reached our target server, but it returned an error
 
   }
-}
+};
 
 request.onerror = function() {
   // There was a connection error of some sort
-}
+};
 
-request.send()
+request.send();
 </code></pre>
               </div>
             </div>
@@ -202,7 +202,7 @@ request.send(data);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest;
+                <pre><code>request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
@@ -214,7 +214,7 @@ request.onreadystatechange = function() {
       // Error :(
     }
   }
-}
+};
 
 request.send();
 request = null;
@@ -224,48 +224,48 @@ request = null;
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
+                <pre><code>request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
 
 request.onload = function() {
   if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
     // Success!
-    resp = request.responseText
+    resp = request.responseText;
   } else {
     // We reached our target server, but it returned an error
 
   }
-}
+};
 
 request.onerror = function() {
   // There was a connection error of some sort
-}
+};
 
-request.send()
+request.send();
 </code></pre>
               </div>
             </div>
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest
-request.open('GET', '/my/url', true)
+                <pre><code>request = new XMLHttpRequest();
+request.open('GET', '/my/url', true);
 
 request.onload = function() {
-if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
     // Success!
-    resp = this.response
+    resp = this.response;
   } else {
     // We reached our target server, but it returned an error
 
   }
-}
+};
 
 request.onerror = function() {
   // There was a connection error of some sort
-}
+};
 
-request.send()
+request.send();
 </code></pre>
               </div>
             </div>
@@ -553,7 +553,7 @@ for (var i=el.children.length; i--;){
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).find(selector).length
+                <pre><code>$(el).find(selector).length;
 </code></pre>
               </div>
             </div>
@@ -615,14 +615,14 @@ Array.prototype.forEach.call(elements, function(el, i){
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>while(el.firstChild)
-  el.removeChild(el.firstChild)
+  el.removeChild(el.firstChild);
 </code></pre>
               </div>
             </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.innerHTML = ''
+                <pre><code>el.innerHTML = '';
 </code></pre>
               </div>
             </div>
@@ -722,7 +722,7 @@ filter(selector, filterFn);
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>getComputedStyle(el)[ruleName]
+                <pre><code>getComputedStyle(el)[ruleName];
 </code></pre>
               </div>
             </div>
@@ -871,7 +871,7 @@ else
     }
     return false;
   }
-}
+};
 
 matches(el, '.my-class');
 </code></pre>
@@ -958,7 +958,8 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerHeight()</code></pre>
+                <pre><code>$(el).outerHeight();
+</code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
@@ -974,7 +975,7 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerHeight(true)
+                <pre><code>$(el).outerHeight(true);
 </code></pre>
               </div>
             </div>
@@ -1014,7 +1015,8 @@ outerHeight(el);
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerWidth()</code></pre>
+                <pre><code>$(el).outerWidth();
+</code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
@@ -1030,7 +1032,7 @@ outerHeight(el);
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerWidth(true)
+                <pre><code>$(el).outerWidth(true);
 </code></pre>
               </div>
             </div>
@@ -1185,7 +1187,7 @@ else
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.outerHTML = string
+                <pre><code>el.outerHTML = string;
 </code></pre>
               </div>
             </div>
@@ -1356,7 +1358,7 @@ for (var i = siblings.length; i--;) {
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.classList.toggle(className)
+                <pre><code>el.classList.toggle(className);
 </code></pre>
               </div>
             </div>
@@ -1752,7 +1754,7 @@ isArray(arr);
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>$.map(array, function(value, index){
 
-})
+});
 </code></pre>
               </div>
             </div>
@@ -1760,15 +1762,15 @@ isArray(arr);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function map(arr, fn) {
-  var results = []
+  var results = [];
   for (var i = 0; i &lt; arr.length; i++)
-    results.push(fn(arr[i], i))
-  return results
+    results.push(fn(arr[i], i));
+  return results;
 }
 
 map(array, function(value, index){
 
-})
+});
 </code></pre>
               </div>
             </div>
@@ -1777,7 +1779,7 @@ map(array, function(value, index){
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>array.map(function(value, index){
 
-})
+});
 </code></pre>
               </div>
             </div>
@@ -1811,7 +1813,7 @@ map(array, function(value, index){
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.parseHTML(htmlString)
+                <pre><code>$.parseHTML(htmlString);
 </code></pre>
               </div>
             </div>
@@ -1819,12 +1821,12 @@ map(array, function(value, index){
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>var parseHTML = function(str) {
-  var el = document.createElement('div')
-  el.innerHTML = str
-  return el.children
-}
+  var el = document.createElement('div');
+  el.innerHTML = str;
+  return el.children;
+};
 
-parseHTML(htmlString)
+parseHTML(htmlString);
 </code></pre>
               </div>
             </div>
@@ -1832,12 +1834,12 @@ parseHTML(htmlString)
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>var parseHTML = function(str) {
-  var tmp = document.implementation.createHTMLDocument()
-  tmp.body.innerHTML = str
-  return tmp.body.children
-}
+  var tmp = document.implementation.createHTMLDocument();
+  tmp.body.innerHTML = str;
+  return tmp.body.children;
+};
 
-parseHTML(htmlString)
+parseHTML(htmlString);
 </code></pre>
               </div>
             </div>

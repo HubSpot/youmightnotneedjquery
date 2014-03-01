@@ -1,1 +1,1 @@
-el.classList.toggle(className)
+el.classList.toggle(className);

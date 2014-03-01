@@ -11,6 +11,6 @@ var matches = function(el, selector) {
     }
     return false;
   }
-}
+};
 
 matches(el, '.my-class');
