@@ -1,4 +1,4 @@
-request = new XMLHttpRequest;
+request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
@@ -10,7 +10,7 @@ request.onreadystatechange = function() {
       // Error :(
     }
   }
-}
+};
 
 request.send();
 request = null;

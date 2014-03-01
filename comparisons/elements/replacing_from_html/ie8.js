@@ -1,1 +1,1 @@
-el.outerHTML = string
+el.outerHTML = string;

@@ -1,1 +1,1 @@
-$(el).outerHeight(true)
+$(el).outerHeight(true);
