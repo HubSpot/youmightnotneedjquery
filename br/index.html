@@ -166,6 +166,7 @@ request.send();
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>var request = new XMLHttpRequest();
 request.open('POST', '/my/url', true);
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 request.send(data);
 </code></pre>
               </div>
@@ -1843,6 +1844,23 @@ parseHTML(htmlString);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>string.trim();
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="type" class="comparison">
+            <h3><a href="#type">Type</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.type(obj);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, &quot;$1&quot;).toLowerCase();
 </code></pre>
               </div>
             </div>
