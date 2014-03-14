@@ -661,23 +661,6 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
-          <div id="finding_elements" class="comparison">
-            <h3><a href="#finding_elements">Finding Elements</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$('.my #awesome selector');
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.querySelectorAll('.my #awesome selector');
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="get_style" class="comparison">
             <h3><a href="#get_style">Get Style</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -716,6 +699,23 @@ filter(selector, filterFn);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.getAttribute('tabindex');
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="finding_elements" class="comparison">
+            <h3><a href="#finding_elements">Finding Elements</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>document.querySelectorAll('.my #awesome selector');
 </code></pre>
               </div>
             </div>
@@ -907,7 +907,12 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.getBoundingClientRect()
+                <pre><code>var rect = el.getBoundingClientRect()
+
+{
+  top: rect.top + document.body.scrollTop,
+  left: rect.left + document.body.scrollLeft
+}
 </code></pre>
               </div>
             </div>
@@ -1073,6 +1078,28 @@ outerWidth(el);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>{left: el.offsetLeft, top: el.offsetTop}
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="position_relative_to_viewport" class="comparison">
+            <h3><a href="#position_relative_to_viewport">Position Relative To Viewport</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var offset = el.offset();
+
+{
+  top: offset.top - document.body.scrollTop,
+  left: offset.left - document.body.scrollLeft
+}
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.getBoundingClientRect()
 </code></pre>
               </div>
             </div>
