@@ -907,7 +907,7 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>{left: el.offsetLeft, top: el.offsetTop}
+                <pre><code>el.getBoundingClientRect()
 </code></pre>
               </div>
             </div>
@@ -1056,6 +1056,23 @@ outerWidth(el);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.parentNode
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="position" class="comparison">
+            <h3><a href="#position">Position</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).position();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>{left: el.offsetLeft, top: el.offsetTop}
 </code></pre>
               </div>
             </div>
