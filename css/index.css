@@ -10,7 +10,7 @@ html {
 }
 a {
   cursor: pointer;
-  color: #08C;
+  color: #08c;
 }
 ::-webkit-input-placeholder {
   color: rgba(0,0,0,0.5);

@@ -679,6 +679,30 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
+          <div id="finding_elements" class="comparison">
+            <h3><a href="#finding_elements">Finding Elements</a></h3>
+            <div class="alternatives-block">
+              <h4>Alternatives:</h4>
+              <ul class="alternatives">
+                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
+                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
+              </ul>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>document.querySelectorAll('.my #awesome selector');
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="get_style" class="comparison">
             <h3><a href="#get_style">Get Style</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -717,30 +741,6 @@ filter(selector, filterFn);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.getAttribute('tabindex');
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="finding_elements" class="comparison">
-            <h3><a href="#finding_elements">Finding Elements</a></h3>
-            <div class="alternatives-block">
-              <h4>Alternatives:</h4>
-              <ul class="alternatives">
-                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
-                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
-              </ul>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$('.my #awesome selector');
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.querySelectorAll('.my #awesome selector');
 </code></pre>
               </div>
             </div>
@@ -1906,6 +1906,23 @@ parseHTML(htmlString);
               </div>
             </div>
           </div>
+          <div id="type" class="comparison">
+            <h3><a href="#type">Type</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.type(obj);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, &quot;$1&quot;).toLowerCase();
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="trim" class="comparison">
             <h3><a href="#trim">Trim</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1926,23 +1943,6 @@ parseHTML(htmlString);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>string.trim();
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="type" class="comparison">
-            <h3><a href="#type">Type</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.type(obj);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, &quot;$1&quot;).toLowerCase();
 </code></pre>
               </div>
             </div>
