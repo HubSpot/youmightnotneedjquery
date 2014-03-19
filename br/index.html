@@ -148,30 +148,6 @@ request.send();
               </div>
             </div>
           </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-request.send(data);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -257,6 +233,30 @@ request.onerror = function() {
 };
 
 request.send();
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+request.send(data);
 </code></pre>
               </div>
             </div>
@@ -1438,7 +1438,9 @@ removeEventListener(el, eventName, handler);
   if (el.addEventListener) {
     el.addEventListener(eventName, handler);
   } else {
-    el.attachEvent('on' + eventName, handler);
+    el.attachEvent('on' + eventName, function(){
+      handler.call(el);
+    });
   }
 }
 
@@ -1868,23 +1870,6 @@ parseHTML(htmlString);
               </div>
             </div>
           </div>
-          <div id="type" class="comparison">
-            <h3><a href="#type">Type</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.type(obj);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, &quot;$1&quot;).toLowerCase();
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="trim" class="comparison">
             <h3><a href="#trim">Trim</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1905,6 +1890,23 @@ parseHTML(htmlString);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>string.trim();
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="type" class="comparison">
+            <h3><a href="#type">Type</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.type(obj);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, &quot;$1&quot;).toLowerCase();
 </code></pre>
               </div>
             </div>
