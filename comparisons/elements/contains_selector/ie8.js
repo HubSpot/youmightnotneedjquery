@@ -1,1 +1,1 @@
-el.querySelector(selector) !== null
+!!el.querySelector(selector);
