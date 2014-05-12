@@ -1677,7 +1677,7 @@ forEach(array, function(item, i){
 
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
-        if (typeof obj[key] === 'object')
+        if (typeof obj[key] === 'object' && obj[key].isArray === false)
           deepExtend(out[key], obj[key]);
         else
           out[key] = obj[key];
