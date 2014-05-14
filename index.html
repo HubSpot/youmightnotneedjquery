@@ -420,7 +420,7 @@ el.classList.remove('hide');
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList)
+                <pre><code>1contains(className))
   el.classList.add(className);
 else
   el.className += ' ' + className;
@@ -815,7 +815,7 @@ filter(selector, filterFn);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList)
+       1de>if (el.classList)
   el.classList.contains(className);
 else
   new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
@@ -1205,7 +1205,7 @@ el.previousElementSibling || previousElementSibling(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList)
+       1de>if (el.classList)
   el.classList.remove(className);
 else
   el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
@@ -1361,7 +1361,7 @@ for (var i = siblings.length; i--;) {
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList) {
+       1de>if (el.classList) {
   el.classList.toggle(className);
 } else {
     var classes = el.className.split(' ');
@@ -1384,7 +1384,7 @@ for (var i = siblings.length; i--;) {
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (el.classList) {
+       1de>if (el.classList) {
   el.classList.toggle(className);
 } else {
   var classes = el.className.split(' ');
