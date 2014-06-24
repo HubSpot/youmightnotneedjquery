@@ -1,4 +1,4 @@
-function outerWidth(el){
+function outerWidth(el) {
   var height = el.offsetWidth;
   var style = getComputedStyle(el);
 

@@ -5,6 +5,6 @@ function map(arr, fn) {
   return results;
 }
 
-map(array, function(value, index){
+map(array, function(value, index) {
 
 });

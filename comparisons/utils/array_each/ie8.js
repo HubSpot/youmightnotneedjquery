@@ -3,6 +3,6 @@ function forEach(array, fn) {
     fn(array[i], i);
 }
 
-forEach(array, function(item, i){
+forEach(array, function(item, i) {
 
 });
