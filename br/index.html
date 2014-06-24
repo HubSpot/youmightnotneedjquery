@@ -1438,7 +1438,7 @@ removeEventListener(el, eventName, handler);
   if (el.addEventListener) {
     el.addEventListener(eventName, handler);
   } else {
-    el.attachEvent('on' + eventName, function() {
+    el.attachEvent('on' + eventName, function(){
       handler.call(el);
     });
   }
@@ -1461,7 +1461,7 @@ addEventListener(el, eventName, handler);
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(document).ready(function() {
+                <pre><code>$(document).ready(function(){
 
 });
 </code></pre>
@@ -1480,17 +1480,13 @@ addEventListener(el, eventName, handler);
     });
   }
 }
-
-ready(function() {
-  
-});
 </code></pre>
               </div>
             </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.addEventListener('DOMContentLoaded', function() {
+                <pre><code>document.addEventListener('DOMContentLoaded', function(){
 
 });
 </code></pre>
