@@ -1,1 +1,1 @@
-el.parentNode.insertBefore(newNode, el.nextSibling);
+el.parentNode.insertBefore(newNode, el);
