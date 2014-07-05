@@ -7,7 +7,7 @@ function fadeIn(el) {
     last = +new Date();
 
     if (+el.style.opacity < 1) {
-      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+      (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
     }
   };
 
