@@ -1,4 +1,4 @@
-var rect = el.getBoundingClientRect()
+var rect = el.getBoundingClientRect();
 
 {
   top: rect.top + document.body.scrollTop,
