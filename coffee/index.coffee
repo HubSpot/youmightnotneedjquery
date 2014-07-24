@@ -75,5 +75,13 @@ document.addEventListener 'DOMContentLoaded', ->
 
   search = document.querySelector('input[type="search"]')
 
+  if window.location.hash
+    search.value = window.location.hash[1..]
+    filter window.location.hash[1..]
+
   search.addEventListener 'input', ->
     filter search.value
+
+  search.addEventListener 'blur', ->
+    window.location.hash = search.value
+

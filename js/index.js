@@ -115,8 +115,15 @@
     })();
     slider.addEventListener('change', handleChange);
     search = document.querySelector('input[type="search"]');
-    return search.addEventListener('input', function() {
+    if (window.location.hash) {
+      search.value = window.location.hash.slice(1);
+      filter(window.location.hash.slice(1));
+    }
+    search.addEventListener('input', function() {
       return filter(search.value);
+    });
+    return search.addEventListener('blur', function() {
+      return window.location.hash = search.value;
     });
   });
 
