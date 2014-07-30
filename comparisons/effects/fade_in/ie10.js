@@ -1,2 +1,1 @@
-el.classList.add('show');
-el.classList.remove('hide');
+el.classList.add('show').remove('hide');
