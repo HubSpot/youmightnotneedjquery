@@ -158,6 +158,30 @@ request.send();
               </div>
             </div>
           </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+request.send(data);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="request" class="comparison">
             <h3><a href="#request">Request</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -243,30 +267,6 @@ request.onerror = function() {
 };
 
 request.send();
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-request.send(data);
 </code></pre>
               </div>
             </div>
@@ -703,31 +703,6 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
-          <div id="get_style" class="comparison">
-            <h3><a href="#get_style">Get Style</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).css(ruleName);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Varies based on the properties being retrieved, some can be retrieved from el.currentStyle
-// https://github.com/jonathantneal/Polyfills-for-IE8/blob/master/getComputedStyle.js
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>getComputedStyle(el)[ruleName];
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="get_attributes" class="comparison">
             <h3><a href="#get_attributes">Get Attributes</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -775,6 +750,31 @@ filter(selector, filterFn);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.outerHTML
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="get_style" class="comparison">
+            <h3><a href="#get_style">Get Style</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).css(ruleName);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Varies based on the properties being retrieved, some can be retrieved from el.currentStyle
+// https://github.com/jonathantneal/Polyfills-for-IE8/blob/master/getComputedStyle.js
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>getComputedStyle(el)[ruleName];
 </code></pre>
               </div>
             </div>
@@ -1046,11 +1046,11 @@ outerHeight(el);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function outerWidth(el){
-  var height = el.offsetWidth;
+  var width = el.offsetWidth;
   var style = el.currentStyle || getComputedStyle(el);
 
-  height += parseInt(style.marginLeft) + parseInt(style.marginRight);
-  return height;
+  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  return width;
 }
 
 outerWidth(el);
@@ -1061,11 +1061,11 @@ outerWidth(el);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function outerWidth(el){
-  var height = el.offsetWidth;
+  var width = el.offsetWidth;
   var style = getComputedStyle(el);
 
-  height += parseInt(style.marginLeft) + parseInt(style.marginRight);
-  return height;
+  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  return width;
 }
 
 outerWidth(el);
@@ -1237,24 +1237,6 @@ else
               </div>
             </div>
           </div>
-          <div id="set_style" class="comparison">
-            <h3><a href="#set_style">Set Style</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).css('border-width', '20px');
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Use a class if possible
-el.style.borderWidth = '20px';
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="set_attributes" class="comparison">
             <h3><a href="#set_attributes">Set Attributes</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1285,6 +1267,24 @@ el.style.borderWidth = '20px';
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.innerHTML = string;
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="set_style" class="comparison">
+            <h3><a href="#set_style">Set Style</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).css('border-width', '20px');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Use a class if possible
+el.style.borderWidth = '20px';
 </code></pre>
               </div>
             </div>
