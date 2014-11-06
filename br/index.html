@@ -1843,7 +1843,7 @@ parseHTML(htmlString);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>var parseHTML = function(str) {
-  var tmp = document.implementation.createHTMLDocument();
+  var tmp = document.implementation.createHTMLDocument('title');
   tmp.body.innerHTML = str;
   return tmp.body.children;
 };
