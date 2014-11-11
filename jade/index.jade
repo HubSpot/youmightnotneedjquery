@@ -120,7 +120,7 @@ body
             var peeps = ['adamfschwartz', 'zackbloom']
           else
             var peeps = ['zackbloom', 'adamfschwartz']
-          
+
           document.write('<p>Made by <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> and <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> at <a href="http://dev.hubspot.com">HubSpot</a>.</p>');
         })()
 
@@ -138,7 +138,9 @@ body
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-45159009-1', 'auto');
+    ga('create', 'UA-50254005-2', 'auto', {name: 'e'});
     ga('send', 'pageview');
+    ga('e.send', 'pageview');
 
   script.
     (function(){

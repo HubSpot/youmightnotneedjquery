@@ -269,6 +269,23 @@ request.send();
       <section id="effects">
         <div class="inner">
           <h2>EFEITOS</h2>
+          <div id="hide" class="comparison">
+            <h3><a href="#hide">Hide</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).hide();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.style.display = 'none';
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="fade_in" class="comparison">
             <h3><a href="#fade_in">Fade In</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -344,23 +361,6 @@ el.classList.remove('hide');
 .hide {
   opacity: 0;
 }
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="hide" class="comparison">
-            <h3><a href="#hide">Hide</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).hide();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.style.display = 'none';
 </code></pre>
               </div>
             </div>
@@ -531,23 +531,6 @@ for (var i=el.children.length; i--;){
               </div>
             </div>
           </div>
-          <div id="contains_selector" class="comparison">
-            <h3><a href="#contains_selector">Contains Selector</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).find(selector).length;
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.querySelector(selector) !== null
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="each" class="comparison">
             <h3><a href="#each">Each</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -581,6 +564,23 @@ forEachElement(selector, function(el, i){
 Array.prototype.forEach.call(elements, function(el, i){
 
 });
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="contains_selector" class="comparison">
+            <h3><a href="#contains_selector">Contains Selector</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).find(selector).length;
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.querySelector(selector) !== null
 </code></pre>
               </div>
             </div>
