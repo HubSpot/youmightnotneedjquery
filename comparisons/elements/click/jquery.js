@@ -1,0 +1,1 @@
+$(el).click(function() {});
