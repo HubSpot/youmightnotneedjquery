@@ -66,10 +66,16 @@ filter = (term) ->
     comparisons.classList.remove 'empty'
 
 document.addEventListener 'DOMContentLoaded', ->
+  hashPrefix = 'version=ie'
   slider = document.querySelector('.version-slider')
 
   do handleChange = ->
+    location.hash = hashPrefix + slider.value
+    
     setMinVersion slider.value
+
+  if location.hash.length and location.hash.indexOf(hashPrefix) isnt -1
+    slider.value = location.hash.split(hashPrefix)[1]
 
   slider.addEventListener 'change', handleChange
 
