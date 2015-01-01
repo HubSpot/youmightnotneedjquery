@@ -90,14 +90,14 @@
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest();
+                <pre><code>var request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
-  if (this.readyState === 4){
-    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+  if (this.readyState === 4) {
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
       // Success!
-      data = JSON.parse(this.responseText);
+      var data = JSON.parse(this.responseText);
     } else {
       // Error :(
     }
@@ -112,13 +112,13 @@ request = null;
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest();
+                <pre><code>var request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
     // Success!
-    data = JSON.parse(request.responseText);
+    var data = JSON.parse(request.responseText);
   } else {
     // We reached our target server, but it returned an error
 
@@ -136,13 +136,13 @@ request.send();
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest();
+                <pre><code>var request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
     // Success!
-    data = JSON.parse(this.response);
+    var data = JSON.parse(this.response);
   } else {
     // We reached our target server, but it returned an error
 
@@ -203,14 +203,14 @@ request.send(data);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest();
+                <pre><code>var request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
-  if (this.readyState === 4){
-    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+  if (this.readyState === 4) {
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
       // Success!
-      resp = this.responseText;
+      var resp = this.responseText;
     } else {
       // Error :(
     }
@@ -225,13 +225,13 @@ request = null;
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest();
+                <pre><code>var request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400){
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
     // Success!
-    resp = request.responseText;
+    var resp = request.responseText;
   } else {
     // We reached our target server, but it returned an error
 
@@ -249,13 +249,13 @@ request.send();
             <div data-browser="ie10" class="browser ie10">
               <h4>IE10+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>request = new XMLHttpRequest();
+                <pre><code>var request = new XMLHttpRequest();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400){
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
     // Success!
-    resp = this.response;
+    var resp = this.response;
   } else {
     // We reached our target server, but it returned an error
 
@@ -282,23 +282,6 @@ request.send();
               <li><a href=" http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
               <li><a href=" https://github.com/visionmedia/move.js" target="_blank">move.js</a></li>
             </ul>
-          </div>
-          <div id="hide" class="comparison">
-            <h3><a href="#hide">Hide</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).hide();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.style.display = 'none';
-</code></pre>
-              </div>
-            </div>
           </div>
           <div id="fade_in" class="comparison">
             <h3><a href="#fade_in">Fade In</a></h3>
@@ -375,6 +358,23 @@ el.classList.remove('hide');
 .hide {
   opacity: 0;
 }
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="hide" class="comparison">
+            <h3><a href="#hide">Hide</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).hide();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.style.display = 'none';
 </code></pre>
               </div>
             </div>
@@ -499,7 +499,7 @@ else
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>var children = [];
-for (var i=el.children.length; i--;){
+for (var i = el.children.length; i--;) {
   // Skip comment nodes on IE8
   if (el.children[i].nodeType != 8)
     children.unshift(el.children[i]);
@@ -549,6 +549,23 @@ for (var i=el.children.length; i--;){
               </div>
             </div>
           </div>
+          <div id="contains_selector" class="comparison">
+            <h3><a href="#contains_selector">Contains Selector</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).find(selector).length;
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.querySelector(selector) !== null
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="each" class="comparison">
             <h3><a href="#each">Each</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -582,23 +599,6 @@ forEachElement(selector, function(el, i){
 Array.prototype.forEach.call(elements, function(el, i){
 
 });
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="contains_selector" class="comparison">
-            <h3><a href="#contains_selector">Contains Selector</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).find(selector).length;
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.querySelector(selector) !== null
 </code></pre>
               </div>
             </div>
@@ -988,7 +988,7 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerHeight(el){
+                <pre><code>function outerHeight(el) {
   var height = el.offsetHeight;
   var style = el.currentStyle || getComputedStyle(el);
 
@@ -1003,7 +1003,7 @@ outerHeight(el);
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerHeight(el){
+                <pre><code>function outerHeight(el) {
   var height = el.offsetHeight;
   var style = getComputedStyle(el);
 
@@ -1045,7 +1045,7 @@ outerHeight(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerWidth(el){
+                <pre><code>function outerWidth(el) {
   var width = el.offsetWidth;
   var style = el.currentStyle || getComputedStyle(el);
 
@@ -1060,7 +1060,7 @@ outerWidth(el);
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function outerWidth(el){
+                <pre><code>function outerWidth(el) {
   var width = el.offsetWidth;
   var style = getComputedStyle(el);
 
@@ -1583,7 +1583,7 @@ el.dispatchEvent(event);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>// For a full list of event types: https://developer.mozilla.org/en-US/docs/Web/API/document.createEvent
-event = document.createEvent('HTMLEvents');
+var event = document.createEvent('HTMLEvents');
 event.initEvent('change', true, false);
 el.dispatchEvent(event);
 </code></pre>
