@@ -1471,11 +1471,13 @@ addEventListener(el, eventName, handler);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function ready(fn) {
-  if (document.addEventListener) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', fn);
   } else {
     document.attachEvent('onreadystatechange', function() {
-      if (document.readyState === 'interactive')
+      if (document.readyState != 'loading')
         fn();
     });
   }
@@ -1486,9 +1488,13 @@ addEventListener(el, eventName, handler);
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.addEventListener('DOMContentLoaded', function(){
-
-});
+                <pre><code>function ready(fn) {
+  if (document.readyState != 'loading'){
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
 </code></pre>
               </div>
             </div>
