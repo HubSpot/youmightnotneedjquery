@@ -342,6 +342,68 @@ el.classList.remove('hide');
               </div>
             </div>
           </div>
+
+
+          <div id="fade_in" class="comparison">
+            <h3><a href="#fade_out">Fade Out</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).fadeOut();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function fadeOut(el, speed) {
+    var s = el.style;
+    s.opacity = 0;
+    (function fade() {
+        (s.opacity -= 0.1) > 0.9 ? null : setTimeout(fade, (speed/10));
+    })();
+}
+
+fadeOut(el, 1000);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function fadeOut(el, speed) {
+    var s = el.style;
+    s.opacity = 0;
+    (function fade() {
+        (s.opacity -= 0.1) > 0.9 ? null : setTimeout(fade, (speed/10));
+    })();
+}
+
+fadeOut(el, 1000);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie10" class="browser ie10">
+              <h4>IE10+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.classList.add('show');
+el.classList.remove('hide');
+</code></pre>
+              </div>
+              <div data-lang="css" class="code-block language-css">
+                <pre><code>.show {
+  transition: opacity 400ms;
+}
+.hide {
+  opacity: 0;
+}
+</code></pre>
+              </div>
+            </div>
+          </div>
+
+
+
           <div id="hide" class="comparison">
             <h3><a href="#hide">Hide</a></h3>
             <div data-browser="jquery" class="browser jquery">
