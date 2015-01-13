@@ -295,52 +295,32 @@ request.send();
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function fadeIn(el) {
-  var opacity = 0;
-
-  el.style.opacity = 0;
-  el.style.filter = '';
-
-  var last = +new Date();
-  var tick = function() {
-    opacity += (new Date() - last) / 400;
-    el.style.opacity = opacity;
-    el.style.filter = 'alpha(opacity=' + (100 * opacity)|0 + ')';
-
-    last = +new Date();
-
-    if (opacity &lt; 1) {
-      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16);
-    }
-  };
-
-  tick();
+                <pre><code>function fadeIn(el, speed) {
+    var s = el.style;
+    s.opacity = 0;
+    s.display = "block";
+    (function fade() {
+        (s.opacity -= -0.1) > 0.9 ? null : setTimeout(fade, (speed/10));
+    })();
 }
 
-fadeIn(el);
+fadeIn(el, 1000);
 </code></pre>
               </div>
             </div>
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function fadeIn(el) {
-  el.style.opacity = 0;
-
-  var last = +new Date();
-  var tick = function() {
-    el.style.opacity = +el.style.opacity + (new Date() - last) / 400;
-    last = +new Date();
-
-    if (+el.style.opacity &lt; 1) {
-      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
-    }
-  };
-
-  tick();
+                <pre><code>function fadeIn(el, speed) {
+    var s = el.style;
+    s.opacity = 0;
+    s.display = "block";
+    (function fade() {
+        (s.opacity -= -0.1) > 0.9 ? null : setTimeout(fade, (speed/10));
+    })();
 }
 
-fadeIn(el);
+fadeIn(el, 1000);
 </code></pre>
               </div>
             </div>
