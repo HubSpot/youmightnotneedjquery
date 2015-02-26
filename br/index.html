@@ -967,7 +967,7 @@ el.nextElementSibling || nextElementSibling(el);
   var height = el.offsetHeight;
   var style = el.currentStyle || getComputedStyle(el);
 
-  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+  height += (parseInt(style.marginTop) || 0) + (parseInt(style.marginBottom) || 0);
   return height;
 }
 
@@ -991,6 +991,23 @@ outerHeight(el);
               </div>
             </div>
           </div>
+          <div id="outer_width" class="comparison">
+            <h3><a href="#outer_width">Outer Width</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerWidth();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.offsetWidth
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="outer_width_with_margin" class="comparison">
             <h3><a href="#outer_width_with_margin">Outer Width With Margin</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1007,7 +1024,7 @@ outerHeight(el);
   var width = el.offsetWidth;
   var style = el.currentStyle || getComputedStyle(el);
 
-  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  width += (parseInt(style.marginLeft) || 0) + (parseInt(style.marginRight) || 0);
   return width;
 }
 
@@ -1027,23 +1044,6 @@ outerWidth(el);
 }
 
 outerWidth(el);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="outer_width" class="comparison">
-            <h3><a href="#outer_width">Outer Width</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerWidth();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.offsetWidth
 </code></pre>
               </div>
             </div>
@@ -1456,6 +1456,40 @@ addEventListener(el, eventName, handler);
               </div>
             </div>
           </div>
+          <div id="trigger_custom" class="comparison">
+            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).trigger('my-event', {some: 'data'});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Custom events are not natively supported, so you have to hijack a random
+// event.
+//
+// Just use jQuery.
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>if (window.CustomEvent) {
+  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
+} else {
+  var event = document.createEvent('CustomEvent');
+  event.initCustomEvent('my-event', true, true, {some: 'data'});
+}
+
+el.dispatchEvent(event);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1495,40 +1529,6 @@ addEventListener(el, eventName, handler);
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="trigger_custom" class="comparison">
-            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).trigger('my-event', {some: 'data'});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Custom events are not natively supported, so you have to hijack a random
-// event.
-//
-// Just use jQuery.
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (window.CustomEvent) {
-  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
-} else {
-  var event = document.createEvent('CustomEvent');
-  event.initCustomEvent('my-event', true, true, {some: 'data'});
-}
-
-el.dispatchEvent(event);
 </code></pre>
               </div>
             </div>
@@ -1606,6 +1606,30 @@ forEach(array, function(item, i){
               </div>
             </div>
           </div>
+          <div id="bind" class="comparison">
+            <h3><a href="#bind">Bind</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.proxy(fn, context);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.apply(context, arguments);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.bind(context);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="deep_extend" class="comparison">
             <h3><a href="#deep_extend">Deep Extend</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1641,30 +1665,6 @@ forEach(array, function(item, i){
 };
 
 deepExtend({}, objA, objB);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="bind" class="comparison">
-            <h3><a href="#bind">Bind</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.proxy(fn, context);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.apply(context, arguments);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.bind(context);
 </code></pre>
               </div>
             </div>
