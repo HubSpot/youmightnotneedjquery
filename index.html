@@ -1364,17 +1364,18 @@ for (var i = siblings.length; i--;) {
                 <pre><code>if (el.classList) {
   el.classList.toggle(className);
 } else {
-    var classes = el.className.split(' ');
-    var existingIndex = -1;
-    for (var i = classes.length; i--;) {
-      if (classes[i] === className)
-        existingIndex = i;
-    }
+  var classes = el.className.split(' ');
+  var existingIndex = -1;
 
-    if (existingIndex &gt;= 0)
-      classes.splice(existingIndex, 1);
-    else
-      classes.push(className);
+  for (var i = classes.length; i--;) {
+    if (classes[i] === className)
+      existingIndex = i;
+  }
+
+  if (existingIndex &gt;= 0)
+    classes.splice(existingIndex, 1);
+  else
+    classes.push(className);
 
   el.className = classes.join(' ');
 }
@@ -1478,48 +1479,6 @@ addEventListener(el, eventName, handler);
               </div>
             </div>
           </div>
-          <div id="trigger_custom" class="comparison">
-            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
-            <div class="alternatives-block">
-              <h4>Alternatives:</h4>
-              <ul class="alternatives">
-                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
-                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
-                <li><a href=" https://github.com/jeromeetienne/microevent.js" target="_blank">microevent</a></li>
-              </ul>
-            </div>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).trigger('my-event', {some: 'data'});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Custom events are not natively supported, so you have to hijack a random
-// event.
-//
-// Just use jQuery.
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>if (window.CustomEvent) {
-  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
-} else {
-  var event = document.createEvent('CustomEvent');
-  event.initCustomEvent('my-event', true, true, {some: 'data'});
-}
-
-el.dispatchEvent(event);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="ready" class="comparison">
             <h3><a href="#ready">Ready</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1559,6 +1518,48 @@ el.dispatchEvent(event);
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="trigger_custom" class="comparison">
+            <h3><a href="#trigger_custom">Trigger Custom</a></h3>
+            <div class="alternatives-block">
+              <h4>Alternatives:</h4>
+              <ul class="alternatives">
+                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
+                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
+                <li><a href=" https://github.com/jeromeetienne/microevent.js" target="_blank">microevent</a></li>
+              </ul>
+            </div>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).trigger('my-event', {some: 'data'});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Custom events are not natively supported, so you have to hijack a random
+// event.
+//
+// Just use jQuery.
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>if (window.CustomEvent) {
+  var event = new CustomEvent('my-event', {detail: {some: 'data'}});
+} else {
+  var event = document.createEvent('CustomEvent');
+  event.initCustomEvent('my-event', true, true, {some: 'data'});
+}
+
+el.dispatchEvent(event);
 </code></pre>
               </div>
             </div>
