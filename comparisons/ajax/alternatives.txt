@@ -1,3 +1,3 @@
-ajax: https://github.com/ForbesLindesay/ajax
-request: https://github.com/then/request
 reqwest: https://github.com/ded/Reqwest
+then-request: https://github.com/then/request
+superagent: https://github.com/visionmedia/superagent
