@@ -1,6 +1,6 @@
 var rect = el.getBoundingClientRect()
 
 {
-  top: rect.top + document.body.scrollTop,
-  left: rect.left + document.body.scrollLeft
+  top: rect.top + window.pageYOffset,
+  left: rect.left + window.pageYOffset
 }
