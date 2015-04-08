@@ -1,6 +1,6 @@
 var offset = el.offset();
 
 {
-  top: offset.top - document.body.scrollTop,
-  left: offset.left - document.body.scrollLeft
+  top: offset.top - window.pageYOffset,
+  left: offset.left - window.pageXOffset
 }
