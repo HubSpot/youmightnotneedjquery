@@ -532,6 +532,34 @@ for (var i = el.children.length; i--;) {
               </div>
             </div>
           </div>
+          <div id="closest" class="comparison">
+            <h3><a href="#clone">Closest</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).closest(selector);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function(el, selector) {
+    var matchesSelector = el.matches || el.matchesSelector || el.msMatchesSelector || el.mozMatchesSelector || el.webkitMatchesSelector || el.oMatchesSelector;
+    
+	while (el) {
+      if (matchesSelector.call(el,selector)) {
+        return el;
+      } else {
+        el = el.parentNode;
+      }
+    }
+    return false;
+};
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="contains" class="comparison">
             <h3><a href="#contains">Contains</a></h3>
             <div data-browser="jquery" class="browser jquery">
