@@ -13,4 +13,7 @@ request.onreadystatechange = function() {
 };
 
 request.send();
-request = null;
+
+setTimeout(function () {
+  request = null;
+}, 1)
