@@ -1,8 +1,11 @@
 var deepExtend = function(out) {
-  out = out || {};
-
   for (var i = 1; i < arguments.length; i++) {
     var obj = arguments[i];
+    if(Object.prototype.toString.call(obj) === '[object Array]'){
+      out = out || [];
+    }else{
+      out = out || {};
+    }
 
     if (!obj)
       continue;
@@ -10,13 +13,16 @@ var deepExtend = function(out) {
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (typeof obj[key] === 'object')
-          deepExtend(out[key], obj[key]);
+           out[key] = _deepExtend(out[key], obj[key]);
         else
-          out[key] = obj[key];
+          if(Object.prototype.toString.call(out) === '[object Array]'){
+            out.push(obj[key]);
+          }else{
+            out[key] = obj[key];
+          }
       }
     }
   }
-
   return out;
 };
 
