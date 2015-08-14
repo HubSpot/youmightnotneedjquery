@@ -94,11 +94,13 @@
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    // Success!
-    var data = JSON.parse(this.responseText);
-  } else {
-    // Error :(
+  if (this.readyState === 4) {
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
+      // Success!
+      var data = JSON.parse(this.responseText);
+    } else {
+      // Error :(
+    }
   }
 };
 
@@ -114,7 +116,7 @@ request = null;
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (this.readyState == 4 && this.status == 200) {
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
     // Success!
     var data = JSON.parse(request.responseText);
   } else {
@@ -138,7 +140,7 @@ request.send();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (this.readyState == 4 && this.status == 200) {
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
     // Success!
     var data = JSON.parse(this.response);
   } else {
@@ -205,11 +207,13 @@ request.send(data);
 request.open('GET', '/my/url', true);
 
 request.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    // Success!
-    var resp = this.responseText;
-  } else {
-    // Error :(
+  if (this.readyState === 4) {
+    if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
+      // Success!
+      var resp = this.responseText;
+    } else {
+      // Error :(
+    }
   }
 };
 
@@ -225,7 +229,7 @@ request = null;
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (this.readyState == 4 && this.status == 200) {
+  if (request.status &gt;= 200 &amp;&amp; request.status &lt; 400) {
     // Success!
     var resp = request.responseText;
   } else {
@@ -249,7 +253,7 @@ request.send();
 request.open('GET', '/my/url', true);
 
 request.onload = function() {
-  if (this.readyState == 4 && this.status == 200) {
+  if (this.status &gt;= 200 &amp;&amp; this.status &lt; 400) {
     // Success!
     var resp = this.response;
   } else {
