@@ -1955,6 +1955,32 @@ parseHTML(htmlString);
               </div>
             </div>
           </div>
+          <div id="toarray" class="comparison">
+            <h3><a href="#type">to Array</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).toArray();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function toArray(selector) {
+  var array = [];
+  var elements = document.querySelectorAll(selector);
+
+    for (var i = 0; i < elements.length; i++)
+    array.push(elements[i]);
+
+  return array;
+}
+
+alert(toArray("#id"));</code></pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
