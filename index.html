@@ -71,9 +71,9 @@
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" https://github.com/ForbesLindesay/ajax" target="_blank">ajax</a></li>
-              <li><a href=" https://github.com/then/request" target="_blank">request</a></li>
               <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
+              <li><a href=" https://github.com/then/request" target="_blank">then-request</a></li>
+              <li><a href=" https://github.com/visionmedia/superagent" target="_blank">superagent</a></li>
             </ul>
           </div>
           <div id="json" class="comparison">
@@ -333,7 +333,7 @@ fadeIn(el);
     last = +new Date();
 
     if (+el.style.opacity &lt; 1) {
-      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16)
+      (window.requestAnimationFrame &amp;&amp; requestAnimationFrame(tick)) || setTimeout(tick, 16);
     }
   };
 
@@ -354,6 +354,7 @@ el.classList.remove('hide');
               <div data-lang="css" class="code-block language-css">
                 <pre><code>.show {
   transition: opacity 400ms;
+  display: block;
 }
 .hide {
   opacity: 0;
@@ -932,7 +933,7 @@ el.nextElementSibling || nextElementSibling(el);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var rect = el.getBoundingClientRect()
+                <pre><code>var rect = el.getBoundingClientRect();
 
 {
   top: rect.top + document.body.scrollTop,
@@ -1016,6 +1017,23 @@ outerHeight(el);
               </div>
             </div>
           </div>
+          <div id="outer_width" class="comparison">
+            <h3><a href="#outer_width">Outer Width</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerWidth();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.offsetWidth
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="outer_width_with_margin" class="comparison">
             <h3><a href="#outer_width_with_margin">Outer Width With Margin</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1052,23 +1070,6 @@ outerWidth(el);
 }
 
 outerWidth(el);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="outer_width" class="comparison">
-            <h3><a href="#outer_width">Outer Width</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerWidth();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.offsetWidth
 </code></pre>
               </div>
             </div>
@@ -1616,7 +1617,7 @@ el.dispatchEvent(event);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function forEach(array, fn) {
-  for (i = 0; i &lt; array.length; i++)
+  for (var i = 0; i &lt; array.length; i++)
     fn(array[i], i);
 }
 
@@ -1632,6 +1633,30 @@ forEach(array, function(item, i){
                 <pre><code>array.forEach(function(item, i){
 
 });
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="bind" class="comparison">
+            <h3><a href="#bind">Bind</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.proxy(fn, context);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.apply(context, arguments);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.bind(context);
 </code></pre>
               </div>
             </div>
@@ -1671,30 +1696,6 @@ forEach(array, function(item, i){
 };
 
 deepExtend({}, objA, objB);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="bind" class="comparison">
-            <h3><a href="#bind">Bind</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.proxy(fn, context);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.apply(context, arguments);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.bind(context);
 </code></pre>
               </div>
             </div>
@@ -1786,7 +1787,7 @@ indexOf(array, item);
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>isArray = Array.isArray || function(arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
-}
+};
 
 isArray(arr);
 </code></pre>
@@ -1950,7 +1951,7 @@ parseHTML(htmlString);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, &quot;$1&quot;).toLowerCase();
+                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
 </code></pre>
               </div>
             </div>
