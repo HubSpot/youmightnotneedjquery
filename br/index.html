@@ -468,35 +468,6 @@ else
               </div>
             </div>
           </div>
-          <div id="children" class="comparison">
-            <h3><a href="#children">Children</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).children();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var children = [];
-for (var i = el.children.length; i--;) {
-  // Skip comment nodes on IE8
-  if (el.children[i].nodeType != 8)
-    children.unshift(el.children[i]);
-}
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.children
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="clone" class="comparison">
             <h3><a href="#clone">Clone</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -527,6 +498,35 @@ for (var i = el.children.length; i--;) {
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el !== child &amp;&amp; el.contains(child);
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="children" class="comparison">
+            <h3><a href="#children">Children</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).children();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var children = [];
+for (var i = el.children.length; i--;) {
+  // Skip comment nodes on IE8
+  if (el.children[i].nodeType != 8)
+    children.unshift(el.children[i]);
+}
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.children
 </code></pre>
               </div>
             </div>
@@ -991,6 +991,23 @@ outerHeight(el);
               </div>
             </div>
           </div>
+          <div id="outer_width" class="comparison">
+            <h3><a href="#outer_width">Outer Width</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerWidth();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.offsetWidth
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="outer_width_with_margin" class="comparison">
             <h3><a href="#outer_width_with_margin">Outer Width With Margin</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1027,23 +1044,6 @@ outerWidth(el);
 }
 
 outerWidth(el);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="outer_width" class="comparison">
-            <h3><a href="#outer_width">Outer Width</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerWidth();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.offsetWidth
 </code></pre>
               </div>
             </div>
@@ -1606,6 +1606,30 @@ forEach(array, function(item, i){
               </div>
             </div>
           </div>
+          <div id="bind" class="comparison">
+            <h3><a href="#bind">Bind</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.proxy(fn, context);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.apply(context, arguments);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.bind(context);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="deep_extend" class="comparison">
             <h3><a href="#deep_extend">Deep Extend</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1630,7 +1654,7 @@ forEach(array, function(item, i){
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (typeof obj[key] === 'object')
-          deepExtend(out[key], obj[key]);
+          out[key] = deepExtend(out[key], obj[key]);
         else
           out[key] = obj[key];
       }
@@ -1641,30 +1665,6 @@ forEach(array, function(item, i){
 };
 
 deepExtend({}, objA, objB);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="bind" class="comparison">
-            <h3><a href="#bind">Bind</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.proxy(fn, context);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.apply(context, arguments);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.bind(context);
 </code></pre>
               </div>
             </div>
@@ -1823,6 +1823,23 @@ map(array, function(value, index){
               </div>
             </div>
           </div>
+          <div id="parse_json" class="comparison">
+            <h3><a href="#parse_json">Parse Json</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.parseJSON(string);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>JSON.parse(string);
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="parse_html" class="comparison">
             <h3><a href="#parse_html">Parse Html</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1855,23 +1872,6 @@ parseHTML(htmlString);
 };
 
 parseHTML(htmlString);
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="parse_json" class="comparison">
-            <h3><a href="#parse_json">Parse Json</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.parseJSON(string);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>JSON.parse(string);
 </code></pre>
               </div>
             </div>
