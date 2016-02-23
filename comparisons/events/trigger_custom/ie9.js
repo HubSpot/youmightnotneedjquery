@@ -1,4 +1,4 @@
-if (window.CustomEvent) {
+if (window.CustomEvent && typeof window.CustomEvent === 'function') {
   var event = new CustomEvent('my-event', {detail: {some: 'data'}});
 } else {
   var event = document.createEvent('CustomEvent');
