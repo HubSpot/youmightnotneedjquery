@@ -242,9 +242,6 @@ header.search input[type="search"] {
   padding-left: 0.52em;
   margin: 0;
   color: inherit;
-  opacity: 0.5;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  filter: alpha(opacity=50);
   width: 50%;
   background: rgba(0,0,0,0.1);
   margin-bottom: 4px;
