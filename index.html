@@ -581,7 +581,7 @@ for (var i = el.children.length; i--;) {
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function forEachElement(selector, fn) {
-  var elements = document.querySelectorAll(selector);
+  var elements = document.querySelector(selector);
   for (var i = 0; i &lt; elements.length; i++)
     fn(elements[i], i);
 }
@@ -595,7 +595,7 @@ forEachElement(selector, function(el, i){
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var elements = document.querySelectorAll(selector);
+                <pre><code>var elements = document.querySelector(selector);
 Array.prototype.forEach.call(elements, function(el, i){
 
 });
@@ -641,7 +641,7 @@ Array.prototype.forEach.call(elements, function(el, i){
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function filter(selector, filterFn) {
-  var elements = document.querySelectorAll(selector);
+  var elements = document.querySelector(selector);
   var out = [];
   for (var i = elements.length; i--;) {
     if (filterFn(elements[i]))
@@ -657,7 +657,7 @@ filter(selector, filterFn);
             <div data-browser="ie9" class="browser ie9">
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>Array.prototype.filter.call(document.querySelectorAll(selector), filterFn);
+                <pre><code>Array.prototype.filter.call(document.querySelector(selector), filterFn);
 </code></pre>
               </div>
             </div>
@@ -698,7 +698,7 @@ filter(selector, filterFn);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.querySelectorAll('.my #awesome selector');
+                <pre><code>document.querySelector('.my #awesome selector');
 </code></pre>
               </div>
             </div>
