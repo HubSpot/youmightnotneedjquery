@@ -698,7 +698,12 @@ filter(selector, filterFn);
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>document.querySelectorAll('.my #awesome selector');
+                <pre><code>var forEach = Array.prototype.forEach.call;
+var elems = document.querySelectorAll('.my #awesome selector');
+
+forEach(elems, function(myElement) {
+
+});
 </code></pre>
               </div>
             </div>
