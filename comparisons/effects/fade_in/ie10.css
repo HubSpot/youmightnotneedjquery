@@ -1,5 +1,6 @@
 .show {
   transition: opacity 400ms;
+  display: block;
 }
 .hide {
   opacity: 0;
