@@ -1511,7 +1511,7 @@ addEventListener(el, eventName, handler);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function ready(fn) {
-  if (document.readyState != 'loading'){
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
