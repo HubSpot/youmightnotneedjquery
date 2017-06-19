@@ -1,1 +1,1 @@
-el.insertAdjacentHTML('afterend', htmlString);
+el.parentNode.insertBefore(newNode, el.nextSibling);
