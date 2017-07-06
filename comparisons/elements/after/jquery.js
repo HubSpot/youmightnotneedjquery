@@ -1,1 +1,1 @@
-$(el).after(element);
+$(target).after(element);
