@@ -1,1 +1,1 @@
-el.insertAdjacentHTML('afterend', htmlString);
+el.insertAdjacentHTML('afterend', element);
