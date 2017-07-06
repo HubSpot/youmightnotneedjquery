@@ -1,1 +1,1 @@
-el.insertAdjacentElement('beforebegin', element);
+target.insertAdjacentElement('beforebegin', element);
