@@ -1,1 +1,1 @@
-el.insertAdjacentHTML('afterend', element);
+target.insertAdjacentElement('afterend', element);
