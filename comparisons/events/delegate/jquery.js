@@ -1,1 +1,1 @@
-$(document).on('click', '.my-inexistent-element-from-future', handler);
+$(document).on(eventName, elementSelector, handler);
