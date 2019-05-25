@@ -1,1 +1,1 @@
-el.children[0]
+el.firstChild
