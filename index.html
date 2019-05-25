@@ -24,14 +24,14 @@
       <div class="inner">
         <h1>You might <span class="highlighted">no</span>t need <span class="highlighted">jQuery</span></h1>
       </div>
-      <div class="old-ie-message">You certainly can support IE 9 and below without jQuery, but we don't. Please stop messing with us.</div>
+      <div class="old-ie-message">You certainly can support IE 9 and below without jQuery, but we don't.  Please stop messing with us.</div>
     </header>
     <div class="explanation">
       <div class="inner">
         <p>jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.</p>
         <p>
           If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency.
-          Maybe you can include a few lines of utility code, and forgot the requirement. If you're only targeting more modern browsers,
+          Maybe you can include a few lines of utility code, and forgo the requirement.  If you're only targeting more modern browsers,
           you might not need anything more than what the browser ships with.
         </p>
         <p>
@@ -54,7 +54,7 @@
       <div class="field">
         <label for="version">What's the oldest version of IE you need to support?</label>
         <div class="slider">
-          <input name="version" id="version" type="range" min="8" max="10" class="version-slider">
+          <input name="version" id="version" type="range" min="8" max="10" value="10" class="version-slider">
           <div class="rule">
             <div class="range-label">8</div>
             <div class="range-label">9</div>
@@ -71,9 +71,7 @@
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" https://github.com/ded/Reqwest" target="_blank">reqwest</a></li>
-              <li><a href=" https://github.com/then/request" target="_blank">then-request</a></li>
-              <li><a href=" https://github.com/visionmedia/superagent" target="_blank">superagent</a></li>
+              <li><a href="//github.com/github/fetch" target="_blank">fetch https</a></li>
             </ul>
           </div>
           <div id="json" class="comparison">
@@ -154,30 +152,6 @@ request.onerror = function() {
 };
 
 request.send();
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="post" class="comparison">
-            <h3><a href="#post">Post</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.ajax({
-  type: 'POST',
-  url: '/my/url',
-  data: data
-});
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>var request = new XMLHttpRequest();
-request.open('POST', '/my/url', true);
-request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-request.send(data);
 </code></pre>
               </div>
             </div>
@@ -271,6 +245,30 @@ request.send();
               </div>
             </div>
           </div>
+          <div id="post" class="comparison">
+            <h3><a href="#post">Post</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.ajax({
+  type: 'POST',
+  url: '/my/url',
+  data: data
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>var request = new XMLHttpRequest();
+request.open('POST', '/my/url', true);
+request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+request.send(data);
+</code></pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="effects">
@@ -279,8 +277,8 @@ request.send();
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
-              <li><a href=" https://github.com/visionmedia/move.js" target="_blank">move.js</a></li>
+              <li><a href=" http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
+              <li><a href=" https://github.com/visionmedia/move.js" target="_blank">move.js</a></li>
             </ul>
           </div>
           <div id="fade_in" class="comparison">
@@ -362,23 +360,6 @@ el.classList.remove('hide');
               </div>
             </div>
           </div>
-          <div id="hide" class="comparison">
-            <h3><a href="#hide">Hide</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).hide();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.style.display = 'none';
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="show" class="comparison">
             <h3><a href="#show">Show</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -396,6 +377,23 @@ el.classList.remove('hide');
               </div>
             </div>
           </div>
+          <div id="hide" class="comparison">
+            <h3><a href="#hide">Hide</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).hide();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.style.display = 'none';
+</code></pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="elements" class="odd">
@@ -404,8 +402,8 @@ el.classList.remove('hide');
           <div class="alternatives-block">
             <h4>Alternatives:</h4>
             <ul class="alternatives">
-              <li><a href=" https://github.com/ded/bonzo" target="_blank">bonzo</a></li>
-              <li><a href=" https://github.com/julienw/dollardom" target="_blank">$dom</a></li>
+              <li><a href=" https://github.com/ded/bonzo" target="_blank">bonzo</a></li>
+              <li><a href=" https://github.com/julienw/dollardom" target="_blank">$dom</a></li>
             </ul>
           </div>
           <div id="add_class" class="comparison">
@@ -684,8 +682,8 @@ filter(selector, filterFn);
             <div class="alternatives-block">
               <h4>Alternatives:</h4>
               <ul class="alternatives">
-                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
-                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
+                <li><a href=" https://github.com/ded/qwery" target="_blank">qwery</a></li>
+                <li><a href=" http://sizzlejs.com/" target="_blank">sizzle</a></li>
               </ul>
             </div>
             <div data-browser="jquery" class="browser jquery">
@@ -720,23 +718,6 @@ filter(selector, filterFn);
               </div>
             </div>
           </div>
-          <div id="get_html" class="comparison">
-            <h3><a href="#get_html">Get Html</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).html();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.innerHTML
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="get_outer_html" class="comparison">
             <h3><a href="#get_outer_html">Get Outer Html</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -750,6 +731,23 @@ filter(selector, filterFn);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.outerHTML
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="get_html" class="comparison">
+            <h3><a href="#get_html">Get Html</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).html();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.innerHTML
 </code></pre>
               </div>
             </div>
@@ -890,36 +888,6 @@ matches(el, '.my-class');
               </div>
             </div>
           </div>
-          <div id="next" class="comparison">
-            <h3><a href="#next">Next</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).next();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// nextSibling can include text nodes
-function nextElementSibling(el) {
-  do { el = el.nextSibling; } while ( el &amp;&amp; el.nodeType !== 1 );
-  return el;
-}
-
-el.nextElementSibling || nextElementSibling(el);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.nextElementSibling
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="offset" class="comparison">
             <h3><a href="#offset">Offset</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -955,6 +923,36 @@ el.nextElementSibling || nextElementSibling(el);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.offsetParent || el
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="next" class="comparison">
+            <h3><a href="#next">Next</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).next();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// nextSibling can include text nodes
+function nextElementSibling(el) {
+  do { el = el.nextSibling; } while ( el &amp;&amp; el.nodeType !== 1 );
+  return el;
+}
+
+el.nextElementSibling || nextElementSibling(el);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.nextElementSibling
 </code></pre>
               </div>
             </div>
@@ -1016,23 +1014,6 @@ outerHeight(el);
               </div>
             </div>
           </div>
-          <div id="outer_width" class="comparison">
-            <h3><a href="#outer_width">Outer Width</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).outerWidth();
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.offsetWidth
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="outer_width_with_margin" class="comparison">
             <h3><a href="#outer_width_with_margin">Outer Width With Margin</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1086,6 +1067,23 @@ outerWidth(el);
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.parentNode
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="outer_width" class="comparison">
+            <h3><a href="#outer_width">Outer Width</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).outerWidth();
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.offsetWidth
 </code></pre>
               </div>
             </div>
@@ -1193,6 +1191,23 @@ el.previousElementSibling || previousElementSibling(el);
               </div>
             </div>
           </div>
+          <div id="remove_attributes" class="comparison">
+            <h3><a href="#remove_attributes">Remove Attributes</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).removeAttr('tabindex');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.removeAttribute('tabindex');
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="remove_class" class="comparison">
             <h3><a href="#remove_class">Remove Class</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1271,24 +1286,6 @@ else
               </div>
             </div>
           </div>
-          <div id="set_style" class="comparison">
-            <h3><a href="#set_style">Set Style</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).css('border-width', '20px');
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>// Use a class if possible
-el.style.borderWidth = '20px';
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="set_text" class="comparison">
             <h3><a href="#set_text">Set Text</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1312,6 +1309,24 @@ else
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.textContent = string;
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="set_style" class="comparison">
+            <h3><a href="#set_style">Set Style</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).css('border-width', '20px');
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>// Use a class if possible
+el.style.borderWidth = '20px';
 </code></pre>
               </div>
             </div>
@@ -1413,37 +1428,6 @@ for (var i = siblings.length; i--;) {
       <section id="events">
         <div class="inner">
           <h2>Events</h2>
-          <div id="off" class="comparison">
-            <h3><a href="#off">Off</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$(el).off(eventName, eventHandler);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>function removeEventListener(el, eventName, handler) {
-  if (el.removeEventListener)
-    el.removeEventListener(eventName, handler);
-  else
-    el.detachEvent('on' + eventName, handler);
-}
-
-removeEventListener(el, eventName, handler);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>el.removeEventListener(eventName, eventHandler);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="on" class="comparison">
             <h3><a href="#on">On</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1474,6 +1458,37 @@ addEventListener(el, eventName, handler);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>el.addEventListener(eventName, eventHandler);
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="off" class="comparison">
+            <h3><a href="#off">Off</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$(el).off(eventName, eventHandler);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>function removeEventListener(el, eventName, handler) {
+  if (el.removeEventListener)
+    el.removeEventListener(eventName, handler);
+  else
+    el.detachEvent('on' + eventName, handler);
+}
+
+removeEventListener(el, eventName, handler);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>el.removeEventListener(eventName, eventHandler);
 </code></pre>
               </div>
             </div>
@@ -1511,7 +1526,7 @@ addEventListener(el, eventName, handler);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>function ready(fn) {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+  if (document.readyState != 'loading'){
     fn();
   } else {
     document.addEventListener('DOMContentLoaded', fn);
@@ -1526,9 +1541,9 @@ addEventListener(el, eventName, handler);
             <div class="alternatives-block">
               <h4>Alternatives:</h4>
               <ul class="alternatives">
-                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
-                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
-                <li><a href=" https://github.com/jeromeetienne/microevent.js" target="_blank">microevent</a></li>
+                <li><a href=" https://github.com/Wolfy87/EventEmitter" target="_blank">EventEmitter</a></li>
+                <li><a href=" https://github.com/arextar/Vine" target="_blank">Vine</a></li>
+                <li><a href=" https://github.com/jeromeetienne/microevent.js" target="_blank">microevent</a></li>
               </ul>
             </div>
             <div data-browser="jquery" class="browser jquery">
@@ -1601,30 +1616,6 @@ el.dispatchEvent(event);
       <section id="utils" class="odd">
         <div class="inner">
           <h2>Utils</h2>
-          <div id="bind" class="comparison">
-            <h3><a href="#bind">Bind</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.proxy(fn, context);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.apply(context, arguments);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>fn.bind(context);
-</code></pre>
-              </div>
-            </div>
-          </div>
           <div id="array_each" class="comparison">
             <h3><a href="#array_each">Array Each</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1704,9 +1695,9 @@ deepExtend({}, objA, objB);
             <div class="alternatives-block">
               <h4>Alternatives:</h4>
               <ul class="alternatives">
-                <li><a href=" http://lodash.com/docs#assign" target="_blank">lo-dash</a></li>
-                <li><a href=" http://underscorejs.org/#extend" target="_blank">underscore</a></li>
-                <li><a href=" http://www.2ality.com/2014/01/object-assign.html" target="_blank">ECMA6</a></li>
+                <li><a href=" http://lodash.com/docs#assign" target="_blank">lo-dash</a></li>
+                <li><a href=" http://underscorejs.org/#extend" target="_blank">underscore</a></li>
+                <li><a href=" http://www.2ality.com/2014/01/object-assign.html" target="_blank">ECMA6</a></li>
               </ul>
             </div>
             <div data-browser="jquery" class="browser jquery">
@@ -1736,6 +1727,30 @@ deepExtend({}, objA, objB);
 };
 
 extend({}, objA, objB);
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="bind" class="comparison">
+            <h3><a href="#bind">Bind</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.proxy(fn, context);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.apply(context, arguments);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>fn.bind(context);
 </code></pre>
               </div>
             </div>
@@ -1772,30 +1787,25 @@ indexOf(array, item);
               </div>
             </div>
           </div>
-          <div id="is_array" class="comparison">
-            <h3><a href="#is_array">Is Array</a></h3>
+          <div id="is_numeric" class="comparison">
+            <h3><a href="#is_numeric">Is Numeric</a></h3>
             <div data-browser="jquery" class="browser jquery">
               <h4>jQuery</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.isArray(arr);
+                <pre><code>$.isNumeric(val);
 </code></pre>
               </div>
             </div>
             <div data-browser="ie8" class="browser ie8">
               <h4>IE8+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>isArray = Array.isArray || function(arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
+                <pre><code>function isNumeric(val) {    
+    if (typeof num === 'number') return num - num === 0;
+    if (typeof num === 'string' &amp;&amp; num.trim() !== '') return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+    return false;
+}
 
-isArray(arr);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie9" class="browser ie9">
-              <h4>IE9+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>Array.isArray(arr);
+isNumeric(val);
 </code></pre>
               </div>
             </div>
@@ -1833,6 +1843,34 @@ map(array, function(value, index){
                 <pre><code>array.map(function(value, index){
 
 });
+</code></pre>
+              </div>
+            </div>
+          </div>
+          <div id="is_array" class="comparison">
+            <h3><a href="#is_array">Is Array</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.isArray(arr);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>isArray = Array.isArray || function(arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+isArray(arr);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie9" class="browser ie9">
+              <h4>IE9+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>Array.isArray(arr);
 </code></pre>
               </div>
             </div>
@@ -1914,6 +1952,23 @@ parseHTML(htmlString);
               </div>
             </div>
           </div>
+          <div id="type" class="comparison">
+            <h3><a href="#type">Type</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.type(obj);
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="trim" class="comparison">
             <h3><a href="#trim">Trim</a></h3>
             <div data-browser="jquery" class="browser jquery">
@@ -1934,23 +1989,6 @@ parseHTML(htmlString);
               <h4>IE9+</h4>
               <div data-lang="javascript" class="code-block language-javascript">
                 <pre><code>string.trim();
-</code></pre>
-              </div>
-            </div>
-          </div>
-          <div id="type" class="comparison">
-            <h3><a href="#type">Type</a></h3>
-            <div data-browser="jquery" class="browser jquery">
-              <h4>jQuery</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>$.type(obj);
-</code></pre>
-              </div>
-            </div>
-            <div data-browser="ie8" class="browser ie8">
-              <h4>IE8+</h4>
-              <div data-lang="javascript" class="code-block language-javascript">
-                <pre><code>Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
 </code></pre>
               </div>
             </div>
