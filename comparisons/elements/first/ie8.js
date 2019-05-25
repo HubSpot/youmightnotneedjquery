@@ -1,1 +1,1 @@
-el.firstChild
+document.querySelectorAll(el)[0]
