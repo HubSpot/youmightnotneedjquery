@@ -1,0 +1,1 @@
+$(els).slice(begin, end);
