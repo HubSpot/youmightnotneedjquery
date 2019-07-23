@@ -1,1 +1,1 @@
-$('<div>').append($(el).clone()).html();
+$(el).prop('outerHTML');
