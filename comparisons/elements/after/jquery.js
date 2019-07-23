@@ -1,1 +1,1 @@
-$(el).after(htmlString);
+$(target).after(element);
