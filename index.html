@@ -1848,6 +1848,29 @@ forEach(array, function(item, i){
               </div>
             </div>
           </div>
+          <div id="object_each" class="comparison">
+            <h3><a href="#object_each">Object Each</a></h3>
+            <div data-browser="jquery" class="browser jquery">
+              <h4>jQuery</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>$.each(obj, function(key, value){
+
+});
+</code></pre>
+              </div>
+            </div>
+            <div data-browser="ie8" class="browser ie8">
+              <h4>IE8+</h4>
+              <div data-lang="javascript" class="code-block language-javascript">
+                <pre><code>for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        var value = obj[key];
+    }
+}
+</code></pre>
+              </div>
+            </div>
+          </div>
           <div id="index_of" class="comparison">
             <h3><a href="#index_of">Index Of</a></h3>
             <div data-browser="jquery" class="browser jquery">
