@@ -5,10 +5,10 @@
 
 html
   overflow-y scroll
+  line-height 1.5
 
-a
-  cursor pointer
-  color #08c
+  @media (min-width: 1280px)
+    font-size 17px
 
 ::-webkit-input-placeholder
   color rgba(0, 0, 0, .5)
@@ -53,8 +53,8 @@ input[type="search"][required]
     opacity 0
 
 body
-  font-family "proxima-nova", "Helvetica Neue", Helvetica, arial, sans-serif
-  color #444
+  font-family system-ui, sans-serif
+  color #000
   margin 0
   -webkit-font-smoothing antialiased
 
@@ -62,9 +62,9 @@ body
   background #fff
 
 header.page-header
-  width 44em
+  width 34em
   max-width 100%
-  padding 9em 0 2em
+  padding 4em 0 1em
   margin 0 auto
   text-align center
 
@@ -77,58 +77,58 @@ header.page-header
     width 100%
 
   .inner
-    padding 3em 2em 2.4em
-    background #414141
-
-    max-height 178px // Prevent font FOUC
+    padding 2em 2em
+    border .25em solid
 
     h1
       font-size 2.5em
-      font-weight 200
+      font-weight 300
       margin 0
-      color #fff
-      text-transform uppercase
-      letter-spacing .01em
       line-height 1
 
+      @media (max-width: 540px)
+        font-weight 500
+
 .explanation
-  width 40em
+  width 36em
   max-width 100%
   padding 0 1em
   margin auto
-  text-align justify
 
-  .inner
-    font-size 1.1em
+  a
+    color inherit
+    text-decoration none
+    box-shadow inset 0 -.125em
 
 .share-buttons
-  clearfix()
-  width 54em
+  display flex
+  width 20em
   max-width 100%
+  justify-content center
   margin 3em auto
   padding 0 1em
 
-  .twitter-share-button
-    float left
+  .share-button-github
+    display inline-flex
+    color inherit
+    margin-left auto
+    margin-right auto
+    text-decoration none
 
-  .github-stars-button
-    float right
+    > span
+      border 1px solid #ccc
+      padding .5em .8em
 
-  .share-button
-    width 48%
+      &:first-child
+        margin-right -1px
+        background #eee
 
-    @media (max-width: 840px)
-      width auto
+      &.github-stars
+        text-align center
+        min-width 4.7em
 
-      &.twitter-share-button
-        margin-bottom 1em
-
-      &.twitter-share-button, &.github-stars-button
-        float none
-
-    iframe
-      width 100%
-      height 2.45em
+        &:empty::after
+          content "···"
 
 @media (min-width: 768px)
   .browser
@@ -156,10 +156,12 @@ header.page-header
 
   .comparisons.empty &
     display block
-
-    padding 1em 0
+    background #eee
+    display block
+    padding 2em 0
     font-size 1.5em
     text-align center
+    margin-top 2em
 
 .comparison
   clearfix()
@@ -168,20 +170,26 @@ header.page-header
     text-align center
     font-size 2em
     font-weight normal
+    margin-top 1.5em
+    margin-bottom 0
 
     a
       position relative
       color inherit
       text-decoration none
 
-      &:hover:before
+      &:before
         content '§'
         position absolute
         right 100%
         padding-right .3em
+        opacity 0
+
+      &:hover:before
+        opacity 1
 
   h4
-    font-weight 200
+    font-weight 300
     color #666
     letter-spacing 0.07em
     font-size 1.4em
@@ -201,8 +209,7 @@ header.search
     border 0
     font-family inherit
     font-size 1.5em
-    font-weight 300
-    letter-spacing .08em
+    font-weight 400
     padding-left .52em
     margin 0
     color inherit
@@ -236,7 +243,6 @@ header.search
     label
       padding-right 10em
       font-size 1.1em
-      line-height 1.2em
       padding-top 0em
       padding-bottom 3em
       display block
@@ -252,27 +258,34 @@ header.search
   display none
 
 .alternatives-block
-  text-align: center
+  text-align center
+  margin-top -.25em
 
   h4
-    font-size: 1.1em
-    display: inline-block
-    font-weight: 200
-    color: hsl(0, 0%, 40%)
-    letter-spacing: 0.07em
-    font-size: 1.4em
-    text-transform: uppercase
-    margin-bottom: 0
-    line-height: 1
+    font-size 1.1em
+    display inline-block
+    font-weight 300
+    color hsl(0, 0%, 40%)
+    letter-spacing 0.07em
+    font-size 1.4em
+    text-transform uppercase
+    margin 0
+    line-height 1
 
-  ul
-    display: inline-block
-    list-style: none
-    padding: 0
+  .alternatives
+    font-size 1.1em
+    display inline-block
+    list-style none
+    padding 0
 
     li
-      display: inline-block
-      padding-left: 10px
+      display inline-block
+      padding-left 10px
+
+    a
+      color inherit
+      text-decoration none
+      box-shadow inset 0 -.125em
 
 section
   /* Hide section titles when they're empty */
@@ -299,7 +312,7 @@ section
 
   h2
     font-size 3em
-    font-weight 100
+    font-weight 200
     letter-spacing .3em
     text-transform uppercase
     color #888
