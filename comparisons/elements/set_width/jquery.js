@@ -1,1 +1,1 @@
-$(el).height(val);
+$(el).width(val);
