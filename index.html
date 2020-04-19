@@ -2160,7 +2160,7 @@ map(array, function(value, index){
                 <pre><code>var parseHTML = function(str) {
   var el = document.createElement('div');
   el.innerHTML = str;
-  return el.children;
+  return el.childNodes;
 };
 
 parseHTML(htmlString);
@@ -2173,7 +2173,7 @@ parseHTML(htmlString);
                 <pre><code>var parseHTML = function(str) {
   var tmp = document.implementation.createHTMLDocument();
   tmp.body.innerHTML = str;
-  return tmp.body.children;
+  return tmp.body.childNodes;
 };
 
 parseHTML(htmlString);
