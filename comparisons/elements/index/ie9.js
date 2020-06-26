@@ -1,8 +1,8 @@
 function index(el) {
   if (!el) return -1;
   var i = 0;
-  do {
+  while (el = el.previousElementSibling) {
     i++;
-  } while (el = el.previousElementSibling);
+  }
   return i;
 }

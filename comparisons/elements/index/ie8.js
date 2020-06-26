@@ -1,9 +1,9 @@
 function index(el) {
   if (!el) return -1;
   var i = 0;
-  do {
-    if (el.nodeType === 1) i++;
+  while (el) {
     el = el.previousSibling;
-  } while (el);
+    if (el && el.nodeType === 1) i++;
+  }
   return i;
 }
