@@ -1,1 +1,3 @@
-el.parentNode.removeChild(el);
+if(el.parentNode != null) {
+  el.parentNode.removeChild(el);
+}
