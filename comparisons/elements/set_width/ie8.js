@@ -1,7 +1,7 @@
-function setHeight(el, val) {
+function setWidth(el, val) {
     if (typeof val === "function") val = val();
-    if (typeof val === "string") el.style.height = val;
-    else el.style.height = val + "px";
+    if (typeof val === "string") el.style.width = val;
+    else el.style.width = val + "px";
 }
 
-setHeight(el, val);
+setWidth(el, val);

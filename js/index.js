@@ -1,6 +1,10 @@
 (function() {
-  var filter, hide, setMinVersion, showFirst,
+  var filter, hide, numberWithCommas, setMinVersion, showFirst,
     __slice = [].slice;
+
+  numberWithCommas = function(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
 
   showFirst = function() {
     var el, els, found, _i, _len, _results;
@@ -108,8 +112,17 @@
   };
 
   document.addEventListener('DOMContentLoaded', function() {
-    var handleChange, search, slider;
+    var handleChange, search, slider, stars,
+      _this = this;
     slider = document.querySelector('.version-slider');
+    stars = document.querySelector('.github-stars');
+    fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery').then(function(r) {
+      return r.json();
+    }).then(function(data) {
+      return stars.textContent = numberWithCommas(data.watchers_count);
+    })["catch"](function() {
+      return stars.textContent = '10k+';
+    });
     (handleChange = function() {
       return setMinVersion(slider.value);
     })();

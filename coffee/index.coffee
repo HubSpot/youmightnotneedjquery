@@ -1,3 +1,6 @@
+numberWithCommas = (num) ->
+  num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
 showFirst = (els...) ->
   found = false
 
@@ -67,6 +70,12 @@ filter = (term) ->
 
 document.addEventListener 'DOMContentLoaded', ->
   slider = document.querySelector('.version-slider')
+
+  stars = document.querySelector('.github-stars')
+  fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery')
+    .then((r) => r.json())
+    .then((data) => stars.textContent = numberWithCommas data.watchers_count)
+    .catch(() => stars.textContent = '10k+')
 
   do handleChange = ->
     setMinVersion slider.value

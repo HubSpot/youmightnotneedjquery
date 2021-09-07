@@ -7,10 +7,12 @@
 }
 html {
   overflow-y: scroll;
+  line-height: 1.5;
 }
-a {
-  cursor: pointer;
-  color: #08c;
+@media (min-width: 1280px) {
+  html {
+    font-size: 17px;
+  }
 }
 ::-webkit-input-placeholder {
   color: rgba(0,0,0,0.5);
@@ -60,8 +62,8 @@ input[type="search"][required]:invalid::-webkit-search-cancel-button:after {
   filter: alpha(opacity=0);
 }
 body {
-  font-family: "proxima-nova", "Helvetica Neue", Helvetica, arial, sans-serif;
-  color: #444;
+  font-family: system-ui, sans-serif;
+  color: #000;
   margin: 0;
   -webkit-font-smoothing: antialiased;
 }
@@ -69,9 +71,9 @@ body {
   background: #fff;
 }
 header.page-header {
-  width: 44em;
+  width: 34em;
   max-width: 100%;
-  padding: 9em 0 2em;
+  padding: 4em 0 1em;
   margin: 0 auto;
   text-align: center;
 }
@@ -88,68 +90,76 @@ header.page-header {
   }
 }
 header.page-header .inner {
-  padding: 3em 2em 2.4em;
-  background: #414141;
-  max-height: 178px;
+  padding: 2em 2em;
+  border: 0.25em solid;
 }
 header.page-header .inner h1 {
   font-size: 2.5em;
-  font-weight: 200;
+  font-weight: 300;
   margin: 0;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
   line-height: 1;
 }
+@media (max-width: 540px) {
+  header.page-header .inner h1 {
+    font-weight: 500;
+  }
+}
 .explanation {
-  width: 40em;
+  width: 36em;
   max-width: 100%;
   padding: 0 1em;
   margin: auto;
-  text-align: justify;
 }
-.explanation .inner {
-  font-size: 1.1em;
+.explanation a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-box-shadow: inset 0 -0.125em;
+  box-shadow: inset 0 -0.125em;
 }
 .share-buttons {
-  zoom: 1;
-  width: 54em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  width: 20em;
   max-width: 100%;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   margin: 3em auto;
   padding: 0 1em;
 }
-.share-buttons:before,
-.share-buttons:after {
-  content: "";
-  display: table;
+.share-buttons .share-button-github {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  color: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
 }
-.share-buttons:after {
-  clear: both;
+.share-buttons .share-button-github > span {
+  border: 1px solid #ccc;
+  padding: 0.5em 0.8em;
 }
-.share-buttons .twitter-share-button {
-  float: left;
+.share-buttons .share-button-github > span:first-child {
+  margin-right: -1px;
+  background: #eee;
 }
-.share-buttons .github-stars-button {
-  float: right;
+.share-buttons .share-button-github > span.github-stars {
+  text-align: center;
+  min-width: 4.7em;
 }
-.share-buttons .share-button {
-  width: 48%;
-}
-@media (max-width: 840px) {
-  .share-buttons .share-button {
-    width: auto;
-  }
-  .share-buttons .share-button.twitter-share-button {
-    margin-bottom: 1em;
-  }
-  .share-buttons .share-button.twitter-share-button,
-  .share-buttons .share-button.github-stars-button {
-    float: none;
-  }
-}
-.share-buttons .share-button iframe {
-  width: 100%;
-  height: 2.45em;
+.share-buttons .share-button-github > span.github-stars:empty::after {
+  content: "···";
 }
 @media (min-width: 768px) {
   .browser {
@@ -177,9 +187,12 @@ html.old-ie .old-ie-message {
 }
 .comparisons.empty .empty-message {
   display: block;
-  padding: 1em 0;
+  background: #eee;
+  display: block;
+  padding: 2em 0;
   font-size: 1.5em;
   text-align: center;
+  margin-top: 2em;
 }
 .comparison {
   zoom: 1;
@@ -196,20 +209,30 @@ html.old-ie .old-ie-message {
   text-align: center;
   font-size: 2em;
   font-weight: normal;
+  margin-top: 1.5em;
+  margin-bottom: 0;
 }
 .comparison h3 a {
   position: relative;
   color: inherit;
   text-decoration: none;
 }
-.comparison h3 a:hover:before {
+.comparison h3 a:before {
   content: '§';
   position: absolute;
   right: 100%;
   padding-right: 0.3em;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.comparison h3 a:hover:before {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
 }
 .comparison h4 {
-  font-weight: 200;
+  font-weight: 300;
   color: #666;
   letter-spacing: 0.07em;
   font-size: 1.4em;
@@ -237,8 +260,7 @@ header.search input[type="search"] {
   border: 0;
   font-family: inherit;
   font-size: 1.5em;
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font-weight: 400;
   padding-left: 0.52em;
   margin: 0;
   color: inherit;
@@ -274,7 +296,6 @@ header.search .field {
 header.search .field label {
   padding-right: 10em;
   font-size: 1.1em;
-  line-height: 1.2em;
   padding-top: 0em;
   padding-bottom: 3em;
   display: block;
@@ -291,26 +312,34 @@ header.search .field .slider {
 }
 .alternatives-block {
   text-align: center;
+  margin-top: -0.25em;
 }
 .alternatives-block h4 {
   font-size: 1.1em;
   display: inline-block;
-  font-weight: 200;
+  font-weight: 300;
   color: #666;
   letter-spacing: 0.07em;
   font-size: 1.4em;
   text-transform: uppercase;
-  margin-bottom: 0;
+  margin: 0;
   line-height: 1;
 }
-.alternatives-block ul {
+.alternatives-block .alternatives {
+  font-size: 1.1em;
   display: inline-block;
   list-style: none;
   padding: 0;
 }
-.alternatives-block ul li {
+.alternatives-block .alternatives li {
   display: inline-block;
   padding-left: 10px;
+}
+.alternatives-block .alternatives a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-box-shadow: inset 0 -0.125em;
+  box-shadow: inset 0 -0.125em;
 }
 section {
 /* Hide section titles when they're empty */
@@ -338,7 +367,7 @@ section .comparison {
 }
 section h2 {
   font-size: 3em;
-  font-weight: 100;
+  font-weight: 200;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #888;
