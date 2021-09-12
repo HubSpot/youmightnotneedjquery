@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:
+      - dev
+      - upgrade
+
+steps:
+  - uses: actions/checkout@v2
+  - uses: actions/setup-node@v2
+    with:
+      node-version: "14"
+      cache: "npm"
+  - run: npm install
+  - run: gulp
+  - run: ls
