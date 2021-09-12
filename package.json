@@ -2,6 +2,9 @@
   "name": "youmightnotneedjquery",
   "version": "0.1.0",
   "description": "You might not need jQuery",
+  "scripts": {
+    "start": "gulp default"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/HubSpot/youmightnotneedjquery.git"
