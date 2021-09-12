@@ -1,2 +1,2 @@
 qwery: https://github.com/ded/qwery
-sizzle: http://sizzlejs.com/
+sizzle: https://sizzlejs.com/
