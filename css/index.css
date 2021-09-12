@@ -1,0 +1,413 @@
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  overflow-y: scroll;
+  line-height: 1.5;
+}
+@media (min-width: 1280px) {
+  html {
+    font-size: 17px;
+  }
+}
+::-webkit-input-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+:-moz-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+::-moz-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+:-ms-input-placeholder {
+  color: rgba(0,0,0,0.5);
+}
+input[type="search"][required] {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  position: relative;
+  padding: 0.1rem 1.1rem 0.1rem 0.25rem;
+}
+input[type="search"][required]::-ms-clear {
+  display: none;
+}
+input[type="search"][required]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+input[type="search"][required]::-webkit-search-cancel-button:after {
+  font-family: Arial, sans-serif;
+  content: "\00D7";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.85rem;
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+input[type="search"][required]:valid::-webkit-search-cancel-button:after {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+input[type="search"][required]:invalid::-webkit-search-cancel-button:after {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+body {
+  font-family: system-ui, sans-serif;
+  color: #000;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  background: #fff;
+}
+header.page-header {
+  width: 34em;
+  max-width: 100%;
+  padding: 4em 0 1em;
+  margin: 0 auto;
+  text-align: center;
+}
+@media (max-width: 840px) {
+  header.page-header {
+    font-size: 12px;
+  }
+}
+@media (max-width: 540px) {
+  header.page-header {
+    font-size: 8px;
+    padding-top: 0;
+    width: 100%;
+  }
+}
+header.page-header .inner {
+  padding: 2em 2em;
+  border: 0.25em solid;
+}
+header.page-header .inner h1 {
+  font-size: 2.5em;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1;
+}
+@media (max-width: 540px) {
+  header.page-header .inner h1 {
+    font-weight: 500;
+  }
+}
+.explanation {
+  width: 36em;
+  max-width: 100%;
+  padding: 0 1em;
+  margin: auto;
+}
+.explanation a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-box-shadow: inset 0 -0.125em;
+  box-shadow: inset 0 -0.125em;
+}
+.share-buttons {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  width: 20em;
+  max-width: 100%;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin: 3em auto;
+  padding: 0 1em;
+}
+.share-buttons .share-button-github {
+  display: -webkit-inline-box;
+  display: -moz-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-box;
+  display: inline-flex;
+  color: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+}
+.share-buttons .share-button-github > span {
+  border: 1px solid #ccc;
+  padding: 0.5em 0.8em;
+}
+.share-buttons .share-button-github > span:first-child {
+  margin-right: -1px;
+  background: #eee;
+}
+.share-buttons .share-button-github > span.github-stars {
+  text-align: center;
+  min-width: 4.7em;
+}
+.share-buttons .share-button-github > span.github-stars:empty::after {
+  content: "···";
+}
+@media (min-width: 768px) {
+  .browser {
+    float: right;
+    clear: right;
+    width: 49%;
+  }
+  .browser.jquery {
+    float: left;
+    clear: left;
+    margin-right: 2%;
+  }
+}
+.old-ie-message {
+  display: none;
+}
+html.old-ie .old-ie-message {
+  display: block;
+  background-color: #ffaeae;
+  padding: 10px;
+  color: #fff;
+}
+.empty-message {
+  display: none;
+}
+.comparisons.empty .empty-message {
+  display: block;
+  background: #eee;
+  display: block;
+  padding: 2em 0;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 2em;
+}
+.comparison {
+  zoom: 1;
+}
+.comparison:before,
+.comparison:after {
+  content: "";
+  display: table;
+}
+.comparison:after {
+  clear: both;
+}
+.comparison h3 {
+  text-align: center;
+  font-size: 2em;
+  font-weight: normal;
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+.comparison h3 a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+.comparison h3 a:before {
+  content: '§';
+  position: absolute;
+  right: 100%;
+  padding-right: 0.3em;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.comparison h3 a:hover:before {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.comparison h4 {
+  font-weight: 300;
+  color: #666;
+  letter-spacing: 0.07em;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 1;
+  display: inline-block;
+}
+header.search {
+  zoom: 1;
+  max-width: 40em;
+  margin: 2em auto 0;
+  padding: 0 1em;
+}
+header.search:before,
+header.search:after {
+  content: "";
+  display: table;
+}
+header.search:after {
+  clear: both;
+}
+header.search input[type="search"] {
+  height: 3em;
+  border: 0;
+  font-family: inherit;
+  font-size: 1.5em;
+  font-weight: 400;
+  padding-left: 0.52em;
+  margin: 0;
+  color: inherit;
+  width: 50%;
+  background: rgba(0,0,0,0.1);
+  margin-bottom: 4px;
+  width: 100%;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+header.search input[type="search"]::-webkit-search-cancel-button:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 1em;
+  font-size: 1em;
+  line-height: 1;
+  font-weight: normal;
+  padding-right: 1em;
+  cursor: pointer;
+}
+header.search input[type="search"]:focus {
+  background: rgba(0,0,0,0.05);
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: none;
+}
+header.search .field {
+  position: relative;
+}
+header.search .field label {
+  padding-right: 10em;
+  font-size: 1.1em;
+  padding-top: 0em;
+  padding-bottom: 3em;
+  display: block;
+}
+header.search .field .slider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10em;
+  height: 2em;
+}
+.hidden {
+  display: none;
+}
+.alternatives-block {
+  text-align: center;
+  margin-top: -0.25em;
+}
+.alternatives-block h4 {
+  font-size: 1.1em;
+  display: inline-block;
+  font-weight: 300;
+  color: #666;
+  letter-spacing: 0.07em;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
+.alternatives-block .alternatives {
+  font-size: 1.1em;
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+}
+.alternatives-block .alternatives li {
+  display: inline-block;
+  padding-left: 10px;
+}
+.alternatives-block .alternatives a {
+  color: inherit;
+  text-decoration: none;
+  -webkit-box-shadow: inset 0 -0.125em;
+  box-shadow: inset 0 -0.125em;
+}
+section {
+/* Hide section titles when they're empty */
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 5.5em 0;
+}
+section.odd {
+  background: #eee;
+}
+section.odd :not(pre) > code[class*="language-"],
+section.odd pre[class*="language-"] {
+  background: #fff;
+}
+section .inner {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+section .comparison {
+  padding-top: 40px;
+  padding-bottom: -40px;
+}
+section h2 {
+  font-size: 3em;
+  font-weight: 200;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #888;
+  text-align: center;
+  margin: 0;
+}
+input[type='range'] {
+  -webkit-appearance: none !important;
+  margin: 0;
+  background-color: #f0f0f0;
+  height: 30px;
+  width: 100%;
+  padding: 4px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #fcfcfc;
+}
+.range-label {
+  float: left;
+  width: 33%;
+  text-align: center;
+  padding: 0 4px;
+}
+.range-label:first-of-type {
+  text-align: left;
+}
+.range-label:last-of-type {
+  text-align: right;
+}
+footer {
+  margin: 3em auto;
+  font-size: 1.4em;
+  text-align: center;
+}
+footer a {
+  color: inherit;
+}
