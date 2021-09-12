@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "You might not need jQuery",
   "scripts": {
-    "start": "gulp default"
+    "start": "gulp default",
+    "build": "gulp default"
   },
   "repository": {
     "type": "git",

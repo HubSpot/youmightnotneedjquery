@@ -20,6 +20,6 @@ jobs:
         run: npm install
 
       - name: Build application
-        run: gulp
+        run: npm run build
 
       - run: ls
