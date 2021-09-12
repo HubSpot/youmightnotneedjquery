@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - dev
-      - upgrade
+      - upgrades
 
 steps:
   - uses: actions/checkout@v2
