@@ -9,7 +9,7 @@ head
   title Você não depende do jQuery
 
   meta(name='description', content='Você não depende do jQuery by Zack Bloom (@zackbloom), Adam Schwartz (@adamfschwartz), and the HubSpot dev team (@HubSpotDev).')
-  link(rel='icon', href='http://static.hubspot.com/favicon.ico')
+  link(rel='icon', href='https://static.hubspot.com/favicon.ico')
 
   link(rel='stylesheet', href='/css/prism.css')
   link(rel='stylesheet', href='/css/index.css')
@@ -45,12 +45,9 @@ body
           | está nos protegendo de um grande demônio da incompatibilidade, quando na verdade, apartir do IE8 os navegadores se viraram muito bem sozinhos.
 
     .share-buttons
-
-      .share-button.twitter-share-button
-        iframe(src='http://hubstar.io/twitter/spin?via=HubSpotDev&hashtags=YMNNJQ&text=Voc%C3%AA%20n%C3%A3o%20depende%20do%20jQuery&url=http://YouMightNotNeedjQuery.com/br/&name=%22Voc%C3%AA%20n%C3%A3o%20depende%20do%20jQuery%22', frameborder=0, scrolling=0)
-
-      .share-button.github-stars-button
-        iframe(src='http://hubstar.io/github/spin/HubSpot/YouMightNotNeedjQuery', frameborder=0, scrolling=0)
+      a.share-button-github(href="https://github.com/HubSpot/YouMightNotNeedjQuery")
+        span ★ Estrela no GitHub
+        span.github-stars
 
     header.search
 
@@ -107,7 +104,7 @@ body
           else
             var peeps = ['zackbloom', 'adamfschwartz']
 
-          document.write('<p>Desenvolvido por <a href="http://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> e <a href="http://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> em <a href="http://dev.hubspot.com">HubSpot</a>. <small><br>Tradução por <a href="http://twitter.com/fabricionaweb">@fabricionaweb</a></small></p>');
+          document.write('<p>Desenvolvido por <a href="https://twitter.com/'+ peeps[0] + '">@' + peeps[0] + '</a> e <a href="https://twitter.com/' + peeps[1] + '">@' + peeps[1] + '</a> em <a href="https://dev.hubspot.com">HubSpot</a>. <small><br>Tradução por <a href="https://twitter.com/fabricionaweb">@fabricionaweb</a></small></p>');
         })()
 
   script.
@@ -138,6 +135,6 @@ body
       if (button)
         button.setAttribute('data-related', recommends.join(','));
     })();
-  script(type='text/javascript', src='http://platform.twitter.com/widgets.js')
+  script(type='text/javascript', src='https://platform.twitter.com/widgets.js')
 
   div(style='-webkit-transform: translateZ(0);')
