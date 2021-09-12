@@ -34,6 +34,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git commit -m "Deployed build artifacts (`date '+%F %T %Z'`)" || true
+          git restore .
 
       - name: Push build artifacts to gh-pages branch
         run: |
