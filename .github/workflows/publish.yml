@@ -24,7 +24,10 @@ jobs:
 
       - name: Stage build artifacts
         run: |
-          git add -f .
+          git add -f index.html
+          git add -f css/
+          git add -f js/
+          git add -f br/
           git status
 
       - name: Make commit message
