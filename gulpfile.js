@@ -1,2 +1,3 @@
-require('coffee-script')
-require('./gulpfile.coffee')
+require("coffee-script");
+process.chdir("./src");
+require("./src/gulpfile.coffee");

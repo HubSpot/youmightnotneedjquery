@@ -28,12 +28,12 @@ fullLanguage = (ext) ->
 gulp.task 'coffee', ->
   gulp.src('./coffee/*')
     .pipe(coffee())
-    .pipe(gulp.dest('./js/'))
+    .pipe(gulp.dest('../js/'))
 
 gulp.task 'stylus', ->
   gulp.src('./styl/index.styl')
     .pipe(stylus({use: ['nib']}))
-    .pipe(gulp.dest('./css/'))
+    .pipe(gulp.dest('../css/'))
 
 gulp.task 'jade', ->
   readTree (err, comparisons) ->
@@ -50,7 +50,7 @@ gulp.task 'jade', ->
 
     gulp.src('./jade/**/index.jade')
       .pipe(jade({pretty: true, data: {comparisons: comps, titleCase, getNamePart, fullLanguage}}))
-      .pipe(gulp.dest('./'))
+      .pipe(gulp.dest('../'))
 
 gulp.task 'default', ->
 
