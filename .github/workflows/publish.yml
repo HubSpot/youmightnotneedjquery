@@ -36,4 +36,4 @@ jobs:
           git restore .
 
       - name: Push build artifacts to gh-pages branch
-        run: git push origin gh-pages --force
+        run: git push origin HEAD:gh-pages --force
