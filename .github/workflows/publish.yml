@@ -36,4 +36,4 @@ jobs:
           git commit -m "Deployed build artifacts (`date '+%F %T %Z'`)" || true
 
       - name: Push build artifacts to gh-pages branch
-        run: git push --force --set-upstream origin gh-pages
+        run: git push origin HEAD:gh-pages
