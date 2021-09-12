@@ -1,2 +1,10 @@
 node_modules
 .DS_Store
+
+# Generated files
+index.html
+css/*
+js/*
+
+# Keep all prism files
+!prism.*
