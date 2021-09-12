@@ -1,8 +1,15 @@
-var siblings = Array.prototype.slice.call(el.parentNode.children);
+var siblings = function (el) {
+  if (el.parentNode === null) return [];
 
-for (var i = siblings.length; i--;) {
-  if (siblings[i] === el) {
-    siblings.splice(i, 1);
-    break;
+  var siblingElements = Array.prototype.slice.call(el.parentNode.children);
+
+  for (var i = siblingElements.length; i--; ) {
+    if (siblingElements[i] === el) {
+      return siblingElements.splice(i, 1);
+    }
   }
-}
+
+  return siblingElements;
+};
+
+siblings(el);
