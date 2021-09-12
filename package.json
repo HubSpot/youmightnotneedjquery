@@ -4,7 +4,7 @@
   "description": "You might not need jQuery",
   "scripts": {
     "start": "gulp default",
-    "build": "gulp default"
+    "build": "gulp serve"
   },
   "repository": {
     "type": "git",

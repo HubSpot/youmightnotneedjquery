@@ -52,10 +52,10 @@ gulp.task 'jade', ->
       .pipe(jade({pretty: true, data: {comparisons: comps, titleCase, getNamePart, fullLanguage}}))
       .pipe(gulp.dest('../'))
 
-gulp.task 'default', ->
-
+gulp.task 'serve', ->
   gulp.run 'coffee', 'stylus', 'jade'
 
+gulp.task 'watch', ->
   gulp.watch './coffee/*', ->
     gulp.run 'coffee'
 
@@ -64,3 +64,5 @@ gulp.task 'default', ->
 
   gulp.watch ['./jade/**/*.jade', './comparisons/**/*'], ->
     gulp.run 'jade'
+
+gulp.task('default', ['serve', 'watch']);
