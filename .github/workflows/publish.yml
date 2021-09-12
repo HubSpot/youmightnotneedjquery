@@ -22,4 +22,15 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - run: ls
+      - name: Stage build artifacts
+        run: |
+          git add -f .
+          git status
+
+      - name: Make commit message
+        run: |
+          git config --global user.name "GitHub Actions"
+          git commit -m "Deployed build artifacts (`date '+%F %T %Z'`)" || true
+
+      - name: Push build artifacts to gh-pages branch
+        run: git push --force --set-upstream origin gh-pages
