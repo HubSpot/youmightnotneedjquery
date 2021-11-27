@@ -6,7 +6,7 @@ function removeClass(el, className) {
     } else {
       el.className = el.className
         .replace(new RegExp('(?:^|\\s)' + classes[i] + '(?:\\s|$)'), ' ')
-        .trim();
+        .replace(new RegExp(/^\s+|\s+$/g), '');
     }
   }
 }
