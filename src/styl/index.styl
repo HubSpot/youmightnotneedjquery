@@ -238,21 +238,18 @@ header.search
       outline none
 
   .field
-    position relative
+    display flex
+    margin-bottom 1.5em
 
     label
-      padding-right 10em
+      padding-right 1em
       font-size 1.1em
-      padding-top 0em
-      padding-bottom 3em
       display block
+      flex-grow 1
 
     .slider
-      position absolute
-      top 0
-      right 0
       width 10em
-      height 2em
+      flex-shrink 0
 
 .hidden
   display none
@@ -326,7 +323,7 @@ input[type='range']
   background-color #F0F0F0
   height 30px
   width 100%
-  padding 4px
+  padding 0 14px
 
 input[type='range']::-webkit-slider-thumb
   -webkit-appearance none !important
@@ -337,17 +334,14 @@ input[type='range']::-webkit-slider-thumb
   border-radius 5px
   background-color #fcfcfc
 
+.rule {
+  display flex
+}
+
 .range-label
-  float left
   width 33%
   text-align center
   padding 0 4px
-
-.range-label:first-of-type
-  text-align left
-
-.range-label:last-of-type
-  text-align right
 
 footer
   margin 3em auto

@@ -60,12 +60,13 @@ body
         label(for="version") What's the oldest version of IE you need to support?
 
         .slider
-          input(name="version", id="version", type="range", min="8", max="10", value="10").version-slider
+          input(name="version", id="version", type="range", min="8", max="11", value="11").version-slider
 
           .rule
             .range-label 8
             .range-label 9
             .range-label 10
+            .range-label 11
 
     .comparisons
 
@@ -91,7 +92,7 @@ body
                 if co.alternatives
                   +alternatives(co.alternatives.txt)
 
-                for browser in ['jquery', 'ie8', 'ie9', 'ie10']
+                for browser in ['jquery', 'ie8', 'ie9', 'ie10', 'ie11']
                   if co[browser]
                     .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 

@@ -15,7 +15,7 @@ hide = (els...) ->
   for el in els when el
     el.style.display = 'none'
 
-setMinVersion = (version=10) ->
+setMinVersion = (version=11) ->
   version = parseInt version
 
   for section in document.querySelectorAll('.comparison')
@@ -34,6 +34,9 @@ setMinVersion = (version=10) ->
         hide versions['ie10']
       when 10
         showFirst versions['ie10'], versions['ie9'], versions['ie8']
+        hide versions['ie11']
+      when 11
+        showFirst versions['ie11'], versions['ie10'], versions['ie9'], versions['ie8']
 
 filter = (term) ->
   visibleIndex = 0
