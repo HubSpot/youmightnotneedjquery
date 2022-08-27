@@ -82,7 +82,7 @@ function filter(term) {
     const section = ref[i]
     let empty = true
     const ref1 = section.querySelectorAll('.comparison')
-    for (const j = 0, len1 = ref1.length; j < len1; j++) {
+    for (let j = 0, len1 = ref1.length; j < len1; j++) {
       const comp = ref1[j]
       if (
         !term ||
