@@ -16,9 +16,9 @@
     "url": "https://github.com/HubSpot/youmightnotneedjquery/issues"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.3",
+    "coffeescript": "~2.7.0",
     "gulp": "~3.3.0",
-    "gulp-coffee": "~1.2.5",
+    "gulp-coffee": "~3.0.3",
     "gulp-jade": "~0.3.0",
     "gulp-stylus": "0.0.7",
     "gulp-util": "~2.2.9",
