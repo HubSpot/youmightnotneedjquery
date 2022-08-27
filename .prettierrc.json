@@ -1,0 +1,4 @@
+{
+  "bracketSpacing": false,
+  "respectExplicit": ["callParens", "objectBraces"]
+}

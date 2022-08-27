@@ -15,7 +15,7 @@ hide = (els...) ->
   for el in els when el
     el.style.display = 'none'
 
-setMinVersion = (version=11) ->
+setMinVersion = (version = 11) ->
   version = parseInt version
 
   for section in document.querySelectorAll('.comparison')
@@ -36,7 +36,12 @@ setMinVersion = (version=11) ->
         showFirst versions['ie10'], versions['ie9'], versions['ie8']
         hide versions['ie11']
       when 11
-        showFirst versions['ie11'], versions['ie10'], versions['ie9'], versions['ie8']
+        showFirst(
+          versions['ie11']
+          versions['ie10']
+          versions['ie9']
+          versions['ie8']
+        )
 
 filter = (term) ->
   visibleIndex = 0
@@ -47,7 +52,10 @@ filter = (term) ->
     empty = true
 
     for comp in section.querySelectorAll('.comparison')
-      if not term or comp.textContent.toLowerCase().indexOf(term.toLowerCase()) isnt -1
+      if (
+        not term or
+        comp.textContent.toLowerCase().indexOf(term.toLowerCase()) isnt -1
+      )
         empty = false
         comp.classList.remove 'hidden'
       else
@@ -78,7 +86,7 @@ document.addEventListener 'DOMContentLoaded', ->
   fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery')
     .then((r) => r.json())
     .then((data) => stars.textContent = numberWithCommas data.watchers_count)
-    .catch(() => stars.textContent = '10k+')
+    .catch(=> stars.textContent = '10k+')
 
   do handleChange = ->
     setMinVersion slider.value

@@ -8,10 +8,13 @@ readTree = require('./readTree')
 CAPS_WORDS = ['JSON', 'HTML', 'AJAX']
 titleCase = (str) ->
   str = str.replace /(^|\b)([a-z])([a-z]+)/g, (match, space, first, rest) ->
-    "#{ space }#{ first.toUpperCase() }#{ rest }"
+    "#{space}#{first.toUpperCase()}#{rest}"
 
-  str = str.replace new RegExp("(?:^|\b)(#{ CAPS_WORDS.join('|') })(?:$|\b)", 'ig'), (match, word) ->
-    word.toUpperCase()
+  str = str.replace(
+    new RegExp("(?:^|\b)(#{CAPS_WORDS.join('|')})(?:$|\b)", 'ig')
+    (match, word) ->
+      word.toUpperCase()
+  )
 
   str
 
@@ -26,19 +29,21 @@ fullLanguage = (ext) ->
   LANGS[ext]
 
 gulp.task 'coffee', ->
-  gulp.src('./coffee/*')
+  gulp
+    .src('./coffee/*')
     .pipe(coffee())
     .pipe(gulp.dest('../js/'))
 
 gulp.task 'stylus', ->
-  gulp.src('./styl/index.styl')
+  gulp
+    .src('./styl/index.styl')
     .pipe(stylus({use: ['nib']}))
     .pipe(gulp.dest('../css/'))
 
 gulp.task 'jade', ->
   readTree (err, comparisons) ->
     if err
-      console.error "Error loading comparisons tree", err
+      console.error 'Error loading comparisons tree', err
       return
 
     comps = []
@@ -48,8 +53,14 @@ gulp.task 'jade', ->
     comps.sort (a, b) ->
       a.title.localeCompare b.title
 
-    gulp.src('./jade/**/index.jade')
-      .pipe(jade({pretty: true, data: {comparisons: comps, titleCase, getNamePart, fullLanguage}}))
+    gulp
+      .src('./jade/**/index.jade')
+      .pipe(
+        jade({
+          pretty: true
+          data: {comparisons: comps, titleCase, getNamePart, fullLanguage}
+        })
+      )
       .pipe(gulp.dest('../'))
 
 gulp.task 'serve', ->
@@ -65,4 +76,4 @@ gulp.task 'watch', ->
   gulp.watch ['./jade/**/*.jade', './comparisons/**/*'], ->
     gulp.run 'jade'
 
-gulp.task('default', ['serve', 'watch']);
+gulp.task('default', ['serve', 'watch'])

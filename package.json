@@ -23,6 +23,8 @@
     "gulp-stylus": "0.0.7",
     "gulp-util": "~2.2.9",
     "nib": "~1.0.2",
+    "prettier": "github:helixbass/prettier#prettier-v2.1.0-dev.100-gitpkg",
+    "prettier-plugin-coffeescript": "^0.1.5",
     "readfiletree": "0.0.1"
   }
 }
