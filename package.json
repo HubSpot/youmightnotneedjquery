@@ -19,6 +19,7 @@
     "gulp": "~3.3.0",
     "gulp-jade": "~0.3.0",
     "gulp-stylus": "0.0.7",
+    "prettier": "^2.7.1",
     "readfiletree": "1.0.0"
   }
 }
