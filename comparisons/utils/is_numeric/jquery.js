@@ -1,0 +1,1 @@
+$.isNumeric(val);
