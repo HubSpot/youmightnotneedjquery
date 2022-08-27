@@ -16,13 +16,13 @@
     "url": "https://github.com/HubSpot/youmightnotneedjquery/issues"
   },
   "devDependencies": {
-    "readfiletree": "0.0.1",
-    "gulp-util": "~2.2.9",
+    "coffee-script": "~1.6.3",
     "gulp": "~3.3.0",
     "gulp-coffee": "~1.2.5",
     "gulp-jade": "~0.3.0",
     "gulp-stylus": "0.0.7",
-    "coffee-script": "~1.6.3",
-    "nib": "~1.0.2"
+    "gulp-util": "~2.2.9",
+    "nib": "~1.0.2",
+    "readfiletree": "0.0.1"
   }
 }
