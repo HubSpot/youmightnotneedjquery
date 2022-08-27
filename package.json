@@ -21,6 +21,6 @@
     "gulp-coffee": "~3.0.3",
     "gulp-jade": "~0.3.0",
     "gulp-stylus": "0.0.7",
-    "readfiletree": "0.0.1"
+    "readfiletree": "1.0.0"
   }
 }
