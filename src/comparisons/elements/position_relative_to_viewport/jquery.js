@@ -1,4 +1,4 @@
-var offset = el.offset();
+var offset = $(el).offset();
 
 {
   top: offset.top - document.body.scrollTop,
