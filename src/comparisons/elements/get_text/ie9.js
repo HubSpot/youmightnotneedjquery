@@ -1,1 +1,1 @@
-el.textContent
+el.textContent;

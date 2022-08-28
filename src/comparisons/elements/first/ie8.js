@@ -1,1 +1,1 @@
-document.querySelectorAll(el)[0]
+document.querySelectorAll(el)[0];

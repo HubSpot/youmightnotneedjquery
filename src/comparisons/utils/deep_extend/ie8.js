@@ -8,7 +8,7 @@ var deepExtend = function (out) {
 
     for (var key in obj) {
       if (obj.hasOwnProperty(key)) {
-        if (typeof obj[key] === "object" && obj[key] !== null) {
+        if (typeof obj[key] === 'object' && obj[key] !== null) {
           if (obj[key] instanceof Array) out[key] = obj[key].slice(0);
           else out[key] = deepExtend(out[key], obj[key]);
         } else out[key] = obj[key];

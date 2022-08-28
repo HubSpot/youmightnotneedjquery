@@ -1,1 +1,1 @@
-el.getBoundingClientRect()
+el.getBoundingClientRect();

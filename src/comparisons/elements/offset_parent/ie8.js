@@ -1,1 +1,1 @@
-el.offsetParent || el
+el.offsetParent || el;

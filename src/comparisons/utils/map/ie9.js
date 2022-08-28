@@ -1,3 +1,1 @@
-array.map(function(value, index){
-
-});
+array.map(function (value, index) {});

@@ -1,2 +1,2 @@
 var els = document.querySelectorAll(el);
-els[els.length - 1]
+els[els.length - 1];
