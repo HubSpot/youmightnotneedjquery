@@ -125,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return setMinVersion(slider.value);
   }
   slider.addEventListener('change', handleChange);
+  handleChange();
   const search = document.querySelector('input[type="search"]');
   return search.addEventListener('input', () => filter(search.value));
 });
