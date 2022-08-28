@@ -1,62 +1,62 @@
 function numberWithCommas(num) {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 function showFirst(...els) {
-  var el, found, i, len, results
-  found = false
-  results = []
+  var el, found, i, len, results;
+  found = false;
+  results = [];
   for (i = 0, len = els.length; i < len; i++) {
-    el = els[i]
+    el = els[i];
     if (el && !found) {
-      found = true
-      results.push((el.style.display = 'block'))
+      found = true;
+      results.push((el.style.display = 'block'));
     } else if (el) {
-      results.push((el.style.display = 'none'))
+      results.push((el.style.display = 'none'));
     } else {
-      results.push(void 0)
+      results.push(void 0);
     }
   }
-  return results
+  return results;
 }
 
 function hide(...els) {
-  var el, i, len
-  const results = []
+  var el, i, len;
+  const results = [];
   for (i = 0, len = els.length; i < len; i++) {
-    el = els[i]
+    el = els[i];
     if (el) {
-      results.push((el.style.display = 'none'))
+      results.push((el.style.display = 'none'));
     }
   }
-  return results
+  return results;
 }
 
 function setMinVersion(version = 11) {
-  version = parseInt(version)
-  const ref = document.querySelectorAll('.comparison')
-  const results = []
+  version = parseInt(version);
+  const ref = document.querySelectorAll('.comparison');
+  const results = [];
   for (let i = 0, len = ref.length; i < len; i++) {
-    const section = ref[i]
-    const blocks = section.querySelectorAll('.browser')
-    const versions = {}
+    const section = ref[i];
+    const blocks = section.querySelectorAll('.browser');
+    const versions = {};
     for (let j = 0, len1 = blocks.length; j < len1; j++) {
-      const block = blocks[j]
-      versions[block.getAttribute('data-browser')] = block
+      const block = blocks[j];
+      versions[block.getAttribute('data-browser')] = block;
     }
     switch (version) {
       case 8:
-        showFirst(versions['ie8'])
-        results.push(hide(versions['ie9'], versions['ie10']))
-        break
+        showFirst(versions['ie8']);
+        results.push(hide(versions['ie9'], versions['ie10']));
+        break;
       case 9:
-        showFirst(versions['ie9'], versions['ie8'])
-        results.push(hide(versions['ie10']))
-        break
+        showFirst(versions['ie9'], versions['ie8']);
+        results.push(hide(versions['ie10']));
+        break;
       case 10:
-        showFirst(versions['ie10'], versions['ie9'], versions['ie8'])
-        results.push(hide(versions['ie11']))
-        break
+        showFirst(versions['ie10'], versions['ie9'], versions['ie8']);
+        results.push(hide(versions['ie11']));
+        break;
       case 11:
         results.push(
           showFirst(
@@ -65,66 +65,66 @@ function setMinVersion(version = 11) {
             versions['ie9'],
             versions['ie8']
           )
-        )
-        break
+        );
+        break;
       default:
-        results.push(void 0)
+        results.push(void 0);
     }
   }
-  return results
+  return results;
 }
 
 function filter(term) {
-  let visibleIndex = 0
-  let allEmpty = true
-  const ref = document.querySelectorAll('section')
+  let visibleIndex = 0;
+  let allEmpty = true;
+  const ref = document.querySelectorAll('section');
   for (const i = 0, len = ref.length; i < len; i++) {
-    const section = ref[i]
-    let empty = true
-    const ref1 = section.querySelectorAll('.comparison')
+    const section = ref[i];
+    let empty = true;
+    const ref1 = section.querySelectorAll('.comparison');
     for (let j = 0, len1 = ref1.length; j < len1; j++) {
-      const comp = ref1[j]
+      const comp = ref1[j];
       if (
         !term ||
         comp.textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1
       ) {
-        empty = false
-        comp.classList.remove('hidden')
+        empty = false;
+        comp.classList.remove('hidden');
       } else {
-        comp.classList.add('hidden')
+        comp.classList.add('hidden');
       }
     }
     if (empty) {
-      section.classList.add('hidden')
+      section.classList.add('hidden');
     } else {
-      allEmpty = false
-      section.classList.remove('hidden')
+      allEmpty = false;
+      section.classList.remove('hidden');
       if (++visibleIndex % 2) {
-        section.classList.add('odd')
+        section.classList.add('odd');
       } else {
-        section.classList.remove('odd')
+        section.classList.remove('odd');
       }
     }
   }
-  const comparisons = document.querySelector('.comparisons')
+  const comparisons = document.querySelector('.comparisons');
   if (allEmpty) {
-    return comparisons.classList.add('empty')
+    return comparisons.classList.add('empty');
   } else {
-    return comparisons.classList.remove('empty')
+    return comparisons.classList.remove('empty');
   }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  const slider = document.querySelector('.version-slider')
-  const stars = document.querySelector('.github-stars')
+  const slider = document.querySelector('.version-slider');
+  const stars = document.querySelector('.github-stars');
   fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery')
     .then((r) => r.json())
     .then((data) => (stars.textContent = numberWithCommas(data.watchers_count)))
-    .catch(() => (stars.textContent = '10k+'))
+    .catch(() => (stars.textContent = '10k+'));
   function handleChange() {
-    return setMinVersion(slider.value)
+    return setMinVersion(slider.value);
   }
-  slider.addEventListener('change', handleChange)
-  const search = document.querySelector('input[type="search"]')
-  return search.addEventListener('input', () => filter(search.value))
-})
+  slider.addEventListener('change', handleChange);
+  const search = document.querySelector('input[type="search"]');
+  return search.addEventListener('input', () => filter(search.value));
+});

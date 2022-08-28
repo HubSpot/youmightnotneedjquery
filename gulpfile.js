@@ -1,2 +1,2 @@
-process.chdir('./src')
-require('./src/gulpfile.js')
+process.chdir('./src');
+require('./src/gulpfile.js');
