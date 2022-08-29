@@ -2,8 +2,6 @@ const gulp = require('gulp');
 const stylus = require('gulp-stylus');
 const jade = require('gulp-jade');
 
-process.chdir('./src');
-
 const readTree = require('./src/readTree');
 
 const CAPS_WORDS = ['JSON', 'HTML', 'AJAX'];
@@ -34,13 +32,13 @@ function fullLanguage(ext) {
   return LANGS[ext];
 }
 
-gulp.task('js', () => gulp.src('./js/*').pipe(gulp.dest('../js/')));
+gulp.task('js', () => gulp.src('./src/js/*').pipe(gulp.dest('./js/')));
 
 gulp.task('stylus', () =>
   gulp
-    .src('./styl/index.styl')
+    .src('./src/styl/index.styl')
     .pipe(stylus({use: ['nib']}))
-    .pipe(gulp.dest('../css/'))
+    .pipe(gulp.dest('./css/'))
 );
 
 gulp.task('jade', () =>
@@ -57,23 +55,23 @@ gulp.task('jade', () =>
     comps.sort((a, b) => a.title.localeCompare(b.title));
 
     return gulp
-      .src('./jade/**/index.jade')
+      .src('./src/jade/**/index.jade')
       .pipe(
         jade({
           pretty: true,
           data: {comparisons: comps, titleCase, getNamePart, fullLanguage},
         })
       )
-      .pipe(gulp.dest('../'));
+      .pipe(gulp.dest('./'));
   })
 );
 
 gulp.task('serve', () => gulp.run('js', 'stylus', 'jade'));
 
 gulp.task('watch', () => {
-  gulp.watch('./js/*', () => gulp.run('js'));
-  gulp.watch('./styl/*', () => gulp.run('stylus'));
-  gulp.watch(['./jade/**/*.jade', './comparisons/**/*'], () =>
+  gulp.watch('./src/js/*', () => gulp.run('js'));
+  gulp.watch('./src/styl/*', () => gulp.run('stylus'));
+  gulp.watch(['./src/jade/**/*.jade', './src/comparisons/**/*'], () =>
     gulp.run('jade')
   );
 });

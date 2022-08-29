@@ -3,7 +3,7 @@ const fs = require('fs');
 const readFileTree = require('readfiletree');
 
 function get(cb) {
-  return readFileTree('comparisons/', (err, tree) => {
+  return readFileTree('src/comparisons/', (err, tree) => {
     if (err) {
       cb(err);
       return;
