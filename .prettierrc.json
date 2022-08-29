@@ -1,4 +1,4 @@
 {
-  "bracketSpacing": false,
-  "respectExplicit": ["callParens", "objectBraces"]
+  "singleQuote": true,
+  "bracketSpacing": false
 }
