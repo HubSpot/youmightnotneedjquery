@@ -1,3 +1,6 @@
+const VERSION_OPTIONS = [8, 9, 10, 11];
+const DEFAULT_VERSION = 11;
+
 function numberWithCommas(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -32,8 +35,10 @@ function hide(...els) {
   return results;
 }
 
-function setMinVersion(version = 11) {
+function setMinVersion(version = DEFAULT_VERSION) {
   version = parseInt(version);
+  setQueryString('ie' + version.toString())
+
   const ref = document.querySelectorAll('.comparison');
   const results = [];
   for (let i = 0, len = ref.length; i < len; i++) {
@@ -78,7 +83,7 @@ function filter(term) {
   let visibleIndex = 0;
   let allEmpty = true;
   const ref = document.querySelectorAll('section');
-  for (const i = 0, len = ref.length; i < len; i++) {
+  for (let i = 0, len = ref.length; i < len; i++) {
     const section = ref[i];
     let empty = true;
     const ref1 = section.querySelectorAll('.comparison');
@@ -116,11 +121,20 @@ function filter(term) {
 
 document.addEventListener('DOMContentLoaded', function () {
   const slider = document.querySelector('.version-slider');
+
+  const parsedSliderState = parseInt(getInitialSliderState()?.replace('ie', ''));
+  if (VERSION_OPTIONS.includes(parsedSliderState)) {
+    slider.value = parsedSliderState;
+  } else {
+    slider.value = DEFAULT_VERSION;
+  }
+
   const stars = document.querySelector('.github-stars');
   fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery')
     .then((r) => r.json())
     .then((data) => (stars.textContent = numberWithCommas(data.watchers_count)))
     .catch(() => (stars.textContent = '10k+'));
+
   function handleChange() {
     return setMinVersion(slider.value);
   }
