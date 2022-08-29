@@ -6,29 +6,26 @@ const readTree = require('./src/readTree');
 
 const CAPS_WORDS = ['JSON', 'HTML', 'AJAX'];
 function titleCase(str) {
-  str = str.replace(
-    /(^|\b)([a-z])([a-z]+)/g,
-    (match, space, first, rest) => `${space}${first.toUpperCase()}${rest}`
-  );
-
-  str = str.replace(
-    new RegExp(`(?:^|\b)(${CAPS_WORDS.join('|')})(?:$|\b)`, 'ig'),
-    (match, word) => word.toUpperCase()
-  );
-
-  return str;
+  return str
+    .replace(
+      /(^|\b)([a-z])([a-z]+)/g,
+      (match, space, first, rest) => `${space}${first.toUpperCase()}${rest}`
+    )
+    .replace(
+      new RegExp(`(?:^|\b)(${CAPS_WORDS.join('|')})(?:$|\b)`, 'ig'),
+      (match, word) => word.toUpperCase()
+    );
 }
 
 function getNamePart(str) {
   return str.split('.')[0];
 }
 
+const LANGS = {
+  js: 'javascript',
+  css: 'css',
+};
 function fullLanguage(ext) {
-  const LANGS = {
-    js: 'javascript',
-    css: 'css',
-  };
-
   return LANGS[ext];
 }
 
@@ -48,11 +45,9 @@ gulp.task('jade', () =>
       return;
     }
 
-    const comps = [];
-    for (const [title, comparison] of Object.entries(comparisons))
-      comps.push({title, comparison});
-
-    comps.sort((a, b) => a.title.localeCompare(b.title));
+    const comps = Object.entries(comparisons)
+      .map(([title, comparison]) => ({title, comparison}))
+      .sort((a, b) => a.title.localeCompare(b.title));
 
     return gulp
       .src('./src/jade/**/index.jade')

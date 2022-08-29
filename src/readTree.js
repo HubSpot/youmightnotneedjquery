@@ -1,9 +1,7 @@
-const fs = require('fs');
-
 const readFileTree = require('readfiletree');
 
 function get(cb) {
-  return readFileTree('src/comparisons/', (err, tree) => {
+  readFileTree('src/comparisons/', (err, tree) => {
     if (err) {
       cb(err);
       return;

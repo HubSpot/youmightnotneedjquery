@@ -2,6 +2,20 @@ function numberWithCommas(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+async function setStargazers() {
+  let number = '10k+';
+  try {
+    const response = await fetch(
+      'https://api.github.com/repos/hubspot/youmightnotneedjquery'
+    );
+    const data = await response.json();
+    number = numberWithCommas(data.stargazers_count);
+  } catch {}
+
+  const stars = document.querySelector('.github-stars');
+  stars.textContent = number;
+}
+
 function showFirst(...els) {
   let found = false;
 
@@ -10,9 +24,7 @@ function showFirst(...els) {
     if (el && !found) {
       found = true;
       el.style.display = 'block';
-    } else if (el) {
-      el.style.display = 'none';
-    }
+    } else if (el) el.style.display = 'none';
   }
 }
 
@@ -26,9 +38,12 @@ function setMinVersion(version = 11) {
   for (const section of document.querySelectorAll('.comparison')) {
     const blocks = section.querySelectorAll('.browser');
 
-    const versions = {};
-    for (const block of blocks)
-      versions[block.getAttribute('data-browser')] = block;
+    const versions = Object.fromEntries(
+      Array.from(blocks).map(
+        (block) => [block.getAttribute('data-browser'), block],
+        {}
+      )
+    );
 
     switch (version) {
       case 8:
@@ -66,49 +81,37 @@ function filter(term) {
     for (const comp of section.querySelectorAll('.comparison')) {
       if (
         !term ||
-        comp.textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1
+        comp.textContent.toLowerCase().includes(term.toLowerCase())
       ) {
         empty = false;
         comp.classList.remove('hidden');
-      } else {
-        comp.classList.add('hidden');
-      }
+      } else comp.classList.add('hidden');
     }
 
-    if (empty) {
-      section.classList.add('hidden');
-    } else {
+    if (empty) section.classList.add('hidden');
+    else {
       allEmpty = false;
 
       section.classList.remove('hidden');
 
-      if (++visibleIndex % 2) section.classList.add('odd');
-      else section.classList.remove('odd');
+      section.classList.toggle('odd', ++visibleIndex % 2);
     }
   }
 
   const comparisons = document.querySelector('.comparisons');
-  if (allEmpty) comparisons.classList.add('empty');
-  else comparisons.classList.remove('empty');
+  comparisons.classList.toggle('empty', allEmpty);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+  setStargazers();
+
   const slider = document.querySelector('.version-slider');
-
-  const stars = document.querySelector('.github-stars');
-  fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery')
-    .then((r) => r.json())
-    .then((data) => (stars.textContent = numberWithCommas(data.watchers_count)))
-    .catch(() => (stars.textContent = '10k+'));
-
   function handleChange() {
-    return setMinVersion(slider.value);
+    setMinVersion(slider.value);
   }
   handleChange();
-
   slider.addEventListener('change', handleChange);
 
   const search = document.querySelector('input[type="search"]');
-
   search.addEventListener('input', () => filter(search.value));
 });
