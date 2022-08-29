@@ -1,1 +1,1 @@
-el.textContent || el.innerText
+el.textContent || el.innerText;

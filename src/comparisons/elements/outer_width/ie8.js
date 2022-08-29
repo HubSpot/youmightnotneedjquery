@@ -1,1 +1,1 @@
-el.offsetWidth
+el.offsetWidth;

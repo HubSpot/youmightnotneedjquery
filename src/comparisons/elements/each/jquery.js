@@ -1,3 +1,1 @@
-$(selector).each(function(i, el){
-
-});
+$(selector).each(function (i, el) {});

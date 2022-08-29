@@ -1,3 +1,1 @@
-$.each(array, function(i, item){
-
-});
+$.each(array, function (i, item) {});

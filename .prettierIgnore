@@ -1,2 +1,4 @@
-prism.*
-src/comparisons
+# Generated files
+index.html
+css/*
+js/*

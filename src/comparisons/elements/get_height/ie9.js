@@ -1,1 +1,1 @@
-parseFloat(getComputedStyle(el, null).height.replace("px", ""))
+parseFloat(getComputedStyle(el, null).height.replace('px', ''));

@@ -1,1 +1,1 @@
-el.offsetHeight
+el.offsetHeight;

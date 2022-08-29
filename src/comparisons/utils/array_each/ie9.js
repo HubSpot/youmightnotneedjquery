@@ -1,3 +1,1 @@
-array.forEach(function(item, i){
-
-});
+array.forEach(function (item, i) {});
