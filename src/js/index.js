@@ -1,3 +1,6 @@
+const VERSION_OPTIONS = [8, 9, 10, 11];
+const DEFAULT_VERSION = 11;
+
 function numberWithCommas(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
@@ -32,8 +35,9 @@ function hide(...els) {
   for (const el of els) if (el) el.style.display = 'none';
 }
 
-function setMinVersion(version = 11) {
+function setMinVersion(version = DEFAULT_VERSION) {
   version = parseInt(version);
+  setQueryString('ie' + version.toString())
 
   for (const section of document.querySelectorAll('.comparison')) {
     const blocks = section.querySelectorAll('.browser');
@@ -74,7 +78,6 @@ function filter(term) {
   let visibleIndex = 0;
 
   let allEmpty = true;
-
   for (const section of document.querySelectorAll('section')) {
     let empty = true;
 
@@ -106,6 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
   setStargazers();
 
   const slider = document.querySelector('.version-slider');
+
+  const parsedSliderState = parseInt(getInitialSliderState()?.replace('ie', ''));
+  if (VERSION_OPTIONS.includes(parsedSliderState)) {
+    slider.value = parsedSliderState;
+  } else {
+    slider.value = DEFAULT_VERSION;
+  }
+
   function handleChange() {
     setMinVersion(slider.value);
   }
