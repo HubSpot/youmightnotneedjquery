@@ -9,17 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v3
         with:
-          node-version: '14'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build application
-        run: npm run build
+          name: build-artifacts
 
       - name: Stage build artifacts
         run: |
