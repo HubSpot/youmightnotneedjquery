@@ -20,8 +20,9 @@ function get(cb) {
         if (typeof comp !== 'string') {
           for (const [filename, code] of Object.entries(comp)) {
             const [version, ext] = filename.split('.');
-
-            out[title][name][version] ||= {};
+            if (!out[title][name][version]) {
+              out[title][name][version] = {};
+            }
             out[title][name][version][ext] = code;
           }
         } else {
