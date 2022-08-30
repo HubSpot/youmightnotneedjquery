@@ -21,4 +21,10 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
+          name: build-artifacts
+          path: |
+            index.html
+            css/*
+            js/*
+            br/*
           retention-days: 3

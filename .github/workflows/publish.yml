@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
 
       - name: Stage build artifacts
         run: |
