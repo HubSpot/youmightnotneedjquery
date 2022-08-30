@@ -2,130 +2,116 @@ function numberWithCommas(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+async function setStargazers() {
+  let number = '10k+';
+  try {
+    const response = await fetch(
+      'https://api.github.com/repos/hubspot/youmightnotneedjquery'
+    );
+    const data = await response.json();
+    number = numberWithCommas(data.stargazers_count);
+  } catch {}
+
+  const stars = document.querySelector('.github-stars');
+  stars.textContent = number;
+}
+
 function showFirst(...els) {
-  var el, found, i, len, results;
-  found = false;
-  results = [];
-  for (i = 0, len = els.length; i < len; i++) {
-    el = els[i];
+  let found = false;
+
+  for (let i = 0, len = els.length; i < len; i++) {
+    const el = els[i];
     if (el && !found) {
       found = true;
-      results.push((el.style.display = 'block'));
-    } else if (el) {
-      results.push((el.style.display = 'none'));
-    } else {
-      results.push(void 0);
-    }
+      el.style.display = 'block';
+    } else if (el) el.style.display = 'none';
   }
-  return results;
 }
 
 function hide(...els) {
-  var el, i, len;
-  const results = [];
-  for (i = 0, len = els.length; i < len; i++) {
-    el = els[i];
-    if (el) {
-      results.push((el.style.display = 'none'));
-    }
-  }
-  return results;
+  for (const el of els) if (el) el.style.display = 'none';
 }
 
 function setMinVersion(version = 11) {
   version = parseInt(version);
-  const ref = document.querySelectorAll('.comparison');
-  const results = [];
-  for (let i = 0, len = ref.length; i < len; i++) {
-    const section = ref[i];
+
+  for (const section of document.querySelectorAll('.comparison')) {
     const blocks = section.querySelectorAll('.browser');
-    const versions = {};
-    for (let j = 0, len1 = blocks.length; j < len1; j++) {
-      const block = blocks[j];
-      versions[block.getAttribute('data-browser')] = block;
-    }
+
+    const versions = Object.fromEntries(
+      Array.from(blocks).map(
+        (block) => [block.getAttribute('data-browser'), block],
+        {}
+      )
+    );
+
     switch (version) {
       case 8:
         showFirst(versions['ie8']);
-        results.push(hide(versions['ie9'], versions['ie10'], versions['ie11']));
+        hide(versions['ie9'], versions['ie10'], versions['ie11']);
         break;
       case 9:
         showFirst(versions['ie9'], versions['ie8']);
-        results.push(hide(versions['ie10'], versions['ie11']));
+        hide(versions['ie10'], versions['ie11']);
         break;
       case 10:
         showFirst(versions['ie10'], versions['ie9'], versions['ie8']);
-        results.push(hide(versions['ie11']));
+        hide(versions['ie11']);
         break;
       case 11:
-        results.push(
-          showFirst(
-            versions['ie11'],
-            versions['ie10'],
-            versions['ie9'],
-            versions['ie8']
-          )
+        showFirst(
+          versions['ie11'],
+          versions['ie10'],
+          versions['ie9'],
+          versions['ie8']
         );
         break;
-      default:
-        results.push(void 0);
     }
   }
-  return results;
 }
 
 function filter(term) {
   let visibleIndex = 0;
+
   let allEmpty = true;
-  const ref = document.querySelectorAll('section');
-  for (const i = 0, len = ref.length; i < len; i++) {
-    const section = ref[i];
+
+  for (const section of document.querySelectorAll('section')) {
     let empty = true;
-    const ref1 = section.querySelectorAll('.comparison');
-    for (let j = 0, len1 = ref1.length; j < len1; j++) {
-      const comp = ref1[j];
+
+    for (const comp of section.querySelectorAll('.comparison')) {
       if (
         !term ||
-        comp.textContent.toLowerCase().indexOf(term.toLowerCase()) !== -1
+        comp.textContent.toLowerCase().includes(term.toLowerCase())
       ) {
         empty = false;
         comp.classList.remove('hidden');
-      } else {
-        comp.classList.add('hidden');
-      }
+      } else comp.classList.add('hidden');
     }
-    if (empty) {
-      section.classList.add('hidden');
-    } else {
+
+    if (empty) section.classList.add('hidden');
+    else {
       allEmpty = false;
+
       section.classList.remove('hidden');
-      if (++visibleIndex % 2) {
-        section.classList.add('odd');
-      } else {
-        section.classList.remove('odd');
-      }
+
+      section.classList.toggle('odd', ++visibleIndex % 2);
     }
   }
+
   const comparisons = document.querySelector('.comparisons');
-  if (allEmpty) {
-    return comparisons.classList.add('empty');
-  } else {
-    return comparisons.classList.remove('empty');
-  }
+  comparisons.classList.toggle('empty', allEmpty);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
+  setStargazers();
+
   const slider = document.querySelector('.version-slider');
-  const stars = document.querySelector('.github-stars');
-  fetch('https://api.github.com/repos/hubspot/youmightnotneedjquery')
-    .then((r) => r.json())
-    .then((data) => (stars.textContent = numberWithCommas(data.watchers_count)))
-    .catch(() => (stars.textContent = '10k+'));
   function handleChange() {
-    return setMinVersion(slider.value);
+    setMinVersion(slider.value);
   }
-  slider.addEventListener('change', handleChange);
   handleChange();
+  slider.addEventListener('change', handleChange);
+
   const search = document.querySelector('input[type="search"]');
-  return search.addEventListener('input', () => filter(search.value));
+  search.addEventListener('input', () => filter(search.value));
 });
