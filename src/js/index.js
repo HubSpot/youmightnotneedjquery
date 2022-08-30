@@ -47,11 +47,11 @@ function setMinVersion(version = 11) {
     switch (version) {
       case 8:
         showFirst(versions['ie8']);
-        results.push(hide(versions['ie9'], versions['ie10']));
+        results.push(hide(versions['ie9'], versions['ie10'], versions['ie11']));
         break;
       case 9:
         showFirst(versions['ie9'], versions['ie8']);
-        results.push(hide(versions['ie10']));
+        results.push(hide(versions['ie10'], versions['ie11']));
         break;
       case 10:
         showFirst(versions['ie10'], versions['ie9'], versions['ie8']);
