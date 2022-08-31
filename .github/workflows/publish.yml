@@ -9,10 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-artifacts
+      - name: Run build workflow
+        uses: ./.github/workflows/build
 
       - name: Stage build artifacts
         run: |
