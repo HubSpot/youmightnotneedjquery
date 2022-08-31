@@ -10,5 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Echo
+        run: echo "hello world"
+
       - name: Run a build
         uses: ./.github/workflows/build
