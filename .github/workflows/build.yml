@@ -1,4 +1,7 @@
-on: [push, workflow_call]
+on: [push]
+
+env:
+  PUBLISH_BRANCH: dev
 
 jobs:
   build:
@@ -7,6 +10,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
@@ -28,3 +32,32 @@ jobs:
             js/*
             br/*
           retention-days: 3
+
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/head/$PUBLISH_BRANCH'
+    needs: [build]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download all build artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Stage build artifacts
+        run: |
+          git add -f index.html
+          git add -f css/
+          git add -f js/
+          git add -f br/
+          git status
+
+      - name: Make commit message
+        run: |
+          git config --global user.name "GitHub Actions"
+          git commit -m "Deployed build artifacts (`date '+%F %T %Z'`)" || true
+          git restore .
+
+      - name: Push build artifacts to gh-pages branch
+        run: git push origin HEAD:gh-pages --force
