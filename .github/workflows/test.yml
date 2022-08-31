@@ -1,0 +1,13 @@
+on:
+  push:
+    branches:
+      - !$default-branch
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run a build
+        uses: ./.github/workflows/build

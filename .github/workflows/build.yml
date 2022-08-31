@@ -1,8 +1,4 @@
-on:
-  push:
-    branches:
-      - !publishing
-  workflow_call: true
+on: workflow_call
 
 jobs:
   build:
