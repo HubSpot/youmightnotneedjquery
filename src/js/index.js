@@ -1,5 +1,5 @@
-const VERSION_OPTIONS = [8, 9, 10, 11];
-const DEFAULT_VERSION = 11;
+const VERSION_OPTIONS = [8, 9, 10, 11, 12];
+const DEFAULT_VERSION = 12;
 
 function numberWithCommas(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -37,7 +37,7 @@ function hide(...els) {
 
 function setMinVersion(version = DEFAULT_VERSION) {
   version = parseInt(version);
-  setQueryString('ie' + version.toString())
+  setQueryString(version)
 
   for (const section of document.querySelectorAll('.comparison')) {
     const blocks = section.querySelectorAll('.browser');
@@ -52,15 +52,15 @@ function setMinVersion(version = DEFAULT_VERSION) {
     switch (version) {
       case 8:
         showFirst(versions['ie8']);
-        hide(versions['ie9'], versions['ie10'], versions['ie11']);
+        hide(versions['ie9'], versions['ie10'], versions['ie11'], versions['es6']);
         break;
       case 9:
         showFirst(versions['ie9'], versions['ie8']);
-        hide(versions['ie10'], versions['ie11']);
+        hide(versions['ie10'], versions['ie11'], versions['es6']);
         break;
       case 10:
         showFirst(versions['ie10'], versions['ie9'], versions['ie8']);
-        hide(versions['ie11']);
+        hide(versions['ie11'], versions['es6']);
         break;
       case 11:
         showFirst(
@@ -69,6 +69,16 @@ function setMinVersion(version = DEFAULT_VERSION) {
           versions['ie9'],
           versions['ie8']
         );
+        hide(versions['es6']);
+        break;
+      case 12:
+        showFirst(
+          versions['es6'],
+          versions['ie11'],
+          versions['ie10'],
+          versions['ie9'],
+          versions['ie8']
+        )
         break;
     }
   }
@@ -110,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const slider = document.querySelector('.version-slider');
 
-  const parsedSliderState = parseInt(getInitialSliderState()?.replace('ie', ''));
+  const parsedSliderState = getInitialSliderState();
   if (VERSION_OPTIONS.includes(parsedSliderState)) {
     slider.value = parsedSliderState;
   } else {

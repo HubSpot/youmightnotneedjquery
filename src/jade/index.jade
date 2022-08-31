@@ -1,12 +1,12 @@
 doctype html
 
 //- This will go into the HTML file to let people know to edit this file instead:
-// Please edit the index.jade or the files in comparisons/, this file is generated
+// Please edit the src/jade/index.jade or the files in comparisons/, this file is generated
 
 include _alternatives
 
-<!--[if lt IE 10 ]> <html class="old-ie"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
+<!--[if gt IE 5]> <html class="old-ie"> <![endif]-->
+<!--[if !(IE)]><!--> <html> <!--<![endif]-->
 head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible', content='chrome=1')
@@ -31,7 +31,7 @@ body
           | You might <span class="highlighted">no</span>t need <span class="highlighted">jQuery</span>
 
       .old-ie-message
-        | You certainly can support IE 9 and below without jQuery, but we don't.  Please stop messing with us.
+        | You certainly can support IE 11 and below without jQuery, but this site does not.
 
     .explanation
       .inner
@@ -46,7 +46,7 @@ body
         p
           | At the very least, make sure you know what <a href="https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o">jQuery is doing for you</a>, and what it's not.  Some developers believe that jQuery
           | is protecting us from a great demon of browser incompatibility when, in truth, post-IE8, browsers are pretty easy to
-          | deal with on their own.
+          | deal with on their own; and after the Internet Explorer error, the browsers do even more.
 
     .share-buttons
       a.share-button-github(href="https://github.com/HubSpot/YouMightNotNeedjQuery")
@@ -61,13 +61,14 @@ body
         label(for="version") What's the oldest version of IE you need to support?
 
         .slider
-          input(name="version", id="version", type="range", min="8", max="11", value="11").version-slider
+          input(name="version", id="version", type="range", min="8", max="12", value="12").version-slider
 
           .rule
             .range-label 8
             .range-label 9
             .range-label 10
             .range-label 11
+            .range-label N/A
 
     .comparisons
 
@@ -93,7 +94,7 @@ body
                 if co.alternatives
                   +alternatives(co.alternatives.txt)
 
-                for browser in ['jquery', 'ie8', 'ie9', 'ie10', 'ie11']
+                for browser in ['jquery', 'ie8', 'ie9', 'ie10', 'ie11', 'es6']
                   if co[browser]
                     .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
@@ -152,3 +153,4 @@ body
   script(type='text/javascript', src='https://platform.twitter.com/widgets.js')
 
   div(style='-webkit-transform: translateZ(0);')
+<!-- --> </html> <!-- -->
