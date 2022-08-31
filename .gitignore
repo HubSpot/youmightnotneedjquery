@@ -4,9 +4,4 @@ node_modules
 .idea
 
 # Generated files
-index.html
-css/*
-js/*
-
-# Keep all prism files
-!prism.*
+dist
