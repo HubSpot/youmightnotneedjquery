@@ -37,6 +37,7 @@ jobs:
     name: Publish
     runs-on: ubuntu-latest
     if: github.ref == 'refs/head/$PUBLISH_BRANCH'
+    needs: [build]
 
     steps:
       - name: Download all build artifacts
