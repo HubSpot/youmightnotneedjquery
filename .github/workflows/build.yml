@@ -25,11 +25,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v1
         with:
-          path: |
-            index.html
-            css/*
-            js/*
-            br/*
+          path: dist
 
   publish:
     name: Publish
