@@ -1,0 +1,1 @@
+Boolean(el.querySelector(selector));

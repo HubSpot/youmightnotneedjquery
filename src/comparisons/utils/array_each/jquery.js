@@ -1,1 +1,1 @@
-$.each(array, function (i, item) {});
+$.each(array, (i, item) => {});

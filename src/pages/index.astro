@@ -1,0 +1,67 @@
+---
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import Card from '../components/Card.astro';
+import readFileTree from 'readfiletree';
+import { Prism } from '@astrojs/prism';
+
+const cwd = path.dirname(fileURLToPath(import.meta.url));
+
+const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
+---
+
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+
+		<title>You Might Not Need jQuery</title>
+
+    <meta name='description' content='Examples of how to do common event, element, ajax and utility operations with plain javascript.'>
+    <link rel='icon' href='https://static.hubspot.com/favicon.ico'>
+	</head>
+	<body>
+    <main class='page'>
+      <header class='page-header'>
+        <div class='inner'>
+          <h1>You might <span class="highlighted">not</span> need <span class="highlighted">jQuery</span></h1>
+        </div>
+        <div class='old-ie-message'>You certainly can support IE 11 and below without jQuery, but this site does not.</div>
+      </header>
+    </main>
+		<main>
+		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
+		<p class="instructions">
+			Check out the <code>src/pages</code> directory to get started.<br />
+			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+		</p>
+		<ul role="list" class="link-card-grid">
+			<Card
+				href="https://docs.astro.build/"
+				title="Documentation"
+				body="Learn how Astro works and explore the official API docs."
+			/>
+			<Card
+				href="https://astro.build/integrations/"
+				title="Integrations"
+				body="Supercharge your project with new frameworks and libraries."
+			/>
+			<Card
+				href="https://astro.build/themes/"
+				title="Themes"
+				body="Explore a galaxy of community-built starter themes."
+			/>
+			<Card
+				href="https://astro.build/chat/"
+				title="Chat"
+				body="Come say hi to our amazing Discord community. ❤️"
+			/>
+		</ul>
+	</main>
+	</body>
+</html>
+
+<style>
+
+</style>

@@ -1,1 +1,1 @@
-$.map(array, function (value, index) {});
+$.map(array, (value, index) => {});

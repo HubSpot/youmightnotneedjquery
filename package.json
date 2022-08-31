@@ -1,25 +1,12 @@
 {
-  "name": "youmightnotneedjquery",
-  "version": "0.1.0",
-  "description": "You might not need jQuery",
+  "private": true,
   "scripts": {
-    "start": "gulp default",
-    "build": "gulp serve"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/HubSpot/youmightnotneedjquery.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/HubSpot/youmightnotneedjquery/issues"
+    "dev": "astro dev",
+    "build": "astro build"
   },
   "devDependencies": {
-    "gulp": "~3.3.0",
-    "gulp-jade": "~0.3.0",
-    "gulp-stylus": "0.0.7",
-    "prettier": "^2.7.1",
-    "readfiletree": "1.0.0"
+    "@astrojs/prism": "^1.0.1",
+    "astro": "^1.1.2",
+    "readfiletree": "^1.0.0"
   }
 }

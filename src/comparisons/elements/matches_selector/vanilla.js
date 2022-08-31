@@ -1,0 +1,1 @@
+el.matches('.my-class');

@@ -1,1 +1,0 @@
-fn.apply(context, arguments);
