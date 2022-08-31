@@ -1,2 +1,12 @@
 node_modules
 .DS_Store
+.vscode
+.idea
+
+# Generated files
+index.html
+css/*
+js/*
+
+# Keep all prism files
+!prism.*

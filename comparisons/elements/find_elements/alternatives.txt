@@ -1,2 +1,0 @@
-qwery: https://github.com/ded/qwery
-sizzle: http://sizzlejs.com/

@@ -1,0 +1,352 @@
+@import 'nib'
+
+*, *:after, *:before
+  box-sizing border-box
+
+html
+  overflow-y scroll
+  line-height 1.5
+
+  @media (min-width: 1280px)
+    font-size 17px
+
+::-webkit-input-placeholder
+  color rgba(0, 0, 0, .5)
+
+:-moz-placeholder
+  color rgba(0, 0, 0, .5)
+
+::-moz-placeholder
+  color rgba(0, 0, 0, .5)
+
+:-ms-input-placeholder
+  color rgba(0, 0, 0, .5)
+
+input[type="search"][required]
+  border-radius 0
+  position relative
+  padding .1rem 1.1rem .1rem .25rem
+
+  &::-ms-clear
+    display none
+
+  &::-webkit-search-cancel-button
+    -webkit-appearance none
+
+  &::-webkit-search-cancel-button:after
+    font-family Arial, sans-serif
+    content "\00D7"
+    display block
+    position absolute
+    right 0
+    top 0
+    bottom 0
+    width .85rem
+    font-size .8rem
+    text-align left
+    cursor pointer
+
+  &:valid::-webkit-search-cancel-button:after
+    opacity 1
+
+  &:invalid::-webkit-search-cancel-button:after
+    opacity 0
+
+body
+  font-family system-ui, sans-serif
+  color #000
+  margin 0
+  -webkit-font-smoothing antialiased
+
+.page
+  background #fff
+
+header.page-header
+  width 34em
+  max-width 100%
+  padding 4em 0 1em
+  margin 0 auto
+  text-align center
+
+  @media (max-width: 840px)
+    font-size 12px
+
+  @media (max-width: 540px)
+    font-size 8px
+    padding-top 0
+    width 100%
+
+  .inner
+    padding 2em 2em
+    border .25em solid
+
+    h1
+      font-size 2.5em
+      font-weight 300
+      margin 0
+      line-height 1
+
+      @media (max-width: 540px)
+        font-weight 500
+
+.explanation
+  width 36em
+  max-width 100%
+  padding 0 1em
+  margin auto
+
+  a
+    color inherit
+    text-decoration none
+    box-shadow inset 0 -.125em
+
+.share-buttons
+  display flex
+  width 20em
+  max-width 100%
+  justify-content center
+  margin 3em auto
+  padding 0 1em
+
+  .share-button-github
+    display inline-flex
+    color inherit
+    margin-left auto
+    margin-right auto
+    text-decoration none
+
+    > span
+      border 1px solid #ccc
+      padding .5em .8em
+
+      &:first-child
+        margin-right -1px
+        background #eee
+
+      &.github-stars
+        text-align center
+        min-width 4.7em
+
+        &:empty::after
+          content "···"
+
+@media (min-width: 768px)
+  .browser
+    float right
+    clear right
+    width 49%
+
+  .browser.jquery
+    float left
+    clear left
+    margin-right 2%
+
+.old-ie-message
+  display none
+
+  html.old-ie &
+    display block
+
+    background-color #ffaeae
+    padding 10px
+    color white
+
+.empty-message
+  display none
+
+  .comparisons.empty &
+    display block
+    background #eee
+    display block
+    padding 2em 0
+    font-size 1.5em
+    text-align center
+    margin-top 2em
+
+.comparison
+  clearfix()
+
+  h3
+    text-align center
+    font-size 2em
+    font-weight normal
+    margin-top 1.5em
+    margin-bottom 0
+
+    a
+      position relative
+      color inherit
+      text-decoration none
+
+      &:before
+        content '§'
+        position absolute
+        right 100%
+        padding-right .3em
+        opacity 0
+
+      &:hover:before
+        opacity 1
+
+  h4
+    font-weight 300
+    color #666
+    letter-spacing 0.07em
+    font-size 1.4em
+    text-transform uppercase
+    margin-bottom 0
+    line-height 1
+    display inline-block
+
+header.search
+  clearfix()
+  max-width 40em
+  margin 2em auto 0
+  padding 0 1em
+
+  input[type="search"]
+    height 3em
+    border 0
+    font-family inherit
+    font-size 1.5em
+    font-weight 400
+    padding-left .52em
+    margin 0
+    color inherit
+    width 50%
+    background rgba(0, 0, 0, .1)
+    margin-bottom 4px
+    width 100%
+    padding 1em
+    margin-bottom 1em
+
+    &::-webkit-search-cancel-button:after
+      position absolute
+      top 0
+      bottom 0
+      margin auto
+      height 1em
+      font-size 1em
+      line-height 1
+      font-weight normal
+      padding-right 1em
+      cursor pointer
+
+    &:focus
+      background rgba(0, 0, 0, .05)
+      opacity 1
+      outline none
+
+  .field
+    display flex
+    margin-bottom 1.5em
+
+    label
+      padding-right 1em
+      font-size 1.1em
+      display block
+      flex-grow 1
+
+    .slider
+      width 10em
+      flex-shrink 0
+
+.hidden
+  display none
+
+.alternatives-block
+  text-align center
+  margin-top -.25em
+
+  h4
+    font-size 1.1em
+    display inline-block
+    font-weight 300
+    color hsl(0, 0%, 40%)
+    letter-spacing 0.07em
+    font-size 1.4em
+    text-transform uppercase
+    margin 0
+    line-height 1
+
+  .alternatives
+    font-size 1.1em
+    display inline-block
+    list-style none
+    padding 0
+
+    li
+      display inline-block
+      padding-left 10px
+
+    a
+      color inherit
+      text-decoration none
+      box-shadow inset 0 -.125em
+
+section
+  /* Hide section titles when they're empty */
+  position relative
+  overflow hidden
+  background #fff
+  padding 5.5em 0
+
+  &.odd
+    background #eee
+
+    :not(pre) > code[class*="language-"], pre[class*="language-"]
+      background #fff
+
+  .inner
+    width 1200px
+    max-width 100%
+    margin 0 auto
+    padding 0 1em
+
+  .comparison
+    padding-top 40px
+    padding-bottom -40px
+
+  h2
+    font-size 3em
+    font-weight 200
+    letter-spacing .3em
+    text-transform uppercase
+    color #888
+    text-align center
+    margin 0
+
+input[type='range']
+  -webkit-appearance none !important
+
+  margin 0
+  background-color #F0F0F0
+  height 30px
+  width 100%
+  padding 0 8px
+
+input[type='range']::-webkit-slider-thumb
+  -webkit-appearance none !important
+
+  height 20px
+  width 20px
+  border 2px solid #ccc
+  border-radius 5px
+  background-color #fcfcfc
+
+.rule {
+  display flex
+}
+
+.range-label
+  width 33%
+  text-align center
+  padding 0 4px
+
+footer
+  margin 3em auto
+  font-size 1.4em
+  text-align center
+
+  a
+    color inherit

@@ -1,0 +1,3 @@
+animate.css: https://animate.style
+move.js: https://github.com/visionmedia/move.js
+velocity.js: https://julian.com/research/velocity/

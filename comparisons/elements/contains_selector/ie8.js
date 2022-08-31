@@ -1,1 +1,0 @@
-el.querySelector(selector) !== null
