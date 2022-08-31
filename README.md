@@ -1,6 +1,6 @@
 # You Might Not Need jQuery
 
-![Publish Workflow](https://github.com/HubSpot/youmightnotneedjquery/actions/workflows/publish.yml/badge.svg)
+![Build Workflow](https://github.com/HubSpot/youmightnotneedjquery/actions/workflows/build.yml/badge.svg)
 
 A resource for doing things _au naturel_.
 
