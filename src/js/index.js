@@ -132,6 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   handleChange();
   slider.addEventListener('change', handleChange);
+  for (const rangeLabel of document.getElementsByClassName('range-label')) {
+    rangeLabel.addEventListener('click', (event) => {
+      const clickedVersion = event.target.innerText;
+      slider.value = clickedVersion !== 'N/A' ? clickedVersion : DEFAULT_VERSION;
+    })
+  }
 
   const search = document.querySelector('input[type="search"]');
   search.addEventListener('input', () => filter(search.value));
