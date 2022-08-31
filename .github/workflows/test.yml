@@ -1,7 +1,8 @@
 on:
   push:
     branches:
-      - !$default-branch
+      - !dev
+      - !gh-pages
 
 jobs:
   test:
