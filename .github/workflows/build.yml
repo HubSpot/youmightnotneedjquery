@@ -40,6 +40,8 @@ jobs:
     needs: [build]
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Download all build artifacts
         uses: actions/download-artifact@v3
 
