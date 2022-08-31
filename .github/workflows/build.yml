@@ -1,4 +1,4 @@
-on: [push]
+on: push
 
 jobs:
   build:
@@ -29,18 +29,22 @@ jobs:
             js/*
             br/*
           retention-days: 3
+          if-no-files-found: error
 
   publish:
     name: Publish
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/head/dev'
     needs: [build]
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/dev' }}
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Download all build artifacts
         uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: .
 
       - name: Stage build artifacts
         run: |
