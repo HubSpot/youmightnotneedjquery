@@ -1,8 +1,5 @@
 on: [push]
 
-env:
-  PUBLISH_BRANCH: dev
-
 jobs:
   build:
     name: Build
@@ -36,7 +33,7 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/head/$PUBLISH_BRANCH'
+    if: github.ref == 'refs/head/dev'
     needs: [build]
 
     steps:
