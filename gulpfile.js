@@ -29,13 +29,13 @@ function fullLanguage(ext) {
   return LANGS[ext];
 }
 
-gulp.task('js', () => gulp.src('./src/js/*').pipe(gulp.dest('./js/')));
+gulp.task('js', () => gulp.src('./src/js/*').pipe(gulp.dest('./dist')));
 
 gulp.task('stylus', () =>
   gulp
     .src('./src/styl/index.styl')
     .pipe(stylus({use: ['nib']}))
-    .pipe(gulp.dest('./css/'))
+    .pipe(gulp.dest('./dist'))
 );
 
 gulp.task('jade', () =>
@@ -57,7 +57,7 @@ gulp.task('jade', () =>
           data: {comparisons: comps, titleCase, getNamePart, fullLanguage},
         })
       )
-      .pipe(gulp.dest('./'));
+      .pipe(gulp.dest('./dist'));
   })
 );
 
