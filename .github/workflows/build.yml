@@ -35,7 +35,7 @@ jobs:
     name: Publish
     needs: [build]
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/publishing' }}
+    if: ${{ github.ref == 'refs/heads/dev' }}
 
     steps:
       - uses: actions/checkout@v2
