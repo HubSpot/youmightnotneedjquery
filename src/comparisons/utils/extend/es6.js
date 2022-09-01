@@ -1,0 +1,1 @@
+const result = {...objA, ...objB};
