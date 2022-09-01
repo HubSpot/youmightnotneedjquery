@@ -6,7 +6,10 @@
   },
   "devDependencies": {
     "@astrojs/prism": "^1.0.1",
-    "astro": "^1.1.2",
-    "readfiletree": "^1.0.0"
+    "astro": "^1.1.3",
+    "ky": "^0.31.1",
+    "modern-normalize": "^1.1.0",
+    "readfiletree": "^1.0.0",
+    "sass": "^1.54.8"
   }
 }

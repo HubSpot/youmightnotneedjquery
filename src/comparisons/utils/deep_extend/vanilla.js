@@ -1,4 +1,4 @@
-var deepExtend = function (out, ...arguments_) {
+function deepExtend(out, ...arguments_) {
   if (!out) {
     return {};
   }
