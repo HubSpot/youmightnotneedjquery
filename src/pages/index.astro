@@ -2,6 +2,8 @@
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import readFileTree from 'readfiletree';
+import sortKeys from 'sort-keys';
+import mapObject, {mapObjectSkip} from 'map-obj';
 import {Prism} from '@astrojs/prism';
 
 const capsWords = ['JSON', 'HTML', 'AJAX'];
@@ -18,9 +20,76 @@ function titleCase(str: string) {
     );
 }
 
-const cwd = path.dirname(fileURLToPath(import.meta.url));
+const cwd = path.resolve();
 
-const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
+interface SingleComparison {
+  engines: {
+    ie8?: string;
+    ie9?: string;
+    ie10?: string;
+    jquery: string;
+    modern?: string;
+  };
+  alternatives?: Record<string, string>;
+}
+
+interface ComparisonCategory {
+  comparisons: Record<string, SingleComparison>;
+  alternatives?: Record<string, string>;
+}
+
+type Comparisons = Record<string, ComparisonCategory>;
+
+const comparisons: Comparisons = sortKeys(
+  mapObject(
+    await readFileTree(path.join(cwd, 'src', 'comparisons')),
+    (categoryName: string, category) => {
+      const result: ComparisonCategory = {
+        comparisons: sortKeys(
+          mapObject(category, (comparisonName: string, comparison) => {
+            if (comparisonName === 'alternatives.json') {
+              return mapObjectSkip;
+            }
+
+            const result: SingleComparison = {
+              engines: {
+                jquery: comparison['jquery.js']
+              }
+            };
+
+            if (comparison['ie8.js']) {
+              result.engines.ie8 = comparison['ie8.js'];
+            }
+
+            if (comparison['ie9.js']) {
+              result.engines.ie9 = comparison['ie9.js'];
+            }
+
+            if (comparison['ie10.js']) {
+              result.engines.ie10 = comparison['ie10.js'];
+            }
+
+            if (comparison['modern.js']) {
+              result.engines.modern = comparison['modern.js'];
+            }
+
+            if (comparison['alternatives.json']) {
+              result.alternatives = JSON.parse(comparison['alternatives.json']);
+            }
+
+            return [comparisonName, result];
+          })
+        )
+      };
+
+      if (category['alternatives.json']) {
+        result.alternatives = JSON.parse(category['alternatives.json']);
+      }
+
+      return [categoryName, result];
+    }
+  )
+);
 ---
 
 <!DOCTYPE html>
@@ -39,6 +108,8 @@ const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
       content="Examples of how to do common event, element, ajax and utility operations with plain javascript."
     />
     <link rel="icon" href="https://static.hubspot.com/favicon.ico" />
+
+    <link rel="stylesheet" href="/prism.min.css" />
   </head>
   <body>
     <div class="top">
@@ -82,12 +153,104 @@ const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
           placeholder="Search..."
           required
         />
+        <div class="input-box ie-question-box visible">
+          <label for="ie-question">Do you need to support IE?</label>
+          <input type="checkbox" id="ie-question" name="ie-question" />
+        </div>
+        <div class="input-box ie-box">
+          <label for="ie"
+            >What's the oldest version of IE you need to support?</label
+          >
+          <input type="range" min="8" max="10" value="10" id="ie" name="ie" />
+        </div>
       </nav>
     </div>
+
     <main class="comparisons">
       <div class="empty-message">Your search didn't match any comparisons.</div>
-      <Prism lang="js" code={`const foo = 'bar';`} />
+
+      <div class="categories">
+        {
+          Object.entries(comparisons).map(([categoryName, category]) => (
+            <section class="category visible" id={categoryName}>
+              <h2 class="category-name">
+                <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
+              </h2>
+              {category.alternatives && (
+                <div class="alternatives">
+                  <h4 class="alternatives-title">Alternatives:</h4>
+                  <ul class="alternatives-list">
+                    {Object.entries(category.alternatives).map(
+                      ([alternativeName, alternativeUrl]) => (
+                        <li>
+                          <a
+                            href={alternativeUrl}
+                            target="_blank"
+                            rel="noopener"
+                            class="alternative-link"
+                          >
+                            {alternativeName}
+                          </a>
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+              <div class="comparisons">
+                {Object.entries(category.comparisons).map(
+                  ([comparisonName, comparison]) => (
+                    <div class="comparison" id={comparisonName}>
+                      <h3 class="comparison-title">
+                        <a href={`#${comparisonName}`}>
+                          {titleCase(comparisonName.replaceAll('_', ' '))}
+                        </a>
+                      </h3>
+                      {comparison.alternatives && (
+                        <div class="alternatives">
+                          <h4 class="alternatives-title">Alternatives:</h4>
+                          <ul class="alternatives-list">
+                            {Object.entries(comparison.alternatives).map(
+                              ([alternativeName, alternativeUrl]) => (
+                                <li>
+                                  <a
+                                    href={alternativeUrl}
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="alternative-link"
+                                  >
+                                    {alternativeName}
+                                  </a>
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        </div>
+                      )}
+                      <div class="engines">
+                        {Object.entries(comparison.engines).map(
+                          ([engineName, code]) => (
+                            <>
+                              <p>{engineName}</p>
+                              <Prism lang="js" code={code} />
+                            </>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </section>
+          ))
+        }
+      </div>
     </main>
+
+    <footer>
+      <p>Made by some Engineer Gamers</p>
+    </footer>
+
     <style lang="scss">
       @use 'modern-normalize';
 
@@ -97,16 +260,10 @@ const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
 
       body {
         font-family: system-ui, sans-serif;
-        margin: 0;
-        margin-top: 4rem;
         line-height: 1.5;
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        @media (min-width: 1280px) {
-          font-size: 17px;
-        }
       }
 
       .top {
@@ -114,115 +271,270 @@ const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
         flex-direction: column;
         max-width: 40rem;
         gap: 2rem;
-      }
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
 
-      header {
-        text-align: center;
-
-        @media (max-width: 840px) {
-          font-size: 12px;
+        @media (max-width: 42rem) {
+          margin-top: 16px;
         }
 
-        @media (max-width: 540px) {
-          font-size: 8px;
-          padding-top: 0;
-          width: 100%;
-        }
+        header {
+          text-align: center;
 
-        .title {
-          padding: 2rem 2rem;
-          border: 0.25rem solid;
-          font-size: 2.5rem;
-          font-weight: 300;
-          margin: 0;
-          line-height: 1;
-
-          @media (max-width: 540px) {
-            font-weight: 500;
+          .title {
+            padding: 2rem 2rem;
+            border: 0.25rem solid;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin: 0;
+            line-height: 1;
           }
         }
-      }
 
-      .explanation {
-        max-width: 100%;
+        .explanation {
+          max-width: 100%;
 
-        a {
-          color: inherit;
-          text-decoration: none;
-          box-shadow: inset 0 -0.125rem;
+          a {
+            color: inherit;
+            text-decoration: none;
+            box-shadow: inset 0 -0.125rem;
+          }
+
+          p {
+            margin: 0;
+          }
         }
 
-        p {
-          margin: 0;
-        }
-      }
+        .share-buttons {
+          display: flex;
+          justify-content: center;
 
-      .share-buttons {
-        display: flex;
-        justify-content: center;
+          .share-button-github {
+            display: inline-flex;
+            color: inherit;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration: none;
+            font-style: normal;
 
-        .share-button-github {
-          display: inline-flex;
-          color: inherit;
-          margin-left: auto;
-          margin-right: auto;
-          text-decoration: none;
-          font-style: normal;
+            > span {
+              border: 1px solid #ccc;
+              padding: 0.5rem 0.8rem;
 
-          > span {
-            border: 1px solid #ccc;
-            padding: 0.5rem 0.8rem;
+              &.share-button-github-message {
+                margin-right: -1px;
+                background: #eee;
+              }
 
-            &.share-button-github-message {
-              margin-right: -1px;
-              background: #eee;
-            }
+              &.github-stars {
+                text-align: center;
+                min-width: 3rem;
 
-            &.github-stars {
-              text-align: center;
-              min-width: 3rem;
-
-              &:empty::after {
-                content: '···';
+                &:empty::after {
+                  content: '···';
+                }
               }
             }
           }
         }
+
+        nav {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .search {
+            max-width: 40rem;
+
+            border: 0;
+            font-family: inherit;
+            font-weight: 400;
+            color: inherit;
+            background: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 1rem;
+
+            &:focus {
+              background: rgba(0, 0, 0, 0.05);
+              outline: none;
+            }
+          }
+        }
+
+        .input-box {
+          display: none;
+          justify-content: space-between;
+
+          &.visible {
+            display: flex;
+          }
+        }
       }
 
-      .search {
-        max-width: 40rem;
-
-        border: 0;
-        font-family: inherit;
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: inherit;
-        background: rgba(0, 0, 0, 0.1);
+      .comparisons {
         width: 100%;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
 
-        &:focus {
-          background: rgba(0, 0, 0, 0.05);
-          opacity: 1;
-          outline: none;
+        .empty-message {
+          text-align: center;
+          display: none;
+
+          &.visible {
+            display: block;
+          }
         }
+
+        .categories {
+          .category {
+            padding-top: 5.5rem;
+            padding-bottom: 5.5rem;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            @mixin section-symbol {
+              // :after is used to ensure the text is centered - this is never shown
+              &:before,
+              &:after {
+                content: '§';
+                visibility: hidden;
+              }
+
+              &:hover:before {
+                visibility: visible;
+              }
+            }
+
+            .category-name {
+              font-size: 3rem;
+              font-weight: 200;
+              letter-spacing: 1rem;
+              text-transform: uppercase;
+              color: #888;
+              text-align: center;
+              margin: 0;
+              word-wrap: break-word;
+
+              a {
+                color: inherit;
+                text-decoration: none;
+
+                @include section-symbol;
+
+                // At such a small screen size, we have to remove this text so that the title remains centered
+                @media (max-width: 28rem) {
+                  &:before,
+                  &:after {
+                    content: '';
+                  }
+                }
+              }
+            }
+
+            .comparison-title {
+              text-align: center;
+              font-size: 2em;
+              font-weight: normal;
+              margin-top: 16px;
+              margin-bottom: 16px;
+
+              a {
+                color: inherit;
+                text-decoration: none;
+
+                @include section-symbol;
+              }
+            }
+
+            .alternatives {
+              display: flex;
+              justify-content: center;
+              gap: 10px;
+              flex-wrap: wrap;
+
+              .alternatives-title {
+                font-size: 1.1rem;
+                font-weight: 300;
+                color: #666;
+                letter-spacing: 0.07em;
+                font-size: 1.4em;
+                text-transform: uppercase;
+                margin: 0;
+                line-height: 1;
+                word-wrap: break-word;
+              }
+
+              .alternatives-list {
+                margin: 0;
+                font-size: 1.1em;
+                list-style: none;
+                padding: 0;
+                display: inline-flex;
+                gap: 10px;
+                flex-wrap: wrap;
+
+                .alternative-link {
+                  color: inherit;
+                  text-decoration-thickness: 3px;
+                  text-decoration-line: underline;
+                  text-decoration-skip-ink: none;
+                }
+              }
+            }
+
+            &.visible:nth-child(odd) {
+              background: #eee;
+            }
+          }
+        }
+      }
+
+      footer {
+        margin: 3em auto;
+        font-size: 1.4em;
+        text-align: center;
+      }
+
+      input[type='checkbox'] {
+        accent-color: black;
       }
     </style>
 
     <script>
-      import ky from 'ky';
+      const ieBox = document.querySelector('.ie-box');
+
+      document
+        .querySelector('#ie-question')
+        .addEventListener('change', (event) => {
+          console.log((event.target as HTMLInputElement).checked);
+          ieBox.classList.toggle(
+            'visible',
+            (event.target as HTMLInputElement).checked
+          );
+        });
 
       const numberFormat = new Intl.NumberFormat('en-US');
       const starsElement = document.querySelector('.github-stars');
 
-      try {
-        const {stargazers_count: stars} = await ky(
+      async function getStars(): Promise<number> {
+        const response = await fetch(
           'https://api.github.com/repos/HubSpot/youmightnotneedjquery'
-        ).json<{stargazers_count: number}>();
+        );
 
-        starsElement.textContent = numberFormat.format(stars);
+        if (!response.ok) {
+          throw new Error('Failed to fetch GitHub stars');
+        }
+
+        const {stargazers_count: stars} = await response.json();
+
+        return stars;
+      }
+
+      try {
+        starsElement.textContent = numberFormat.format(await getStars());
       } catch {
         starsElement.textContent = '10k+';
       }
