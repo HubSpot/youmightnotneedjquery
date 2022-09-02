@@ -1,7 +1,7 @@
 function setQueryString(supportedVersion) {
   let supportedVersionStr = 'ie' + supportedVersion.toString();
   if (supportedVersion === 12) {
-    supportedVersionStr = 'es6';
+    supportedVersionStr = 'modern';
   }
 
   const urlParams = new URLSearchParams(location.search);
@@ -13,7 +13,7 @@ function getInitialSliderState() {
   const urlParams = new URLSearchParams(location.search);
   let supportVersionStr = urlParams.get('support');
   let supportVersion = 12;
-  if (supportVersionStr === 'es6') {
+  if (supportVersionStr === 'modern') {
     supportVersion = 12;
   } else if (supportVersionStr && supportVersionStr.indexOf('ie') === 0) {
     supportVersion = parseInt(supportVersionStr.substring(2));
