@@ -37,7 +37,7 @@ function hide(...els) {
 
 function setMinVersion(version = DEFAULT_VERSION) {
   version = parseInt(version);
-  setQueryString(version)
+  setQueryString(version);
 
   for (const section of document.querySelectorAll('.comparison')) {
     const blocks = section.querySelectorAll('.browser');
@@ -52,15 +52,20 @@ function setMinVersion(version = DEFAULT_VERSION) {
     switch (version) {
       case 8:
         showFirst(versions['ie8']);
-        hide(versions['ie9'], versions['ie10'], versions['ie11'], versions['es6']);
+        hide(
+          versions['ie9'],
+          versions['ie10'],
+          versions['ie11'],
+          versions['modern']
+        );
         break;
       case 9:
         showFirst(versions['ie9'], versions['ie8']);
-        hide(versions['ie10'], versions['ie11'], versions['es6']);
+        hide(versions['ie10'], versions['ie11'], versions['modern']);
         break;
       case 10:
         showFirst(versions['ie10'], versions['ie9'], versions['ie8']);
-        hide(versions['ie11'], versions['es6']);
+        hide(versions['ie11'], versions['modern']);
         break;
       case 11:
         showFirst(
@@ -69,16 +74,16 @@ function setMinVersion(version = DEFAULT_VERSION) {
           versions['ie9'],
           versions['ie8']
         );
-        hide(versions['es6']);
+        hide(versions['modern']);
         break;
       case 12:
         showFirst(
-          versions['es6'],
+          versions['modern'],
           versions['ie11'],
           versions['ie10'],
           versions['ie9'],
           versions['ie8']
-        )
+        );
         break;
     }
   }

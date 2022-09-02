@@ -94,12 +94,14 @@ body
                 if co.alternatives
                   +alternatives(co.alternatives.txt)
 
-                for browser in ['jquery', 'ie8', 'ie9', 'ie10', 'ie11', 'es6']
+                for browser in ['jquery', 'ie8', 'ie9', 'ie10', 'ie11', 'modern']
                   if co[browser]
                     .browser(data-browser=getNamePart(browser), class=getNamePart(browser))
 
                       if browser === 'jquery'
                         h4 jQuery
+                      else if browser === 'modern'
+                        h4 Modern JS
                       else
                         h4= browser.toUpperCase() + '+'
 
