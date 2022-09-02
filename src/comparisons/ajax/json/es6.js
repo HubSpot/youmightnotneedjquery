@@ -1,1 +1,2 @@
-const data = await (await fetch('/my/url')).json();
+const response = await fetch('/my/url');
+const data = await response.json();
