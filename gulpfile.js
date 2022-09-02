@@ -23,7 +23,7 @@ function getNamePart(str) {
 
 const LANGS = {
   js: 'javascript',
-  css: 'css',
+  css: 'css'
 };
 function fullLanguage(ext) {
   return LANGS[ext];
@@ -54,7 +54,7 @@ gulp.task('jade', () =>
       .pipe(
         jade({
           pretty: true,
-          data: {comparisons: comps, titleCase, getNamePart, fullLanguage},
+          data: {comparisons: comps, titleCase, getNamePart, fullLanguage}
         })
       )
       .pipe(gulp.dest('./dist'));
