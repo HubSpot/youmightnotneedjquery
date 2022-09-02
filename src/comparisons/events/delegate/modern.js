@@ -1,4 +1,4 @@
-document.addEventListener(eventName, event => {
+document.addEventListener(eventName, (event) => {
   if (target.closest(elementSelector)) {
     handler.call(target, event);
   }

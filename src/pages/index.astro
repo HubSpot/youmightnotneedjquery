@@ -24,192 +24,208 @@ const comparisons = await readFileTree(path.join(cwd, '..', 'comparisons'));
 ---
 
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
   <head>
-    <meta charset='utf-8' />
+    <meta charset="utf-8" />
     <meta
-      name='viewport'
-      content='width=device-width, initial-scale=1, user-scalable=no'
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
     />
 
     <title>You Might Not Need jQuery</title>
 
     <meta
-      name='description'
-      content='Examples of how to do common event, element, ajax and utility operations with plain javascript.'
+      name="description"
+      content="Examples of how to do common event, element, ajax and utility operations with plain javascript."
     />
-    <link rel='icon' href='https://static.hubspot.com/favicon.ico' />
+    <link rel="icon" href="https://static.hubspot.com/favicon.ico" />
   </head>
   <body>
-    <div class='top'>
+    <div class="top">
       <header>
-        <h1 class='title'>
-          You might not need jQuery
-        </h1>
+        <h1 class="title">You might not need jQuery</h1>
       </header>
-      <article class='explanation'>
+      <article class="explanation">
         <p>
-          jQuery and its cousins are great, and by all means use them if it makes it easier to develop your application.
-          <br><br>
-          If you're developing a library on the other hand, please take a moment to consider if you actually need jQuery as a dependency. Maybe you can include a few lines of utility code, and forgo the requirement. If you're only targeting more modern browsers, you might not need anything more than what the browser ships with.
-          <br><br>
-          At the very least, make sure you know what <a href='https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o'>jQuery is doing for you</a>, and what it's not. Some developers believe that jQuery is protecting us from a great demon of browser incompatibility when, in truth, post-IE8, browsers are pretty easy to deal with on their own; and after the Internet Explorer era, the browsers do even more.
+          jQuery and its cousins are great, and by all means use them if it
+          makes it easier to develop your application.
+          <br /><br />
+          If you're developing a library on the other hand, please take a moment
+          to consider if you actually need jQuery as a dependency. Maybe you can
+          include a few lines of utility code, and forgo the requirement. If you're
+          only targeting more modern browsers, you might not need anything more than
+          what the browser ships with.
+          <br /><br />
+          At the very least, make sure you know what <a
+            href="https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o"
+            >jQuery is doing for you</a
+          >, and what it's not. Some developers believe that jQuery is
+          protecting us from a great demon of browser incompatibility when, in
+          truth, post-IE8, browsers are pretty easy to deal with on their own;
+          and after the Internet Explorer era, the browsers do even more.
         </p>
       </article>
-      <address class='share-buttons'>
+      <address class="share-buttons">
         <a
-          href='https://github.com/HubSpot/YouMightNotNeedjQuery'
-          class='share-button-github'
+          href="https://github.com/HubSpot/YouMightNotNeedjQuery"
+          class="share-button-github"
         >
-          <span class='share-button-github-message'>★ Star on Github</span>
-          <span class='github-stars'></span>
+          <span class="share-button-github-message">★ Star on Github</span>
+          <span class="github-stars"></span>
         </a>
       </address>
       <nav>
-        <input class='search' type='text' role='searchbox' placeholder='Search...' required />
+        <input
+          class="search"
+          type="text"
+          role="searchbox"
+          placeholder="Search..."
+          required
+        />
       </nav>
     </div>
-    <main class='comparisons'>
-      <div class='empty-message'>Your search didn't match any comparisons.</div>
+    <main class="comparisons">
+      <div class="empty-message">Your search didn't match any comparisons.</div>
       <Prism lang="js" code={`const foo = 'bar';`} />
     </main>
-  </body>
-</html>
+    <style lang="scss">
+      @use 'modern-normalize';
 
-<style lang='scss'>
-  @use 'modern-normalize';
-
-  ::placeholder {
-    color: rgba(0, 0, 0, 0.5);
-  }
-
-  body {
-    font-family: system-ui, sans-serif;
-    margin: 0;
-    margin-top: 4rem;
-    line-height: 1.5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    @media (min-width: 1280px) {
-      font-size: 17px;
-    }
-  }
-
-  .top {
-    display: flex;
-    flex-direction: column;
-    max-width: 40rem;
-    gap: 2rem;
-  }
-
-  header {
-    text-align: center;
-
-    @media (max-width: 840px) {
-      font-size: 12px;
-    }
-
-    @media (max-width: 540px) {
-      font-size: 8px;
-      padding-top: 0;
-      width: 100%;
-    }
-
-    .title {
-      padding: 2rem 2rem;
-      border: .25rem solid;
-      font-size: 2.5rem;
-      font-weight: 300;
-      margin: 0;
-      line-height: 1;
-
-      @media (max-width: 540px) {
-        font-weight: 500;
+      ::placeholder {
+        color: rgba(0, 0, 0, 0.5);
       }
-    }
-  }
 
-  .explanation {
-    max-width: 100%;
+      body {
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        margin-top: 4rem;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    a {
-      color: inherit;
-      text-decoration: none;
-      box-shadow: inset 0 -.125rem;
-    }
+        @media (min-width: 1280px) {
+          font-size: 17px;
+        }
+      }
 
-    p {
-      margin: 0;
-    }
-  }
+      .top {
+        display: flex;
+        flex-direction: column;
+        max-width: 40rem;
+        gap: 2rem;
+      }
 
-  .share-buttons {
-    display: flex;
-    justify-content: center;
+      header {
+        text-align: center;
 
-    .share-button-github {
-      display: inline-flex;
-      color: inherit;
-      margin-left: auto;
-      margin-right: auto;
-      text-decoration: none;
-      font-style: normal;
-
-      > span {
-        border: 1px solid #ccc;
-        padding: .5rem .8rem;
-        
-        &.share-button-github-message {
-          margin-right: -1px;
-          background: #eee;
+        @media (max-width: 840px) {
+          font-size: 12px;
         }
 
-        &.github-stars {
-          text-align: center;
-          min-width: 3rem;
+        @media (max-width: 540px) {
+          font-size: 8px;
+          padding-top: 0;
+          width: 100%;
+        }
 
-          &:empty::after {
-            content: '···';
+        .title {
+          padding: 2rem 2rem;
+          border: 0.25rem solid;
+          font-size: 2.5rem;
+          font-weight: 300;
+          margin: 0;
+          line-height: 1;
+
+          @media (max-width: 540px) {
+            font-weight: 500;
           }
         }
       }
-    }
-  }
 
-  .search {
-    max-width: 40rem;
+      .explanation {
+        max-width: 100%;
 
-    border: 0;
-    font-family: inherit;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: inherit;
-    background: rgba(0, 0, 0, .1);
-    width: 100%;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+        a {
+          color: inherit;
+          text-decoration: none;
+          box-shadow: inset 0 -0.125rem;
+        }
 
-    &:focus {
-      background: rgba(0, 0, 0, .05);
-      opacity: 1;
-      outline: none;
-    }
-  }
-</style>
+        p {
+          margin: 0;
+        }
+      }
 
-<script>
-  import ky from 'ky';
+      .share-buttons {
+        display: flex;
+        justify-content: center;
 
-  const numberFormat = new Intl.NumberFormat('en-US');
-  const starsElement = document.querySelector('.github-stars');
+        .share-button-github {
+          display: inline-flex;
+          color: inherit;
+          margin-left: auto;
+          margin-right: auto;
+          text-decoration: none;
+          font-style: normal;
 
-  try {
-    const {stargazers_count: stars} = await ky('https://api.github.com/repos/HubSpot/youmightnotneedjquery').json<{stargazers_count: number}>();
+          > span {
+            border: 1px solid #ccc;
+            padding: 0.5rem 0.8rem;
 
-    starsElement.textContent = numberFormat.format(stars);
-  } catch {
-    starsElement.textContent = '10k+';
-  }
-</script>
+            &.share-button-github-message {
+              margin-right: -1px;
+              background: #eee;
+            }
+
+            &.github-stars {
+              text-align: center;
+              min-width: 3rem;
+
+              &:empty::after {
+                content: '···';
+              }
+            }
+          }
+        }
+      }
+
+      .search {
+        max-width: 40rem;
+
+        border: 0;
+        font-family: inherit;
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: inherit;
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+
+        &:focus {
+          background: rgba(0, 0, 0, 0.05);
+          opacity: 1;
+          outline: none;
+        }
+      }
+    </style>
+
+    <script>
+      import ky from 'ky';
+
+      const numberFormat = new Intl.NumberFormat('en-US');
+      const starsElement = document.querySelector('.github-stars');
+
+      try {
+        const {stargazers_count: stars} = await ky(
+          'https://api.github.com/repos/HubSpot/youmightnotneedjquery'
+        ).json<{stargazers_count: number}>();
+
+        starsElement.textContent = numberFormat.format(stars);
+      } catch {
+        starsElement.textContent = '10k+';
+      }
+    </script>
+  </body>
+</html>
