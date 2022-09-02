@@ -1,0 +1,1 @@
+array.forEach((item, i) => {});

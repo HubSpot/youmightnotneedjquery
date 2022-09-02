@@ -3,6 +3,6 @@ function offset(el) {
   docElem = document.documentElement;
   return {
     top: box.top + (window.pageYOffset || docElem.scrollTop),
-    left: box.left + (window.pageXOffset || docElem.scrollLeft),
+    left: box.left + (window.pageXOffset || docElem.scrollLeft)
   };
 }
