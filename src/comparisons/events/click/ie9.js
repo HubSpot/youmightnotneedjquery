@@ -1,1 +1,1 @@
-el.addEventListener('click', function () {}, false);
+el.addEventListener('click', function () {});
