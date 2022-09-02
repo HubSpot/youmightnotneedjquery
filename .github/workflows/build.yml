@@ -1,5 +1,5 @@
 on: push
-  
+
 jobs:
   build:
     name: Build
