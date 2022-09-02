@@ -8,7 +8,7 @@ A resource for doing things _au naturel_.
 
 ## Contributing
 
-To add a new section, just create a folder for it, and add `jquery.js`, and `ie8.js`, `ie9.js`, `ie10.js` and `ie11.js` as needed. For example, if you have `ie8.js` and `ie9.js`, the ie9 version will be shown to people looking for a solution that works in ie9, 10 or 11.
+To add a new section, just create a folder for it, and add `jquery.js`, and `ie8.js`, `ie9.js`, `ie10.js`, `ie11.js`, and `modern.js` (for Chrome/Safari/Firefox) as needed. For example, if you have `ie8.js` and `ie9.js`, the ie9 version will be shown to people looking for a solution that works in ie9, ie10, ie11, or modern JS.
 
 ## Building
 
