@@ -1,1 +1,2 @@
-for (const [key, value] of Object.entries(obj)) {}
+for (const [key, value] of Object.entries(obj)) {
+}
