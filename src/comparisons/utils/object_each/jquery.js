@@ -1,1 +1,1 @@
-$.each(obj, (key, value) => {});
+$.each(obj, function (key, value) {});

@@ -1,1 +1,1 @@
-$.getJSON('/my/url', data => {});
+$.getJSON('/my/url', function (data) {});

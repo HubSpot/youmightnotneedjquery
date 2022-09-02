@@ -1,7 +1,0 @@
-.shown {
-  transition: opacity 400ms;
-}
-
-.hidden {
-  opacity: 0;
-}

@@ -1,1 +1,0 @@
-const result = {...objA, ...objB};
