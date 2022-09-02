@@ -1,14 +1,19 @@
+/**
+ * @param {number} supportedVersion
+ */
 function setQueryString(supportedVersion) {
-  let supportedVersionStr = 'ie' + supportedVersion.toString();
-  if (supportedVersion === 12) {
-    supportedVersionStr = 'modern';
+  let url = location.pathname;
+  if (supportedVersion >= 8 && supportedVersion < 12) {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('support', `ie${supportedVersion}`);
+    url = `?${urlParams}`;
   }
-
-  const urlParams = new URLSearchParams(location.search);
-  urlParams.set('support', supportedVersionStr);
-  history.replaceState({}, '', '?' + urlParams);
+  history.replaceState({}, document.title, url);
 }
 
+/**
+ * @returns {number}
+ */
 function getInitialSliderState() {
   const urlParams = new URLSearchParams(location.search);
   let supportVersionStr = urlParams.get('support');
