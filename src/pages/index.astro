@@ -509,7 +509,6 @@ const comparisons: Comparisons = sortKeys(
       document
         .querySelector('#ie-question')
         .addEventListener('change', (event) => {
-          console.log((event.target as HTMLInputElement).checked);
           ieBox.classList.toggle(
             'visible',
             (event.target as HTMLInputElement).checked
