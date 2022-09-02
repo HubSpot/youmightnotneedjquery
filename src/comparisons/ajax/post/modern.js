@@ -1,4 +1,4 @@
-fetch('/my/url', {
+await fetch('/my/url', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'

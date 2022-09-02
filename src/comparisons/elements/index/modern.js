@@ -1,1 +1,1 @@
-Array.prototype.indexOf.call(el.parentElement.children, el);
+[...el.parentNode.children].indexOf(el);
