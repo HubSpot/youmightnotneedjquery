@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "@astrojs/prism": "^1.0.1",
+    "@sindresorhus/class-names": "^2.0.0",
     "@types/node": "^18.7.14",
     "astro": "^1.1.3",
     "map-obj": "^5.0.2",

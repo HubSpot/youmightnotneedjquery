@@ -1,10 +1,12 @@
 ---
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import process from 'node:process'; // Astro must be run while the current working directory is the repository root so that the comparison files can be detected.
 import readFileTree from 'readfiletree';
 import sortKeys from 'sort-keys';
 import mapObject, {mapObjectSkip} from 'map-obj';
+import isEven from '../utils/is-even';
 import {Prism} from '@astrojs/prism';
+import classNames from '@sindresorhus/class-names';
 
 const capsWords = ['JSON', 'HTML', 'AJAX'];
 
@@ -20,15 +22,19 @@ function titleCase(str: string) {
     );
 }
 
-const cwd = path.resolve();
+type Engine = Array<{
+  language: string;
+  code: string;
+}>;
 
 interface SingleComparison {
   engines: {
-    ie8?: string;
-    ie9?: string;
-    ie10?: string;
-    jquery: string;
-    modern?: string;
+    ie8?: Engine;
+    ie9?: Engine;
+    ie10?: Engine;
+    ie11?: Engine;
+    jquery: Engine;
+    modern?: Engine;
   };
   alternatives?: Record<string, string>;
 }
@@ -42,43 +48,68 @@ type Comparisons = Record<string, ComparisonCategory>;
 
 const comparisons: Comparisons = sortKeys(
   mapObject(
-    await readFileTree(path.join(cwd, 'src', 'comparisons')),
+    await readFileTree(path.join(process.cwd(), 'src', 'comparisons')),
     (categoryName: string, category) => {
       const result: ComparisonCategory = {
         comparisons: sortKeys(
-          mapObject(category, (comparisonName: string, comparison) => {
-            if (comparisonName === 'alternatives.json') {
-              return mapObjectSkip;
-            }
-
-            const result: SingleComparison = {
-              engines: {
-                jquery: comparison['jquery.js']
+          mapObject(
+            category,
+            (comparisonName: string, comparison: Record<string, string>) => {
+              if (comparisonName === 'alternatives.json') {
+                return mapObjectSkip;
               }
-            };
 
-            if (comparison['ie8.js']) {
-              result.engines.ie8 = comparison['ie8.js'];
+              const result: SingleComparison = {
+                engines: {
+                  jquery: [
+                    {
+                      language: 'javascript',
+                      code: comparison['jquery.js']
+                    }
+                  ]
+                }
+              };
+
+              for (const [engine, code] of Object.entries(comparison)) {
+                const [engineName, extension] = engine.split('.');
+
+                if (engineName === 'jquery') {
+                  continue;
+                }
+
+                if (!result.engines[engineName]) {
+                  result.engines[engineName] = [];
+                }
+
+                result.engines[engineName].push({
+                  language: extension,
+                  code
+                });
+              }
+
+              result.engines = sortKeys(result.engines, {
+                compare(a, b) {
+                  if (a === 'jquery') {
+                    return -1;
+                  }
+
+                  if (b === 'jquery') {
+                    return 1;
+                  }
+
+                  return a.localeCompare(b);
+                }
+              });
+
+              if (comparison['alternatives.json']) {
+                result.alternatives = JSON.parse(
+                  comparison['alternatives.json']
+                );
+              }
+
+              return [comparisonName, result];
             }
-
-            if (comparison['ie9.js']) {
-              result.engines.ie9 = comparison['ie9.js'];
-            }
-
-            if (comparison['ie10.js']) {
-              result.engines.ie10 = comparison['ie10.js'];
-            }
-
-            if (comparison['modern.js']) {
-              result.engines.modern = comparison['modern.js'];
-            }
-
-            if (comparison['alternatives.json']) {
-              result.alternatives = JSON.parse(comparison['alternatives.json']);
-            }
-
-            return [comparisonName, result];
-          })
+          )
         )
       };
 
@@ -112,8 +143,8 @@ const comparisons: Comparisons = sortKeys(
     <link rel="stylesheet" href="/prism.min.css" />
   </head>
   <body>
-    <div class="top">
-      <header>
+    <div id="top">
+      <header id="top-header">
         <h1 class="title">You might not need jQuery</h1>
       </header>
       <article class="explanation">
@@ -147,93 +178,102 @@ const comparisons: Comparisons = sortKeys(
       </address>
       <nav>
         <input
-          class="search"
+          id="search"
           type="text"
           role="searchbox"
           placeholder="Search..."
           required
         />
-        <div class="input-box ie-question-box visible">
+        <div class="input-box ie-question-box">
           <label for="ie-question">Do you need to support IE?</label>
           <input type="checkbox" id="ie-question" name="ie-question" />
-        </div>
-        <div class="input-box ie-box">
-          <label for="ie"
-            >What's the oldest version of IE you need to support?</label
-          >
-          <input type="range" min="8" max="10" value="10" id="ie" name="ie" />
         </div>
       </nav>
     </div>
 
-    <main class="comparisons">
+    <main id="comparisons">
       <div class="empty-message">Your search didn't match any comparisons.</div>
 
       <div class="categories">
         {
-          Object.entries(comparisons).map(([categoryName, category]) => (
-            <section class="category visible" id={categoryName}>
-              <h2 class="category-name">
-                <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
-              </h2>
-              {category.alternatives && (
-                <div class="alternatives">
-                  <h4 class="alternatives-title">Alternatives:</h4>
-                  <ul class="alternatives-list">
-                    {Object.entries(category.alternatives).map(
-                      ([alternativeName, alternativeUrl]) => (
-                        <li>
-                          <a
-                            href={alternativeUrl}
-                            target="_blank"
-                            rel="noopener"
-                            class="alternative-link"
-                          >
-                            {alternativeName}
-                          </a>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                </div>
-              )}
-              <div class="comparisons">
+          Object.entries(comparisons).map(([categoryName, category], index) => (
+            <section
+              class={classNames('category', {
+                even: isEven(index)
+              })}
+              id={categoryName}
+            >
+              <header class="comparisons-header">
+                <h2 class="category-name">
+                  <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
+                </h2>
+                {category.alternatives && (
+                  <div class="alternatives">
+                    <h4 class="alternatives-title">Alternatives:</h4>
+                    <ul class="alternatives-list">
+                      {Object.entries(category.alternatives).map(
+                        ([alternativeName, alternativeUrl]) => (
+                          <li>
+                            <a
+                              href={alternativeUrl}
+                              target="_blank"
+                              rel="noopener"
+                              class="alternative-link"
+                            >
+                              {alternativeName}
+                            </a>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </header>
+              <div class="category-comparisons">
                 {Object.entries(category.comparisons).map(
                   ([comparisonName, comparison]) => (
                     <div class="comparison" id={comparisonName}>
-                      <h3 class="comparison-title">
-                        <a href={`#${comparisonName}`}>
-                          {titleCase(comparisonName.replaceAll('_', ' '))}
-                        </a>
-                      </h3>
-                      {comparison.alternatives && (
-                        <div class="alternatives">
-                          <h4 class="alternatives-title">Alternatives:</h4>
-                          <ul class="alternatives-list">
-                            {Object.entries(comparison.alternatives).map(
-                              ([alternativeName, alternativeUrl]) => (
-                                <li>
-                                  <a
-                                    href={alternativeUrl}
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="alternative-link"
-                                  >
-                                    {alternativeName}
-                                  </a>
-                                </li>
-                              )
-                            )}
-                          </ul>
-                        </div>
-                      )}
+                      <header class="comparisons-header">
+                        <h3 class="comparison-title">
+                          <a href={`#${comparisonName}`}>
+                            {titleCase(comparisonName.replaceAll('_', ' '))}
+                          </a>
+                        </h3>
+                        {comparison.alternatives && (
+                          <div class="alternatives">
+                            <h4 class="alternatives-title">Alternatives:</h4>
+                            <ul class="alternatives-list">
+                              {Object.entries(comparison.alternatives).map(
+                                ([alternativeName, alternativeUrl]) => (
+                                  <li>
+                                    <a
+                                      href={alternativeUrl}
+                                      target="_blank"
+                                      rel="noopener"
+                                      class="alternative-link"
+                                    >
+                                      {alternativeName}
+                                    </a>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </div>
+                        )}
+                      </header>
                       <div class="engines">
                         {Object.entries(comparison.engines).map(
-                          ([engineName, code]) => (
-                            <>
-                              <p>{engineName}</p>
-                              <Prism lang="js" code={code} />
-                            </>
+                          ([engineName, allCode]) => (
+                            <div class="engine" data-engine={engineName}>
+                              <h4 class="engine-name">{engineName}</h4>
+                              {allCode.map(({language, code}) => (
+                                <Prism
+                                  class="code"
+                                  lang={language}
+                                  code={code}
+                                />
+                              ))}
+                            </div>
                           )
                         )}
                       </div>
@@ -248,7 +288,13 @@ const comparisons: Comparisons = sortKeys(
     </main>
 
     <footer>
-      <p>Made by <a href="https://twitter.com/adamfschwartz">@adamfschwartz</a>, <a href="https://twitter.com/zackbloom">@zackbloom</a> and some engineer gamers at <a href="https://dev.hubspot.com">HubSpot</a>.</p>
+      <p>
+        Made by <a href="https://twitter.com/adamfschwartz">@adamfschwartz</a>, <a
+          href="https://twitter.com/zackbloom">@zackbloom</a
+        > and some engineer gamers at <a href="https://dev.hubspot.com"
+          >HubSpot</a
+        >.
+      </p>
     </footer>
 
     <style lang="scss">
@@ -266,7 +312,7 @@ const comparisons: Comparisons = sortKeys(
         align-items: center;
       }
 
-      .top {
+      #top {
         display: flex;
         flex-direction: column;
         max-width: 40rem;
@@ -274,13 +320,13 @@ const comparisons: Comparisons = sortKeys(
         margin-left: 16px;
         margin-right: 16px;
         margin-top: 4rem;
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
 
         @media (max-width: 42rem) {
           margin-top: 16px;
         }
 
-        header {
+        #top-header {
           text-align: center;
 
           .title {
@@ -312,7 +358,7 @@ const comparisons: Comparisons = sortKeys(
           justify-content: center;
 
           .share-button-github {
-            display: inline-flex;
+            display: flex;
             color: inherit;
             margin-left: auto;
             margin-right: auto;
@@ -345,7 +391,7 @@ const comparisons: Comparisons = sortKeys(
           flex-direction: column;
           gap: 10px;
 
-          .search {
+          #search {
             max-width: 40rem;
 
             border: 0;
@@ -361,31 +407,65 @@ const comparisons: Comparisons = sortKeys(
               outline: none;
             }
           }
+
+          @media print {
+            display: none;
+          }
         }
 
         .input-box {
-          display: none;
+          display: flex;
           justify-content: space-between;
+          align-items: center;
 
-          &.visible {
-            display: flex;
+          input[type='checkbox'] {
+            accent-color: black;
+            height: 16px;
+            width: 16px;
           }
         }
       }
 
-      .comparisons {
+      #comparisons {
         width: 100%;
+
+        .engines .engine:not(:first-child):not(:last-child) {
+          display: none;
+        }
+
+        &.old_engines {
+          .engines .engine:not(:first-child):not(:last-child) {
+            display: block;
+          }
+
+          .engines .engine:last-child {
+            display: none;
+          }
+        }
 
         .empty-message {
           text-align: center;
+          background: #eee;
+          padding-top: 5.5rem;
+          padding-bottom: 5.5rem;
+          font-weight: 500;
+          font-size: 1.2rem;
           display: none;
+        }
 
-          &.visible {
+        &.no_search_results {
+          .empty-message {
             display: block;
           }
         }
 
         .categories {
+          .comparisons-header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+
           .category {
             padding-top: 5.5rem;
             padding-bottom: 5.5rem;
@@ -393,7 +473,11 @@ const comparisons: Comparisons = sortKeys(
             padding-right: 16px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 5.5rem;
+
+            &.hidden {
+              display: none;
+            }
 
             @mixin section-symbol {
               // :after is used to ensure the text is centered - this is never shown
@@ -434,18 +518,33 @@ const comparisons: Comparisons = sortKeys(
               }
             }
 
-            .comparison-title {
-              text-align: center;
-              font-size: 2em;
-              font-weight: normal;
-              margin-top: 16px;
-              margin-bottom: 16px;
+            .category-comparisons {
+              display: flex;
+              flex-direction: column;
+              gap: 5.5rem;
 
-              a {
-                color: inherit;
-                text-decoration: none;
+              .comparison {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
 
-                @include section-symbol;
+                &.hidden {
+                  display: none;
+                }
+
+                .comparison-title {
+                  text-align: center;
+                  font-size: 2em;
+                  font-weight: normal;
+                  margin: 0;
+
+                  a {
+                    color: inherit;
+                    text-decoration: none;
+
+                    @include section-symbol;
+                  }
+                }
               }
             }
 
@@ -472,9 +571,10 @@ const comparisons: Comparisons = sortKeys(
                 font-size: 1.1em;
                 list-style: none;
                 padding: 0;
-                display: inline-flex;
+                display: flex;
                 gap: 10px;
                 flex-wrap: wrap;
+                justify-content: center;
 
                 .alternative-link {
                   color: inherit;
@@ -485,8 +585,37 @@ const comparisons: Comparisons = sortKeys(
               }
             }
 
-            &.visible:nth-child(odd) {
+            &.even {
               background: #eee;
+
+              .code {
+                background: white;
+              }
+            }
+
+            .engines {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 24px;
+              max-width: 120rem;
+
+              .engine {
+                width: 30rem;
+                min-width: 0;
+
+                .engine-name {
+                  font-weight: 300;
+                  color: #666;
+                  letter-spacing: 0.07em;
+                  font-size: 1.4em;
+                  text-transform: uppercase;
+                  margin-bottom: 0;
+                  margin-top: 8px;
+                  line-height: 1;
+                }
+              }
             }
           }
         }
@@ -503,26 +632,78 @@ const comparisons: Comparisons = sortKeys(
           color: inherit;
         }
       }
-
-      input[type='checkbox'] {
-        accent-color: black;
-      }
     </style>
 
     <script>
-      const ieBox = document.querySelector('.ie-box');
+      import isEven from '../utils/is-even';
+
+      const searchInput = document.querySelector('#search');
+      const comparisonsParent = document.querySelector('#comparisons');
+
+      function resetResults() {
+        comparisonsParent.classList.remove('no_search_results');
+
+        for (const hiddenCategoryOrComparison of document.querySelectorAll(
+          '.category.hidden, .comparison.hidden'
+        )) {
+          hiddenCategoryOrComparison.classList.remove('hidden');
+        }
+
+        for (const [index, category] of document
+          .querySelectorAll('.category')
+          .entries()) {
+          category.classList.toggle('even', isEven(index));
+        }
+      }
+
+      searchInput.addEventListener('input', (event) => {
+        const query = (event.target as HTMLInputElement).value.toLowerCase();
+
+        resetResults();
+
+        if (query.length === 0) {
+          return;
+        }
+
+        const categories = document.querySelectorAll('.category');
+        let hiddenCategories = 0;
+
+        for (const [index, category] of categories.entries()) {
+          const comparisons = category.querySelectorAll('.comparison');
+          let hiddenComparisons = 0;
+
+          for (const comparison of comparisons) {
+            if (!comparison.textContent.toLowerCase().includes(query)) {
+              comparison.classList.add('hidden');
+              hiddenComparisons++;
+            }
+          }
+
+          if (hiddenComparisons === comparisons.length) {
+            category.classList.add('hidden');
+            hiddenCategories++;
+          }
+          {
+            category.classList.toggle('even', isEven(index - hiddenCategories));
+          }
+        }
+
+        if (hiddenCategories === categories.length) {
+          comparisonsParent.classList.add('no_search_results');
+        }
+      });
 
       document
         .querySelector('#ie-question')
         .addEventListener('change', (event) => {
-          ieBox.classList.toggle(
-            'visible',
+          comparisonsParent.classList.toggle(
+            'old_engines',
             (event.target as HTMLInputElement).checked
           );
         });
 
       const numberFormat = new Intl.NumberFormat('en-US');
-      const starsElement = document.querySelector('.github-stars');
+      const starsText = document.querySelector('.github-stars');
 
       async function getStars(): Promise<number> {
         const response = await fetch(
@@ -539,9 +720,9 @@ const comparisons: Comparisons = sortKeys(
       }
 
       try {
-        starsElement.textContent = numberFormat.format(await getStars());
+        starsText.textContent = numberFormat.format(await getStars());
       } catch {
-        starsElement.textContent = '10k+';
+        starsText.textContent = '10k+';
       }
     </script>
   </body>
