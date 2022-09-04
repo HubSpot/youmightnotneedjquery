@@ -46,6 +46,8 @@ interface ComparisonCategory {
 
 type Comparisons = Record<string, ComparisonCategory>;
 
+const engineOrder = ['jquery', 'ie8', 'ie9', 'ie10', 'ie11', 'modern'];
+
 const comparisons: Comparisons = sortKeys(
   mapObject(
     await readFileTree(path.join(process.cwd(), 'src', 'comparisons')),
@@ -63,7 +65,7 @@ const comparisons: Comparisons = sortKeys(
                 engines: {
                   jquery: [
                     {
-                      language: 'javascript',
+                      language: 'js',
                       code: comparison['jquery.js']
                     }
                   ]
@@ -88,17 +90,7 @@ const comparisons: Comparisons = sortKeys(
               }
 
               result.engines = sortKeys(result.engines, {
-                compare(a, b) {
-                  if (a === 'jquery') {
-                    return -1;
-                  }
-
-                  if (b === 'jquery') {
-                    return 1;
-                  }
-
-                  return a.localeCompare(b);
-                }
+                compare: (a, b) => engineOrder.indexOf(a) - engineOrder.indexOf(b)
               });
 
               if (comparison['alternatives.json']) {
