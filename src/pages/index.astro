@@ -90,7 +90,8 @@ const comparisons: Comparisons = sortKeys(
               }
 
               result.engines = sortKeys(result.engines, {
-                compare: (a, b) => engineOrder.indexOf(a) - engineOrder.indexOf(b)
+                compare: (a, b) =>
+                  engineOrder.indexOf(a) - engineOrder.indexOf(b)
               });
 
               if (comparison['alternatives.json']) {
