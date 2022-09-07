@@ -1,1 +1,1 @@
-$(el).find(selector).length;
+$("div:contains('my text')");
