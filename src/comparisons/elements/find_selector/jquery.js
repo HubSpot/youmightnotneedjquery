@@ -1,0 +1,1 @@
+$(el).find(selector).length;
