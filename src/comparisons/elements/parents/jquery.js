@@ -1,0 +1,1 @@
+$(el).parents(selector);
