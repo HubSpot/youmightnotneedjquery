@@ -2,7 +2,7 @@ function outerHeight(el) {
   var height = el.offsetHeight;
   var style = getComputedStyle(el);
 
-  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+  height += parseFloat(style.marginTop) + parseFloat(style.marginBottom);
   return height;
 }
 
