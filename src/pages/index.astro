@@ -82,9 +82,34 @@ const comparisons = await getComparisons();
           placeholder="Search..."
           required
         />
-        <div class="input-box ie-question-box">
+        <div class="input-box">
           <label for="ie-question">Do you need to support IE?</label>
           <input type="checkbox" id="ie-question" name="ie-question" />
+        </div>
+        <div id="ie-version-box" class="input-box hidden">
+          <label for="ie-min-version"
+            >What's the oldest version of IE you need to support?</label
+          >
+          <div class="slider">
+            <input
+              type="range"
+              id="ie-min-version"
+              name="ie-min-version"
+              min={8}
+              max={11}
+              value={11}
+            />
+            <table class="slider-labels" aria-hidden={true}>
+              <tr>
+                {
+                  [8, 9, 10, 11].map((version) => (
+                    <td class="slider-label ie-slider-label">{version}</td>
+                  ))
+                }
+              </tr>
+
+            </table>
+          </div>
         </div>
       </nav>
     </div>
@@ -162,8 +187,16 @@ const comparisons = await getComparisons();
                       <div class="engines">
                         {Object.entries(comparison.engines).map(
                           ([engineName, allCode]) => (
-                            <div class="engine" data-engine={engineName}>
-                              <h4 class="engine-name">{engineName}</h4>
+                            <div
+                              class={classNames('engine', {
+                                hidden: engineName.startsWith('ie')
+                              })}
+                              data-engine={engineName}
+                            >
+                              <h4 class="engine-name">
+                                {engineName}
+                                {engineName.startsWith('ie') ? '+' : undefined}
+                              </h4>
                               {allCode.map(({language, code}) => (
                                 <Prism
                                   class="code"
@@ -208,6 +241,10 @@ const comparisons = await getComparisons();
         display: flex;
         flex-direction: column;
         align-items: center;
+      }
+
+      .hidden {
+        display: none !important;
       }
 
       #top {
@@ -317,29 +354,48 @@ const comparisons = await getComparisons();
           align-items: center;
 
           input[type='checkbox'] {
-            accent-color: black;
             height: 16px;
             width: 16px;
+          }
+
+          input {
+            accent-color: black;
+          }
+
+          .slider {
+            .slider-labels {
+              border-collapse: collapse;
+              min-width: 100%;
+              margin-left: 3px;
+              margin-right: 3px;
+
+              .slider-label {
+                text-align: center;
+
+                &:first-child {
+                  text-align: left;
+                }
+
+                &:last-child {
+                  text-align: right;
+                }
+
+                &.ie-slider-label {
+                  // 25% for each of the 4 versions
+                  width: 25%;
+
+                  &.ie-slider-label:nth-child(2) {
+                    padding-right: 12px;
+                  }
+                }
+              }
+            }
           }
         }
       }
 
       #comparisons {
         width: 100%;
-
-        .engines .engine:not(:first-child):not(:last-child) {
-          display: none;
-        }
-
-        &.old_engines {
-          .engines .engine:not(:first-child):not(:last-child) {
-            display: block;
-          }
-
-          .engines .engine:last-child {
-            display: none;
-          }
-        }
 
         .empty-message {
           text-align: center;
@@ -372,10 +428,6 @@ const comparisons = await getComparisons();
             display: flex;
             flex-direction: column;
             gap: 5.5rem;
-
-            &.hidden {
-              display: none;
-            }
 
             @mixin section-symbol {
               // :after is used to ensure the text is centered - this is never shown
@@ -425,10 +477,6 @@ const comparisons = await getComparisons();
                 display: flex;
                 flex-direction: column;
                 gap: 16px;
-
-                &.hidden {
-                  display: none;
-                }
 
                 .comparison-title {
                   text-align: center;
@@ -537,6 +585,9 @@ const comparisons = await getComparisons();
 
       const searchInput = document.querySelector('#search');
       const comparisonsParent = document.querySelector('#comparisons');
+      const versionBox = document.querySelector('#ie-version-box');
+      const ieMinVersion =
+        document.querySelector<HTMLInputElement>('#ie-min-version');
 
       function resetResults() {
         comparisonsParent.classList.remove('no_search_results');
@@ -591,14 +642,69 @@ const comparisons = await getComparisons();
         }
       });
 
+      function updateEngines() {
+        const version = Number.parseInt(ieMinVersion.value, 10);
+
+        for (const engine of document.querySelectorAll(
+          '[data-engine].hidden:not([data-engine=modern])'
+        )) {
+          engine.classList.remove('hidden');
+        }
+
+        for (const engines of document.querySelectorAll('.engines')) {
+          const ieEngine = Math.max(
+            ...[
+              ...engines.querySelectorAll<HTMLDivElement>(
+                `[data-engine=ie8], [data-engine=ie9], [data-engine=ie10], [data-engine=ie11]`
+              )
+            ]
+              .map((engine) =>
+                Number.parseInt(engine.dataset.engine.slice(2), 10)
+              )
+              .filter((engine) => engine <= version)
+          );
+
+          for (const engine of engines.querySelectorAll(
+            `.engine:not([data-engine=ie${ieEngine}]):not([data-engine=jquery])`
+          )) {
+            engine.classList.add('hidden');
+          }
+        }
+      }
+
       document
         .querySelector('#ie-question')
         .addEventListener('change', (event) => {
-          comparisonsParent.classList.toggle(
-            'old_engines',
-            (event.target as HTMLInputElement).checked
-          );
+          const isChecked = (event.target as HTMLInputElement).checked;
+
+          versionBox.classList.toggle('hidden', !isChecked);
+
+          if (isChecked) {
+            for (const engine of document.querySelectorAll(
+              '[data-engine=modern]'
+            )) {
+              engine.classList.add('hidden');
+            }
+
+            updateEngines();
+          } else {
+            for (const engine of document.querySelectorAll(
+              '[data-engine=modern]'
+            )) {
+              engine.classList.remove('hidden');
+            }
+
+            for (const engine of document.querySelectorAll(
+              '[data-engine=ie8]:not(.hidden), [data-engine=ie9]:not(.hidden), [data-engine=ie10]:not(.hidden), [data-engine=ie11]:not(.hidden)'
+            )) {
+              engine.classList.add('hidden');
+            }
+          }
         });
+
+      versionBox.addEventListener('change', () => {
+        updateEngines();
+      });
 
       const numberFormat = new Intl.NumberFormat('en-US');
       const starsText = document.querySelector('.github-stars');
