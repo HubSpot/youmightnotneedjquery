@@ -108,6 +108,7 @@ const comparisons = await getComparisons();
                 }
               </tr>
 
+
             </table>
           </div>
         </div>
@@ -220,11 +221,8 @@ const comparisons = await getComparisons();
 
     <footer>
       <p>
-        Made by <a href="https://twitter.com/adamfschwartz">@adamfschwartz</a>, <a
-          href="https://twitter.com/zackbloom">@zackbloom</a
-        > and some engineer gamers at <a href="https://dev.hubspot.com"
-          >HubSpot</a
-        >.
+        Made by <span id="credit-a"></span>, <span id="credit-b"></span> and some
+        engineer gamers at <a href="https://dev.hubspot.com">HubSpot</a>.
       </p>
     </footer>
 
@@ -407,7 +405,7 @@ const comparisons = await getComparisons();
           display: none;
         }
 
-        &.no_search_results {
+        &.no-search-results {
           .empty-message {
             display: block;
           }
@@ -583,6 +581,27 @@ const comparisons = await getComparisons();
     <script>
       import isEven from '../utils/is-even';
 
+      const adamfschwartz = document.createElement('a');
+      adamfschwartz.href = 'https://twitter.com/adamfschwartz';
+      adamfschwartz.textContent = '@adamfschwartz';
+      adamfschwartz.style.color = 'inherit';
+
+      const zackbloom = document.createElement('a');
+      zackbloom.href = 'https://twitter.com/zackbloom';
+      zackbloom.textContent = '@zackbloom';
+      zackbloom.style.color = 'inherit';
+
+      const creditA = document.querySelector('#credit-a');
+      const creditB = document.querySelector('#credit-b');
+
+      if (Math.random() >= 0.5) {
+        creditA.replaceWith(adamfschwartz);
+        creditB.replaceWith(zackbloom);
+      } else {
+        creditA.replaceWith(zackbloom);
+        creditB.replaceWith(adamfschwartz);
+      }
+
       const searchInput = document.querySelector('#search');
       const comparisonsParent = document.querySelector('#comparisons');
       const versionBox = document.querySelector('#ie-version-box');
@@ -590,7 +609,7 @@ const comparisons = await getComparisons();
         document.querySelector<HTMLInputElement>('#ie-min-version');
 
       function resetResults() {
-        comparisonsParent.classList.remove('no_search_results');
+        comparisonsParent.classList.remove('no-search-results');
 
         for (const hiddenCategoryOrComparison of document.querySelectorAll(
           '.category.hidden, .comparison.hidden'
@@ -638,7 +657,7 @@ const comparisons = await getComparisons();
         }
 
         if (hiddenCategories === categories.length) {
-          comparisonsParent.classList.add('no_search_results');
+          comparisonsParent.classList.add('no-search-results');
         }
       });
 
