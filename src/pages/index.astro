@@ -1,12 +1,8 @@
 ---
-import path from 'node:path';
-import process from 'node:process'; // Astro must be run while the current working directory is the repository root so that the comparison files can be detected.
-import readFileTree from 'readfiletree';
-import sortKeys from 'sort-keys';
-import mapObject, {mapObjectSkip} from 'map-obj';
-import isEven from '../utils/is-even';
 import {Prism} from '@astrojs/prism';
 import classNames from '@sindresorhus/class-names';
+import getComparisons from '../lib/get-comparisons';
+import isEven from '../utils/is-even';
 
 const capsWords = ['JSON', 'HTML', 'AJAX'];
 
@@ -22,98 +18,7 @@ function titleCase(str: string) {
     );
 }
 
-type Engine = Array<{
-  language: string;
-  code: string;
-}>;
-
-interface SingleComparison {
-  engines: {
-    ie8?: Engine;
-    ie9?: Engine;
-    ie10?: Engine;
-    ie11?: Engine;
-    jquery: Engine;
-    modern?: Engine;
-  };
-  alternatives?: Record<string, string>;
-}
-
-interface ComparisonCategory {
-  comparisons: Record<string, SingleComparison>;
-  alternatives?: Record<string, string>;
-}
-
-type Comparisons = Record<string, ComparisonCategory>;
-
-const engineOrder = ['jquery', 'ie8', 'ie9', 'ie10', 'ie11', 'modern'];
-
-const comparisons: Comparisons = sortKeys(
-  mapObject(
-    await readFileTree(path.join(process.cwd(), 'src', 'comparisons')),
-    (categoryName: string, category) => {
-      const result: ComparisonCategory = {
-        comparisons: sortKeys(
-          mapObject(
-            category,
-            (comparisonName: string, comparison: Record<string, string>) => {
-              if (comparisonName === 'alternatives.json') {
-                return mapObjectSkip;
-              }
-
-              const result: SingleComparison = {
-                engines: {
-                  jquery: [
-                    {
-                      language: 'js',
-                      code: comparison['jquery.js']
-                    }
-                  ]
-                }
-              };
-
-              for (const [engine, code] of Object.entries(comparison)) {
-                const [engineName, extension] = engine.split('.');
-
-                if (engineName === 'jquery') {
-                  continue;
-                }
-
-                if (!result.engines[engineName]) {
-                  result.engines[engineName] = [];
-                }
-
-                result.engines[engineName].push({
-                  language: extension,
-                  code
-                });
-              }
-
-              result.engines = sortKeys(result.engines, {
-                compare: (a, b) =>
-                  engineOrder.indexOf(a) - engineOrder.indexOf(b)
-              });
-
-              if (comparison['alternatives.json']) {
-                result.alternatives = JSON.parse(
-                  comparison['alternatives.json']
-                );
-              }
-
-              return [comparisonName, result];
-            }
-          )
-        )
-      };
-
-      if (category['alternatives.json']) {
-        result.alternatives = JSON.parse(category['alternatives.json']);
-      }
-
-      return [categoryName, result];
-    }
-  )
-);
+const comparisons = await getComparisons();
 ---
 
 <!DOCTYPE html>
