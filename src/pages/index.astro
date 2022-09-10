@@ -1,7 +1,8 @@
 ---
 import {Prism} from '@astrojs/prism';
 import classNames from '@sindresorhus/class-names';
-import getComparisons from '../lib/get-comparisons';
+import getNewestEngine from '../lib/newest-engine';
+import getComparisons from '../lib/comparisons';
 import isEven from '../utils/is-even';
 
 const capsWords = ['JSON', 'HTML', 'AJAX'];
@@ -155,62 +156,71 @@ const comparisons = await getComparisons();
               </header>
               <div class="category-comparisons">
                 {Object.entries(category.comparisons).map(
-                  ([comparisonName, comparison]) => (
-                    <div class="comparison" id={comparisonName}>
-                      <header class="comparisons-header">
-                        <h3 class="comparison-title">
-                          <a href={`#${comparisonName}`}>
-                            {titleCase(comparisonName.replaceAll('_', ' '))}
-                          </a>
-                        </h3>
-                        {comparison.alternatives && (
-                          <div class="alternatives">
-                            <h4 class="alternatives-title">Alternatives:</h4>
-                            <ul class="alternatives-list">
-                              {Object.entries(comparison.alternatives).map(
-                                ([alternativeName, alternativeUrl]) => (
-                                  <li>
-                                    <a
-                                      href={alternativeUrl}
-                                      target="_blank"
-                                      rel="noopener"
-                                      class="alternative-link"
-                                    >
-                                      {alternativeName}
-                                    </a>
-                                  </li>
-                                )
-                              )}
-                            </ul>
-                          </div>
-                        )}
-                      </header>
-                      <div class="engines">
-                        {Object.entries(comparison.engines).map(
-                          ([engineName, allCode]) => (
-                            <div
-                              class={classNames('engine', {
-                                hidden: engineName.startsWith('ie')
-                              })}
-                              data-engine={engineName}
-                            >
-                              <h4 class="engine-name">
-                                {engineName}
-                                {engineName.startsWith('ie') ? '+' : undefined}
-                              </h4>
-                              {allCode.map(({language, code}) => (
-                                <Prism
-                                  class="code"
-                                  lang={language}
-                                  code={code}
-                                />
-                              ))}
+                  ([comparisonName, comparison]) => {
+                    const newestEngine = getNewestEngine(
+                      Object.keys(comparison.engines)
+                    );
+
+                    return (
+                      <div class="comparison" id={comparisonName}>
+                        <header class="comparisons-header">
+                          <h3 class="comparison-title">
+                            <a href={`#${comparisonName}`}>
+                              {titleCase(comparisonName.replaceAll('_', ' '))}
+                            </a>
+                          </h3>
+                          {comparison.alternatives && (
+                            <div class="alternatives">
+                              <h4 class="alternatives-title">Alternatives:</h4>
+                              <ul class="alternatives-list">
+                                {Object.entries(comparison.alternatives).map(
+                                  ([alternativeName, alternativeUrl]) => (
+                                    <li>
+                                      <a
+                                        href={alternativeUrl}
+                                        target="_blank"
+                                        rel="noopener"
+                                        class="alternative-link"
+                                      >
+                                        {alternativeName}
+                                      </a>
+                                    </li>
+                                  )
+                                )}
+                              </ul>
                             </div>
-                          )
-                        )}
+                          )}
+                        </header>
+                        <div class="engines">
+                          {Object.entries(comparison.engines).map(
+                            ([engineName, allCode]) => (
+                              <div
+                                class={classNames('engine', {
+                                  hidden:
+                                    engineName !== newestEngine &&
+                                    engineName !== 'jquery'
+                                })}
+                                data-engine={engineName}
+                              >
+                                <h4 class="engine-name">
+                                  {`${engineName}${
+                                    engineName.startsWith('ie') ? '+' : ''
+                                  }`}
+                                </h4>
+                                {allCode.map(({language, code}) => (
+                                  <Prism
+                                    class="code"
+                                    lang={language}
+                                    code={code}
+                                  />
+                                ))}
+                              </div>
+                            )
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )
+                    );
+                  }
                 )}
               </div>
             </section>
@@ -579,6 +589,7 @@ const comparisons = await getComparisons();
     </style>
 
     <script>
+      import getNewestEngine from '../lib/newest-engine';
       import isEven from '../utils/is-even';
 
       const adamfschwartz = document.createElement('a');
@@ -605,6 +616,8 @@ const comparisons = await getComparisons();
       const searchInput = document.querySelector('#search');
       const comparisonsParent = document.querySelector('#comparisons');
       const versionBox = document.querySelector('#ie-version-box');
+      const ieQuestion =
+        document.querySelector<HTMLInputElement>('#ie-question');
       const ieMinVersion =
         document.querySelector<HTMLInputElement>('#ie-min-version');
 
@@ -661,68 +674,47 @@ const comparisons = await getComparisons();
         }
       });
 
-      function updateEngines() {
-        const version = Number.parseInt(ieMinVersion.value, 10);
-
+      function updateEngines(targetVersion?: string) {
         for (const engine of document.querySelectorAll(
-          '[data-engine].hidden:not([data-engine=modern])'
+          '[data-engine].hidden'
         )) {
           engine.classList.remove('hidden');
         }
 
         for (const engines of document.querySelectorAll('.engines')) {
-          const ieEngine = Math.max(
-            ...[
-              ...engines.querySelectorAll<HTMLDivElement>(
-                `[data-engine=ie8], [data-engine=ie9], [data-engine=ie10], [data-engine=ie11]`
-              )
-            ]
-              .map((engine) =>
-                Number.parseInt(engine.dataset.engine.slice(2), 10)
-              )
-              .filter((engine) => engine <= version)
+          const engineElements = [
+            ...engines.querySelectorAll<HTMLDivElement>(
+              `[data-engine=ie8], [data-engine=ie9], [data-engine=ie10], [data-engine=ie11], [data-engine=modern]`
+            )
+          ];
+
+          const bestEngine = getNewestEngine(
+            engineElements.map((engine) => engine.dataset.engine),
+            targetVersion
           );
 
           for (const engine of engines.querySelectorAll(
-            `.engine:not([data-engine=ie${ieEngine}]):not([data-engine=jquery])`
+            `.engine:not([data-engine=${bestEngine}]):not([data-engine=jquery])`
           )) {
             engine.classList.add('hidden');
           }
         }
       }
 
-      document
-        .querySelector('#ie-question')
-        .addEventListener('change', (event) => {
-          const isChecked = (event.target as HTMLInputElement).checked;
+      ieQuestion.addEventListener('change', () => {
+        const isChecked = ieQuestion.checked;
 
-          versionBox.classList.toggle('hidden', !isChecked);
+        versionBox.classList.toggle('hidden', !isChecked);
 
-          if (isChecked) {
-            for (const engine of document.querySelectorAll(
-              '[data-engine=modern]'
-            )) {
-              engine.classList.add('hidden');
-            }
+        if (isChecked) {
+          updateEngines(`ie${ieMinVersion.value}`);
+        } else {
+          updateEngines();
+        }
+      });
 
-            updateEngines();
-          } else {
-            for (const engine of document.querySelectorAll(
-              '[data-engine=modern]'
-            )) {
-              engine.classList.remove('hidden');
-            }
-
-            for (const engine of document.querySelectorAll(
-              '[data-engine=ie8]:not(.hidden), [data-engine=ie9]:not(.hidden), [data-engine=ie10]:not(.hidden), [data-engine=ie11]:not(.hidden)'
-            )) {
-              engine.classList.add('hidden');
-            }
-          }
-        });
-
-      versionBox.addEventListener('change', () => {
-        updateEngines();
+      ieMinVersion.addEventListener('change', () => {
+        updateEngines(`ie${ieMinVersion.value}`);
       });
 
       const numberFormat = new Intl.NumberFormat('en-US');

@@ -2,6 +2,7 @@ import path from 'node:path';
 import process from 'node:process'; // Astro must be run while the current working directory is the repository root so that the comparison files can be detected.
 import readFileTree from 'readfiletree';
 import sortKeys from 'sort-keys';
+import {engineOrder} from './newest-engine';
 
 type FileTree = {[fileName: string]: string | FileTree};
 
@@ -28,8 +29,6 @@ interface Category {
 }
 
 type Comparisons = Record<string, Category>;
-
-const engineOrder = ['jquery', 'ie8', 'ie9', 'ie10', 'ie11', 'modern'];
 
 export default async function getComparisons(): Promise<Comparisons> {
   const fileTree: FileTree = await readFileTree(
@@ -76,6 +75,21 @@ export default async function getComparisons(): Promise<Comparisons> {
         comparison.engines[engineName].push({
           language: extension,
           code
+        });
+      }
+
+      for (const engines of Object.values(comparison.engines)) {
+        // Sorted in-place
+        engines.sort((a, b) => {
+          if (a.language === 'js') {
+            return -1;
+          }
+
+          if (b.language === 'js') {
+            return 1;
+          }
+
+          return a.language.localeCompare(b.language);
         });
       }
 
