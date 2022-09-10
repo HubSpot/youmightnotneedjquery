@@ -1,0 +1,752 @@
+---
+import {Prism} from '@astrojs/prism';
+import classNames from '@sindresorhus/class-names';
+import getComparisons from '../lib/get-comparisons';
+import isEven from '../utils/is-even';
+
+const capsWords = ['JSON', 'HTML', 'AJAX'];
+
+function titleCase(str: string) {
+  return str
+    .replace(
+      /(^|\b)([a-z])([a-z]+)/g,
+      (_match, space, first, rest) => `${space}${first.toUpperCase()}${rest}`
+    )
+    .replace(
+      new RegExp(`(?:^|\b)(${capsWords.join('|')})(?:$|\b)`, 'ig'),
+      (_match, word) => word.toUpperCase()
+    );
+}
+
+const comparisons = await getComparisons();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+
+    <title>You Might Not Need jQuery</title>
+
+    <meta
+      name="description"
+      content="Examples of how to do common event, element, ajax and utility operations with plain javascript."
+    />
+    <link rel="icon" href="https://static.hubspot.com/favicon.ico" />
+
+    <link rel="stylesheet" href="/prism.min.css" />
+  </head>
+  <body>
+    <div id="top">
+      <header id="top-header">
+        <h1 class="title">You might not need jQuery</h1>
+      </header>
+      <article class="explanation">
+        <p>
+          jQuery and its cousins are great, and by all means use them if it
+          makes it easier to develop your application.
+          <br /><br />
+          If you're developing a library on the other hand, please take a moment
+          to consider if you actually need jQuery as a dependency. Maybe you can
+          include a few lines of utility code, and forgo the requirement. If you're
+          only targeting more modern browsers, you might not need anything more than
+          what the browser ships with.
+          <br /><br />
+          At the very least, make sure you know what <a
+            href="https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o"
+            >jQuery is doing for you</a
+          >, and what it's not. Some developers believe that jQuery is
+          protecting us from a great demon of browser incompatibility when, in
+          truth, post-IE8, browsers are pretty easy to deal with on their own;
+          and after the Internet Explorer era, the browsers do even more.
+        </p>
+      </article>
+      <address class="share-buttons">
+        <a
+          href="https://github.com/HubSpot/YouMightNotNeedjQuery"
+          class="share-button-github"
+        >
+          <span class="share-button-github-message">★ Star on Github</span>
+          <span class="github-stars"></span>
+        </a>
+      </address>
+      <nav>
+        <input
+          id="search"
+          type="text"
+          role="searchbox"
+          placeholder="Search..."
+          required
+        />
+        <div class="input-box">
+          <label for="ie-question">Do you need to support IE?</label>
+          <input type="checkbox" id="ie-question" name="ie-question" />
+        </div>
+        <div id="ie-version-box" class="input-box hidden">
+          <label for="ie-min-version"
+            >What's the oldest version of IE you need to support?</label
+          >
+          <div class="slider">
+            <input
+              type="range"
+              id="ie-min-version"
+              name="ie-min-version"
+              min={8}
+              max={11}
+              value={11}
+            />
+            <table class="slider-labels" aria-hidden={true}>
+              <tr>
+                {
+                  [8, 9, 10, 11].map((version) => (
+                    <td class="slider-label ie-slider-label">{version}</td>
+                  ))
+                }
+              </tr>
+
+
+            </table>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <main id="comparisons">
+      <div class="empty-message">Your search didn't match any comparisons.</div>
+
+      <div class="categories">
+        {
+          Object.entries(comparisons).map(([categoryName, category], index) => (
+            <section
+              class={classNames('category', {
+                even: isEven(index)
+              })}
+              id={categoryName}
+            >
+              <header class="comparisons-header">
+                <h2 class="category-name">
+                  <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
+                </h2>
+                {category.alternatives && (
+                  <div class="alternatives">
+                    <h4 class="alternatives-title">Alternatives:</h4>
+                    <ul class="alternatives-list">
+                      {Object.entries(category.alternatives).map(
+                        ([alternativeName, alternativeUrl]) => (
+                          <li>
+                            <a
+                              href={alternativeUrl}
+                              target="_blank"
+                              rel="noopener"
+                              class="alternative-link"
+                            >
+                              {alternativeName}
+                            </a>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </header>
+              <div class="category-comparisons">
+                {Object.entries(category.comparisons).map(
+                  ([comparisonName, comparison]) => (
+                    <div class="comparison" id={comparisonName}>
+                      <header class="comparisons-header">
+                        <h3 class="comparison-title">
+                          <a href={`#${comparisonName}`}>
+                            {titleCase(comparisonName.replaceAll('_', ' '))}
+                          </a>
+                        </h3>
+                        {comparison.alternatives && (
+                          <div class="alternatives">
+                            <h4 class="alternatives-title">Alternatives:</h4>
+                            <ul class="alternatives-list">
+                              {Object.entries(comparison.alternatives).map(
+                                ([alternativeName, alternativeUrl]) => (
+                                  <li>
+                                    <a
+                                      href={alternativeUrl}
+                                      target="_blank"
+                                      rel="noopener"
+                                      class="alternative-link"
+                                    >
+                                      {alternativeName}
+                                    </a>
+                                  </li>
+                                )
+                              )}
+                            </ul>
+                          </div>
+                        )}
+                      </header>
+                      <div class="engines">
+                        {Object.entries(comparison.engines).map(
+                          ([engineName, allCode]) => (
+                            <div
+                              class={classNames('engine', {
+                                hidden: engineName.startsWith('ie')
+                              })}
+                              data-engine={engineName}
+                            >
+                              <h4 class="engine-name">
+                                {engineName}
+                                {engineName.startsWith('ie') ? '+' : undefined}
+                              </h4>
+                              {allCode.map(({language, code}) => (
+                                <Prism
+                                  class="code"
+                                  lang={language}
+                                  code={code}
+                                />
+                              ))}
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        Made by <span id="credit-a"></span>, <span id="credit-b"></span> and some
+        engineer gamers at <a href="https://dev.hubspot.com">HubSpot</a>.
+      </p>
+    </footer>
+
+    <style lang="scss">
+      @use 'modern-normalize';
+
+      ::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      body {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      #top {
+        display: flex;
+        flex-direction: column;
+        max-width: 40rem;
+        gap: 2rem;
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+
+        @media (max-width: 42rem) {
+          margin-top: 16px;
+        }
+
+        #top-header {
+          text-align: center;
+
+          .title {
+            padding: 2rem 2rem;
+            border: 0.25rem solid;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin: 0;
+            line-height: 1;
+          }
+        }
+
+        .explanation {
+          max-width: 100%;
+
+          a {
+            color: inherit;
+            text-decoration: none;
+            box-shadow: inset 0 -0.125rem;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+
+        .share-buttons {
+          display: flex;
+          justify-content: center;
+
+          .share-button-github {
+            display: flex;
+            color: inherit;
+            margin-left: auto;
+            margin-right: auto;
+            text-decoration: none;
+            font-style: normal;
+
+            > span {
+              border: 1px solid #ccc;
+              padding: 0.5rem 0.8rem;
+
+              &.share-button-github-message {
+                margin-right: -1px;
+                background: #eee;
+              }
+
+              &.github-stars {
+                text-align: center;
+                min-width: 3rem;
+
+                &:empty::after {
+                  content: '···';
+                }
+              }
+            }
+          }
+        }
+
+        nav {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          #search {
+            max-width: 40rem;
+
+            border: 0;
+            font-family: inherit;
+            font-weight: 400;
+            color: inherit;
+            background: rgba(0, 0, 0, 0.1);
+            width: 100%;
+            padding: 1rem;
+
+            &:focus {
+              background: rgba(0, 0, 0, 0.05);
+              outline: none;
+            }
+          }
+
+          @media print {
+            display: none;
+          }
+        }
+
+        .input-box {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          input[type='checkbox'] {
+            height: 16px;
+            width: 16px;
+          }
+
+          input {
+            accent-color: black;
+          }
+
+          .slider {
+            .slider-labels {
+              border-collapse: collapse;
+              min-width: 100%;
+              margin-left: 3px;
+              margin-right: 3px;
+
+              .slider-label {
+                text-align: center;
+
+                &:first-child {
+                  text-align: left;
+                }
+
+                &:last-child {
+                  text-align: right;
+                }
+
+                &.ie-slider-label {
+                  // 25% for each of the 4 versions
+                  width: 25%;
+
+                  &.ie-slider-label:nth-child(2) {
+                    padding-right: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #comparisons {
+        width: 100%;
+
+        .empty-message {
+          text-align: center;
+          background: #eee;
+          padding-top: 5.5rem;
+          padding-bottom: 5.5rem;
+          font-weight: 500;
+          font-size: 1.2rem;
+          display: none;
+        }
+
+        &.no-search-results {
+          .empty-message {
+            display: block;
+          }
+        }
+
+        .categories {
+          .comparisons-header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+
+          .category {
+            padding-top: 5.5rem;
+            padding-bottom: 5.5rem;
+            padding-left: 16px;
+            padding-right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 5.5rem;
+
+            @mixin section-symbol {
+              // :after is used to ensure the text is centered - this is never shown
+              &:before,
+              &:after {
+                content: '§';
+                visibility: hidden;
+              }
+
+              &:hover:before {
+                visibility: visible;
+              }
+            }
+
+            .category-name {
+              font-size: 3rem;
+              font-weight: 200;
+              letter-spacing: 1rem;
+              text-transform: uppercase;
+              color: #888;
+              text-align: center;
+              margin: 0;
+              word-wrap: break-word;
+
+              a {
+                color: inherit;
+                text-decoration: none;
+
+                @include section-symbol;
+
+                // At such a small screen size, we have to remove this text so that the title remains centered
+                @media (max-width: 28rem) {
+                  &:before,
+                  &:after {
+                    content: '';
+                  }
+                }
+              }
+            }
+
+            .category-comparisons {
+              display: flex;
+              flex-direction: column;
+              gap: 5.5rem;
+
+              .comparison {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                .comparison-title {
+                  text-align: center;
+                  font-size: 2em;
+                  font-weight: normal;
+                  margin: 0;
+
+                  a {
+                    color: inherit;
+                    text-decoration: none;
+
+                    @include section-symbol;
+                  }
+                }
+              }
+            }
+
+            .alternatives {
+              display: flex;
+              justify-content: center;
+              gap: 10px;
+              flex-wrap: wrap;
+
+              .alternatives-title {
+                font-size: 1.1rem;
+                font-weight: 300;
+                color: #666;
+                letter-spacing: 0.07em;
+                font-size: 1.4em;
+                text-transform: uppercase;
+                margin: 0;
+                line-height: 1;
+                word-wrap: break-word;
+              }
+
+              .alternatives-list {
+                margin: 0;
+                font-size: 1.1em;
+                list-style: none;
+                padding: 0;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .alternative-link {
+                  color: inherit;
+                  text-decoration-thickness: 3px;
+                  text-decoration-line: underline;
+                  text-decoration-skip-ink: none;
+                }
+              }
+            }
+
+            &.even {
+              background: #eee;
+
+              .code {
+                background: white;
+              }
+            }
+
+            .engines {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 24px;
+              max-width: 120rem;
+
+              .engine {
+                width: 30rem;
+                min-width: 0;
+
+                .engine-name {
+                  font-weight: 300;
+                  color: #666;
+                  letter-spacing: 0.07em;
+                  font-size: 1.4em;
+                  text-transform: uppercase;
+                  margin-bottom: 0;
+                  margin-top: 8px;
+                  line-height: 1;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      footer {
+        margin: 3em auto;
+        font-size: 1.4em;
+        text-align: center;
+        padding-left: 16px;
+        padding-right: 16px;
+
+        a {
+          color: inherit;
+        }
+      }
+    </style>
+
+    <script>
+      import isEven from '../utils/is-even';
+
+      const adamfschwartz = document.createElement('a');
+      adamfschwartz.href = 'https://twitter.com/adamfschwartz';
+      adamfschwartz.textContent = '@adamfschwartz';
+      adamfschwartz.style.color = 'inherit';
+
+      const zackbloom = document.createElement('a');
+      zackbloom.href = 'https://twitter.com/zackbloom';
+      zackbloom.textContent = '@zackbloom';
+      zackbloom.style.color = 'inherit';
+
+      const creditA = document.querySelector('#credit-a');
+      const creditB = document.querySelector('#credit-b');
+
+      if (Math.random() >= 0.5) {
+        creditA.replaceWith(adamfschwartz);
+        creditB.replaceWith(zackbloom);
+      } else {
+        creditA.replaceWith(zackbloom);
+        creditB.replaceWith(adamfschwartz);
+      }
+
+      const searchInput = document.querySelector('#search');
+      const comparisonsParent = document.querySelector('#comparisons');
+      const versionBox = document.querySelector('#ie-version-box');
+      const ieMinVersion =
+        document.querySelector<HTMLInputElement>('#ie-min-version');
+
+      function resetResults() {
+        comparisonsParent.classList.remove('no-search-results');
+
+        for (const hiddenCategoryOrComparison of document.querySelectorAll(
+          '.category.hidden, .comparison.hidden'
+        )) {
+          hiddenCategoryOrComparison.classList.remove('hidden');
+        }
+
+        for (const [index, category] of document
+          .querySelectorAll('.category')
+          .entries()) {
+          category.classList.toggle('even', isEven(index));
+        }
+      }
+
+      searchInput.addEventListener('input', (event) => {
+        const query = (event.target as HTMLInputElement).value.toLowerCase();
+
+        resetResults();
+
+        if (query.length === 0) {
+          return;
+        }
+
+        const categories = document.querySelectorAll('.category');
+        let hiddenCategories = 0;
+
+        for (const [index, category] of categories.entries()) {
+          const comparisons = category.querySelectorAll('.comparison');
+          let hiddenComparisons = 0;
+
+          for (const comparison of comparisons) {
+            if (!comparison.textContent.toLowerCase().includes(query)) {
+              comparison.classList.add('hidden');
+              hiddenComparisons++;
+            }
+          }
+
+          if (hiddenComparisons === comparisons.length) {
+            category.classList.add('hidden');
+            hiddenCategories++;
+          }
+          {
+            category.classList.toggle('even', isEven(index - hiddenCategories));
+          }
+        }
+
+        if (hiddenCategories === categories.length) {
+          comparisonsParent.classList.add('no-search-results');
+        }
+      });
+
+      function updateEngines() {
+        const version = Number.parseInt(ieMinVersion.value, 10);
+
+        for (const engine of document.querySelectorAll(
+          '[data-engine].hidden:not([data-engine=modern])'
+        )) {
+          engine.classList.remove('hidden');
+        }
+
+        for (const engines of document.querySelectorAll('.engines')) {
+          const ieEngine = Math.max(
+            ...[
+              ...engines.querySelectorAll<HTMLDivElement>(
+                `[data-engine=ie8], [data-engine=ie9], [data-engine=ie10], [data-engine=ie11]`
+              )
+            ]
+              .map((engine) =>
+                Number.parseInt(engine.dataset.engine.slice(2), 10)
+              )
+              .filter((engine) => engine <= version)
+          );
+
+          for (const engine of engines.querySelectorAll(
+            `.engine:not([data-engine=ie${ieEngine}]):not([data-engine=jquery])`
+          )) {
+            engine.classList.add('hidden');
+          }
+        }
+      }
+
+      document
+        .querySelector('#ie-question')
+        .addEventListener('change', (event) => {
+          const isChecked = (event.target as HTMLInputElement).checked;
+
+          versionBox.classList.toggle('hidden', !isChecked);
+
+          if (isChecked) {
+            for (const engine of document.querySelectorAll(
+              '[data-engine=modern]'
+            )) {
+              engine.classList.add('hidden');
+            }
+
+            updateEngines();
+          } else {
+            for (const engine of document.querySelectorAll(
+              '[data-engine=modern]'
+            )) {
+              engine.classList.remove('hidden');
+            }
+
+            for (const engine of document.querySelectorAll(
+              '[data-engine=ie8]:not(.hidden), [data-engine=ie9]:not(.hidden), [data-engine=ie10]:not(.hidden), [data-engine=ie11]:not(.hidden)'
+            )) {
+              engine.classList.add('hidden');
+            }
+          }
+        });
+
+      versionBox.addEventListener('change', () => {
+        updateEngines();
+      });
+
+      const numberFormat = new Intl.NumberFormat('en-US');
+      const starsText = document.querySelector('.github-stars');
+
+      async function getStars(): Promise<number> {
+        const response = await fetch(
+          'https://api.github.com/repos/HubSpot/youmightnotneedjquery'
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch GitHub stars');
+        }
+
+        const {stargazers_count: stars} = await response.json();
+
+        return stars;
+      }
+
+      try {
+        starsText.textContent = numberFormat.format(await getStars());
+      } catch {
+        starsText.textContent = '10k+';
+      }
+    </script>
+  </body>
+</html>

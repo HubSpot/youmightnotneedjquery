@@ -1,3 +1,0 @@
-EventEmitter: https://github.com/Wolfy87/EventEmitter
-Vine: https://github.com/arextar/Vine
-microevent: https://github.com/jeromeetienne/microevent.js

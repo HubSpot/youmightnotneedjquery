@@ -1,3 +1,0 @@
-lo-dash: https://lodash.com/docs#assign
-underscore: https://underscorejs.org/#extend
-ECMA6: https://www.2ality.com/2014/01/object-assign.html
