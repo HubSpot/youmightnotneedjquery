@@ -15,5 +15,5 @@ To add a new section, just create a folder for it, and add `jquery.js`, and `ie8
 Building YMNNJQ requires Node.js
 
 1. In the project directory, run `npm install`
-1. To build the project and watch for changes, run `npm run start`. Alternatively, if you have `gulp` installed globally, you can run `gulp default`
+1. To build the project and watch for changes, run `npm run dev`. Alternatively, if you have `gulp` installed globally, you can run `gulp default`
 1. To build the project without watching for changes, use `npm run build`. If you have `gulp` installed globally, you can run `gulp serve`

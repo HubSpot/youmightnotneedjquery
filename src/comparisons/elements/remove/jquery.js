@@ -1,1 +1,3 @@
 $(el).remove();
+
+$('el').remove();
