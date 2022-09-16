@@ -1,6 +1,6 @@
 ---
-import {Prism} from '@astrojs/prism';
 import classNames from '@sindresorhus/class-names';
+import CodeBlock from '../components/CodeBlock.astro';
 import getNewestEngine from '../lib/newest-engine';
 import getComparisons from '../lib/comparisons';
 import isEven from '../utils/is-even';
@@ -207,16 +207,9 @@ const comparisons = await getComparisons();
                                     engineName.startsWith('ie') ? '+' : ''
                                   }`}
                                 </h4>
-                                {allCode.map(
-                                  ({language, code}) =>
-                                    code && (
-                                      <Prism
-                                        class="code"
-                                        lang={language}
-                                        code={code}
-                                      />
-                                    )
-                                )}
+                                {allCode.map(({language, code}) => (
+                                  <CodeBlock lang={language} code={code} />
+                                ))}
                               </div>
                             )
                           )}
