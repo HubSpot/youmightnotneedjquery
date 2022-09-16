@@ -1,0 +1,91 @@
+---
+import {Prism} from '@astrojs/prism';
+
+export interface Props {
+  lang?: string;
+  code?: string;
+}
+
+const {lang, code} = Astro.props as Props;
+---
+
+<div class="code-wrapper">
+  <button title="Copy code snippet" class="copy-code">📋</button>
+  {code && <Prism class="code" lang={lang} code={code} />}
+</div>
+
+<style lang="scss">
+  .code-wrapper {
+    position: relative;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.2;
+    cursor: pointer;
+    background: #eee;
+    border: 1px solid transparent;
+    padding: 6px;
+
+    &:hover {
+      opacity: 1;
+      border-color: #ccc;
+    }
+  }
+</style>
+
+<script>
+  function oldCopyText(text: string) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed'; // Avoids scrolling on focus
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
+    } finally {
+      document.body.removeChild(textArea);
+    }
+  }
+
+  function copyText(text: string) {
+    if (!navigator.clipboard) {
+      oldCopyText(text);
+      return;
+    }
+    navigator.clipboard.writeText(text).catch(() => {
+      oldCopyText(text);
+    });
+  }
+
+  const buttonElements = document.querySelectorAll('.copy-code');
+  buttonElements.forEach((el) => {
+    el.setAttribute('data-label', el.innerHTML);
+    el.addEventListener('click', (event) => {
+      const currentEl = event.target as HTMLElement;
+      const pre = currentEl.nextElementSibling;
+      if (pre) {
+        copyText(pre.textContent);
+        const range = document.createRange();
+        range.selectNode(pre);
+        getSelection().removeAllRanges();
+        getSelection().addRange(range);
+        currentEl.innerHTML = 'Copied!';
+        setTimeout(() => {
+          currentEl.innerHTML = currentEl.getAttribute('data-label');
+        }, 1000);
+      } else {
+        currentEl.innerHTML = 'Failed to copy :(';
+        setTimeout(() => {
+          currentEl.innerHTML = currentEl.getAttribute('data-label');
+        }, 1000);
+      }
+    });
+  });
+</script>
