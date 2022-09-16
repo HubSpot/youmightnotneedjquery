@@ -207,13 +207,16 @@ const comparisons = await getComparisons();
                                     engineName.startsWith('ie') ? '+' : ''
                                   }`}
                                 </h4>
-                                {allCode.map(({language, code}) => (
-                                  <Prism
-                                    class="code"
-                                    lang={language}
-                                    code={code}
-                                  />
-                                ))}
+                                {allCode.map(
+                                  ({language, code}) =>
+                                    code && (
+                                      <Prism
+                                        class="code"
+                                        lang={language}
+                                        code={code}
+                                      />
+                                    )
+                                )}
                               </div>
                             )
                           )}
