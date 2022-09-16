@@ -9,12 +9,15 @@ function deepExtend(out, ...arguments_) {
     }
 
     for (const [key, value] of Object.entries(obj)) {
-      if (typeof value === 'object' && value !== null) {
-        out[key] = Array.isArray(value)
-          ? [...value]
-          : deepExtend(out[key], value);
-      } else {
-        out[key] = value;
+      switch (Object.prototype.toString.call(value)) {
+        case '[object Object]':
+          out[key] = deepExtend(out[key], value);
+          break;
+        case '[object Array]':
+          out[key] = deepExtend(new Array(value.length), value);
+          break;
+        default:
+          out[key] = value;
       }
     }
   }
