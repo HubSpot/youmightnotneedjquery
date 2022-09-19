@@ -1,11 +1,15 @@
 function addEventListener(el, eventName, handler) {
   if (el.addEventListener) {
     el.addEventListener(eventName, handler);
+    return handler;
   } else {
-    el.attachEvent('on' + eventName, function () {
-      handler.call(el);
-    });
+    var wrappedHandler = function (event) {
+      handler.call(el, event);
+    };
+    el.attachEvent('on' + eventName, wrappedHandler);
+    return wrappedHandler;
   }
 }
 
-addEventListener(el, eventName, handler);
+// Use the return value to remove that event listener, see #off
+var handlerToRemove = addEventListener(el, eventName, handler);
