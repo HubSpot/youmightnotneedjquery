@@ -4,7 +4,7 @@ function trigger(el, eventType) {
   } else {
     var event;
     if (eventType === 'string') {
-      document.createEvent('HTMLEvents');
+      event = document.createEvent('HTMLEvents');
       event.initEvent(eventType, true, false);
     } else {
       event = eventType;
