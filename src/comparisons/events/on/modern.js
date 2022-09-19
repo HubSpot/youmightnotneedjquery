@@ -13,6 +13,7 @@ function addEventListener(el, eventName, eventHandler, selector) {
   }
 }
 
+// Use the return value to remove that event listener, see #off
 addEventListener(el, eventName, eventHandler);
 // Or when you want to delegate event handling
 addEventListener(el, eventName, eventHandler, selector);
