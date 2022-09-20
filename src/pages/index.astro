@@ -4,20 +4,7 @@ import CodeBlock from '../components/CodeBlock.astro';
 import getNewestEngine from '../lib/newest-engine';
 import getComparisons from '../lib/comparisons';
 import isEven from '../utils/is-even';
-
-const capsWords = ['JSON', 'HTML', 'AJAX'];
-
-function titleCase(str: string) {
-  return str
-    .replace(
-      /(^|\b)([a-z])([a-z]+)/g,
-      (_match, space, first, rest) => `${space}${first.toUpperCase()}${rest}`
-    )
-    .replace(
-      new RegExp(`(?:^|\b)(${capsWords.join('|')})(?:$|\b)`, 'ig'),
-      (_match, word) => word.toUpperCase()
-    );
-}
+import titleCase from '../utils/title-case';
 
 const comparisons = await getComparisons();
 ---
@@ -42,195 +29,236 @@ const comparisons = await getComparisons();
     <link rel="stylesheet" href="/prism.min.css" />
   </head>
   <body>
-    <div id="top">
-      <header id="top-header">
-        <h1 class="title">You might not need jQuery</h1>
-      </header>
-      <article class="explanation">
-        <p>
-          jQuery and its cousins are great, and by all means use them if it
-          makes it easier to develop your application.
-          <br /><br />
-          If you're developing a library on the other hand, please take a moment
-          to consider if you actually need jQuery as a dependency. Maybe you can
-          include a few lines of utility code, and forgo the requirement. If you're
-          only targeting more modern browsers, you might not need anything more than
-          what the browser ships with.
-          <br /><br />
-          At the very least, make sure you know what <a
-            href="https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o"
-            >jQuery is doing for you</a
-          >, and what it's not. Some developers believe that jQuery is
-          protecting us from a great demon of browser incompatibility when, in
-          truth, post-IE8, browsers are pretty easy to deal with on their own;
-          and after the Internet Explorer era, the browsers do even more.
-        </p>
-      </article>
-      <address class="share-buttons">
-        <a
-          href="https://github.com/HubSpot/YouMightNotNeedjQuery"
-          class="share-button-github"
-        >
-          <span class="share-button-github-message">★ Star on Github</span>
-          <span class="github-stars"></span>
-        </a>
-      </address>
-      <nav>
-        <input
-          id="search"
-          type="text"
-          role="searchbox"
-          placeholder="Search..."
-          required
-        />
-        <div class="input-box">
-          <label for="ie-question">Do you need to support IE?</label>
-          <input type="checkbox" id="ie-question" name="ie-question" />
-        </div>
-        <div id="ie-version-box" class="input-box hidden">
-          <label for="ie-min-version"
-            >What's the oldest version of IE you need to support?</label
-          >
-          <div class="slider">
-            <input
-              type="range"
-              id="ie-min-version"
-              name="ie-min-version"
-              min={8}
-              max={11}
-              value={11}
-            />
-            <table class="slider-labels" aria-hidden={true}>
-              <tr>
-                {
-                  [8, 9, 10, 11].map((version) => (
-                    <td class="slider-label ie-slider-label">{version}</td>
-                  ))
-                }
-              </tr>
-
-
-            </table>
-          </div>
-        </div>
+    <div class="main-wrapper">
+      <nav id="sidebar">
+        <ul class="sidebar-categories">
+          {
+            Object.entries(comparisons).map(([categoryName, category]) => (
+              <li class="sidebar-category">
+                <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
+                <ul class="sidebar-comparisons">
+                  {Object.keys(category.comparisons).map((comparisonName) => (
+                    <li class="sidebar-comparison">
+                      <a href={`#${comparisonName}`}>
+                        {titleCase(comparisonName.replaceAll('_', ' '))}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
       </nav>
-    </div>
-
-    <main id="comparisons">
-      <div class="empty-message">Your search didn't match any comparisons.</div>
-
-      <div class="categories">
-        {
-          Object.entries(comparisons).map(([categoryName, category], index) => (
-            <section
-              class={classNames('category', {
-                even: isEven(index)
-              })}
-              id={categoryName}
+      <main id="main-content">
+        <div id="top">
+          <header id="top-header">
+            <h1 class="title">You might not need jQuery</h1>
+          </header>
+          <article class="explanation">
+            <p>
+              jQuery and its cousins are great, and by all means use them if it
+              makes it easier to develop your application.
+              <br /><br />
+              If you're developing a library on the other hand, please take a moment
+              to consider if you actually need jQuery as a dependency. Maybe you
+              can include a few lines of utility code, and forgo the requirement.
+              If you're only targeting more modern browsers, you might not need anything
+              more than what the browser ships with.
+              <br /><br />
+              At the very least, make sure you know what <a
+                href="https://docs.google.com/document/d/1LPaPA30bLUB_publLIMF0RlhdnPx_ePXm7oW02iiT6o"
+                >jQuery is doing for you</a
+              >, and what it's not. Some developers believe that jQuery is
+              protecting us from a great demon of browser incompatibility when,
+              in truth, post-IE8, browsers are pretty easy to deal with on their
+              own; and after the Internet Explorer era, the browsers do even
+              more.
+            </p>
+          </article>
+          <address class="share-buttons">
+            <a
+              href="https://github.com/HubSpot/YouMightNotNeedjQuery"
+              class="share-button-github"
             >
-              <header class="comparisons-header">
-                <h2 class="category-name">
-                  <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
-                </h2>
-                {category.alternatives && (
-                  <div class="alternatives">
-                    <h4 class="alternatives-title">Alternatives:</h4>
-                    <ul class="alternatives-list">
-                      {Object.entries(category.alternatives).map(
-                        ([alternativeName, alternativeUrl]) => (
-                          <li>
-                            <a
-                              href={alternativeUrl}
-                              target="_blank"
-                              rel="noopener"
-                              class="alternative-link"
-                            >
-                              {alternativeName}
-                            </a>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-                )}
-              </header>
-              <div class="category-comparisons">
-                {Object.entries(category.comparisons).map(
-                  ([comparisonName, comparison]) => {
-                    const newestEngine = getNewestEngine(
-                      Object.keys(comparison.engines)
-                    );
+              <span class="share-button-github-message">★ Star on Github</span>
+              <span class="github-stars"></span>
+            </a>
+          </address>
+          <nav>
+            <input
+              id="search"
+              type="text"
+              role="searchbox"
+              placeholder="Search..."
+              required
+            />
+            <div class="input-box">
+              <label for="ie-question">Do you need to support IE?</label>
+              <input type="checkbox" id="ie-question" name="ie-question" />
+            </div>
+            <div id="ie-version-box" class="input-box hidden">
+              <label for="ie-min-version"
+                >What's the oldest version of IE you need to support?</label
+              >
+              <div class="slider">
+                <input
+                  type="range"
+                  id="ie-min-version"
+                  name="ie-min-version"
+                  min={8}
+                  max={11}
+                  value={11}
+                />
+                <table class="slider-labels" aria-hidden={true}>
+                  <tr>
+                    {
+                      [8, 9, 10, 11].map((version) => (
+                        <td class="slider-label ie-slider-label">{version}</td>
+                      ))
+                    }
+                  </tr>
 
-                    return (
-                      <div class="comparison" id={comparisonName}>
-                        <header class="comparisons-header">
-                          <h3 class="comparison-title">
-                            <a href={`#${comparisonName}`}>
-                              {titleCase(comparisonName.replaceAll('_', ' '))}
-                            </a>
-                          </h3>
-                          {comparison.alternatives && (
-                            <div class="alternatives">
-                              <h4 class="alternatives-title">Alternatives:</h4>
-                              <ul class="alternatives-list">
-                                {Object.entries(comparison.alternatives).map(
-                                  ([alternativeName, alternativeUrl]) => (
-                                    <li>
-                                      <a
-                                        href={alternativeUrl}
-                                        target="_blank"
-                                        rel="noopener"
-                                        class="alternative-link"
-                                      >
-                                        {alternativeName}
-                                      </a>
-                                    </li>
+
+                </table>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        <article id="comparisons">
+          <div class="empty-message">
+            Your search didn't match any comparisons.
+          </div>
+
+          <div class="categories">
+            {
+              Object.entries(comparisons).map(
+                ([categoryName, category], index) => (
+                  <section
+                    class={classNames('category', {
+                      even: isEven(index)
+                    })}
+                    id={categoryName}
+                  >
+                    <header class="comparisons-header">
+                      <h2 class="category-name">
+                        <a href={`#${categoryName}`}>
+                          {titleCase(categoryName)}
+                        </a>
+                      </h2>
+                      {category.alternatives && (
+                        <div class="alternatives">
+                          <h4 class="alternatives-title">Alternatives:</h4>
+                          <ul class="alternatives-list">
+                            {Object.entries(category.alternatives).map(
+                              ([alternativeName, alternativeUrl]) => (
+                                <li>
+                                  <a
+                                    href={alternativeUrl}
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="alternative-link"
+                                  >
+                                    {alternativeName}
+                                  </a>
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        </div>
+                      )}
+                    </header>
+                    <div class="category-comparisons">
+                      {Object.entries(category.comparisons).map(
+                        ([comparisonName, comparison]) => {
+                          const newestEngine = getNewestEngine(
+                            Object.keys(comparison.engines)
+                          );
+
+                          return (
+                            <div class="comparison" id={comparisonName}>
+                              <header class="comparisons-header">
+                                <h3 class="comparison-title">
+                                  <a href={`#${comparisonName}`}>
+                                    {titleCase(
+                                      comparisonName.replaceAll('_', ' ')
+                                    )}
+                                  </a>
+                                </h3>
+                                {comparison.alternatives && (
+                                  <div class="alternatives">
+                                    <h4 class="alternatives-title">
+                                      Alternatives:
+                                    </h4>
+                                    <ul class="alternatives-list">
+                                      {Object.entries(
+                                        comparison.alternatives
+                                      ).map(
+                                        ([alternativeName, alternativeUrl]) => (
+                                          <li>
+                                            <a
+                                              href={alternativeUrl}
+                                              target="_blank"
+                                              rel="noopener"
+                                              class="alternative-link"
+                                            >
+                                              {alternativeName}
+                                            </a>
+                                          </li>
+                                        )
+                                      )}
+                                    </ul>
+                                  </div>
+                                )}
+                              </header>
+                              <div class="engines">
+                                {Object.entries(comparison.engines).map(
+                                  ([engineName, allCode]) => (
+                                    <div
+                                      class={classNames('engine', {
+                                        hidden:
+                                          engineName !== newestEngine &&
+                                          engineName !== 'jquery'
+                                      })}
+                                      data-engine={engineName}
+                                    >
+                                      <h4 class="engine-name">
+                                        {`${engineName}${
+                                          engineName.startsWith('ie') ? '+' : ''
+                                        }`}
+                                      </h4>
+                                      {allCode.map(({language, code}) => (
+                                        <CodeBlock
+                                          lang={language}
+                                          code={code}
+                                        />
+                                      ))}
+                                    </div>
                                   )
                                 )}
-                              </ul>
-                            </div>
-                          )}
-                        </header>
-                        <div class="engines">
-                          {Object.entries(comparison.engines).map(
-                            ([engineName, allCode]) => (
-                              <div
-                                class={classNames('engine', {
-                                  hidden:
-                                    engineName !== newestEngine &&
-                                    engineName !== 'jquery'
-                                })}
-                                data-engine={engineName}
-                              >
-                                <h4 class="engine-name">
-                                  {`${engineName}${
-                                    engineName.startsWith('ie') ? '+' : ''
-                                  }`}
-                                </h4>
-                                {allCode.map(({language, code}) => (
-                                  <CodeBlock lang={language} code={code} />
-                                ))}
                               </div>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    );
-                  }
-                )}
-              </div>
-            </section>
-          ))
-        }
-      </div>
-    </main>
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
+                  </section>
+                )
+              )
+            }
+          </div>
+        </article>
 
-    <footer>
-      <p>
-        Made by <span id="credit-a"></span>, <span id="credit-b"></span> and some
-        engineer gamers at <a href="https://dev.hubspot.com">HubSpot</a>.
-      </p>
-    </footer>
+        <footer>
+          <p>
+            Made by <span id="credit-a"></span>, <span id="credit-b"></span> and
+            some engineer gamers at <a href="https://dev.hubspot.com">HubSpot</a
+            >.
+          </p>
+        </footer>
+      </main>
+    </div>
 
     <style lang="scss">
       @use 'modern-normalize';
@@ -249,6 +277,27 @@ const comparisons = await getComparisons();
 
       .hidden {
         display: none !important;
+      }
+
+      .main-wrapper {
+        width: 100%;
+      }
+
+      #sidebar {
+        flex: 0;
+        width: 300px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+      }
+
+      #main-content {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-left: 300px;
       }
 
       #top {
