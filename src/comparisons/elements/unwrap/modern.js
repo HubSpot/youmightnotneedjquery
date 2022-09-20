@@ -1,0 +1,1 @@
+el.replaceWith(...el.childNodes);
