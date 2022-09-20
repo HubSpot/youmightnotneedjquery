@@ -35,14 +35,18 @@ const comparisons = await getComparisons();
           {
             Object.entries(comparisons).map(([categoryName, category]) => (
               <li class="sidebar-category">
-                <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
+                <a href={`#${categoryName}`}>
+                  <div class="sidebar-category-title">
+                    {titleCase(categoryName)}
+                  </div>
+                </a>
                 <ul class="sidebar-comparisons">
                   {Object.keys(category.comparisons).map((comparisonName) => (
-                    <li class="sidebar-comparison">
-                      <a href={`#${comparisonName}`}>
+                    <a href={`#${comparisonName}`}>
+                      <li class="sidebar-comparison-title">
                         {titleCase(comparisonName.replaceAll('_', ' '))}
-                      </a>
-                    </li>
+                      </li>
+                    </a>
                   ))}
                 </ul>
               </li>
@@ -267,6 +271,10 @@ const comparisons = await getComparisons();
         color: rgba(0, 0, 0, 0.5);
       }
 
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: system-ui, sans-serif;
         line-height: 1.5;
@@ -291,6 +299,47 @@ const comparisons = await getComparisons();
         top: 0;
         bottom: 0;
         overflow: auto;
+        padding: 2em;
+
+        ul {
+          list-style: none;
+          padding-left: 0;
+        }
+
+        a {
+          text-decoration: none;
+          color: inherit;
+
+          &.active {
+            font-weight: 600;
+
+            li,
+            div {
+              background: rgba(0, 0, 0, 0.05);
+            }
+          }
+        }
+
+        .sidebar-category {
+          margin-bottom: 1em;
+
+          .sidebar-category-title {
+            font-size: 20px;
+          }
+
+          .sidebar-comparison-title {
+            color: #666;
+          }
+
+          .sidebar-category-title,
+          .sidebar-comparison-title {
+            padding: 4px;
+
+            &:hover {
+              background: rgba(0, 0, 0, 0.05);
+            }
+          }
+        }
       }
 
       #main-content {
@@ -636,6 +685,7 @@ const comparisons = await getComparisons();
     <script>
       import getNewestEngine from '../lib/newest-engine';
       import isEven from '../utils/is-even';
+      import throttle from '../utils/throttle';
 
       const adamfschwartz = document.createElement('a');
       adamfschwartz.href = 'https://twitter.com/adamfschwartz';
@@ -761,6 +811,54 @@ const comparisons = await getComparisons();
       ieMinVersion.addEventListener('change', () => {
         updateEngines(`ie${ieMinVersion.value}`);
       });
+
+      function findActiveCategoryOrComparison(): string | undefined {
+        let closestElementY = 0;
+        let anchor: string;
+        // First, check category names
+        for (let el of document.querySelectorAll('.category-name')) {
+          const elementY = (el as HTMLElement).offsetTop;
+          if (elementY >= window.scrollY) {
+            closestElementY = elementY;
+            anchor = el.querySelector('a').href.split('#').pop();
+            break;
+          }
+        }
+        for (let el of document.querySelectorAll('.comparison-title')) {
+          const elementY = (el as HTMLElement).offsetTop;
+          const diff = elementY - window.scrollY;
+          const isCloser =
+            diff >= 0 &&
+            (!closestElementY || diff < closestElementY - window.scrollY);
+          if (isCloser) {
+            anchor = el.querySelector('a').href.split('#').pop();
+            break;
+          }
+        }
+        return anchor;
+      }
+      function markSidebarAnchorActive(href: string) {
+        // Clear out active anchors first
+        const sidebar: HTMLDivElement = document.querySelector('#sidebar');
+        sidebar.querySelectorAll('a').forEach((el) => {
+          if (!el.href.includes(href)) el.classList.remove('active');
+        });
+        if (href) {
+          const maybeAnchor: HTMLAnchorElement | null = sidebar.querySelector(
+            `a[href*=${href}]`
+          );
+          if (maybeAnchor) {
+            maybeAnchor.classList.add('active');
+          }
+        }
+      }
+      window.addEventListener(
+        'scroll',
+        throttle(() => {
+          const activeCategoryOrComparison = findActiveCategoryOrComparison();
+          markSidebarAnchorActive(activeCategoryOrComparison);
+        }, 100)
+      );
 
       const numberFormat = new Intl.NumberFormat('en-US');
       const starsText = document.querySelector('.github-stars');
