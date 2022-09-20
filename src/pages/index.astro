@@ -311,11 +311,9 @@ const comparisons = await getComparisons();
           color: inherit;
 
           &.active {
-            font-weight: 600;
-
             li,
             div {
-              background: rgba(0, 0, 0, 0.05);
+              background: rgba(0, 0, 0, 0.1);
             }
           }
         }
@@ -334,6 +332,7 @@ const comparisons = await getComparisons();
           .sidebar-category-title,
           .sidebar-comparison-title {
             padding: 4px;
+            font-weight: 300;
 
             &:hover {
               background: rgba(0, 0, 0, 0.05);
