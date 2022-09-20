@@ -837,15 +837,16 @@ const comparisons = await getComparisons();
         }
         return anchor;
       }
-      function markSidebarAnchorActive(href: string) {
+      function markSidebarAnchorActive(anchorName?: string) {
         // Clear out active anchors first
         const sidebar: HTMLDivElement = document.querySelector('#sidebar');
         sidebar.querySelectorAll('a').forEach((el) => {
-          if (!el.href.includes(href)) el.classList.remove('active');
+          if (!anchorName || el.href !== `#${anchorName}`)
+            el.classList.remove('active');
         });
-        if (href) {
+        if (anchorName) {
           const maybeAnchor: HTMLAnchorElement | null = sidebar.querySelector(
-            `a[href*=${href}]`
+            `a[href*=${anchorName}]`
           );
           if (maybeAnchor) {
             maybeAnchor.classList.add('active');
@@ -859,6 +860,8 @@ const comparisons = await getComparisons();
           markSidebarAnchorActive(activeCategoryOrComparison);
         }, 100)
       );
+      const activeCategoryOrComparison = findActiveCategoryOrComparison();
+      markSidebarAnchorActive(activeCategoryOrComparison);
 
       const numberFormat = new Intl.NumberFormat('en-US');
       const starsText = document.querySelector('.github-stars');
