@@ -941,7 +941,7 @@ const comparisons = await getComparisons();
         });
         if (anchorName) {
           const maybeAnchor: HTMLAnchorElement | null = sidebar.querySelector(
-            `a[href*=${anchorName}]`
+            `a[href='#${anchorName}']`
           );
           if (maybeAnchor) {
             maybeAnchor.classList.add('active');
