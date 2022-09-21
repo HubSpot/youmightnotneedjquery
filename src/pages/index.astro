@@ -803,13 +803,20 @@ const comparisons = await getComparisons();
         creditB.replaceWith(adamfschwartz);
       }
 
-      const searchInput = document.querySelector('#search');
+      const searchInput: HTMLInputElement = document.querySelector('#search');
       const comparisonsParent = document.querySelector('#comparisons');
       const versionBox = document.querySelector('#ie-version-box');
       const ieQuestion =
         document.querySelector<HTMLInputElement>('#ie-question');
       const ieMinVersion =
         document.querySelector<HTMLInputElement>('#ie-min-version');
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === '/' && searchInput !== document.activeElement) {
+          event.preventDefault(); // Firefox uses this for quick find
+          searchInput.focus();
+        }
+      });
 
       function resetResults() {
         comparisonsParent.classList.remove('no-search-results');
