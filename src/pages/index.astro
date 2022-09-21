@@ -30,6 +30,12 @@ const comparisons = await getComparisons();
   </head>
   <body>
     <div class="main-wrapper">
+      <input id="sidebar-toggle" type="checkbox" />
+      <nav id="mobile-navbar">
+        <label id="sidebar-toggle-label" for="sidebar-toggle">
+          <span></span>
+        </label>
+      </nav>
       <nav id="sidebar">
         <ul class="sidebar-categories">
           {
@@ -267,6 +273,10 @@ const comparisons = await getComparisons();
     <style lang="scss">
       @use 'modern-normalize';
 
+      $sidebar-width: 300px;
+      $sidebar-collapsed-screen-width: 828px;
+      $mobile-navbar-height: 60px;
+
       ::placeholder {
         color: rgba(0, 0, 0, 0.5);
       }
@@ -291,15 +301,92 @@ const comparisons = await getComparisons();
         width: 100%;
       }
 
+      #sidebar-toggle {
+        display: none;
+      }
+
+      #sidebar-toggle:checked ~ #sidebar {
+        left: 0;
+      }
+
+      #sidebar-toggle-label {
+        position: fixed;
+        z-index: 2;
+        top: 28px;
+        left: 20px;
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+
+        span,
+        span::before,
+        span::after {
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background-color: #333;
+          transition-duration: 0.25s;
+        }
+
+        span::before {
+          content: '';
+          top: -8px;
+        }
+
+        span::after {
+          content: '';
+          top: 8px;
+        }
+      }
+
+      #sidebar-toggle:checked + #mobile-navbar {
+        #sidebar-toggle-label span {
+          transform: rotate(45deg);
+          &::before {
+            top: 0;
+            transform: rotate(0deg);
+          }
+          &::after {
+            top: 0;
+            transform: rotate(90deg);
+          }
+        }
+      }
+
+      #mobile-navbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        height: $mobile-navbar-height;
+        border-bottom: 1px solid #eee;
+        z-index: 1;
+        display: none;
+
+        @media screen and (max-width: $sidebar-collapsed-screen-width) {
+          display: block;
+        }
+      }
+
       #sidebar {
         flex: 0;
-        width: 300px;
+        background-color: #fff;
+        z-index: 1;
+        width: $sidebar-width;
         position: fixed;
         left: 0;
         top: 0;
         bottom: 0;
         overflow: auto;
         padding: 2em;
+        transition-duration: 0.25s;
+
+        @media screen and (max-width: $sidebar-collapsed-screen-width) {
+          width: 100%;
+          left: -100%;
+          margin-top: $mobile-navbar-height;
+        }
 
         ul {
           list-style: none;
@@ -345,7 +432,12 @@ const comparisons = await getComparisons();
         align-items: center;
         display: flex;
         flex-direction: column;
-        margin-left: 300px;
+        margin-left: $sidebar-width;
+
+        @media screen and (max-width: $sidebar-collapsed-screen-width) {
+          margin-left: 0;
+          margin-top: $mobile-navbar-height;
+        }
       }
 
       #top {
@@ -861,6 +953,15 @@ const comparisons = await getComparisons();
       );
       const activeCategoryOrComparison = findActiveCategoryOrComparison();
       markSidebarAnchorActive(activeCategoryOrComparison);
+
+      const sidebar: HTMLDivElement = document.querySelector('#sidebar');
+      sidebar.querySelectorAll('a').forEach((el) => {
+        el.addEventListener('click', () => {
+          const sidebarToggle: HTMLInputElement =
+            document.querySelector('#sidebar-toggle');
+          sidebarToggle.checked = false;
+        });
+      });
 
       const numberFormat = new Intl.NumberFormat('en-US');
       const starsText = document.querySelector('.github-stars');
