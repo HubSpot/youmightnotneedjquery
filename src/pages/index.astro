@@ -913,14 +913,27 @@ const comparisons = await getComparisons();
         // First, check category names
         for (let el of document.querySelectorAll('.category-name')) {
           const elementY = (el as HTMLElement).offsetTop;
+          // Element is hidden
+          if (elementY === 0) {
+            continue;
+          }
           if (elementY >= window.scrollY) {
             closestElementY = elementY;
             anchor = el.querySelector('a').href.split('#').pop();
             break;
           }
         }
+        // Only check comparison names if we have scrolled. Otherwise, it will show "hidden"
         for (let el of document.querySelectorAll('.comparison-title')) {
           const elementY = (el as HTMLElement).offsetTop;
+          // Don't evaluate nodes beyond the closest category
+          if (elementY > closestElementY) {
+            break;
+          }
+          // Element is hidden
+          if (elementY === 0) {
+            continue;
+          }
           const diff = elementY - window.scrollY;
           const isCloser =
             diff >= 0 &&
