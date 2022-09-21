@@ -923,7 +923,6 @@ const comparisons = await getComparisons();
             break;
           }
         }
-        // Only check comparison names if we have scrolled. Otherwise, it will show "hidden"
         for (let el of document.querySelectorAll('.comparison-title')) {
           const elementY = (el as HTMLElement).offsetTop;
           // Don't evaluate nodes beyond the closest category
