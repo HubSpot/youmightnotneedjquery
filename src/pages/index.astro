@@ -871,7 +871,19 @@ const comparisons = await getComparisons();
         }
       });
 
+      function setQueryString(supportedVersion?: string) {
+        if (supportedVersion) {
+          const urlParams = new URLSearchParams(location.search);
+          urlParams.set('support', supportedVersion);
+          history.replaceState({}, '', '?' + urlParams);
+        } else {
+          history.replaceState({}, '', location.pathname);
+        }
+      }
+
       function updateEngines(targetVersion?: string) {
+        setQueryString(targetVersion);
+
         for (const engine of document.querySelectorAll(
           '[data-engine].hidden'
         )) {
@@ -896,6 +908,20 @@ const comparisons = await getComparisons();
             engine.classList.add('hidden');
           }
         }
+      }
+
+      function getInitialSliderState(): string | undefined {
+        const urlParams = new URLSearchParams(location.search);
+        return urlParams.get('support');
+      }
+      const initialSliderState = getInitialSliderState();
+      if (initialSliderState) {
+        if (initialSliderState.includes('ie')) {
+          ieQuestion.checked = true;
+          ieMinVersion.value = initialSliderState.replace('ie', '');
+          versionBox.classList.remove('hidden');
+        }
+        updateEngines(initialSliderState);
       }
 
       ieQuestion.addEventListener('change', () => {

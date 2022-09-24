@@ -13,7 +13,10 @@ export default function getNewestEngine(
     return engines[0];
   }
 
-  return engines.find(
-    (engine) => engineOrder.indexOf(engine) <= engineOrder.indexOf(targetEngine)
-  )!;
+  return (
+    engines.find(
+      (engine) =>
+        engineOrder.indexOf(engine) <= engineOrder.indexOf(targetEngine)
+    ) || engines[0]
+  );
 }
