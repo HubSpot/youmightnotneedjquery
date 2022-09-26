@@ -13,10 +13,7 @@ const comparisons = await getComparisons();
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>You Might Not Need jQuery</title>
 
@@ -25,8 +22,6 @@ const comparisons = await getComparisons();
       content="Examples of how to do common event, element, ajax and utility operations with plain javascript."
     />
     <link rel="icon" href="https://static.hubspot.com/favicon.ico" />
-
-    <link rel="stylesheet" href="/prism.min.css" />
   </head>
   <body>
     <div class="main-wrapper">
@@ -48,11 +43,11 @@ const comparisons = await getComparisons();
                 </a>
                 <ul class="sidebar-comparisons">
                   {Object.keys(category.comparisons).map((comparisonName) => (
-                    <a href={`#${comparisonName}`}>
-                      <li class="sidebar-comparison-title">
+                    <li class="sidebar-comparison-title">
+                      <a href={`#${comparisonName}`}>
                         {titleCase(comparisonName.replaceAll('_', ' '))}
-                      </li>
-                    </a>
+                      </a>
+                    </li>
                   ))}
                 </ul>
               </li>
@@ -159,7 +154,7 @@ const comparisons = await getComparisons();
                       </h2>
                       {category.alternatives && (
                         <div class="alternatives">
-                          <h4 class="alternatives-title">Alternatives:</h4>
+                          <h3 class="alternatives-title">Alternatives:</h3>
                           <ul class="alternatives-list">
                             {Object.entries(category.alternatives).map(
                               ([alternativeName, alternativeUrl]) => (
@@ -270,9 +265,12 @@ const comparisons = await getComparisons();
       </main>
     </div>
 
-    <style lang="scss">
+    <style is:global lang="scss">
       @use 'modern-normalize';
+      @use 'prismjs/themes/prism.css';
+    </style>
 
+    <style lang="scss">
       $sidebar-width: 300px;
       $sidebar-collapsed-screen-width: 828px;
       $mobile-navbar-height: 60px;
@@ -551,8 +549,8 @@ const comparisons = await getComparisons();
           align-items: center;
 
           input[type='checkbox'] {
-            height: 16px;
-            width: 16px;
+            height: 20px;
+            width: 20px;
           }
 
           input {
@@ -731,7 +729,7 @@ const comparisons = await getComparisons();
             &.even {
               background: #eee;
 
-              .code {
+              :global(.code) {
                 background: white;
               }
             }
@@ -743,6 +741,7 @@ const comparisons = await getComparisons();
               justify-content: center;
               gap: 24px;
               margin: 0 auto;
+              width: 100%;
 
               .engine {
                 width: 30rem;
