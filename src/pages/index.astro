@@ -420,11 +420,15 @@ const comparisons = await getComparisons();
 
           .sidebar-category-title,
           .sidebar-comparison-title {
-            padding: 4px;
             font-weight: 300;
 
             &:hover {
               background: rgba(0, 0, 0, 0.05);
+            }
+
+            a {
+              display: block;
+              padding: 4px;
             }
           }
         }
