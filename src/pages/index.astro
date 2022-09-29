@@ -36,11 +36,9 @@ const comparisons = await getComparisons();
           {
             Object.entries(comparisons).map(([categoryName, category]) => (
               <li class="sidebar-category">
-                <a href={`#${categoryName}`}>
-                  <div class="sidebar-category-title">
-                    {titleCase(categoryName)}
-                  </div>
-                </a>
+                <div class="sidebar-category-title">
+                  <a href={`#${categoryName}`}>{titleCase(categoryName)}</a>
+                </div>
                 <ul class="sidebar-comparisons">
                   {Object.keys(category.comparisons).map((comparisonName) => (
                     <li class="sidebar-comparison-title">
@@ -396,14 +394,17 @@ const comparisons = await getComparisons();
         }
 
         a {
+          display: block;
+          padding: 4px;
           text-decoration: none;
           color: inherit;
 
           &.active {
-            li,
-            div {
-              background: rgba(0, 0, 0, 0.1);
-            }
+            background: rgba(0, 0, 0, 0.1);
+          }
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.05);
           }
         }
 
@@ -421,15 +422,6 @@ const comparisons = await getComparisons();
           .sidebar-category-title,
           .sidebar-comparison-title {
             font-weight: 300;
-
-            &:hover {
-              background: rgba(0, 0, 0, 0.05);
-            }
-
-            a {
-              display: block;
-              padding: 4px;
-            }
           }
         }
       }
