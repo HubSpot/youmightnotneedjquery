@@ -1,5 +1,5 @@
 document.addEventListener(eventName, (event) => {
-  if (target.closest(elementSelector)) {
-    handler.call(target, event);
+  if (event.target.closest(elementSelector)) {
+    handler.call(event.target, event);
   }
 });
