@@ -26,7 +26,7 @@ const comparisons = await getComparisons();
   <body>
     <div class="main-wrapper">
       <input id="sidebar-toggle" type="checkbox" />
-      <nav id="mobile-navbar">
+      <nav id="navbar">
         <label id="sidebar-toggle-label" for="sidebar-toggle">
           <span></span>
         </label>
@@ -269,9 +269,11 @@ const comparisons = await getComparisons();
     </style>
 
     <style lang="scss">
+      $border-color: #eee;
       $sidebar-width: 300px;
       $sidebar-collapsed-screen-width: 828px;
-      $mobile-navbar-height: 60px;
+      $navbar-height: 60px;
+      $transition-duration: 0.25s;
 
       ::placeholder {
         color: rgba(0, 0, 0, 0.5);
@@ -281,7 +283,7 @@ const comparisons = await getComparisons();
         scroll-behavior: smooth;
 
         @media screen and (max-width: $sidebar-collapsed-screen-width) {
-          scroll-padding-top: $mobile-navbar-height;
+          scroll-padding-top: $navbar-height;
         }
       }
 
@@ -309,6 +311,10 @@ const comparisons = await getComparisons();
         left: 0;
       }
 
+      #sidebar-toggle:checked ~ #main-content {
+        margin-left: $sidebar-width;
+      }
+
       #sidebar-toggle-label {
         position: fixed;
         z-index: 2;
@@ -326,7 +332,7 @@ const comparisons = await getComparisons();
           width: 100%;
           height: 2px;
           background-color: #333;
-          transition-duration: 0.25s;
+          transition-duration: $transition-duration;
         }
 
         span::before {
@@ -340,7 +346,7 @@ const comparisons = await getComparisons();
         }
       }
 
-      #sidebar-toggle:checked + #mobile-navbar {
+      #sidebar-toggle:checked + #navbar {
         #sidebar-toggle-label span {
           transform: rotate(45deg);
           &::before {
@@ -354,19 +360,15 @@ const comparisons = await getComparisons();
         }
       }
 
-      #mobile-navbar {
+      #navbar {
         position: fixed;
         left: 0;
         right: 0;
         background-color: #fff;
-        height: $mobile-navbar-height;
-        border-bottom: 1px solid #eee;
+        height: $navbar-height;
+        border-bottom: 1px solid $border-color;
         z-index: 1;
-        display: none;
-
-        @media screen and (max-width: $sidebar-collapsed-screen-width) {
-          display: block;
-        }
+        display: block;
       }
 
       #sidebar {
@@ -380,12 +382,13 @@ const comparisons = await getComparisons();
         bottom: 0;
         overflow: auto;
         padding: 2em;
-        transition-duration: 0.25s;
+        transition-duration: $transition-duration;
+        margin-top: $navbar-height;
+        border-right: 1px solid $border-color;
+        left: -100%;
 
         @media screen and (max-width: $sidebar-collapsed-screen-width) {
           width: 100%;
-          left: -100%;
-          margin-top: $mobile-navbar-height;
         }
 
         ul {
@@ -430,11 +433,13 @@ const comparisons = await getComparisons();
         align-items: center;
         display: flex;
         flex-direction: column;
-        margin-left: $sidebar-width;
+        margin-left: 0;
+        margin-top: $navbar-height;
+        transition-duration: $transition-duration;
 
         @media screen and (max-width: $sidebar-collapsed-screen-width) {
           margin-left: 0;
-          margin-top: $mobile-navbar-height;
+          margin-top: $navbar-height;
         }
       }
 
@@ -998,12 +1003,19 @@ const comparisons = await getComparisons();
       const activeCategoryOrComparison = findActiveCategoryOrComparison();
       markSidebarAnchorActive(activeCategoryOrComparison);
 
+      const MOBILE_WIDTH = 828;
       const sidebar: HTMLDivElement = document.querySelector('#sidebar');
+      const sidebarToggle: HTMLInputElement =
+        document.querySelector('#sidebar-toggle');
+      sidebarToggle.checked = window.innerWidth >= MOBILE_WIDTH;
       sidebar.querySelectorAll('a').forEach((el) => {
         el.addEventListener('click', () => {
           const sidebarToggle: HTMLInputElement =
             document.querySelector('#sidebar-toggle');
-          sidebarToggle.checked = false;
+          // Only close the sidebar automatically on mobile
+          if (window.innerWidth < MOBILE_WIDTH) {
+            sidebarToggle.checked = false;
+          }
         });
       });
 
