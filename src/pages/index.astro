@@ -999,6 +999,7 @@ const comparisons = await getComparisons();
       const sidebar: HTMLDivElement = document.querySelector('#sidebar');
       const sidebarToggle: HTMLInputElement =
         document.querySelector('#sidebar-toggle');
+      // Default the sidebar toggle open when on larger screens
       sidebarToggle.checked = window.innerWidth >= MOBILE_WIDTH;
       sidebar.querySelectorAll('a').forEach((el) => {
         el.addEventListener('click', () => {
