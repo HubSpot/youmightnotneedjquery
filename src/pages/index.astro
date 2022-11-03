@@ -10,7 +10,7 @@ const comparisons = await getComparisons();
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark-mode">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -268,7 +268,7 @@ const comparisons = await getComparisons();
       @use 'prismjs/themes/prism.css';
     </style>
 
-    <style lang="scss">
+    <style is:global lang="scss">
       $border-color: #eee;
       $sidebar-width: 300px;
       $sidebar-collapsed-screen-width: 828px;
@@ -280,11 +280,29 @@ const comparisons = await getComparisons();
       }
 
       html {
+        --background-color-1: #fff;
+        --background-color-2: #eee;
+        --border-color: #eee;
+        --navbar-toggle: #333;
+        --primary-text-color: #000;
+        --secondary-text-color: #666;
+
+        &.dark-mode {
+          --background-color-1: #181a1b;
+          --background-color-2: #222426;
+          --border-color: #35393b;
+          --navbar-toggle: #ddd;
+          --primary-text-color: #fff;
+          --secondary-text-color: #a8a095;
+        }
+
         scroll-behavior: smooth;
         scroll-padding-top: $navbar-height;
       }
 
       body {
+        background-color: var(--background-color-1);
+        color: var(--primary-text-color);
         font-family: system-ui, sans-serif;
         line-height: 1.5;
         display: flex;
@@ -328,7 +346,7 @@ const comparisons = await getComparisons();
           position: absolute;
           width: 100%;
           height: 2px;
-          background-color: #333;
+          background-color: var(--navbar-toggle);
           transition-duration: $transition-duration;
         }
 
@@ -361,16 +379,16 @@ const comparisons = await getComparisons();
         position: fixed;
         left: 0;
         right: 0;
-        background-color: #fff;
+        background-color: var(--background-color-1);
         height: $navbar-height;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid var(--border-color);
         z-index: 1;
         display: block;
       }
 
       #sidebar {
         flex: 0;
-        background-color: #fff;
+        background-color: var(--background-color-1);
         z-index: 1;
         width: $sidebar-width;
         position: fixed;
@@ -381,7 +399,7 @@ const comparisons = await getComparisons();
         padding: 2em;
         transition-duration: $transition-duration;
         margin-top: $navbar-height;
-        border-right: 1px solid $border-color;
+        border-right: 1px solid var(--border-color);
         left: -100%;
 
         @media screen and (max-width: $sidebar-collapsed-screen-width) {
@@ -416,7 +434,7 @@ const comparisons = await getComparisons();
           }
 
           .sidebar-comparison-title {
-            color: #666;
+            color: var(--secondary-text-color);
           }
 
           .sidebar-category-title,
@@ -488,13 +506,21 @@ const comparisons = await getComparisons();
             text-decoration: none;
             font-style: normal;
 
+            --background-color: #222426;
+            --border-color: #ccc;
+
+            .dark-mode & {
+              --background-color: #222426;
+              --border-color: #3e4446;
+            }
+
             > span {
-              border: 1px solid #ccc;
+              border: 1px solid var(--border-color);
               padding: 0.5rem 0.8rem;
 
               &.share-button-github-message {
                 margin-right: -1px;
-                background: #eee;
+                background: var(--background-color);
               }
 
               &.github-stars {
@@ -510,23 +536,50 @@ const comparisons = await getComparisons();
         }
 
         nav {
+          --accent-color: #000;
+          --input-background-color: rgba(0, 0, 0, 0.1);
+          --input-background-color-focus: rgba(0, 0, 0, 0.05);
+          --input-checkbox-background: #fff;
+          --placeholder-color: #686868;
+
+          .dark-mode & {
+            --accent-color: #e8e6e3;
+            --input-background-color: #222426;
+            --input-background-color-focus: #1d1e20;
+            --input-checkbox-background: #1d1e20;
+            --placeholder-color: #bdb6a4;
+          }
+
+          input {
+            accent-color: var(--accent-color);
+
+            &[type='checkbox'] {
+              border-color: currentcolor;
+              color: inherit;
+              background-color: var(--input-checkbox-background);
+            }
+
+            &::placeholder {
+              color: var(--placeholder-color);
+            }
+          }
+
           display: flex;
           flex-direction: column;
           gap: 10px;
 
           #search {
             max-width: 40rem;
-
             border: 0;
             font-family: inherit;
             font-weight: 400;
             color: inherit;
-            background: rgba(0, 0, 0, 0.1);
+            background: var(--input-background-color);
             width: 100%;
             padding: 1rem;
 
             &:focus {
-              background: rgba(0, 0, 0, 0.05);
+              background: var(--input-background-color-focus);
               outline: none;
             }
           }
@@ -544,10 +597,6 @@ const comparisons = await getComparisons();
           input[type='checkbox'] {
             height: 20px;
             width: 20px;
-          }
-
-          input {
-            accent-color: black;
           }
 
           .slider {
@@ -691,7 +740,7 @@ const comparisons = await getComparisons();
               .alternatives-title {
                 font-size: 1.1rem;
                 font-weight: 300;
-                color: #666;
+                color: var(--secondary-text-color);
                 letter-spacing: 0.07em;
                 font-size: 1.4em;
                 text-transform: uppercase;
@@ -720,10 +769,10 @@ const comparisons = await getComparisons();
             }
 
             &.even {
-              background: #eee;
+              background: var(--background-color-2);
 
               :global(.code) {
-                background: white;
+                background: var(--background-color-1);
               }
             }
 
@@ -742,7 +791,7 @@ const comparisons = await getComparisons();
 
                 .engine-name {
                   font-weight: 300;
-                  color: #666;
+                  color: var(--secondary-text-color);
                   letter-spacing: 0.07em;
                   font-size: 1.4em;
                   text-transform: uppercase;
