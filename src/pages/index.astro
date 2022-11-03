@@ -280,11 +280,27 @@ const comparisons = await getComparisons();
       }
 
       html {
+        --background-color-1: #fff;
+        --background-color-2: #eee;
+        --border-color: #eee;
+        --navbar-toggle: #333;
+        --text-color: #000;
+
+        &.dark-mode {
+          --background-color-1: #181a1b;
+          --background-color-2: #222426;
+          --border-color: #0e1026;
+          --navbar-toggle: #ddd;
+          --text-color: #fff;
+        }
+
         scroll-behavior: smooth;
         scroll-padding-top: $navbar-height;
       }
 
       body {
+        background-color: var(--background-color-1);
+        color: var(--text-color);
         font-family: system-ui, sans-serif;
         line-height: 1.5;
         display: flex;
@@ -328,7 +344,7 @@ const comparisons = await getComparisons();
           position: absolute;
           width: 100%;
           height: 2px;
-          background-color: #333;
+          background-color: var(--navbar-toggle);
           transition-duration: $transition-duration;
         }
 
@@ -361,16 +377,16 @@ const comparisons = await getComparisons();
         position: fixed;
         left: 0;
         right: 0;
-        background-color: #fff;
+        background-color: var(--background-color-1);
         height: $navbar-height;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid var(--border-color);
         z-index: 1;
         display: block;
       }
 
       #sidebar {
         flex: 0;
-        background-color: #fff;
+        background-color: var(--background-color-1);
         z-index: 1;
         width: $sidebar-width;
         position: fixed;
@@ -381,7 +397,7 @@ const comparisons = await getComparisons();
         padding: 2em;
         transition-duration: $transition-duration;
         margin-top: $navbar-height;
-        border-right: 1px solid $border-color;
+        border-right: 1px solid var(--border-color);
         left: -100%;
 
         @media screen and (max-width: $sidebar-collapsed-screen-width) {
@@ -720,7 +736,7 @@ const comparisons = await getComparisons();
             }
 
             &.even {
-              background: #eee;
+              background: var(--background-color-2);
 
               :global(.code) {
                 background: white;
