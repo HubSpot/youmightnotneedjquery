@@ -3,8 +3,8 @@ function outerWidth(el) {
 
   return (
     el.getBoundingClientRect().width +
-    parseFloat(style.getPropertyValue('marginLeft')) +
-    parseFloat(style.getPropertyValue('marginRight'))
+    parseFloat(style.marginLeft) +
+    parseFloat(style.marginRight)
   );
 }
 
