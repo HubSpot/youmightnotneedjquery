@@ -1,2 +1,1 @@
-const els = document.querySelectorAll(el);
-els.at(-1);
+[...document.querySelectorAll(el)].at(-1);
