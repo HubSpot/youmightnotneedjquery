@@ -3,7 +3,7 @@ function trigger(el, eventType) {
     el[eventType]();
   } else {
     const event =
-      eventType === 'string'
+      typeof eventType === 'string'
         ? new Event(eventType, {bubbles: true})
         : eventType;
     el.dispatchEvent(event);
