@@ -11,6 +11,7 @@ function deepExtend(out, ...arguments_) {
     for (const [key, value] of Object.entries(obj)) {
       switch (Object.prototype.toString.call(value)) {
         case '[object Object]':
+          out[key] = out[key] || {};
           out[key] = deepExtend(out[key], value);
           break;
         case '[object Array]':
