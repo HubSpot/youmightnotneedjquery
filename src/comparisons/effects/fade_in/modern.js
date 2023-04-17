@@ -1,1 +1,1 @@
-el.classList.replace('show', 'hide');
+el.classList.replace('hide', 'show');
