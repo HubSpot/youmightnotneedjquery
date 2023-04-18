@@ -995,12 +995,38 @@ const comparisons = await getComparisons();
       const activeCategoryOrComparison = findActiveCategoryOrComparison();
       markSidebarAnchorActive(activeCategoryOrComparison);
 
+      function readLocalStorage<T>(key: string, defaultValue: T): T {
+        try {
+          const rawItem = window.localStorage.getItem(key);
+          if (rawItem == null) return defaultValue;
+          return JSON.parse(rawItem);
+        } catch (err) {
+          return defaultValue;
+        }
+      }
+      function writeLocalStorage<T>(key: string, value: T) {
+        try {
+          window.localStorage.setItem(key, JSON.stringify(value));
+        } catch (err) {
+          // Swallow error
+        }
+      }
+
       const MOBILE_WIDTH = 828;
       const sidebar: HTMLDivElement = document.querySelector('#sidebar');
       const sidebarToggle: HTMLInputElement =
         document.querySelector('#sidebar-toggle');
-      // Default the sidebar toggle open when on larger screens
-      sidebarToggle.checked = window.innerWidth >= MOBILE_WIDTH;
+      const SIDEBAR_LOCAL_STORAGE_KEY = 'sidebar-open';
+      const sidebarDefaultChecked = readLocalStorage(
+        SIDEBAR_LOCAL_STORAGE_KEY,
+        // Default the sidebar toggle open when on larger screens
+        window.innerWidth >= MOBILE_WIDTH
+      );
+      sidebarToggle.checked = sidebarDefaultChecked;
+      sidebarToggle.addEventListener('change', () => {
+        const isChecked = sidebarToggle.checked;
+        writeLocalStorage(SIDEBAR_LOCAL_STORAGE_KEY, isChecked);
+      });
       sidebar.querySelectorAll('a').forEach((el) => {
         el.addEventListener('click', () => {
           const sidebarToggle: HTMLInputElement =
