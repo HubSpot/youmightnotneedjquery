@@ -1,13 +1,9 @@
 function next(el, selector) {
-  if (selector) {
-    const next = el.nextElementSibling;
-    if (next && next.matches(selector)) {
-      return next;
-    }
-    return undefined;
-  } else {
-    return el.nextElementSibling;
+  const nextEl = el.nextElementSibling;
+  if (!selector || (nextEl && nextEl.matches(selector))) {
+    return nextEl;
   }
+  return null;
 }
 
 next(el);
