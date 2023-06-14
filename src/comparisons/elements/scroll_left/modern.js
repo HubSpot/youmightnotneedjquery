@@ -1,11 +1,18 @@
 function scrollLeft(el, value) {
+  var win;
+  if (el.window === el) {
+    win = el;
+  } else if (el.nodeType === 9) {
+    win = el.defaultView;
+  }
+
   if (value === undefined) {
-    return el.pageXOffset;
+    return win ? win.pageXOffset : el.scrollLeft;
+  }
+
+  if (win) {
+    win.scrollTo(value, win.pageYOffset);
   } else {
-    if (el === window || el.nodeType === 9) {
-      el.scrollTo(value, el.pageYOffset);
-    } else {
-      el.pageXOffset = value;
-    }
+    el.scrollLeft = value;
   }
 }
