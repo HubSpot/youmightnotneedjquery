@@ -4,12 +4,7 @@ function addEventListener(el, eventName, eventHandler, selector) {
       if (!e.target) return;
       const el = e.target.closest(selector);
       if (el) {
-        const newEvent = Object.create(e, {
-          target: {
-            value: el
-          }
-        });
-        eventHandler.call(el, newEvent);
+        eventHandler.call(el, e);
       }
     };
     el.addEventListener(eventName, wrappedHandler);
