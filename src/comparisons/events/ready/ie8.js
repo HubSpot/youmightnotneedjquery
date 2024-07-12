@@ -9,3 +9,4 @@ function ready(fn) {
     });
   }
 }
+ready(function () {});
