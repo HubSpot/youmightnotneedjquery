@@ -6,16 +6,16 @@
     "format": "prettier -w ."
   },
   "devDependencies": {
-    "@astrojs/prism": "^1.0.1",
+    "@astrojs/prism": "^3.1.0",
     "@sindresorhus/class-names": "^2.0.0",
     "@types/node": "^18.7.16",
-    "astro": "^1.1.7",
-    "astro-compress": "^1.0.7",
-    "modern-normalize": "^1.1.0",
-    "prettier": "^2.7.1",
-    "prettier-plugin-astro": "^0.5.4",
+    "astro": "^4.16.6",
+    "astro-compress": "^2.3.3",
+    "modern-normalize": "^3.0.1",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "readfiletree": "^1.0.0",
-    "sass": "^1.54.9",
-    "sort-keys": "^5.0.0"
+    "sass": "^1.80.3",
+    "sort-keys": "^5.1.0"
   }
 }
